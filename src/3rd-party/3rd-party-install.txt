@@ -1,0 +1,32 @@
+===================================================
+PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)
+3rd Party Install Instructions
+===================================================
+
+Slimbox 2
+---------
+1) Download from:
+     http://www.digitalia.be/software/slimbox2#download
+2) Copy the following files from "slimbox-2*" into the PPAGES project:
+     slimbox-2*/js/slimbox2.js --> ppages/slimbox2/slimbox2.js
+     slimbox-2*/css/*.*        --> ppages/slimbox2/*.*
+
+Valums File Uploader (Ajax Upload)
+----------------------------------
+1) Download from:
+     http://valums.com/ajax-upload/
+2) Copy the following files from "valums-file-uploader" into the PPAGES
+project:
+     client/fileuploader.css --> ppages/console/fileuploader.css
+     client/fileuploader.js  --> ppages/console/fileuploader.js
+     client/loading.gif      --> ppages/console/loading.gif
+     server/php.php          --> ppages/console/fileuploader.php
+3) In "fileuploader.php", change "uploads/" to "../data/uploads/"
+... and also comment out: $this->checkServerSettings();  (it seems to cause errors)
+4) In "fileuploader.js", change "Upload a file" to "Upload Photos"
+
+SHA-1 Cryptographic Hash Algorithm
+----------------------------------
+1) Download code from:
+     http://www.movable-type.co.uk/scripts/sha1.html
+2) Save as ppages/console/js/sha1Hash.js

@@ -1,0 +1,73 @@
+/* PPAGES ~ www.centerkey.com/ppages ~ Copyright (c) individual contributors        */
+/* Rights granted under GNU General Public License ~ ppages/src/gallery/license.txt */
+
+/* Gallery Management Console */
+
+/* Foundation */
+body        { padding: 10px 0px 10px 30px; }
+fieldset    { text-align: right; border-width: 1px; border-style: solid; margin-bottom: 10px; }
+legend      { direction: rtl; }
+
+/* Header, Footer, Columns, and Blocks */
+.header     { width: 930px; }
+.header h1  { font-size: 140%; }
+.header h2  { font-size: 120%; font-weight: normal; margin-bottom: 20px; }
+.header div { float: right; text-align: right; margin-top: 5px; }
+.col1       { float: left; width: 600px; margin-right: 10px; }
+.col2       { float: left; width: 320px; }
+.footer     { clear: both; width: 930px; color: white; background-color: darkgray;
+              font-size: 75%; padding: 10px; margin-top: 10px; }
+.footer div { float: right; text-align: right; }
+
+/* Tools */
+.field-tiny   { width:  40px; }
+.field-small  { width:  80px; }
+.field-medium { width: 160px; }
+.field-large  { width: 240px; }
+textarea.field-medium { height: 60px; }
+textarea.field-large  { height: 80px; }
+.picture-frame { border: 3px solid slategray; }
+
+/* Color Blocks */
+.block1, .block2, .block3, .block4, .block5 { border-width: 2px;
+              border-style: solid; padding: 10px; margin-bottom: 10px; }
+.block4, .block5 { padding-bottom: 0px; }
+.block1 h3, .block2 h3, .block3 h3, .block4 h3, .block5 h3 {
+              color: white; padding: 3px 7px; margin: -10px -10px 10px -10px; }
+.block1 h3  { background-color: rosybrown; }
+.block2 h3  { background-color: cadetblue; }
+.block3 h3  { background-color: lightslategray; }
+.block4 h3  { background-color: darkkhaki; }
+.block5 h3  { background-color: darkseagreen; }
+.block1     { border-color: rosybrown; }
+.block2     { border-color: cadetblue; }
+.block3     { border-color: lightslategray; }
+.block4     { border-color: darkkhaki; }
+.block5     { border-color: darkseagreen; }
+.block4 fieldset { border-color: darkkhaki; }
+.block5 fieldset { border-color: darkseagreen; }
+.block4 fieldset legend { color: darkkhaki; border-color: darkkhaki; }
+.block5 fieldset legend { color: darkseagreen; border-color: darkseagreen; }
+
+/* More... */
+.image-box  { background-color: gainsboro; border: 2px solid silver;
+              padding: 10px 10px 0px 10px; margin-bottom: 10px; }
+.image-box label span:first-of-type { width: 90px; }
+.image-box .sans-label { margin-left: 95px; }
+.image-box .portfolio-caption { width: 230px; }
+.image-box .portfolio-description { width: 230px; height: 60px; }
+.image-box .portfolio-badge { width: 100px; }
+.image-box img { max-width: 200px; }
+#settings-website input[type=text] { width: 200px; }
+#settings-website select[name=title-font] { font-size: 90%; }
+#settings-website .input-group-down > label { padding-top: 0.5em; }
+#settings-website .input-group-down span { width: auto; padding: 0px; }
+#settings-website .input-group-down input { margin: 0px !important; }
+#settings-website .input-group-down div.input-group { vertical-align: top; text-align: left; }
+#settings-menu-bar input { width: 150px; }
+
+.block2 { padding-bottom: 0px; }  /* add proper id */
+.block5 input { width: 150px; }  /* add proper id */
+
+/* Cusotmize File Upload */
+.ZZZqq-upload-button { background-color: white; border: none; padding: 0px; }
