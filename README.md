@@ -9,4 +9,4 @@ Links:
 * [Instructions](http://www.centerkey.com/ppages/)
 
 ----
-PPAGES is licensed under the [GNU General Public License](http://www.gnu.org/licenses/gpl.html)
+PPAGES is licensed under the [GNU General Public License](http://www.gnu.org/licenses/gpl.html).

@@ -1,6 +1,7 @@
 #!/bin/sh
-# PPAGES ~ www.centerkey.com/ppages ~ Copyright (c) individual contributors
-# Rights granted under GNU General Public License ~ ppages/src/gallery/license.txt
+
+# PPAGES ~ www.centerkey.com/ppages
+# GPL ~ Copyright (c) individual contributors
 #
 # Build: Creates the release file (zip) and puts the version number in the file
 # name (version number is extracted from ppages/src/gallery/console/library.php)
