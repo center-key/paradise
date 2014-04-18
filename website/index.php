@@ -16,7 +16,9 @@
 
 <div class=header>
    <div>
-      <button onclick="window.open('http://code.google.com/p/ppages/downloads/list');">Download Page</button>
+      <button onclick="window.open('https://github.com/center-key/ppages/tree/master/releases');">
+         Downloads
+      </button>
    </div>
    <h1>PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)</h1>
    <h2>A web application to manage and display a photo gallery.</h2>
@@ -103,15 +105,21 @@
    prompted to create a user account for yourself.&nbsp;  Once in the console,
    upload photos or use the "Create New User Account" feature to create an account
    for the artist to upload photos directly.<br>
-</div>  <!-- end block3 -->
+</div>
 
 <div class=block4>
    <h3>News</h3>
-   <p><div class=date>March 12, 2012</div>
-      Beta version 0.3 with layout and styling improvements is released.
+   <p>
+      <div class=date>April 17, 2014</div>
+      Code is transfered over to GitHub.
    </p>
-   <p><div class=date>January 2, 2011</div>
-      Beta version 0.2 of PPAGES is released.
+   <p>
+      <div class=date>March 12, 2012</div>
+      Beta version 0.0.3 with layout and styling improvements is released.
+   </p>
+   <p>
+      <div class=date>January 2, 2011</div>
+      Beta version 0.0.2 of PPAGES is released.
    </p>
 </div>
 
@@ -131,15 +139,18 @@
    <br>
    Code Hosting:
    <div class=indent>
-      <a href="http://code.google.com/p/ppages/"
-         title="code.google.com/p/ppages">Google Project (ppages)</a>
+      <a href="https://github.com/center-key/ppages">GitHub (ppages)</a>
    </div>
 </div>
 
 </div>  <!-- end col2 -->
+
 <div class=footer>
    <div><div id=social-buttons></div></div>
    www.centerkey.com/ppages
 </div>
+<a href="https://github.com/center-key/ppages"><img id=github-banner
+   src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+   alt="Fork me on GitHub"></a>
 </body>
 </html>

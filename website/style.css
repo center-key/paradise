@@ -61,3 +61,13 @@ div.box img   { border: 1px solid black; }
 #social-buttons img { height: 26px; width: 26px; border: 1px solid gainsboro; border-radius: 5px; }
 #social-buttons img:hover { border-color: white; box-shadow: 0px 0px 1em dodgerblue; }
 #social-buttons #___plusone_0 { vertical-align: top !important; width: 80px !important; }
+
+#github-banner {
+   position: absolute;
+   top: 0px;
+   right: 0px;
+   opacity: 0.8;
+   }
+#github-banner:hover {
+   opacity: 1.0;
+   }
