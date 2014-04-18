@@ -1,0 +1,63 @@
+/* Live in Style */
+/* PPAGES        */
+
+/* Foundation */
+body          { color: #333; background-color: white;
+                font-family: geneva, tahoma, sans-serif; padding: 10px 0px 10px 30px; }
+.click        { cursor: pointer; }
+select        { cursor: pointer; }
+ul, ol        { margin-top: 2px; }
+button        { cursor: pointer; padding-right: 10px; padding-left: 10px; }
+div.indent    { margin-left: 25px; }
+code          { font-weight: bold; font-size: 120%; }
+
+/* Links */
+a             { color: slategray; font-weight: bold; text-decoration: none; }
+a:hover       { color: navy; }
+a:active      { color: darkgray; }
+a:visited     { color: darkgray; }
+
+/* Header, Footer, Columns, and Blocks */
+div.header     { width: 920px; }
+div.header div { float: right; text-align: right; margin-top: 5px; }
+div.header h1  { font-size: 140%; margin: 0px; }
+div.header h2  { font-size: 120%; font-weight: normal; margin: 0px 0px 20px 0px; }
+div.col1       { float: left; width: 600px; margin-right: 10px; }
+div.col2       { float: left; width: 310px; }
+div.footer     { clear: both; width: 900px; color: white; background-color: darkgray;
+                 font-size: 75%; padding: 10px; margin-top: 10px; }
+div.footer div { float: right; text-align: right; }
+
+/* Color Blocks */
+div.block1, div.block2, div.block3, div.block4, div.block5
+              { border-width: 2px; border-style: solid; padding: 10px; margin-bottom: 10px; }
+div.block1 h3, div.block2 h3, div.block3 h3, div.block4 h3, div.block5 h3
+              { color: white; padding: 3px; margin: -10px -10px 10px -10px; }
+div.block1 h3 { background-color: rosybrown; }
+div.block2 h3 { background-color: cadetblue; }
+div.block3 h3 { background-color: lightslategray; }
+div.block4 h3 { background-color: darkkhaki; }
+div.block5 h3 { background-color: darkseagreen; }
+div.block1    { border-color: rosybrown; }
+div.block2    { border-color: cadetblue; }
+div.block3    { border-color: lightslategray; }
+div.block4    { border-color: darkkhaki; }
+div.block5    { border-color: darkseagreen; }
+div.block4 fieldset { border-color: darkkhaki; }
+div.block5 fieldset { border-color: darkseagreen; }
+div.block4 fieldset legend { color: darkkhaki; border-color: darkkhaki; }
+div.block5 fieldset legend { color: darkseagreen; border-color: darkseagreen; }
+
+div.block1 img { float: left; border: 1px solid rosybrown; margin: 0px 10px 10px 0px; }
+
+/* More... */
+div.date      { display: table; background-color: silver; color: white; padding: 1px 7px; }
+div.box       { text-align: center; font-size: 85%; border: 1px solid silver; padding: 5px; }
+div.box-left  { float: left;  margin: 0px 15px 10px 0px; }
+div.box-right { float: right; margin: 0px 0px 10px 15px; }
+div.box img   { border: 1px solid black; }
+
+#social-buttons a { margin-left: 10px; }
+#social-buttons img { height: 26px; width: 26px; border: 1px solid gainsboro; border-radius: 5px; }
+#social-buttons img:hover { border-color: white; box-shadow: 0px 0px 1em dodgerblue; }
+#social-buttons #___plusone_0 { vertical-align: top !important; width: 80px !important; }
