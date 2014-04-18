@@ -1,5 +1,4 @@
-PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)
----------------------------------------------------
+### PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)
 
 *A web application to manage and display a photo gallery*
 
