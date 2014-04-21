@@ -1,6 +1,8 @@
 <?php
-// PPAGES ~ www.centerkey.com/ppages ~ Copyright (c) individual contributors
-// Rights granted under GNU General Public License ~ ppages/src/gallery/license.txt
+/////////////////////////////////////////////////
+// PPAGES ~ www.centerkey.com/ppages           //
+// GPL ~ Copyright (c) individual contributors //
+/////////////////////////////////////////////////
 
 $imageNum = 0;
 

@@ -22,6 +22,7 @@
 <head>
 <meta charset=utf-8>
 <link rel=icon       href="favicon.png" type="image/png">
+<link rel=stylesheet href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <link rel=stylesheet href="css/reset.css" >
 <link rel=stylesheet href="css/style.css" >
 <link rel=stylesheet href="data/style.css">
@@ -64,9 +65,9 @@
       displayPage($current);
    displayFooter($footer, $license, $bookmarks);
    echo "</div>\n";
-   ?>
+?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="slimbox2/slimbox2.js"></script>
 <script src="js/library.js"></script>
 <script src="js/app.js"></script>

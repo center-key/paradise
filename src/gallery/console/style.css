@@ -1,5 +1,7 @@
-/* PPAGES ~ www.centerkey.com/ppages ~ Copyright (c) individual contributors        */
-/* Rights granted under GNU General Public License ~ ppages/src/gallery/license.txt */
+/***********************************************/
+/* PPAGES ~ www.centerkey.com/ppages           */
+/* GPL ~ Copyright (c) individual contributors */
+/***********************************************/
 
 /* Gallery Management Console */
 
@@ -9,13 +11,13 @@ fieldset    { text-align: right; border-width: 1px; border-style: solid; margin-
 legend      { direction: rtl; }
 
 /* Header, Footer, Columns, and Blocks */
-.header     { width: 930px; }
+.header     { width: 950px; }
 .header h1  { font-size: 140%; }
 .header h2  { font-size: 120%; font-weight: normal; margin-bottom: 20px; }
 .header div { float: right; text-align: right; margin-top: 5px; }
 .col1       { float: left; width: 600px; margin-right: 10px; }
-.col2       { float: left; width: 320px; }
-.footer     { clear: both; width: 930px; color: white; background-color: darkgray;
+.col2       { float: left; width: 340px; }
+.footer     { clear: both; width: 950px; color: white; background-color: darkgray;
               font-size: 75%; padding: 10px; margin-top: 10px; }
 .footer div { float: right; text-align: right; }
 
