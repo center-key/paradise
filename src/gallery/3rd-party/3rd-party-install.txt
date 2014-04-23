@@ -7,7 +7,9 @@ Slimbox 2
 ---------
 1) Download from:
      http://www.digitalia.be/software/slimbox2#download
-2) Copy the following files from "slimbox-2*" into the PPAGES project:
+2) Store zip file in:
+     ppages/src/gallery/3rd-party/
+3) Copy the following files from "slimbox-2*" into the PPAGES project:
      slimbox-2*/js/slimbox2.js --> ppages/slimbox2/slimbox2.js
      slimbox-2*/css/*.*        --> ppages/slimbox2/*.*
 
