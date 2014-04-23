@@ -114,12 +114,12 @@ function displayCreativeCommons() {
    }
 
 function displayFooter($statement, $license, $bookmarks) {
-   echo "<div class=footer><div>\n";
+   echo "<div class=footer>\n";
    if ($license)
       displayCreativeCommons();
    if ($bookmarks)
-      echo "<div id=social-buttons class=plain><div>\n";
-   echo "</div>$statement</div>\n";
+      echo "<div id=social-buttons class=plain></div>\n";
+   echo "<div>$statement</div>\n</div>\n";
    }
 
 ?>
