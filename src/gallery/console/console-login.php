@@ -4,6 +4,8 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+// Login
+
 function displayLoginHtml($createAccount) {
    global $salt;
    $button = "Login";
@@ -18,7 +20,7 @@ function displayLoginHtml($createAccount) {
       $verify = "
          <label>
             <span>Password:</span>
-            <input type=password id=password2 size=25>
+            <input type=password id=password2 size=25 autocomplete=off>
          </label>";
       $button = "Create Account";
       $action = "create-account";
@@ -28,7 +30,7 @@ function displayLoginHtml($createAccount) {
          <label><span>Username:</span>
                <input type=text id=username size=30></label>
          <label><span>Password:</span>
-            <input type=password id=password size=25></label>
+            <input type=password id=password size=25 autocomplete=off></label>
          $verify
          <p class=sans-label><button id=$action>$button</button></p>
       </div>
@@ -36,7 +38,7 @@ function displayLoginHtml($createAccount) {
          <input type=hidden name=action   value=login>
          <input type=hidden name=username id=submit-username>
          <input type=hidden name=hash     id=submit-hash>
-      </form>";
+      </form>\n";
    }
 
 function displayLogin() {

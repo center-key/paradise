@@ -29,6 +29,7 @@ project:
 
 SHA-1 Cryptographic Hash Algorithm
 ----------------------------------
-1) Download code from:
-     http://www.movable-type.co.uk/scripts/sha1.html
-2) Save as ppages/console/js/sha1Hash.js
+1) Copy code from:
+     http://www.movable-type.co.uk/scripts/sha1.html#code
+2) Paste code into:
+     ppages/console/js/sha1hash.js

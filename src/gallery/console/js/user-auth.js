@@ -1,5 +1,9 @@
-// PPAGES ~ www.centerkey.com/ppages ~ Copyright (c) individual contributors
-// Rights granted under GNU General Public License ~ ppages/src/gallery/license.txt
+/////////////////////////////////////////////////
+// PPAGES ~ www.centerkey.com/ppages           //
+// GPL ~ Copyright (c) individual contributors //
+/////////////////////////////////////////////////
+
+// User Authentication
 
 var salt = location.hostname;
 
@@ -19,7 +23,7 @@ function validateAccountRules(uname, pass, pass2) {
 function doLogin(validate) {
    var uname = document.getElementById('username').value;
    var pass =  document.getElementById('password').value;
-   var hash =  sha1Hash(pass + salt);
+   var hash =  Sha1.hash(pass + salt);
    document.getElementById('submit-username').value = uname;
    document.getElementById('submit-hash').value = hash;
    if (!validate || validateAccountRules(uname, pass,
@@ -30,7 +34,7 @@ function doLogin(validate) {
 function changePassword() {
    var pass =   document.getElementById('password').value;
    var pass2 =  document.getElementById('password2').value;
-   var hash = sha1Hash(pass + salt);
+   var hash = Sha1.hash(pass + salt);
    document.getElementById('submit-hash').value = hash;
    if (validateAccountRules('ignore', pass, pass2))
       document.getElementById('submit-change-password').submit();
@@ -46,7 +50,7 @@ function cleanupUsername(uname) {
    }
 
 function randomPassword() {
-   return sha1Hash(new Date()).replace(/[01]/g,'').substring(0,8);
+   return Sha1.hash(new Date()).replace(/[01]/g,'').substring(0,8);
    }
 
 function confirmAccountAction(uname) {
@@ -56,7 +60,7 @@ function confirmAccountAction(uname) {
 
 function confirmCreateAccount(uname) {
    var pass = randomPassword();
-   var hash = sha1Hash(pass + salt);
+   var hash = Sha1.hash(pass + salt);
    var msg = 'You are about to create the following user account.\n\tUsername: ' +
       uname + '\n\tPassword: ' + pass +
       '\n(Hint: You can select and copy the above password.)\n\nContinue?';
