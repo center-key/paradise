@@ -1,5 +1,9 @@
-// PPAGES ~ www.centerkey.com/ppages ~ Copyright (c) individual contributors
-// Rights granted under GNU General Public License ~ ppages/src/gallery/license.txt
+/////////////////////////////////////////////////
+// PPAGES ~ www.centerkey.com/ppages           //
+// GPL ~ Copyright (c) individual contributors //
+/////////////////////////////////////////////////
+
+// Console
 
 var errorCodeAuthFail = 100;
 
@@ -80,10 +84,13 @@ function menuBarActionAllowed(action, page, loc, len, show) {
    }
 
 function configureMenuBarButtonsSinglePage(data, loc) {
-   for (var action in menuBarButtons)
-      $('#settings-menu-bar button.' + action + '[name=' + menuBarPages[loc] + ']')
-         .attr('disabled',
-            !menuBarActionAllowed(action, menuBarPages[loc], loc, 3, data[loc].show));
+   var buttons = $('#settings-menu-bar buttons');
+   if (buttons.length)
+      for (var action in menuBarButtons)
+         buttons
+            .find('.' + action + '[name=' + menuBarPages[loc] + ']')
+            .attr('disabled', !menuBarActionAllowed(
+               action, menuBarPages[loc], loc, 3, data[loc].show));
    }
 
 function configureMenuBarButtons() {
