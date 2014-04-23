@@ -7,7 +7,7 @@
 function createDataFolders() {
    foreach(func_get_args() as $dataFolder)
       if (!is_dir($dataFolder))
-         if (mkdir($dataFolder, 0777))  //owner: read/write,  everyone else: read 0644
+         if (mkdir($dataFolder, 0777))  //owner: read/write, everyone else: read 0644
             echo "<div>Created Folder: $dataFolder</div>\n";
          else
             echo "<div>ERROR: Cannot write to the <b>data</b> folder ($dataFolder).</div>\n";
@@ -31,7 +31,7 @@ function createMaskDataFile() {
    global $maskDataFile;
    if (!is_file($maskDataFile))
       file_put_contents($maskDataFile, "<!doctype html><html><head>" .
-         "<meta http-equiv='refresh' content='1; url=..'></head><body></html>\n");
+         "<meta http-equiv=refresh content='1; url=..'></head><body></html>\n");
    }
 
 function startup() {

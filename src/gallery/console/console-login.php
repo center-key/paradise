@@ -9,11 +9,17 @@ function displayLoginHtml($createAccount) {
    $button = "Login";
    $action = "do-login";
    if ($createAccount) {
-      $msg = "<p class=advisory>No user accounts exists yet.&nbsp;
-         Create your account by entering a username and password.&nbsp;
-         Enter your password a second time for verification</p>";
-      $verify = "<label><span>Password:</span>
-         <input type=password id=password2 size=25></label>";
+      $msg = "
+         <p class=advisory>
+            No user accounts exists yet.&nbsp;
+            Create your account by entering a username and password.&nbsp;
+            Enter your password a second time for verification
+         </p>";
+      $verify = "
+         <label>
+            <span>Password:</span>
+            <input type=password id=password2 size=25>
+         </label>";
       $button = "Create Account";
       $action = "create-account";
       }

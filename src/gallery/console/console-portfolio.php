@@ -59,25 +59,30 @@ function displayPortfolioHtml($id, $status, $title, $desc, $badge, $date, $thumb
       $imageFieldDescription, $imageFieldBadge,
       $actionField, $actionUpdateImage, $actionDeleteImage;
    $checked = $status ? " checked" : "";
-   echo "<div class=image-box>
-      <div class='push-right align-right'><a class=external-site
-         href='$origFile'><img class=picture-frame src='$thumbFile' alt='$file'
-         title='Click to view original uploaded file ($origFileName)'></a>
-         <p class=small>Uploaded: <b>$date</b></p></div>
-      <label><span>Display:</span>
-         <input class=portfolio-$imageFieldDisplay name=$id type=checkbox$checked>
-         <span class=small>(show in gallery)</span></label>
-      <label><span>Caption:</span>
-         <input class=portfolio-$imageFieldCaption name=$id type=text value='$title'></label>
-      <label><span>Description:</span>
-         <textarea class=portfolio-$imageFieldDescription name=$id>$desc</textarea></label>
-      <label><span>Badge:</span>
-         <input class=portfolio-$imageFieldBadge name=$id type=text value='$badge'></label>
-      <p class=sans-label>
-         <button class=portfolio-move-up name=$id>&uarr; Move Up</button>
-         <button class=portfolio-move-down name=$id>&darr; Move Down</button>
-         <button class=portfolio-delete name=$id>&times; Delete</button>
-      </p>
+   echo "
+      <div class=image-box>
+         <div class='push-right align-right'><a class=external-site
+            href='$origFile'><img class=picture-frame src='$thumbFile' alt='$file'
+            title='Click to view original uploaded file ($origFileName)'></a>
+            <p class=small>Uploaded: <b>$date</b></p>
+         </div>
+         <label><span>Display:</span>
+            <input class=portfolio-$imageFieldDisplay name=$id type=checkbox$checked>
+            <span class=small>(show in gallery)</span>
+         </label>
+         <label><span>Caption:</span>
+            <input class=portfolio-$imageFieldCaption name=$id type=text value='$title'>
+         </label>
+         <label><span>Description:</span>
+            <textarea class=portfolio-$imageFieldDescription name=$id>$desc</textarea>
+         </label>
+         <label><span>Badge:</span>
+            <input class=portfolio-$imageFieldBadge name=$id type=text value='$badge'></label>
+         <p class=sans-label>
+            <button class=portfolio-move-up name=$id>&uarr; Move Up</button>
+            <button class=portfolio-move-down name=$id>&darr; Move Down</button>
+            <button class=portfolio-delete name=$id>&times; Delete</button>
+         </p>
       </div>\n";
    }
 

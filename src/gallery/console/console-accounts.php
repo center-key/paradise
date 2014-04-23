@@ -19,7 +19,7 @@ function getAccountsDb() {
    if ($accountsDb == null) {
       $dbFileSearch = glob($accountsDbFilter);
       if (count($dbFileSearch) == 0) {
-         $accountsDbFile = str_replace("*" , mt_rand(0, 999999999999),
+         $accountsDbFile = str_replace("*" , mt_rand(0, 9999999999999999),
             $accountsDbFilter);
          saveDb($accountsDbFile, createEmptyDb());
          }
@@ -67,7 +67,8 @@ function addAccount($username, $hash, $type) {
 function displayChangePassword() {
    global $actionField, $actionChangePassword, $accountFieldHash;
    echo "
-      <fieldset><legend>Your Password</legend>
+      <fieldset>
+         <legend>Your Password</legend>
          <label>New Password: <input type=password id=password></label>
          <label>Verify Password: <input type=password id=password2></label>
          <button id=change-password>Change Password</button>
@@ -113,12 +114,15 @@ function displayAccountsListHtml($username) {
    global $actionField, $actionAccountAdmin, $accountFieldUsername;
    $disabled = $username == $_SESSION[$accountFieldUsername];
    $adminOptions = "<option>Reset Password</option><option>Delete Account</option>";
-   echo "<form method=post onsubmit='return confirmAccountAction(\"$username\");'>
-      <input type=hidden name=$actionField value=$actionAccountAdmin>
-      <p>" . ($disabled ? "<i>" : "") . "$username" . ($disabled ? "</i>" : "") . "
-      <select name='' id=account-account" . ($disabled ? " disabled" : "") .
-      ">$adminOptions</select><button" . ($disabled ? " disabled" : "") .
-      ">Go</button></p></form>\n";
+   echo "
+      <form method=post onsubmit='return confirmAccountAction(\"$username\");'>
+         <input type=hidden name=$actionField value=$actionAccountAdmin>
+         <p>" . ($disabled ? "<i>" : "") . "$username" . ($disabled ? "</i>" : "") . "
+            <select name='' id=account-account" . ($disabled ? " disabled" : "") .
+               ">$adminOptions</select>
+            <button" . ($disabled ? " disabled" : "") . ">Go</button>
+         </p>
+      </form>\n";
    }
 
 function displayAccountsList() {
@@ -140,7 +144,7 @@ function displayCreateAccount() {
          <input type=hidden name=$actionField          value=$actionCreateAccount>
          <input type=hidden name=$accountFieldUsername id=submit-new-username>
          <input type=hidden name=$accountFieldHash     id=submit-new-hash>
-         </form>\n";
+      </form>\n";
    }
 
 function displayAccounts() {
