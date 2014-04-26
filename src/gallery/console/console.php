@@ -4,6 +4,8 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+// Console
+
 $blockNum = 0;
 
 function displayBlock($header, $displayFunction) {

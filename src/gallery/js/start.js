@@ -3,6 +3,11 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
-// Application
+// Start
 
-var app = {};
+$(function() {
+   library.social.setup();
+   library.ui.setup();
+   library.form.setup();
+   library.bubbleHelp.setup();
+   });

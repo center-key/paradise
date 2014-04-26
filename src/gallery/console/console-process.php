@@ -4,6 +4,8 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+// Process
+
 function createDataFolders() {
    foreach(func_get_args() as $dataFolder)
       if (!is_dir($dataFolder))

@@ -76,6 +76,6 @@
 <script src="js/sha1hash.js"></script>
 <script src="js/user-auth.js"></script>
 <script src="js/console.js"></script>
-<script src="js/app.js"></script>
+<script src="js/start.js"></script>
 </body>
 </html>

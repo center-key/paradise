@@ -4,6 +4,8 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+// Transfer
+
 function displayTransfer() {
    ?>
    <div id=file-uploader>

@@ -4,6 +4,8 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+// Settings
+
 $settingsFieldTitle =         "title";
 $settingsFieldTitleFont =     "title-font";
 $settingsFieldTitleSize =     "title-size";

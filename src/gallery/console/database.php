@@ -4,6 +4,8 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+// Database
+
 function dbFileName($dbName) {
    return $dbName . "-db.json";
    }

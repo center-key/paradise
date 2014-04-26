@@ -5,6 +5,14 @@
 
 // Console
 
+var console = {};
+
+console.error = {
+   codeAuthFail: 100
+   }
+
+/////////////////////////////////////////////////
+
 var errorCodeAuthFail = 100;
 
 function confirmMenuBarAction(form, title) {

@@ -4,6 +4,8 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+// Accounts
+
 $accountsDbFilter = $dataFolder . dbFileName("accounts-*");
 $accountsDbFile =   null;  //set at run-time
 $accountsDb =       null;
