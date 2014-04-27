@@ -10,9 +10,9 @@ $(function() {
    library.ui.setup();
    library.form.setup();
    library.bubbleHelp.setup();
-   setupLinks();               //replace with new style
-   setupActions();             //replace with new style
-   setupStatusMsg();           //replace with new style
-   autoFocus($('.login'));     //replace with new style
-   configureMenuBarButtons();  //replace with new style
+   gmc.ui.setupLinks();
+   gmc.ui.setupActions();
+   gmc.ui.setupStatusMsg();
+   gmc.ui.autoFocus($('.login'));
+   gmc.ui.configureMenuBarButtons();
    });
