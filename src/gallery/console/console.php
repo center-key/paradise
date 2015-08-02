@@ -1,6 +1,6 @@
 <?php
 /////////////////////////////////////////////////
-// PPAGES ~ www.centerkey.com/ppages           //
+// PPAGES ~ centerkey.com/ppages               //
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 

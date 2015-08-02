@@ -6,7 +6,7 @@ PPAGES is an open source software package for displaying a portfolio of photos o
 
 Links:
 * [Downloads](https://github.com/center-key/ppages/tree/master/releases)
-* [Instructions](http://www.centerkey.com/ppages/)
+* [Instructions](http://centerkey.com/ppages/)
 
 ----
 PPAGES is licensed under the [GNU General Public License](http://www.gnu.org/licenses/gpl.html).

@@ -1,6 +1,6 @@
 <?php
 /////////////////////////////////////////////////
-// PPAGES ~ www.centerkey.com/ppages           //
+// PPAGES ~ centerkey.com/ppages               //
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
@@ -21,7 +21,7 @@ function createCustomCss() {
       "/* PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)   */\n" .
       "/* Edit this CSS file to customize the look of the       */\n" .
       "/* gallery.  Put custom images in the 'graphics' folder. */\n" .
-      "/* Find colors at: http://www.centerkey.com/colors       */\n\n" .
+      "/* Find colors at: http://centerkey.com/colors           */\n\n" .
       "body           { color: whitesmoke; background-color: dimgray; }\n" .
       "div.image img  { border-color: black; }\n" .
       "div.footer     { background-color: #777; border-color: black; }";

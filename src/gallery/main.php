@@ -1,6 +1,6 @@
 <?php
 /////////////////////////////////////////////////
-// PPAGES ~ www.centerkey.com/ppages           //
+// PPAGES ~ centerkey.com/ppages               //
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
@@ -84,7 +84,7 @@ function contactPageHtml() {
       <script>document.writeln(
          '<input type=hidden name=real value=window.location.hostname><\\/form>');</script>
       <p class=corner-msg>Gallery powered by
-         <a href='http://www.centerkey.com/ppages/'>PPAGES</a></p>";
+         <a href='http://centerkey.com/ppages/'>PPAGES</a></p>";
    }
 
 function contactThanksHtml() {

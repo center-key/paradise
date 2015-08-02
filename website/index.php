@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!--  PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)  -->
-<!--  http://www.centerkey.com/ppages                      -->
+<!--  http://centerkey.com/ppages                          -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <html>
 <head>
@@ -28,7 +28,7 @@
 
 <div class=block1>
    <h3>Build an Art Exhibit</h3>
-   <a href="http://www.centerkey.com/ppages/"><img
+   <a href="http://centerkey.com/ppages/"><img
       src="graphics/icon-ppages-57x57.png" alt="PPAGES Logo"></a>
    PPAGES is an open source software package for displaying a portfolio of photos
    on a website in a clean, professional style.&nbsp;  Use PPAGES to create an
@@ -147,7 +147,7 @@
 
 <div class=footer>
    <div><div id=social-buttons></div></div>
-   www.centerkey.com/ppages
+   centerkey.com/ppages
 </div>
 <a href="https://github.com/center-key/ppages"><img id=github-banner
    src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"

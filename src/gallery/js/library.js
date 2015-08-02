@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////
-// PPAGES ~ www.centerkey.com/ppages           //
+// PPAGES ~ centerkey.com/ppages               //
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
@@ -220,7 +220,7 @@ library.infoRollover = {
 library.popupImage = {
    // Usage:
    //    <img src="thumb.png" class=popup-image data-url="full.jpg">
-   closeImage: 'http://www.centerkey.com/graphics/icon-close-x.png',
+   closeImage: 'http://centerkey.com/graphics/icon-close-x.png',
    close: function(event) {
       $(event.target).closest('.popup-image-layer').fadeOut();
       },
@@ -360,7 +360,7 @@ library.social = {
          elem.fadeTo(0, 0.0);
          var html = '<div class=g-plusone></div><span>';
          for (var name in this.buttons)
-            html = html + '<img src="http://www.centerkey.com/graphics\/icon-social-' +
+            html = html + '<img src="http://centerkey.com/graphics\/icon-social-' +
                name + '.png" data-social=' + name +
                ' class=social-button title="Share to ' + this.buttons[name].title +
                '" alt="Social bookmark">';
