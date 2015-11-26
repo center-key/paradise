@@ -51,9 +51,10 @@ div.block4 fieldset legend { color: darkkhaki; border-color: darkkhaki; }
 div.block5 fieldset legend { color: darkseagreen; border-color: darkseagreen; }
 
 div.block1 img.ppages-logo { float: left; width: 80px; border: 1px solid rosybrown; margin: 0px 10px 10px 0px; }
+div.block4 >div { margin-bottom: 10px; }
 
 /* More... */
-div.date      { display: table; background-color: silver; color: white; padding: 1px 7px; }
+header.date   { display: table; background-color: silver; color: white; padding: 1px 7px; }
 div.box       { text-align: center; font-size: 85%; border: 1px solid silver; padding: 5px; }
 div.box-left  { float: left;  margin: 0px 15px 10px 0px; }
 div.box-right { float: right; margin: 0px 0px 10px 15px; }
