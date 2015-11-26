@@ -50,7 +50,7 @@ div.block5 fieldset { border-color: darkseagreen; }
 div.block4 fieldset legend { color: darkkhaki; border-color: darkkhaki; }
 div.block5 fieldset legend { color: darkseagreen; border-color: darkseagreen; }
 
-div.block1 img { float: left; border: 1px solid rosybrown; margin: 0px 10px 10px 0px; }
+div.block1 img.ppages-logo { float: left; width: 80px; border: 1px solid rosybrown; margin: 0px 10px 10px 0px; }
 
 /* More... */
 div.date      { display: table; background-color: silver; color: white; padding: 1px 7px; }
