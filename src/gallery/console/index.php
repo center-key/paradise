@@ -24,7 +24,7 @@
 <meta charset=utf-8>
 <title>PPAGES &bull; Gallery Management Console</title>
 <link rel=icon       href="../graphics/bookmark.png" type="image/png">
-<link rel=stylesheet href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link rel=stylesheet href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet href="../css/reset.css">
 <link rel=stylesheet href="style.css">
 <link rel=stylesheet href="fileuploader.css">

@@ -6,9 +6,12 @@
 <html>
 <head>
 <meta charset=utf-8>
+<meta name=apple-mobile-web-app-title content="PPAGES">
 <title>PPAGES &bull; PHP Portfolio Art Gallery Exhibit Showcase</title>
-<link rel=icon             href="graphics/bookmark.png" type="image/png">
-<link rel=apple-touch-icon href="graphics/icon-ppages-57x57.png">
+<link rel=icon             href="graphics/bookmark.png">
+<link rel=apple-touch-icon href="graphics/mobile-home-screen.png">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
 <link rel=stylesheet       href="style.css">
 <script src="https://apis.google.com/js/plusone.js"></script>
 </head>
@@ -16,7 +19,7 @@
 
 <div class=header>
    <div>
-      <button onclick="window.open('https://github.com/center-key/ppages/tree/master/releases');">
+      <button data-href="https://github.com/center-key/ppages/tree/master/releases">
          Downloads
       </button>
    </div>
@@ -28,8 +31,8 @@
 
 <div class=block1>
    <h3>Build an Art Exhibit</h3>
-   <a href="http://centerkey.com/ppages/"><img
-      src="graphics/icon-ppages-57x57.png" alt="PPAGES Logo"></a>
+   <a href="http://centerkey.com/ppages/"><img class=ppages-logo
+      src="graphics/ppages-logo.png" alt="PPAGES Logo"></a>
    PPAGES is an open source software package for displaying a portfolio of photos
    on a website in a clean, professional style.&nbsp;  Use PPAGES to create an
    online exhibit for an artist or organization.<br>
@@ -80,7 +83,7 @@
       <li><a href="http://www.digitalia.be/software/slimbox2">Slimbox 2</a>
       <li><a href="http://jquery.com/">jQuery</a>
       <li><a href="http://valums.com/ajax-upload/">Valums File Uploader (Ajax Upload)</a>
-      <li><a href="http://www.google.com/webfonts">Google Fonts API</a>
+      <li><a href="https://www.google.com/fonts">Google Fonts</a>
       <li><a href="http://www.movable-type.co.uk/scripts/sha1.html">SHA-1 Cryptographic Hash Algorithm</a>
    </ul>
 </div>
@@ -91,8 +94,8 @@
 <div class=block3>
    <h3>Get Going</h3>
    Install and Setup:<ol>
-      <li><a href="http://code.google.com/p/ppages/downloads/list"
-         onclick="this.target='_blank';">Download</a>
+      <li><a href="https://github.com/center-key/ppages/raw/master/releases/ppages-v0.0.3.zip"
+         class=external-site>Download</a>
          and unzip the PPAGES install file.
       <li>Move the <code>gallery</code> folder into the local copy of your website
          files and then FTP the <code>gallery</code> folder up to your website.
@@ -149,8 +152,12 @@
    <div><div id=social-buttons></div></div>
    centerkey.com/ppages
 </div>
-<a href="https://github.com/center-key/ppages"><img id=github-banner
-   src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
-   alt="Fork me on GitHub"></a>
+<a href="https://github.com/center-key/ppages">
+   <img id=github-banner src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+      alt="Fork me on GitHub">
+</a>
+
+<script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
 </body>
 </html>

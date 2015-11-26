@@ -58,7 +58,7 @@ function bbcodeToHtml($bbcode) {
    return preg_replace($code, $html, $bbcode);
    }
 
-function getGoogleFonts() {  //http://code.google.com/webfonts
+function getGoogleFonts() {  //see https://www.google.com/fonts
    return array("Allan", "Allerta", "Allerta Stencil", "Anonymous Pro", "Arimo",
       "Arvo", "Bentham", "Bowlby One SC", "Buda", "Cabin", "Cantarell", "Cardo",
       "Cherry Cream Soda", "Chewy", "Chango", "Coda", "Copse",
@@ -158,7 +158,7 @@ function displaySettingsWebsite($settingsDb) {
          <input type=text name=$settingsFieldTitle value='$title'>
       </label>
       <label>Title Font:<a class=external-site
-         href='http://code.google.com/webfonts'><img src=icon-info.png
+         href='https://www.google.com/fonts'><img src=icon-info.png
          alt='Information Icon' title='Click to see fonts'></a>
          $fonts
       </label>

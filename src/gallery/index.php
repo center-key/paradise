@@ -22,7 +22,7 @@
 <head>
 <meta charset=utf-8>
 <link rel=icon       href="favicon.png" type="image/png">
-<link rel=stylesheet href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link rel=stylesheet href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet href="css/reset.css" >
 <link rel=stylesheet href="css/style.css" >
 <link rel=stylesheet href="data/style.css">

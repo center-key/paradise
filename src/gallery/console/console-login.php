@@ -15,7 +15,7 @@ function displayLoginHtml($createAccount) {
          <p class=advisory>
             No user accounts exists yet.&nbsp;
             Create your account by entering a username and password.&nbsp;
-            Enter your password a second time for verification
+            Enter your password a second time for verification.
          </p>";
       $verify = "
          <label>
