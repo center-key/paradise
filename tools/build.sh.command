@@ -12,9 +12,10 @@
 echo
 echo "PPAGES ~ Build"
 echo "=============="
-cd $(dirname $0)
-cd ../releases
-echo Releases:
+echo
+projectFolder=$(dirname $0)/..
+cd $projectFolder/releases
+echo "*** Releases"
 pwd
 ls -1
 cd ../src
