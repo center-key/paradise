@@ -6,18 +6,7 @@
 /* Foundation */
 body          { color: #333; background-color: white;
                 font-family: geneva, tahoma, sans-serif; padding: 10px 0px 10px 30px; }
-.click        { cursor: pointer; }
-select        { cursor: pointer; }
 ul, ol        { margin-top: 2px; }
-button        { cursor: pointer; padding-right: 10px; padding-left: 10px; }
-div.indent    { margin-left: 25px; }
-code          { font-weight: bold; font-size: 120%; }
-
-/* Links */
-a             { color: slategray; font-weight: bold; text-decoration: none; }
-a:hover       { color: navy; }
-a:active      { color: darkgray; }
-a:visited     { color: darkgray; }
 
 /* Header, Footer, Columns, and Blocks */
 div.header     { width: 920px; }
@@ -54,7 +43,7 @@ div.block1 img.ppages-logo { float: left; width: 80px; border: 1px solid rosybro
 div.block4 >div { margin-bottom: 10px; }
 
 /* More... */
-header.date   { display: table; background-color: silver; color: white; padding: 1px 7px; }
+header.date   { display: table; background-color: silver; color: white; padding: 1px 7px; margin-bottom: 2px; }
 div.box       { text-align: center; font-size: 85%; border: 1px solid silver; padding: 5px; }
 div.box-left  { float: left;  margin: 0px 15px 10px 0px; }
 div.box-right { float: right; margin: 0px 0px 10px 15px; }
