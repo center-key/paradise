@@ -40,6 +40,7 @@ function createThumbnail($origImage, $origWidth, $origHeight, $file) {
    global $thumbHeight;
    $newWidth = $thumbHeight * $origWidth / $origHeight;
    imageToFile($origImage, $origWidth, $origHeight, $newWidth, $thumbHeight, $file);
+   logEvent("create-thumbnail", $origImage, $file, $newWidth);
    }
 
 function createFullImage($origImage, $origWidth, $origHeight, $file) {
@@ -48,6 +49,7 @@ function createFullImage($origImage, $origWidth, $origHeight, $file) {
    $newWidth = $origWidth * $scale;
    $newHeight = $origHeight * $scale;
    imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight, $file);
+   logEvent("create-full-image", $origImage, $file, $scale);
    }
 
 function createImages($origFile, $base) {
@@ -61,6 +63,7 @@ function createImages($origFile, $base) {
    createFullImage($origImage, $origWidth, $origHeight,
       $base . $fullFileCode . $fullFileExt);
    imagedestroy($origImage);
+   logEvent("create-images", $origFile, $base, $aspectRatio);
    }
 
 function processUploadsFolder() {
@@ -85,6 +88,7 @@ function processUploadsFolder() {
          saveDb($dbFile, $imageDb);
          setNextImageId();
          }
+   logEvent("process-uploads-folder", $uploadsFolder);
    }
 
 function processReprocessImages() {
@@ -100,6 +104,7 @@ function processReprocessImages() {
       echo "&nbsp; " . basename($base);
       createImages($file, $base);
       }
+   logEvent("process-reprocess-images", $imageOrigFilter, count($files));
    }
 
 ?>

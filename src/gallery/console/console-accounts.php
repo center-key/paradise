@@ -28,6 +28,7 @@ function getAccountsDb() {
          $accountsDbFile = $dbFileSearch[0];
       $accountsDb = readDb($accountsDbFile);
       }
+   logEvent("get-accounts-db", $accountsDbFile, count($accountsDb));
    return $accountsDb;
    }
 
@@ -35,6 +36,7 @@ function saveAccountsDb($newAccountsDb) {
    global $accountsDbFile, $accountsDb;
    saveDb($accountsDbFile, $newAccountsDb);
    $accountsDb = readDb($accountsDbFile);
+   logEvent("save-accounts-db", $accountsDbFile, count($accountsDb));
    }
 
 function getNumAccounts() {
@@ -91,6 +93,7 @@ function updateAccount($username, $hash, $type, $msg) {
       $accountsDb->{$username}->{$accountFieldType} = $type;
    saveAccountsDb($accountsDb);
    echo $msg;
+   logEvent("update-account", $username, $accountsDb->{$username}->{$accountFieldType}, $msg);
    }
 
 function processChangePassword() {

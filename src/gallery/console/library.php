@@ -5,6 +5,7 @@
 /////////////////////////////////////////////////
 
 $version="v0.0.4";
+date_default_timezone_set("UTC");
 include "database.php";
 
 $authTimestamp = "active";
@@ -78,6 +79,27 @@ function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight,
    getFileExtension($newfile) == ".png" ?
       imagepng($newImage, $newFile) : imagejpeg($newImage, $newFile);
    imagedestroy($newImage);
+   }
+
+function formatMsg($msg) {
+   return $msg === null ? "[null]" : ($msg === true ? "[true]" : ($msg === false ? "[false]" :
+      (is_object($msg) ? get_class($msg) . ":" . count($msg) : $msg)));
+   }
+
+function logEvent() {  //any number of parameters to log
+   global $dataFolder;
+   $delimiter = " | ";
+   $logFilename =     $dataFolder . "log.txt";
+   $archiveFilename = $dataFolder . "log-archive.txt";
+   $event = [date("Y-m-d H:i:s"), substr(explode(" ", microtime())[0], 1, 4)];
+   foreach (func_get_args() as $msg) {
+      $event[] = $delimiter;
+      $event[] = formatMsg($msg);
+      }
+   $event[] = PHP_EOL;
+   file_put_contents($logFilename, $event, FILE_APPEND);
+   if (filesize($logFilename) > 100000)  //approximate file size limit: 100 KB
+      rename($logFilename, $archiveFilename);
    }
 
 ?>

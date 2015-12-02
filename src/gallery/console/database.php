@@ -11,6 +11,7 @@ function dbFileName($dbName) {
    }
 
 function createEmptyDb() {
+   logEvent("create-empty-db");
    return json_decode("{}");
    }
 
@@ -20,6 +21,7 @@ function readDb($dbFile) {
    }
 
 function saveDb($dbFile, $db) {
+   logEvent("save-db", $dbFile);
    return file_put_contents($dbFile, json_encode($db));
    }
 

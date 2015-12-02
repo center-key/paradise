@@ -37,7 +37,8 @@ function createMaskDataFile() {
    }
 
 function startup() {
-   global $uploadsFolder, $portfolioFolder, $graphicsFolder;
+   global $uploadsFolder, $portfolioFolder, $graphicsFolder, $authTimestamp;
+   logEvent("*** startup", PHP_VERSION, session_id(), $_SESSION["username"], $_SESSION[$authTimestamp]);
    createDataFolders($uploadsFolder, $portfolioFolder, $graphicsFolder);
    createCustomCss();
    createMaskDataFile();
