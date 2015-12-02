@@ -125,63 +125,15 @@ div.input-group label { margin: 0.1em 0em 0em 0em; }
     color: gray; }
 .perfect .note a { color: gray; text-decoration: none; border: none; }
 
-/* JavaScript libraries */
-.dna-template        { display: none; }
-.jump-click, .popup-click { cursor: pointer; }
-.reveal-action       { display: inline-block; border: 1px solid; padding: 3px 10px; }
-.reveal-action:hover { color: white; cursor: pointer; }
-.reveal-target       { display: none; }
-
-/* Bubble help */
-.bubble-help {
-   display: none;
-   }
-.bubble-help-hover {
-   position: relative;
-   }
-.bubble-help-hover .bubble-wrap {
-   position: absolute;
-   left: 0px;
-   pointer-events: none;
-   z-index: 200;
-   }
-.bubble-help-hover .bubble-wrap .bubble-help {
-   white-space: nowrap;
-   font-size: 12px;
-   font-weight: bold;
-   color: white;
-   background-color: rgba(240,20,20,0.7);
-   border-radius: 5px;
-   padding: 5px 15px;
-   }
-.bubble-help-hover .bubble-wrap >div+div {
-   text-align: left;
-   font-size: 14px;
-   line-height: 1em;
-   color: rgba(240,20,20,0.7);
-   padding-left: 12px;
-   margin-top: -0.2em;
-   }
-
 /* Social buttons */
 #social-buttons img { height: 26px; width: 26px; border: 1px solid gainsboro; border-radius: 5px; margin-left: 10px; }
 #social-buttons img:hover { border-color: white; box-shadow: 0px 0px 1em dodgerblue; }
 #social-buttons #___plusone_0 { vertical-align: top !important; width: 80px !important; }
 
-/* Popup image */
-.popup-image       { cursor: pointer; }
-.popup-image-layer { position: absolute; }
-.popup-image-layer img+img { background-color: silver; border: 10px solid silver; outline: 1px solid dimgray; box-shadow: 0px 0px 1em 0.05em white; }
-.popup-image-close { position: absolute; top: -12px; right: -12px; width: 30px; cursor: pointer; }
-.popup-image-close:hover { opacity: 0.8; }
 
 /************************/
 /* Overridable Defaults */
 /************************/
-
-/* Reveal action */
-.reveal-action       { color: darkseagreen; }
-.reveal-action:hover { background-color: darkseagreen; border-color: darkseagreen; }
 
 /* PERFECT style */
 .perfect { border-color: darkseagreen; }                            /* outer color */

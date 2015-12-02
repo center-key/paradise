@@ -13,11 +13,8 @@ gmc.start = {
       library.social.setup();
       library.ui.setup();
       library.form.setup();
-      library.bubbleHelp.setup();
-      gmc.ui.setupLinks();
       gmc.ui.setupActions();
       gmc.ui.setupStatusMsg();
-      gmc.ui.autoFocus($('.login'));
       gmc.ui.configureMenuBarButtons();
       }
    };

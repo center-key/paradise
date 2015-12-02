@@ -15,7 +15,6 @@ app.start = {
       library.social.setup();
       library.ui.setup();
       library.form.setup();
-      library.bubbleHelp.setup();
       }
    };
 
