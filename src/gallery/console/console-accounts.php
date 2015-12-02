@@ -21,8 +21,7 @@ function getAccountsDb() {
    if ($accountsDb == null) {
       $dbFileSearch = glob($accountsDbFilter);
       if (count($dbFileSearch) == 0) {
-         $accountsDbFile = str_replace("*" , mt_rand(0, 9999999999999999),
-            $accountsDbFilter);
+         $accountsDbFile = str_replace("*" , mt_rand(0, 9999999999999999), $accountsDbFilter);
          saveDb($accountsDbFile, createEmptyDb());
          }
       else
@@ -84,6 +83,8 @@ function displayChangePassword() {
 function updateAccount($username, $hash, $type, $msg) {
    global $accountFieldHash, $accountFieldType;
    $accountsDb = getAccountsDb();
+   if ($hash && $accountsDb->{$username} === null)
+      $accountsDb->{$username} = new stdClass();
    if ($hash)
       $accountsDb->{$username}->{$accountFieldHash} = sha1($hash);
    if ($type)
