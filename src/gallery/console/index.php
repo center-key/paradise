@@ -23,16 +23,18 @@
 <head>
 <meta charset=utf-8>
 <title>PPAGES &bull; Gallery Management Console</title>
-<link rel=icon       href="../graphics/bookmark.png" type="image/png">
-<link rel=stylesheet href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
-<link rel=stylesheet href="../css/reset.css">
-<link rel=stylesheet href="style.css">
-<link rel=stylesheet href="fileuploader.css">
+<link rel=icon             href="../graphics/bookmark.png">
+<link rel=apple-touch-icon href="graphics/mobile-home-screen.png">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/jquery.ui/1/jquery-ui.min.css">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
+<link rel=stylesheet       href="../css/reset.css">
+<link rel=stylesheet       href="style.css">
+<link rel=stylesheet       href="fileuploader.css">
 <?php
    include "library.php";
    function successfullLogin() {
-      return $_POST["action"] == "login" &&
-         accountValidHash($_POST["username"], $_POST["hash"]);
+      return $_POST["action"] == "login" && accountValidHash($_POST["username"], $_POST["hash"]);
       }
    if (isset($_GET["logout"]))
       session_unset();
@@ -70,8 +72,9 @@
    </div>";
 ?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ui/1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
 <script src="../js/library.js"></script>
 <script src="js/sha1hash.js"></script>
 <script src="js/user-auth.js"></script>

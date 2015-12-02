@@ -27,12 +27,18 @@ function displayLoginHtml($createAccount) {
       }
    echo "$msg
       <div class=login>
-         <label><span>Username:</span>
-               <input type=text id=username size=30></label>
-         <label><span>Password:</span>
-            <input type=password id=password size=25 autocomplete=off></label>
+         <label>
+            <span>Username:</span>
+            <input type=text id=username size=30 data-on-load=dna.ui.focus>
+         </label>
+         <label>
+            <span>Password:</span>
+            <input type=password id=password size=25 autocomplete=off>
+         </label>
          $verify
-         <p class=sans-label><button id=$action>$button</button></p>
+         <p class=sans-label>
+            <button data-action=$action data-click=gmc.user.login>$button</button>
+         </p>
       </div>
       <form action='.' method=post id=submit-login>
          <input type=hidden name=action   value=login>

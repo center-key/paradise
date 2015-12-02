@@ -21,7 +21,7 @@
 <html>
 <head>
 <meta charset=utf-8>
-<link rel=icon       href="favicon.png" type="image/png">
+<link rel=icon       href="favicon.png">
 <link rel=stylesheet href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet href="css/reset.css" >
 <link rel=stylesheet href="css/style.css" >
@@ -67,7 +67,7 @@
    echo "</div>\n";
 ?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
 <script src="slimbox2/slimbox2.js"></script>
 <script src="js/library.js"></script>
 <script src="js/app.js"></script>
