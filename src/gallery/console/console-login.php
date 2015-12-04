@@ -8,7 +8,7 @@
 
 function displayLoginHtml($createAccount) {
    global $salt;
-   $button = "Login";
+   $button = "Sign in";
    $action = "do-login";
    if ($createAccount) {
       $msg = "
@@ -20,7 +20,8 @@ function displayLoginHtml($createAccount) {
       $verify = "
          <label>
             <span>Password:</span>
-            <input type=password id=password2 size=25 autocomplete=off>
+            <input type=password id=password2 size=25 autocomplete=off
+               placeholder='Reenter your password'>
          </label>";
       $button = "Create Account";
       $action = "create-account";
@@ -29,11 +30,13 @@ function displayLoginHtml($createAccount) {
       <div class=login>
          <label>
             <span>Username:</span>
-            <input type=text id=username size=30 data-on-load=dna.ui.focus>
+            <input type=text id=username size=30 data-on-load=dna.ui.focus
+               placeholder='Enter your username'>
          </label>
          <label>
             <span>Password:</span>
-            <input type=password id=password size=25 autocomplete=off>
+            <input type=password id=password size=25 autocomplete=off
+               placeholder='Enter your password'>
          </label>
          $verify
          <p class=sans-label>
@@ -49,7 +52,7 @@ function displayLoginHtml($createAccount) {
 
 function displayLogin() {
    echo "<div class=col1>\n";
-   echo "<div class=block5><h3>Login</h3>\n";
+   echo "<div class=block5><h3>Sign in</h3>\n";
    if ($_POST["action"] == "login")
       echo "<p class=advisory>Invalid username or password.</p>\n";
    displayloginHtml(getNumAccounts() == 0);

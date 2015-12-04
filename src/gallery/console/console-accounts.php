@@ -141,9 +141,13 @@ function displayAccountsList() {
 function displayCreateAccount() {
    global $accountFieldUsername, $accountFieldHash, $actionField, $actionCreateAccount;
    echo "
-      <fieldset><legend>New Account</legend>
-         <label>Username: <input type=text id=$accountFieldUsername
-            onblur='this.value=cleanupUsername(this.value);'></label>
+      <fieldset>
+         <legend>New Account</legend>
+         <label>
+            Username:
+            <input type=text id=$accountFieldUsername placeholder='Enter desired username'
+            onblur='this.value=cleanupUsername(this.value);'>
+         </label>
          <button id=create-account>Create New User Account</button>
       </fieldset>
       <form action='.' method=post id=submit-create-account>

@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!--  PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)                      -->
+<!--  PPAGES - PHP Portfolio Art Gallery Exhibit Showcase                      -->
 <!--  http://centerkey.com/ppages                                              -->
 <!--                                                                           -->
 <!--  GNU General Public License:                                              -->
@@ -51,10 +51,10 @@
    <aside>
       <button data-href=".." class=space-below-half>Visit Gallery</button><br>
       <?php if ($loggedIn) { ?>
-      <button data-href="?logout">Logout</button><br>
+      <button data-href="?logout">Sign out</button><br>
       <?php } ?>
    </aside>
-   <h1>PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)</h1>
+   <h1>PPAGES &ndash; PHP Portfolio Art Gallery Exhibit Showcase</h1>
    <h2>Gallery Management Console</h2>
 </header>
 
@@ -63,7 +63,7 @@
 <?php if ($loggedIn) echo "
    <footer>
       <div>
-         PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)<br>
+         PPAGES &ndash; PHP Portfolio Art Gallery Exhibit Showcase<br>
          A web application to manage and display a photo gallery
       </div>
       <div>

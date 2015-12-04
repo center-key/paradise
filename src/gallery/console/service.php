@@ -131,7 +131,7 @@ function webService() {
          break;
       case "logout":
          session_unset();
-         $responce = new StatusMessage("Logout complete");
+         $responce = new StatusMessage("Sign out complete");
          break;
       default:
          $responce = new ErrorMessage(101, "Invalid action");
