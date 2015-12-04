@@ -10,9 +10,6 @@ if (!gmc)
 
 gmc.start = {
    go: function() {
-      library.social.setup();
-      library.ui.setup();
-      library.form.setup();
       gmc.ui.setupActions();
       gmc.ui.setupStatusMsg();
       gmc.ui.configureMenuBarButtons();

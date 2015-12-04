@@ -34,17 +34,6 @@ gmc.ui = {
          msg = 'Ready';
       gmc.ui.statusMsg(msg);
       },
-   webServiceUrl: function(params) {
-      var baseUrl = 'service';
-      var url = baseUrl;
-      function buildUrl(key) {
-         if (params[key] !== undefined)
-            url += (url === baseUrl ? '?' : '&') +
-               key + '=' + encodeURIComponent(params[key]);
-         }
-      Object.keys(params).forEach(buildUrl);
-      return url;
-      },
    processServiceResponce: function(data, successMsg) {
       if (data.error === gmc.error.codeAuthFail)
          window.location.reload();
@@ -58,12 +47,11 @@ gmc.ui = {
          field:  field,
          value:  value
          };
-      var url = gmc.ui.webServiceUrl(params);
-      console.log(url);
-      $.getJSON(url, function(data) {
+      function handle(data) {
          console.log(data);
          gmc.ui.processServiceResponce(data, 'Image &quot;' + data.caption + '&quot; updated');
-         });
+         }
+      return gmc.rest.service({ params: params, callback: handle });
       },
    updateSettingsWebsite: function(field, value) {
       var params = {
@@ -71,11 +59,10 @@ gmc.ui = {
          field:  field,
          value:  value
          };
-      var url = gmc.ui.webServiceUrl(params);
-      console.log(url);
-      $.getJSON(url, function(data) {
+      function handle(data) {
          gmc.ui.processServiceResponce(data, 'Gallery settings updated');
-         });
+         }
+      return gmc.rest.service({ params: params, callback: handle });
       },
    menuBarActionAllowed: function(action, page, loc, len, show) {
       return (action === 'up' && (loc > 1)) ||
@@ -100,13 +87,12 @@ gmc.ui = {
       var params = {
          action: 'menu-bar'
          };
-      var url = gmc.ui.webServiceUrl(params);
-      console.log(url);
-      $.getJSON(url, function(data) {
+      function handle(data) {
          gmc.ui.menuBarPages.forEach(function(page, loc) {
             gmc.ui.configureMenuBarButtonsSinglePage(data, loc);
             });
-         });
+         }
+      return gmc.rest.service({ params: params, callback: handle });
       },
    updateSettingsMenuBar: function(page, task, value) {
       var params = {
@@ -115,13 +101,12 @@ gmc.ui = {
          task:   task,
          value:  value
          };
-      var url = gmc.ui.webServiceUrl(params);
-      console.log(url);
-      $.getJSON(url, function(data) {
+      function handle(data) {
          gmc.ui.processServiceResponce(data, 'Gallery menu bar updated');
          var loc = gmc.ui.menuBarPages.indexOf(page);
          gmc.ui.configureMenuBarButtonsSinglePage(data, loc);
-         });
+         }
+      return gmc.rest.service({ params: params, callback: handle });
       },
    setupActions: function() {
       $('.login input').keyup(function(event) {
@@ -171,5 +156,29 @@ gmc.ui = {
       $('#create-account').click(function() {
          gmc.user.confirmCreateAccount($('#username').val());
          });
+      }
+   };
+
+gmc.rest = {
+   // Submits REST request and passes response data to the callback
+   // Example:
+   //    gmc.rest.get('book', { callback: handle });
+   makeUrl: function(params) {
+      var url = 'service/';
+      function appendParam(key) { url = url + '&' + key + '=' + encodeURIComponent(params[key]); }
+      if (params)
+         Object.keys(params).forEach(appendParam);
+      return url.replace(/&/, '?');
+      },
+   service: function(options) {
+      var url = gmc.rest.makeUrl(options.params);
+      console.log('service:', url);
+      function handleResponse(json) {
+         if (json.error)
+            console.error(url, json);
+         else if (options.callback)
+            options.callback(json);
+         }
+      return $.getJSON(url, handleResponse);
       }
    };
