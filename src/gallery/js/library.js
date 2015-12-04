@@ -22,7 +22,7 @@ library.ui = {
 
 library.form = {
    setup: function() {
-      $('.perfect:not([action])').attr('action', 'feedback.php');  //bots are lazy
+      $('form.feedback').attr('action', 'feedback.php');  //bots are lazy
       }
    };
 

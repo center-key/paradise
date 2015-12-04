@@ -53,9 +53,11 @@
 <body>
 
 <?php
-   echo "<h1>$title</h1>\n";
-   echo "<h2>$subtitle</h2>\n";
-   echo "<div class=main>\n";
+   echo "<header>\n";
+   echo "   <h1>$title</h1>\n";
+   echo "   <h2>$subtitle</h2>\n";
+   echo "</header>\n";
+   echo "<main>\n";
    #echo "<pre>";  print_r($settingsDb);  echo "</pre>";
    $current = currentPage($pages);
    displayMenuBar($pages, $current);
@@ -63,8 +65,8 @@
       displayGallery($titleItalic, $titleCaps);
    else
       displayPage($current);
+   echo "</main>\n";
    displayFooter($footer, $license, $bookmarks);
-   echo "</div>\n";
 ?>
 
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>

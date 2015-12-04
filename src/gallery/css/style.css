@@ -25,8 +25,7 @@ h2 {
 h3 {
    font-size: 120%;
    }
-.main {
-   display: inline-block;
+main {
    margin-top: 10px;
    }
 .gallery, .page {
@@ -48,7 +47,11 @@ h3 {
    }
 .image img {
    border: 5px solid black;
-   box-shadow: silver 2px 2px 0.8em;
+   transition: 1s;
+   }
+.image img:hover {
+   border-color: white;
+   box-shadow: silver 0px 0px 1.5em;
    }
 .image p {
    text-align: center;
@@ -74,15 +77,18 @@ h3 {
    border: 3px solid gray;
    border-radius: 10px;
    }
-.footer {
+body >footer {
+   display: -webkit-flex;
+   display:         flex;
+   -webkit-justify-content: space-between;
+           justify-content: space-between;
+   -webkit-align-items: center;
+           align-items: center;
    background-color: #777;
    font-size: 80%;
    border: 1px dotted black;
    padding: 10px 10px;
    margin-top: 15px;
-   }
-.footer div {
-   float: right;
    }
 span.b {
    font-size: 140%;
@@ -92,12 +98,6 @@ span.i {
    }
 span.c {
    text-transform: uppercase;
-   }
-#bookmarking span {
-   margin-left: -10px;
-   }
-#bookmarking > span a {
-   margin-left: 5px;
    }
 label {
    float: left;
@@ -110,41 +110,32 @@ label {
    font-size: 70%;
    margin: 50px 10px -20px 0px;
    }
+form.feedback {
+   padding-top: 30px;
+   }
 
 /* Navigation Bar */
 ul.navigation-bar {
    list-style-type: none;
-   background-image: -webkit-linear-gradient(top, white, darkgray);
-   background-image:    -moz-linear-gradient(top, white, darkgray);
-   background-image:     -ms-linear-gradient(top, white, darkgray);
-   background-image:         linear-gradient(top, white, darkgray);
-   border: 1px solid silver;
+   background-color: darkgray; /* IE8,IE9 */
+   background: linear-gradient(to bottom, silver, gray);
    padding: 0px;
-   margin: 5px 0px;
-   background-color: gainsboro;
-   /* IE6...IE9 */
-   *line-height: 2.0em;
-   /* IE6,IE7 */
+   margin: 0px 0px 10px 0px;
    }
 ul.navigation-bar li {
    display: table-cell;
-   *display: inline;
-   /* IE6,IE7 */
+   transition: background-color 0.4s;
    }
 ul.navigation-bar li.current, ul.navigation-bar li:hover {
-   background-color: powderblue;
-   /* IE6...IE8 */
-   background-color: rgba(0, 255, 255, 0.2);
+   background-color: lightslategray; /* IE8,IE9 */
+   background: linear-gradient(to bottom, lightsteelblue, lightslategray);
    }
 ul.navigation-bar li a {
    display: table-cell;
    text-decoration: none;
-   text-shadow: whitesmoke 2px 1px 0.3em;
    outline: none;
    font-size: 100%;
-   font-weight: normal;
-   color: #444;
-   border-right: 1px solid silver;
-   padding: 3px 20px;
-   /* sets button size */
+   color: white !important;
+   border-right: 1px solid dimgray;
+   padding: 4px 20px; /* sets button size */
    }

@@ -24,7 +24,7 @@ function createCustomCss() {
       "/* Find colors at: http://centerkey.com/colors           */\n\n" .
       "body           { color: whitesmoke; background-color: dimgray; }\n" .
       "div.image img  { border-color: black; }\n" .
-      "div.footer     { background-color: #777; border-color: black; }";
+      "footer         { background-color: #777; border-color: black; }";
    if (!is_file($customCssFile))
       file_put_contents($customCssFile, $customCss);
    }

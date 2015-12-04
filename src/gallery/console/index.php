@@ -47,29 +47,30 @@
 </head>
 <body>
 
-<div class=header>
-   <div>
-      <button onclick="window.open('..');" class=space-below-half>Visit Gallery</button><br>
+<header>
+   <aside>
+      <button data-href=".." class=space-below-half>Visit Gallery</button><br>
       <?php if ($loggedIn) { ?>
-      <button onclick="window.location.href='?logout';">Logout</button><br>
+      <button data-href="?logout">Logout</button><br>
       <?php } ?>
-   </div>
+   </aside>
    <h1>PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)</h1>
    <h2>Gallery Management Console</h2>
-</div>
+</header>
 
 <?php $loggedIn ? displayConsole() : displayLogin(); ?>
 
 <?php if ($loggedIn) echo "
-   <div class=footer>
+   <footer>
       <div>
-         You are logged into <b>" . $_SERVER['HTTP_HOST'] . "</b> as <b>" .
-         $_SESSION["username"] . "</b><br>
-         PPAGES $version
+         PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)<br>
+         A web application to manage and display a photo gallery
       </div>
-      PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)<br>
-      A web application to manage and display a photo gallery
-   </div>";
+      <div>
+         You are logged into <b>" . $_SERVER['HTTP_HOST'] . "</b> as <b>" . $_SESSION["username"] .
+         "</b><br>PPAGES $version
+      </div>
+   </footer>";
 ?>
 
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>

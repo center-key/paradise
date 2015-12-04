@@ -6,20 +6,26 @@
 /* Gallery Management Console */
 
 /* Foundation */
-body        { padding: 10px 0px 10px 30px; }
-fieldset    { text-align: right; border-width: 1px; border-style: solid; margin-bottom: 10px; }
-legend      { direction: rtl; }
+body     { padding: 10px 0px 10px 30px; }
+fieldset { text-align: right; border-width: 1px; border-style: solid; margin-bottom: 10px; }
+legend   { direction: rtl; }
+aside    { float: right; margin: 0px 0px 10px 30px; }
 
 /* Header, Footer, Columns, and Blocks */
-.header     { width: 950px; }
-.header h1  { font-size: 140%; }
-.header h2  { font-size: 120%; font-weight: normal; margin-bottom: 20px; }
-.header div { float: right; text-align: right; margin-top: 5px; }
+body >header     { width: 950px; }
+body >header h1  { font-size: 140%; }
+body >header h2  { font-size: 120%; font-weight: normal; margin-bottom: 20px; }
+body >header div { float: right; text-align: right; margin-top: 5px; }
 .col1       { float: left; width: 600px; margin-right: 10px; }
 .col2       { float: left; width: 340px; }
-.footer     { clear: both; width: 950px; color: white; background-color: darkgray;
-              font-size: 75%; padding: 10px; margin-top: 10px; }
-.footer div { float: right; text-align: right; }
+body >footer     { clear: both; width: 950px; font-size: 75%;
+   color: white; background-color: darkgray; padding: 10px; margin-top: 10px;
+   display: -webkit-flex;
+   display:         flex;
+   -webkit-justify-content: space-between;
+   justify-content:         space-between;
+   }
+body >footer >div:last-child { text-align: right; }
 
 /* Tools */
 .field-tiny   { width:  40px; }
@@ -69,7 +75,6 @@ textarea.field-large  { height: 80px; }
 #settings-menu-bar input { width: 150px; }
 
 .block2 { padding-bottom: 0px; }  /* add proper id */
-.block5 input { width: 150px; }  /* add proper id */
 
 /* Cusotmize File Upload */
 .ZZZqq-upload-button { background-color: white; border: none; padding: 0px; }

@@ -42,7 +42,7 @@ table.data-box tbody tr:nth-child(1) { background-color: gainsboro; }
 table.data-box tbody tr:nth-child(n+2):hover { background-color: floralwhite; }
 .rounded { border-radius: 5px; }
 fieldset { border-radius: 5px; }
-input, textarea { font-size: 110%; background-color: mintcream; border: 1px solid silver; border-radius: 5px; padding: 0.3em; }
+input, textarea { font-size: 110%; background-color: mintcream; border: 1px solid silver; border-radius: 5px; padding: 0.3em; outline: none; }
 select { font-size: 110%; }
 label { display: block; margin-bottom: 0.5em; }
 label span { display: inline-block; width: 100px; vertical-align: top; text-align: right; padding-top: 0.5em; }
@@ -110,32 +110,6 @@ div.input-group label { margin: 0.1em 0em 0em 0em; }
 .float-endgame:after { content: " "; display: table; clear: both; }
 .separator:after     { content: "|"; padding: 0px 5px; }
 
-/* PERFECT style */
-.perfect { display: table; text-align: left; background-color: whitesmoke; color: dimgray;
-   border-size: 1px; border-style: solid; margin: 3px auto; }
-.perfect h1 { text-align: center; color: white; font-size: 110%; padding: 4px;
-   margin: 0px 0px 20px 0px; }
-.perfect label { display: block; }
-.perfect label span { display: inline-block; width: 100px; vertical-align: top;
-   text-align: right; padding-top: 0.5em; }
-.perfect input, .perfect textarea { margin-right: 30px; }
-.perfect button { font-size: 80%; }
-.perfect p { margin-left: 105px; }
-.perfect .note { text-align: right; font-size: 70%; margin: -15px 5px 5px 0px;
-    color: gray; }
-.perfect .note a { color: gray; text-decoration: none; border: none; }
-
 /* Social buttons */
-#social-buttons img { height: 26px; width: 26px; border: 1px solid gainsboro; border-radius: 5px; margin-left: 10px; }
+#social-buttons img { height: 24px; width: 24px; border: 1px solid gainsboro; border-radius: 5px; margin-left: 10px; }
 #social-buttons img:hover { border-color: white; box-shadow: 0px 0px 1em dodgerblue; }
-#social-buttons #___plusone_0 { vertical-align: top !important; width: 80px !important; }
-
-
-/************************/
-/* Overridable Defaults */
-/************************/
-
-/* PERFECT style */
-.perfect { border-color: darkseagreen; }                            /* outer color */
-.perfect h1 { background-color: darkseagreen; }                     /* outer color */
-.perfect input, .perfect textarea { background-color: mintcream; }  /* input fields */

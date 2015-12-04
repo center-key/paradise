@@ -29,7 +29,7 @@ function currentPage($pages) {
 function menuItemHtml($page, $name, $current) {
    $link = $page == "gallery" ? "." : "?page=" . $page;
    $class = $page == $current ? " class=current" : "";
-   return "<li$class><a href='$link'>$name</a>\n";
+   return "<li$class><a href='$link' class=plain>$name</a></li>\n";
    }
 
 function displayMenuBar($pages, $current) {
@@ -68,23 +68,21 @@ function displayGallery($italicTitle, $capsTitle) {
 
 function contactPageHtml() {
    $verification = generateVerification();
-   return "<h3>Contact the Artist</h3>
-      <script>document.writeln(
-         '<fo' + 'rm method=post act' + 'ion=feed' + 'back.php>');</script>
-      <input type=hidden name=verification value=$verification>
-      <br>
-      <p><label>Message:</label>
-         <textarea name=message rows=6 cols=50></textarea></p>
-      <p><label>Name:</label>
-         <input name=name size=35></p>
-      <p><label>Email:</label>
-         <input name=email size=40></p>
-      <p><label>&nbsp;</label>
-         <button>Send Message</button></p>
-      <script>document.writeln(
-         '<input type=hidden name=real value=window.location.hostname><\\/form>');</script>
-      <p class=corner-msg>Gallery powered by
-         <a href='http://centerkey.com/ppages/'>PPAGES</a></p>";
+   return "
+      <h3>Contact the Artist</h3>
+      <form class=feedback method=post>
+         <input type=hidden name=verification value=$verification>
+         <p><label>Message:</label>
+            <textarea name=message rows=6 cols=50></textarea></p>
+         <p><label>Name:</label>
+            <input name=name size=35></p>
+         <p><label>Email:</label>
+            <input name=email size=40></p>
+         <p><label>&nbsp;</label>
+            <button>Send Message</button></p>
+      </form>
+      <p class=corner-msg>Gallery powered by <a href='http://centerkey.com/ppages/'>PPAGES</a></p>
+      ";
    }
 
 function contactThanksHtml() {
@@ -114,12 +112,12 @@ function displayCreativeCommons() {
    }
 
 function displayFooter($statement, $license, $bookmarks) {
-   echo "<div class=footer>\n";
+   echo "<footer>\n";
    if ($license)
       displayCreativeCommons();
    if ($bookmarks)
       echo "<div id=social-buttons class=plain></div>\n";
-   echo "<div>$statement</div>\n</div>\n";
+   echo "<div>$statement</div>\n</footer>\n";
    }
 
 ?>
