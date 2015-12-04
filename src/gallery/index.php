@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!--  PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)                      -->
+<!--  PPAGES - PHP Portfolio Art Gallery Exhibit Showcase                      -->
 <!--  http://centerkey.com/ppages                                              -->
 <!--                                                                           -->
 <!--  GNU General Public License:                                              -->

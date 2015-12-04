@@ -1,5 +1,5 @@
 ===================================================
-PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)
+PPAGES - PHP Portfolio Art Gallery Exhibit Showcase
 3rd Party Install Instructions
 ===================================================
 

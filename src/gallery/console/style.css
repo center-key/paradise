@@ -16,6 +16,7 @@ body >header     { width: 950px; }
 body >header h1  { font-size: 140%; }
 body >header h2  { font-size: 120%; font-weight: normal; margin-bottom: 20px; }
 body >header div { float: right; text-align: right; margin-top: 5px; }
+body >header >aside { text-align: right; }
 .col1       { float: left; width: 600px; margin-right: 10px; }
 .col2       { float: left; width: 340px; }
 body >footer     { clear: both; width: 950px; font-size: 75%;

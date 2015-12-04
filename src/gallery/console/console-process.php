@@ -18,7 +18,7 @@ function createDataFolders() {
 function createCustomCss() {
    global $customCssFile;
    $customCss =
-      "/* PHP Portfolio Art Gallery Exhibit Showcase (PPAGES)   */\n" .
+      "/* PPAGES - PHP Portfolio Art Gallery Exhibit Showcase   */\n" .
       "/* Edit this CSS file to customize the look of the       */\n" .
       "/* gallery.  Put custom images in the 'graphics' folder. */\n" .
       "/* Find colors at: http://centerkey.com/colors           */\n\n" .
