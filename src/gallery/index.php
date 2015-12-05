@@ -28,8 +28,8 @@
 <link rel=stylesheet href="data/style.css">
 <link rel=stylesheet href="slimbox2/slimbox2.css">
 <?php
-   include "console/database.php";
-   include "console/console-settings.php";
+   include "console/php/database.php";
+   include "console/php/console-settings.php";
    include "main.php";
    function settingToBoolean($str) { return $str == "on"; }
    $settingsDb = readSettings("data/settings-db.json");

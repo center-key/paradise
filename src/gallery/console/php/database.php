@@ -11,7 +11,6 @@ function dbFileName($dbName) {
    }
 
 function createEmptyDb() {
-   logEvent("create-empty-db");
    return json_decode("{}");
    }
 

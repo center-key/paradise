@@ -6,7 +6,7 @@
 
 $version="v0.0.4";
 date_default_timezone_set("UTC");
-include "database.php";
+include "php/database.php";
 
 $authTimestamp = "active";
 $sessionTimout = 1200;  //20 mintues
@@ -57,13 +57,13 @@ class ErrorStatus {
    public static $general =  array("code" => 101, "msg" => "Unknown Error");
    };
 
-include "console.php";
-include "console-login.php";
-include "console-transfer.php";
-include "console-accounts.php";
-include "console-settings.php";
-include "console-portfolio.php";
-include "console-process.php";
+include "php/console.php";
+include "php/console-login.php";
+include "php/console-transfer.php";
+include "php/console-accounts.php";
+include "php/console-settings.php";
+include "php/console-portfolio.php";
+include "php/console-process.php";
 
 function getFileExtension($fileName) {
    return strtolower(strrchr($fileName, "."));

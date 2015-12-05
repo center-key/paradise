@@ -32,7 +32,7 @@
 <link rel=stylesheet       href="style.css">
 <link rel=stylesheet       href="fileuploader.css">
 <?php
-   include "library.php";
+   include "php/library.php";
    function successfullLogin() {
       return $_POST["action"] == "login" && accountValidHash($_POST["username"], $_POST["hash"]);
       }

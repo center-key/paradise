@@ -4,17 +4,17 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
-include "console/database.php";
-include "console/console-settings.php";
+include "console/php/database.php";
+include "console/php/console-settings.php";
 include "main.php";
 
 //Initialize
 $settingsDb = readSettings("data/settings-db.json");
 $email =      $settingsDb->{$settingsFieldEmail};
 $sendTo =     "Gallery Feedback <$email>";
-$subject =   "Feedback Submission";
-$thanksUri = ".?page=thanks";
-$bar =       "-----------------------";
+$subject =    "Feedback Submission";
+$thanksUri =  ".?page=thanks";
+$bar =        "-----------------------";
 
 //Create message
 $msg =   $_SERVER["HTTP_HOST"] . "\n$bar";

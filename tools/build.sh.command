@@ -7,15 +7,15 @@
 
 # Build:
 # Creates the release file (zip) with the version number in the file
-# name (extracted from ppages/src/gallery/console/library.php)
+# name (extracted from ppages/src/gallery/console/php/library.php)
 
-projectFolder=$(dirname $0)/..
-version=$(awk -F\" '/version=/ { print $2 }' $projectFolder/src/gallery/console/library.php)
+projectFolder=$(cd $(dirname $0)/..; pwd)
+version=$(awk -F\" '/version=/ { print $2 }' $projectFolder/src/gallery/console/php/library.php)
 
 runStaticAnalyzer() {
    echo "*** Analyzing"
    cd $projectFolder/src
-   for file in gallery/*.php gallery/console/*.php; do
+   for file in gallery/*.php gallery/console/*.php gallery/console/php/*.php; do
       php -l $file
       done
    echo

@@ -11,7 +11,7 @@
 //    service?action=settings&field=title&value=My%20Gallery (set "title")
 
 session_start();
-include "library.php";
+include "php/library.php";
 
 class StatusMessage {
    public $status = "ok";
