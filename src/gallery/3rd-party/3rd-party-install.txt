@@ -16,10 +16,3 @@ project:
 3) In "fileuploader.php", change "uploads/" to "../data/uploads/"
 ... and also comment out: $this->checkServerSettings();  (it seems to cause errors)
 4) In "fileuploader.js", change "Upload a file" to "Upload Photos"
-
-SHA-1 Cryptographic Hash Algorithm
-----------------------------------
-1) Copy code from:
-     http://www.movable-type.co.uk/scripts/sha1.html#code
-2) Paste code into:
-     ppages/console/js/sha1hash.js
