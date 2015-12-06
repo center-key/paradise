@@ -26,7 +26,8 @@
 <link rel=stylesheet href="css/reset.css" >
 <link rel=stylesheet href="css/style.css" >
 <link rel=stylesheet href="data/style.css">
-<link rel=stylesheet href="slimbox2/slimbox2.css">
+<link rel=stylesheet href="https://cdn.jsdelivr.net/slimbox/2/css/slimbox2.css">
+
 <?php
    include "console/php/database.php";
    include "console/php/console-settings.php";
@@ -70,7 +71,7 @@
 ?>
 
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
-<script src="slimbox2/slimbox2.js"></script>
+<script src="https://cdn.jsdelivr.net/slimbox/2/js/slimbox2.min.js"></script>
 <script src="js/library.js"></script>
 <script src="js/app.js"></script>
 </body>
