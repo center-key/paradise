@@ -8,32 +8,31 @@
 
 function displayTransfer() {
    ?>
-   <div id=file-uploader>
-      <noscript><p>Enable JavaScript to use file uploader.</p></noscript>
-      </div>
-   <div id=process-files style="display: none;">Preparing to process files...
-      <img src="loading.gif" alt="Loading Icon"></div>
-   <script src="fileuploader.js"></script>
+   <div id=file-uploader></div>
+   <div id=process-files style="display: none;">
+      Preparing to process files...
+      <img src="loading.gif" alt="Loading Icon">
+   </div>
+   <script src="file-uploader/fileuploader.js"></script>
    <script>
       function createUploader() {
-         var uploader = new qq.FileUploader({
-            element: document.getElementById('file-uploader'),
-            action: 'fileuploader.php',
-            allowedExtensions: ['jpg', 'jpeg', 'png'],
-            sizeLimit: 1048576,  //1MB
-            onComplete: function(id, fileName, responseJSON) {
-               if (id == 0) {  //last image uploaded
-                  document.getElementById('process-files').style.display = 'block';
-                  setTimeout('window.location.reload();', 3000);
-                  }
+         function done(id, fileName, responseJSON) {
+            if (id == 0) {  //last image uploaded
+               document.getElementById('process-files').style.display = 'block';
+               setTimeout('window.location.reload();', 3000);
                }
+            }
+         var uploader = new qq.FileUploader({
+            element:           document.getElementById('file-uploader'),
+            uploadButtonText:  'Upload Photos',
+            action:            'file-uploader.php',
+            allowedExtensions: ['jpg', 'jpeg', 'png'],
+            sizeLimit:         1048576,  //1MB
+            onComplete:        done
             });
-         //document.getElementsByClassName("qq-upload-button")[0].innerHTML =
-         //   document.getElementsByClassName("qq-upload-button")[0].innerHTML.replace(
-         //      "Upload a file", "<button type=submit>Upload Photos</button>");
          }
       window.onload = createUploader;
-      </script>
+   </script>
    <?php }
 
 function createThumbnail($origImage, $origWidth, $origHeight, $file) {

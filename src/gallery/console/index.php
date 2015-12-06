@@ -30,7 +30,7 @@
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
 <link rel=stylesheet       href="../css/reset.css">
 <link rel=stylesheet       href="style.css">
-<link rel=stylesheet       href="fileuploader.css">
+<link rel=stylesheet       href="file-uploader/fileuploader.css">
 <?php
    include "php/library.php";
    function successfullLogin() {
@@ -75,8 +75,8 @@
 
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.ui/1/jquery-ui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
 <script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha1.js"></script>
+<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
 <script src="../js/library.js"></script>
 <script src="js/user-auth.js"></script>
 <script src="js/console.js"></script>
