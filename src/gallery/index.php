@@ -1,32 +1,20 @@
 <!doctype html>
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!--  PPAGES - PHP Portfolio Art Gallery Exhibit Showcase                      -->
-<!--  http://centerkey.com/ppages                                              -->
-<!--                                                                           -->
-<!--  GNU General Public License:                                              -->
-<!--  This program is free software; you can redistribute it and/or modify it  -->
-<!--  under the terms of the GNU General Public License as published by the    -->
-<!--  Free Software Foundation; either version 2 of the License, or (at your   -->
-<!--  option) any later version.                                               -->
-<!--                                                                           -->
-<!--  This program is distributed in the hope that it will be useful, but      -->
-<!--  WITHOUT ANY WARRANTY; without even the implied warranty of               -->
-<!--  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                     -->
-<!--                                                                           -->
-<!--  See the GNU General Public License at http://www.gnu.org for more        -->
-<!--  details.                                                                 -->
-<!--                                                                           -->
-<!--  Copyright (c) individual contributors to the PPAGES project              -->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!--  PPAGES - PHP Portfolio Art Gallery Exhibit Showcase  -->
+<!--  centerkey.com/ppages - Open Source (GPL)             -->
+<!--  Copyright (c) individual contributors                -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <html>
 <head>
 <meta charset=utf-8>
-<link rel=icon       href="favicon.png">
-<link rel=stylesheet href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
-<link rel=stylesheet href="css/reset.css" >
-<link rel=stylesheet href="css/style.css" >
-<link rel=stylesheet href="data/style.css">
-<link rel=stylesheet href="https://cdn.jsdelivr.net/slimbox/2/css/slimbox2.css">
+<meta name=apple-mobile-web-app-title content="Gallery">
+<link rel=icon             href="http://centerkey.com/ppages/graphics/bookmark.png">
+<link rel=apple-touch-icon href="http://centerkey.com/ppages/graphics/mobile-home-screen.png">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/slimbox/2/css/slimbox2.css">
+<link rel=stylesheet       href="css/reset.css" >
+<link rel=stylesheet       href="css/style.css" >
+<link rel=stylesheet       href="data/style.css">
 
 <?php
    include "console/php/database.php";
