@@ -140,6 +140,7 @@ function webService() {
    }
 
 header("Cache-Control: no-cache");
+header("Content-Type:  application/json");
 if (authentication())
    echo json_encode(webService());
 else
