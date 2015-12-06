@@ -53,9 +53,9 @@ library.social = {
          elem.fadeTo(0, 0.0);
          var html = '<div class=g-plusone data-annotation=none></div><span>';
          function addButton(key) {
-            html += '<img src="http://centerkey.com/graphics/icon-social-' + key +
-               '.png" data-social=' + key + ' class=social-button title="Share to ' +
-               buttons[key].title + '" alt="Social bookmark">';
+            html += '<img src="graphics/icon-social-' + key + '.png" data-social=' + key +
+               ' class=social-button title="Share to ' + buttons[key].title +
+               '" alt="Social bookmark">';
             }
          Object.keys(buttons).forEach(addButton);
          elem.html(html + '</span>').delay('slow').fadeTo('normal', 1.0);
