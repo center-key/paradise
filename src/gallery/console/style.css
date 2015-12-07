@@ -75,6 +75,9 @@ textarea.field-large  { height: 80px; }
 #settings-website .input-group-down div.input-group { vertical-align: top; text-align: left; }
 #settings-menu-bar input { width: 150px; }
 
+a >i.fa { font-size: 130%; color: cornflowerblue; transition: color 0.4s; }
+a >i.fa:hover { color: royalblue; }
+
 .block2 { padding-bottom: 0px; }  /* add proper id */
 
 /* Cusotmize File Upload */

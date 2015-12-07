@@ -10,6 +10,8 @@ if (!gmc)
 
 gmc.start = {
    go: function() {
+      $('a.external-site').attr('target', '_blank');
+      $('a img, a i.fa').parent().addClass('plain');
       gmc.ui.setupActions();
       gmc.ui.setupStatusMsg();
       gmc.ui.configureMenuBarButtons();

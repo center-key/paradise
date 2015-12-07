@@ -157,18 +157,22 @@ function displaySettingsWebsite($settingsDb) {
       <label>Title:
          <input type=text name=$settingsFieldTitle value='$title'>
       </label>
-      <label>Title Font:<a class=external-site
-         href='https://www.google.com/fonts'><img src=icon-info.png
-         alt='Information Icon' title='Click to see fonts'></a>
+      <label>
+         Title Font:
+         <a href='https://www.google.com/fonts' class=external-site title='Click to see fonts'>
+            <i class='fa fa-info-circle'></i>
+         </a>
          $fonts
       </label>
-      <label>Title Size:
-         $sizes
+      <label>
+         Title Size: $sizes
       </label>
-      <label>Subtitle:
+      <label>
+         Subtitle:
          <input type=text name=$settingsFieldSubtitle value='$subtitle'>
       </label>
-      <label>Footer:
+      <label>
+         Footer:
          <input type=text name=$settingsFieldFooter value='$footer'>
       </label>
       <div class=input-group-down>
@@ -187,10 +191,10 @@ function displaySettingsWebsite($settingsDb) {
          <div class=input-group>
             <label>
                <input type=checkbox name=$settingsFieldCcLicense$cc>
-               Creative Commons<a class=external-site
-               href='http://creativecommons.org/licenses/by-sa/3.0/'><img
-               src='icon-info.png' alt='Information Icon'
-               title='Click for information'></a>
+               Creative Commons
+               <a href='http://creativecommons.org/licenses/by-sa/4.0/' class=external-site title='CC BY 4.0'>
+                  <i class='fa fa-info-circle'></i>
+               </a>
             </label>
             <label>
                <input type=checkbox name=$settingsFieldBookmarks$bookmarks>
@@ -198,7 +202,11 @@ function displaySettingsWebsite($settingsDb) {
             </label>
          </div>
       </div>
-      <label>E-mail:<img src=icon-info.png title='$emailHelp' alt='Information Icon'>
+      <label>
+         E-mail:
+         <a href='../?page=contact' class=external-site title='$emailHelp'>
+            <i class='fa fa-info-circle'></i>
+         </a>
          <input type=text name=$settingsFieldEmail value='$email'>
       </label>
       </fieldset>\n";

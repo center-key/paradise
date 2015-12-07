@@ -104,11 +104,10 @@ function displayPage($name) {
 
 function displayCreativeCommons() {
    echo "&nbsp;&nbsp;
-      <a class=external-site rel=license
-      href='http://creativecommons.org/licenses/by-sa/3.0/'><img
-      alt='Creative Commons License'
-      title='These works are licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License'
-      src='http://i.creativecommons.org/l/by-sa/3.0/80x15.png'></a>\n";
+      <a class=external-site rel=license href='http://creativecommons.org/licenses/by-sa/4.0/'>
+         <img src='https://i.creativecommons.org/l/by-sa/4.0/80x15.png' alt='Creative Commons License'
+            title='This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.'>
+      </a>\n";
    }
 
 function displayFooter($statement, $license, $bookmarks) {
