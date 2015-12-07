@@ -28,9 +28,9 @@
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/jquery.ui/1/jquery-ui.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
+<link rel=stylesheet       href="file-uploader/fileuploader.css">
 <link rel=stylesheet       href="../css/reset.css">
 <link rel=stylesheet       href="style.css">
-<link rel=stylesheet       href="file-uploader/fileuploader.css">
 <?php
    include "php/library.php";
    function successfullLogin() {

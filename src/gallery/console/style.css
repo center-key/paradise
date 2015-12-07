@@ -80,5 +80,17 @@ a >i.fa:hover { color: royalblue; }
 
 .block2 { padding-bottom: 0px; }  /* add proper id */
 
-/* Cusotmize File Upload */
-.ZZZqq-upload-button { background-color: white; border: none; padding: 0px; }
+/* Customize photo upload button */
+.qq-upload-button {
+   display: inline-block;
+   width: auto;
+   font-size: 1.1rem;
+   font-weight: bold;
+   border-radius: 0.4em;
+   background-color: cornflowerblue;
+   transition: background-color 0.4s;
+   padding: 0.6em 1.2em;
+   }
+.qq-upload-button:hover {
+   background-color: royalblue;
+   }
