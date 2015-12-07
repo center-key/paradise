@@ -43,12 +43,17 @@ listReleases() {
 releaseInstructions() {
    echo "*** Instructions"
    cd $projectFolder
-   echo "To publish this release:"
-   echo "   cd $(pwd)"
-   echo "   git tag -af $version -m \"Beta release\""
-   echo "   git tag -af current -m \"Current release\""
-   echo "   git remote -v"
-   echo "   git push origin --tags --force"
+   echo "Steps to publish this release"
+   echo "   1) Check in release files (.zip) with the comment:"
+   echo "      Release $version"
+   echo "   2) Tag release:"
+   echo "      cd $(pwd)"
+   echo "      git tag -af $version -m \"Beta release\""
+   echo "      git tag -af current -m \"Current release\""
+   echo "      git remote -v"
+   echo "      git push origin --tags --force"
+   echo "   3) Increment version in src/gallery/console/php/library.php and check in with the comment:"
+   echo "      Next release"
    echo
    }
 
