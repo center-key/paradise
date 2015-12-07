@@ -214,7 +214,7 @@ function displaySettingsWebsite($settingsDb) {
 
 function displaySettingsMenuBar($pages) {
    global $actionUpdateMenuBar, $actionsMenuBar;
-   echo "<fieldset id=settings-menu-bar><legend>Menu Bar</legend>\n";
+   echo "<fieldset id=settings-menu-bar><legend>Menu Bar Tabs</legend>\n";
    foreach ($pages as $loc => $page) {
       if (!isset($page->title)) {  //TODO: Delete this backwards compatibility workaround
          $page->title = $page->name;

@@ -91,6 +91,18 @@ function contactThanksHtml() {
       <p><a href='.'><button>&lt;&lt; Back to Gallery</button></a></p>";
    }
 
+function readCustomPage($name) {
+   $filename = "data/page-$name.html";
+   if (!file_exists($filename)) {
+      touch($filename);
+      $defaultCustomPageHtml =
+         "<section>\n   <h2>This page is under construction.</h2>\n   <hr>\n   <p>Edit: " .
+         realpath($filename) . "</p>\n</section>\n";
+      file_put_contents($filename, $defaultCustomPageHtml);
+      }
+   readfile($filename);
+   }
+
 function displayPage($name) {
    echo "<div class=page>\n";
    if ($name == "contact")
@@ -98,7 +110,7 @@ function displayPage($name) {
    else if ($name == "thanks")
       echo contactThanksHtml();
    else
-      readfile("data/page-$name.html");
+      readCustomPage($name);
    echo "</div>\n";
    }
 
