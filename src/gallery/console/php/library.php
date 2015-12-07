@@ -47,8 +47,8 @@ $actionUpdateMenuBar =   "update-menu-bar";
 $actionReprocessImages = "reprocess-images";
 $actionChangePassword =  "change-password";
 $actionCreateAccount =   "create-account";
-$actionsMenuBar = array("up"=>"&uarr;", "down"=>"&darr;",
-   "show"=>"Show", "hide"=>"Hide", "edit"=>"Edit", "del"=>"&times;");
+//$actionsMenuBar = ["up"=>"&uarr;", "down"=>"&darr;", "show"=>"Show", "hide"=>"Hide", "edit"=>"Edit", "del"=>"&times;"];
+$actionsMenuBar = ["show"=>"Show", "hide"=>"Hide"];
 
 $settingsDbFile = $dataFolder . dbFileName("settings");
 

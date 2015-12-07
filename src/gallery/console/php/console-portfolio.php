@@ -84,8 +84,9 @@ function displayPortfolioHtml($id, $status, $title, $desc, $badge, $date, $thumb
          </label>
          <label>
             <span>Badge:</span>
-            <input class=portfolio-$imageFieldBadge name=$id type=text value='$badge'></label>
-         <p class=sans-label>
+            <input class=portfolio-$imageFieldBadge name=$id type=text value='$badge'>
+         </label>
+         <p class='sans-label hide-me'>
             <button class=portfolio-move-up name=$id>&uarr; Move Up</button>
             <button class=portfolio-move-down name=$id>&darr; Move Down</button>
             <button class=portfolio-delete name=$id>&times; Delete</button>
