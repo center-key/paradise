@@ -115,7 +115,7 @@ function displayPage($name) {
    }
 
 function displayCreativeCommons() {
-   echo "&nbsp;&nbsp;
+   echo "
       <a class=external-site rel=license href='http://creativecommons.org/licenses/by-sa/4.0/'>
          <img src='https://i.creativecommons.org/l/by-sa/4.0/80x15.png' alt='Creative Commons License'
             title='This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.'>
