@@ -7,13 +7,19 @@
 body { color: #333; padding: 10px 0px 10px 30px; }
 
 /* Header, Footer, Columns, and Blocks */
-body >header     { width: 920px; }
+body >header, body >main, body >footer { width: 920px; }
 body >header div { float: right; text-align: right; margin-top: 5px; }
 body >header h1  { font-size: 140%; margin: 0px; }
 body >header h2  { font-size: 120%; font-weight: normal; margin: 0px 0px 20px 0px; }
-div.col1         { float: left; width: 600px; margin-right: 10px; }
-div.col2         { float: left; width: 310px; }
-body >footer     { clear: both; width: 900px; font-size: 75%;
+body >main {
+   display: -webkit-flex;
+   display:         flex;
+   -webkit-justify-content: space-between;
+           justify-content: space-between;
+   }
+main >div:first-child { width: 62%; }
+main >div:last-child { width: 36%; }
+body >footer     { font-size: 75%;
    color: white; background-color: darkgray; padding: 10px; margin-top: 10px;
    display: -webkit-flex;
    display:         flex;
@@ -23,28 +29,26 @@ body >footer     { clear: both; width: 900px; font-size: 75%;
            align-items: center;
    }
 
-/* Color Blocks */
-div.block1, div.block2, div.block3, div.block4, div.block5
-              { border-width: 2px; border-style: solid; padding: 10px; margin-bottom: 10px; }
-div.block1 h3, div.block2 h3, div.block3 h3, div.block4 h3, div.block5 h3
-              { color: white; padding: 3px; margin: -10px -10px 10px -10px; }
-div.block1 h3 { background-color: rosybrown; }
-div.block2 h3 { background-color: cadetblue; }
-div.block3 h3 { background-color: lightslategray; }
-div.block4 h3 { background-color: darkkhaki; }
-div.block5 h3 { background-color: darkseagreen; }
-div.block1    { border-color: rosybrown; }
-div.block2    { border-color: cadetblue; }
-div.block3    { border-color: lightslategray; }
-div.block4    { border-color: darkkhaki; }
-div.block5    { border-color: darkseagreen; }
-div.block4 fieldset { border-color: darkkhaki; }
-div.block5 fieldset { border-color: darkseagreen; }
-div.block4 fieldset legend { color: darkkhaki; border-color: darkkhaki; }
-div.block5 fieldset legend { color: darkseagreen; border-color: darkseagreen; }
+/* Section color blocks */
+main >div >section    { border-width: 2px; border-style: solid; padding: 10px; margin-bottom: 10px; }
+main >div >section h3 { font-size: 1.2rem; color: white; padding: 3px 8px; margin: -10px -10px 10px -10px; }
+section.block1    { border-color: rosybrown; }
+section.block1 h3 { background-color: rosybrown; }
+section.block2    { border-color: cadetblue; }
+section.block2 h3 { background-color: cadetblue; }
+section.block3    { border-color: lightslategray; }
+section.block3 h3 { background-color: lightslategray; }
+section.block4    { border-color: darkkhaki; }
+section.block4 h3 { background-color: darkkhaki; }
+section.block5    { border-color: darkseagreen; }
+section.block5 h3 { background-color: darkseagreen; }
+section.block4 fieldset { border-color: darkkhaki; }
+section.block5 fieldset { border-color: darkseagreen; }
+section.block4 fieldset legend { color: darkkhaki; border-color: darkkhaki; }
+section.block5 fieldset legend { color: darkseagreen; border-color: darkseagreen; }
 
-div.block1 img.ppages-logo { float: left; width: 80px; border: 1px solid rosybrown; margin: 0px 10px 10px 0px; }
-div.block4 >div { margin-bottom: 10px; }
+section.block1 img.ppages-logo { float: left; width: 80px; border: 1px solid rosybrown; margin: 0px 10px 10px 0px; }
+section.block4 >div { margin-bottom: 10px; }
 
 /* More... */
 header.date   { display: table; background-color: silver; color: white; padding: 1px 7px; margin-bottom: 2px; }
