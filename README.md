@@ -6,9 +6,15 @@
 
 PPAGES is an open source software package for displaying a portfolio of photos on a website in a clean, professional style.  Use PPAGES to create an online exhibit for an artist or organization.
 
-Links:
-* [Downloads](https://github.com/center-key/ppages/tree/master/releases)
-* [Instructions](http://centerkey.com/ppages/)
+**[:large_blue_circle: Download current release](https://github.com/center-key/ppages/raw/master/releases/ppages-install-files.zip)**
 
-----
-PPAGES is licensed under the [GNU General Public License](http://www.gnu.org/licenses/gpl.html).
+#### Project:
+   * [Instructions](http://centerkey.com/ppages/)
+   * [Releases](https://github.com/center-key/ppages/tree/master/releases)
+   * [Questions and bugs](https://github.com/center-key/ppages/issues)
+
+===
+PPAGES is an open source project licensed under
+[GPLv3](https://github.com/center-key/ppages/blob/master/src/gallery/license.txt)
+with the website and documentation licensed under
+[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0).
