@@ -12,6 +12,7 @@
 <link rel=apple-touch-icon href="http://centerkey.com/ppages/graphics/mobile-home-screen.png">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/slimbox/2/css/slimbox2.css">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
 <link rel=stylesheet       href="css/reset.css" >
 <link rel=stylesheet       href="css/style.css" >
 <link rel=stylesheet       href="data/style.css">
@@ -60,6 +61,7 @@
 
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/slimbox/2/js/slimbox2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
 <script src="js/library.js"></script>
 <script src="js/app.js"></script>
 </body>

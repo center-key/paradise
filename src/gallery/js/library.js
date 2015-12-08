@@ -41,8 +41,8 @@ library.social = {
       },
    share: function() {
       var button = library.social.buttons[$(this).data().social];
-      var link = button.link.replace('${url}',
-         encodeURIComponent(location.href)).replace('${title}', encodeURIComponent(document.title));
+      function insert(str, find, value) { return str.replace(find, encodeURIComponent(value)); }
+      var link = insert(insert(button.link, '${url}', location.href), '${title}', document.title);
       library.ui.popup(link, { width: button.x, height: button.y });
       },
    setup: function() {
@@ -53,13 +53,11 @@ library.social = {
          elem.fadeTo(0, 0.0);
          var html = '<div class=g-plusone data-annotation=none></div><span>';
          function addButton(key) {
-            html += '<img src="graphics/icon-social-' + key + '.png" data-social=' + key +
-               ' class=social-button title="Share to ' + buttons[key].title +
-               '" alt="Social bookmark">';
+            html += '<i class="fa fa-' + key + '" data-social=' + key +
+               ' data-click=library.social.share></i>';
             }
          Object.keys(buttons).forEach(addButton);
-         elem.html(html + '</span>').delay('slow').fadeTo('normal', 1.0);
-         $('.social-button').click(library.social.share);
+         elem.html(html + '</span>').fadeTo('slow', 1.0);
          }
       if (elem.length)
          initialize();
