@@ -4,7 +4,7 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
-$version="v0.0.4";
+$version="v0.0.5";
 date_default_timezone_set("UTC");
 include "php/database.php";
 
