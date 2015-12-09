@@ -43,8 +43,8 @@ openConsole() {
    }
 
 echo
-echo "PPAGES ~ Deploy"
-echo "==============="
+echo "PPAGES ~ Deploy Test"
+echo "===================="
 echo
 webServerSetup
 unzipRelease
