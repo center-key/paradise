@@ -19,9 +19,13 @@ function setupInstallKey($folder) {
    return $matches[1];
    }
 
-function setupDb($dbFileName, $defaultJson) {
-   if (!is_file($dbFileName))
-      file_put_contents($dbFileName, json_encode($defaultJson));
+function setupDb($dbFilename, $defaultJson) {
+   if (!is_file($dbFilename))
+      file_put_contents($dbFilename, json_encode($defaultJson));
+   }
+
+function readDb($dbFilename) {
+   return json_decode(file_get_contents($dbFilename));
    }
 
 function formatMsg($msg) {

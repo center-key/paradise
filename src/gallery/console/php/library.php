@@ -4,12 +4,9 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
-include "php/database.php";
-
 $authTimestamp = "active";
 $sessionTimout = 1200;  //20 mintues
 
-$dataFolder = "../data/";
 $customCssFile =   $dataFolder . "style.css";  //for site customizations
 $graphicsFolder =  $dataFolder . "graphics/";  //for site customizations
 $maskDataFile =    $dataFolder . "index.html";  //block folder browsing
@@ -62,6 +59,19 @@ include "php/console-accounts.php";
 include "php/console-settings.php";
 include "php/console-portfolio.php";
 include "php/console-process.php";
+
+function dbFileName($dbName) {
+   return $dbName . "-db.json";
+   }
+
+function createEmptyDb() {
+   return json_decode("{}");
+   }
+
+function saveDb($dbFile, $db) {
+   logEvent("save-db", $dbFile);
+   return file_put_contents($dbFile, json_encode($db));
+   }
 
 function getFileExtension($fileName) {
    return strtolower(strrchr($fileName, "."));

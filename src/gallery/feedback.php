@@ -4,13 +4,13 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
-include "console/php/database.php";
-include "console/php/console-settings.php";
+$dataFolder = "data/";
+include "php/common.php";
 include "main.php";
+$settings = readDb($settingsDbFile);
 
 //Initialize
-$settingsDb = readSettings("data/settings-db.json");
-$email =      $settingsDb->{$settingsFieldEmail};
+$email =      $settings->{"email"};
 $sendTo =     "Gallery Feedback <$email>";
 $subject =    "Feedback Submission";
 $thanksUri =  ".?page=thanks";
@@ -29,5 +29,4 @@ if (validVerification($_POST["verification"]))
 else
    $thanksUrl .= "&invalid";
 header("Location: $thanksUri");
-
 ?>

@@ -114,21 +114,4 @@ function displayPage($name) {
    echo "</div>\n";
    }
 
-function displayCreativeCommons() {
-   echo "
-      <a class=external-site rel=license href='http://creativecommons.org/licenses/by-sa/4.0/'>
-         <img src='https://i.creativecommons.org/l/by-sa/4.0/80x15.png' alt='Creative Commons License'
-            title='This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.'>
-      </a>\n";
-   }
-
-function displayFooter($statement, $license, $bookmarks) {
-   echo "<footer>\n";
-   if ($license)
-      displayCreativeCommons();
-   if ($bookmarks)
-      echo "<div id=social-buttons class=plain></div>\n";
-   echo "<div>$statement</div>\n</footer>\n";
-   }
-
 ?>

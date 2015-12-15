@@ -11,6 +11,8 @@
 //    service?action=settings&field=title&value=My%20Gallery (set "title")
 
 session_start();
+$dataFolder = "../data/";
+include "../php/common.php";
 include "php/library.php";
 
 class StatusMessage {
