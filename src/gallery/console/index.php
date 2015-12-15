@@ -32,6 +32,9 @@
 <link rel=stylesheet       href="../css/reset.css">
 <link rel=stylesheet       href="style.css">
 <?php
+   $dataFolder = "../data/";
+   include "../php/common.php";
+
    include "php/library.php";
    function successfullLogin() {
       return $_POST["action"] == "login" && accountValidHash($_POST["username"], $_POST["hash"]);

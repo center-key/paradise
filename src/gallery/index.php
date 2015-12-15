@@ -18,6 +18,9 @@
 <link rel=stylesheet       href="data/style.css">
 
 <?php
+   $dataFolder = "data/";
+   include "php/common.php";
+
    include "console/php/database.php";
    include "console/php/console-settings.php";
    include "main.php";
