@@ -10,7 +10,7 @@
 # name (extracted from ppages/src/gallery/console/php/library.php)
 
 projectFolder=$(cd $(dirname $0)/..; pwd)
-version=$(awk -F\" '/version=/ { print $2 }' $projectFolder/src/gallery/console/php/library.php)
+version=$(awk -F\" '/version = / { print $2 }' $projectFolder/src/gallery/php/common.php)
 
 runStaticAnalyzer() {
    echo "*** Analyzing"
@@ -52,7 +52,7 @@ releaseInstructions() {
    echo "      git tag -af current -m \"Current release\""
    echo "      git remote -v"
    echo "      git push origin --tags --force"
-   echo "   3) Increment version in src/gallery/console/php/library.php and check in with the comment:"
+   echo "   3) Increment version in src/gallery/php/common.php and check in with the comment:"
    echo "      Next release"
    echo
    }
