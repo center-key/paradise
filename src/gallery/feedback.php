@@ -6,14 +6,13 @@
 
 $dataFolder = "data/";
 include "php/common.php";
-include "main.php";
 $settings = readDb($settingsDbFile);
 
 //Initialize
 $email =      $settings->{"email"};
 $sendTo =     "Gallery Feedback <$email>";
 $subject =    "Feedback Submission";
-$thanksUri =  ".?page=thanks";
+$thanksUri =  "#thanks";
 $bar =        "-----------------------";
 
 //Create message
@@ -24,9 +23,6 @@ $msg .= "\nMessage: " . htmlspecialchars($_POST["message"]);
 $msg .= "\n$bar\n";
 
 //Send message
-if (validVerification($_POST["verification"]))
-   mail($sendTo, $subject, $msg, "From: $email");
-else
-   $thanksUrl .= "&invalid";
+mail($sendTo, $subject, $msg, "From: $email");
 header("Location: $thanksUri");
 ?>

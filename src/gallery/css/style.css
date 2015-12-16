@@ -18,64 +18,41 @@ h1 {
    margin-bottom: 5px;
    text-shadow: silver 2px 1px 0.1em;
    }
-
 h2 {
-   font-size: 120%;
+   font-size: 1.2rem;
    }
 h3 {
-   font-size: 120%;
+   font-size: 1.1rem;
+   margin-bottom: 15px;
    }
-main {
-   margin-top: 10px;
+
+/* Page layout */
+body >header {
+   margin-bottom: 10px;
    }
-.gallery, .page {
-   min-width: 500px;
+body >main >nav {
+   background-color: darkgray; /* IE8,IE9 */
+   background: linear-gradient(to bottom, silver, gray);
+   padding: 0px;
+   margin: 0px 0px 10px 0px;
+   }
+body >main >nav >span {
+   display: table-cell;
+   font-size: 0.9rem;
+   background-color: rgba(150, 200, 255, 0.0);
+   transition: background-color 0.4s;
+   border-right: 1px solid dimgray;
+   padding: 4px 20px;
+   }
+body >main >nav >span.selected,
+body >main >nav >span:hover {
+   background-color: rgba(150, 200, 255, 0.3);
+   }
+body >main #gallery-panels >section {
+   position: relative;
+   min-height: 300px;
    border: 1px solid whitesmoke;
-   padding: 20px 0px 0px 20px;
-   }
-.gallery {
-   text-align: center;
-   }
-.page {
-   padding: 20px;
-   }
-.image {
-   position:relative;
-   display: inline-block;
-   vertical-align: top;
-   margin: 0px 20px 20px 0px;
-   }
-.image img {
-   border: 5px solid black;
-   transition: 1s;
-   }
-.image img:hover {
-   border-color: white;
-   box-shadow: silver 0px 0px 1.5em;
-   }
-.image p {
-   text-align: center;
-   font-size: 80%;
-   margin: 0px;
-   }
-.image p.i {
-   font-style: italic;
-   }
-.image p.c {
-   text-transform: uppercase;
-   }
-.badge {
-   position: absolute;
-   bottom: 30px;
-   right: 10px;
-   font-weight: bold;
-   background-color: red;
-   color: white;
-   opacity: 0.5;
-   font-size: 90%;
-   padding: 3px 5px;
-   border: 3px solid gray;
-   border-radius: 10px;
+   padding: 20px 25px;
    }
 body >footer {
    display: -webkit-flex;
@@ -85,57 +62,62 @@ body >footer {
    -webkit-align-items: center;
            align-items: center;
    background-color: #777;
-   font-size: 80%;
+   font-size: 0.8rem;
    border: 1px dotted black;
    padding: 10px 10px;
    margin-top: 15px;
    }
-span.b {
-   font-size: 140%;
+
+/* Image gallery */
+.gallery-images {
+   text-align: center;
    }
-span.i {
+.gallery-images .image {
+   position:relative;
+   display: inline-block;
+   vertical-align: top;
+   margin: 0px 20px 20px 0px;
+   }
+.gallery-images .image img {
+   border: 5px solid black;
+   transition: 1s;
+   }
+.gallery-images .image img:hover {
+   border-color: white;
+   box-shadow: silver 0px 0px 1.5em;
+   }
+.gallery-images .image p {
+   text-align: center;
+   font-size: 0.8rem;
+   margin: 0px;
+   }
+.gallery-images .image .badge {
+   position: absolute;
+   bottom: 30px;
+   right: 10px;
+   font-size: 0.9rem;
+   font-weight: bold;
+   color: white;
+   background-color: red;
+   border: 3px solid gray;
+   border-radius: 10px;
+   padding: 3px 5px;
+   opacity: 0.6;
+   }
+body.caption-italic .image-caption {
    font-style: italic;
    }
-span.c {
+body.caption-caps .image-caption {
    text-transform: uppercase;
    }
-label {
-   float: left;
-   width: 120px;
-   text-align: right;
-   padding-right: 10px;
-   }
-.corner-msg {
-   text-align: right;
-   font-size: 70%;
-   margin: 50px 10px -20px 0px;
-   }
-form.feedback {
-   padding-top: 30px;
-   }
 
-/* Navigation Bar */
-ul.navigation-bar {
-   list-style-type: none;
-   background-color: darkgray; /* IE8,IE9 */
-   background: linear-gradient(to bottom, silver, gray);
-   padding: 0px;
-   margin: 0px 0px 10px 0px;
+/* Contact form */
+form.feedback button {
+   margin: 15px 0px 0px 105px;
    }
-ul.navigation-bar li {
-   display: table-cell;
-   transition: background-color 0.4s;
-   }
-ul.navigation-bar li.current, ul.navigation-bar li:hover {
-   background-color: lightslategray; /* IE8,IE9 */
-   background: linear-gradient(to bottom, lightsteelblue, lightslategray);
-   }
-ul.navigation-bar li a {
-   display: table-cell;
-   text-decoration: none;
-   outline: none;
-   font-size: 100%;
-   color: white !important;
-   border-right: 1px solid dimgray;
-   padding: 4px 20px; /* sets button size */
+form.feedback aside {
+   position: absolute;
+   right: 15px;
+   bottom: 10px;
+   font-size: 0.7rem;
    }

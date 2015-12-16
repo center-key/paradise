@@ -101,7 +101,7 @@ div.input-group label { margin: 0.1em 0em 0em 0em; }
 .highligh-pen2  { color: mistyrose; padding: 0px 3px; }
 .box-glow       { box-shadow: 0px 0px 2em deepskyblue; }
 .keep-together  { white-space: nowrap; }
-.hide-me        { display: none; }
+.hide-me        { display: none !important; }
 .stealth-mode   { position: absolute; left: -7000px; opacity: 0.0; }
 
 /* Utilities */

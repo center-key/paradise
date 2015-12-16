@@ -7,10 +7,10 @@
 <?php
    $dataFolder = "data/";
    include "php/common.php";
-   include "main.php";
-   function showHideClass($show) { return $show ? "show-me" : "hide-me"; }
+   include "php/gallery.php";
    $settings = readDb($settingsDbFile);
    $gallery =  readDb($galleryDbFile);
+   $pages = $settings->pages;
 ?>
 <html>
 <head>
@@ -29,11 +29,11 @@
    @import url(http://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
    h1 {
       font-family: "<?= $settings->{"title-font"} ?>", sans-serif;
-      font-size:   <?= $settings->{"title-size"} ?>;
+      font-size: <?= $settings->{"title-size"} ?>;
       }
 </style>
 </head>
-<body>
+<body class="<?= styleClasses($settings) ?>">
 
 <header>
    <h1><?= $settings->{"title"} ?></h1>
@@ -41,15 +41,43 @@
 </header>
 
 <main>
-   <?php
-      $pages = $settings->{"pages"};
-      $current = currentPage($pages);
-      displayMenuBar($pages, $current);
-      if ($current == "gallery")
-         displayGallery($settings->{"caption-italic"}, $settings->{"caption-caps"});
-      else
-         displayPage($current);
-   ?>
+   <nav id=gallery class=dna-menu>
+      <span class=<?= showHideClass($pages[0]->show) ?>><?= $pages[0]->title ?></span>
+      <span class=<?= showHideClass($pages[1]->show) ?>><?= $pages[1]->title ?></span>
+      <span class=<?= showHideClass($pages[2]->show) ?>><?= $pages[2]->title ?></span>
+      <span class=<?= showHideClass(false) ?>>Thanks</span>
+   </nav>
+   <div id=gallery-panels class=dna-panels>
+      <section data-hash=images class=gallery-images>
+         <?php foreach ($gallery as $image) displayImage($image); ?>
+      </section>
+      <section data-hash=artist>
+         <?php displayCustomPage($dataFolder . "page-artist.html"); ?>
+      </section>
+      <section data-hash=contact>
+         <h3>Contact the Artist</h3>
+         <form class=feedback method=post>
+            <label>
+               <span>Message:</span>
+               <textarea name=message rows=6 cols=50 placeholder="Enter your message"></textarea>
+            </label>
+            <label>
+               <span>Name:</span>
+               <input name=name size=35 placeholder="Enter your name"></p>
+            </label>
+            <label>
+               <span>Email:</span>
+               <input name=email size=40 placeholder="Enter your email address">
+            </label>
+            <button type=submit>Send Message</button>
+            <aside>Gallery powered by <a href="http://centerkey.com/ppages/">PPAGES</a></aside>
+         </form>
+      </section>
+      <section data-hash=thanks>
+         <h3>Thanks!</h3>
+         <p>Your message has been sent.</p>
+      </section>
+   </div>
 </main>
 
 <footer>
