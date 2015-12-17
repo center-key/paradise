@@ -110,6 +110,10 @@ div.input-group label { margin: 0.1em 0em 0em 0em; }
 .float-endgame:after { content: " "; display: table; clear: both; }
 .separator:after     { content: "|"; padding: 0px 5px; }
 
+/* Flat buttons */
+button      { font-size: 1.1rem; font-weight: bold; color: white; border: none; border-radius: 0.4em; padding: 0.6em 1.2em; outline: none; transition: background-color 0.4s; }
+button i.fa { vertical-align: middle; font-size: 120%; padding-right: 0.2em; }
+
 /* Social buttons */
 #social-buttons span i.fa {
    display: inline-block;
