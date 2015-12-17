@@ -3,62 +3,45 @@
 /* GPL ~ Copyright (c) individual contributors */
 /***********************************************/
 
-/* Foundation */
-body { color: #333; padding: 10px 0px 10px 30px; }
+/* Page layout */
+body { padding: 10px; margin: 20px 0px 0px 0px; }
+body >header, body >main, body >footer { width: 900px; margin: 0px auto 20px auto; }
+body >header h1 { font-size: 1.4rem; margin: 0px; }
+body >header h2 { font-size: 1.1rem; font-weight: normal; }
+body >footer { display: -webkit-flex; -webkit-justify-content: space-between; -webkit-align-items: center; }  /* vendor specific */
+body >footer { display: flex; justify-content: space-between; align-items: center; }
+body >footer { font-size: 0.8rem; color: white; background-color: darkgray; padding: 10px; }
 
-/* Header, Footer, Columns, and Blocks */
-body >header, body >main, body >footer { width: 920px; }
-body >header div { float: right; text-align: right; margin-top: 5px; }
-body >header h1  { font-size: 140%; margin: 0px; }
-body >header h2  { font-size: 120%; font-weight: normal; margin: 0px 0px 20px 0px; }
-body >main {
-   display: -webkit-flex;
-   display:         flex;
-   -webkit-justify-content: space-between;
-           justify-content: space-between;
-   }
-main >div:first-child { width: 62%; }
-main >div:last-child { width: 36%; }
-body >footer     { font-size: 75%;
-   color: white; background-color: darkgray; padding: 10px; margin-top: 10px;
-   display: -webkit-flex;
-   display:         flex;
-   -webkit-justify-content: space-between;
-           justify-content: space-between;
-   -webkit-align-items: center;
-           align-items: center;
-   }
-
-/* Section color blocks */
-main >div >section    { border-width: 2px; border-style: solid; padding: 10px; margin-bottom: 10px; }
+/* Color blocks (two columns): <main> -> <div (column)> -> <section (block)> -> <h3>|<h4>|<aside> */
+main { display: -webkit-flex; -webkit-justify-content: space-between; }  /* vendor specific */
+main { display: flex; justify-content: space-between; }
+main >div:nth-child(1) { width: 62%; }  /* 1st column (2% for gap) */
+main >div:nth-child(2) { width: 36%; }  /* 2nd column (2% for gap) */
+main >div >section { border-width: 2px; border-style: solid; padding: 10px; margin-bottom: 10px; }
 main >div >section h3 { font-size: 1.2rem; color: white; padding: 3px 8px; margin: -10px -10px 10px -10px; }
-section.block1    { border-color: rosybrown; }
-section.block1 h3 { background-color: rosybrown; }
-section.block2    { border-color: cadetblue; }
-section.block2 h3 { background-color: cadetblue; }
-section.block3    { border-color: lightslategray; }
-section.block3 h3 { background-color: lightslategray; }
-section.block4    { border-color: darkkhaki; }
-section.block4 h3 { background-color: darkkhaki; }
-section.block5    { border-color: darkseagreen; }
-section.block5 h3 { background-color: darkseagreen; }
-section.block4 fieldset { border-color: darkkhaki; }
-section.block5 fieldset { border-color: darkseagreen; }
-section.block4 fieldset legend { color: darkkhaki; border-color: darkkhaki; }
-section.block5 fieldset legend { color: darkseagreen; border-color: darkseagreen; }
-
-section.block1 img.ppages-logo { float: left; width: 80px; border: 1px solid rosybrown; margin: 0px 10px 10px 0px; }
-section.block4 >div { margin-bottom: 10px; }
-
-/* More... */
-header.date   { display: table; background-color: silver; color: white; padding: 1px 7px; margin-bottom: 2px; }
-div.box       { text-align: center; font-size: 85%; border: 1px solid silver; padding: 5px; }
-div.box-left  { float: left;  margin: 0px 15px 10px 0px; }
-div.box-right { float: right; margin: 0px 0px 10px 15px; }
-div.box img   { border: 1px solid black; }
-
-#github-banner { position: absolute; top: 0px; right: 0px; }
+main >div >section h4 { display: table; font-size: 0.8rem; background-color: silver; color: white; padding: 2px 8px; margin-bottom: 2px; }
+main >div >section aside { width: 35%; text-align: center; font-size: 0.8rem; border: 1px solid silver; padding: 5px; }
+main >div >section aside img { width: 100%; border: 1px solid black; }
+main >div:nth-child(1) >section:nth-child(3n+1)    { border-color:     rosybrown; }
+main >div:nth-child(1) >section:nth-child(3n+1) h3 { background-color: rosybrown; }
+main >div:nth-child(1) >section:nth-child(3n+2)    { border-color:     cadetblue; }
+main >div:nth-child(1) >section:nth-child(3n+2) h3 { background-color: cadetblue; }
+main >div:nth-child(1) >section:nth-child(3n+3)    { border-color:     silver; }
+main >div:nth-child(1) >section:nth-child(3n+3) h3 { background-color: silver; }
+main >div:nth-child(2) >section:nth-child(3n+1)    { border-color:     lightslategray; }
+main >div:nth-child(2) >section:nth-child(3n+1) h3 { background-color: lightslategray; }
+main >div:nth-child(2) >section:nth-child(3n+2)    { border-color:     darkkhaki; }
+main >div:nth-child(2) >section:nth-child(3n+2) h3 { background-color: darkkhaki; }
+main >div:nth-child(2) >section:nth-child(3n+3)    { border-color:     darkseagreen; }
+main >div:nth-child(2) >section:nth-child(3n+3) h3 { background-color: darkseagreen; }
 
 /* Flat buttons */
-.flat-button       { background-color: steelblue; }
-.flat-button:hover { background-color: royalblue; }
+button       { font-size: 1.1rem; font-weight: bold; color: white; border: none; border-radius: 0.4em; padding: 0.6em 1.2em; outline: none; transition: background-color 0.4s; }
+button i.fa  { vertical-align: middle; font-size: 120%; padding-right: 0.2em; }
+button       { background-color: steelblue; }
+button:hover { background-color: royalblue; }
+
+/* More... */
+img.ppages-logo { float: left; width: 80px; margin: 0px 10px 10px 0px; }
+p code { font-size: 0.9rem; padding: 0px; }
+#github-banner { position: absolute; top: 0px; right: 0px; }
