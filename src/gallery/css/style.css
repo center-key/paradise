@@ -22,7 +22,7 @@ h2 {
    font-size: 1.2rem;
    }
 h3 {
-   font-size: 1.1rem;
+   font-size: 1.2rem;
    margin-bottom: 15px;
    }
 
@@ -58,18 +58,20 @@ body >main >nav >span:hover {
    }
 body >main #gallery-panels >section {
    position: relative;
-   min-height: 300px;
+   min-height: 400px;
    border: 1px solid whitesmoke;
    padding: 20px 25px;
    }
-body >footer {
+body >footer {  /* vendor specific */
    display: -webkit-flex;
-   display:         flex;
    -webkit-justify-content: space-between;
-           justify-content: space-between;
    -webkit-align-items: center;
-           align-items: center;
-   background-color: #777;
+   }
+body >footer {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: gray;
    font-size: 0.8rem;
    border: 1px dotted black;
    padding: 10px 10px;
@@ -128,4 +130,5 @@ form.feedback aside {
    right: 15px;
    bottom: 10px;
    font-size: 0.7rem;
+   margin: 0px;
    }
