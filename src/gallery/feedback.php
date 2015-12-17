@@ -4,25 +4,25 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+// Setup
 $dataFolder = "data/";
 include "php/common.php";
 $settings = readDb($settingsDbFile);
 
-//Initialize
-$email =      $settings->{"email"};
-$sendTo =     "Gallery Feedback <$email>";
-$subject =    "Feedback Submission";
-$thanksUri =  "#thanks";
-$bar =        "-----------------------";
+// Initialize
+$subject =   "PPAGES - Gallery Feedback";
+$from =      "From: PPAGES <{$settings->email}>";
+$thanksUri = "./#thanks";
+$bar =       "-----------------------";
 
-//Create message
-$msg =   $_SERVER["HTTP_HOST"] . "\n$bar";
+// Create message
+$msg =  $_SERVER["HTTP_HOST"] . "\n$bar";
 $msg .= "\nName: " .    htmlspecialchars($_POST["name"]);
 $msg .= "\nE-mail: " .  htmlspecialchars($_POST["email"]);
 $msg .= "\nMessage: " . htmlspecialchars($_POST["message"]);
 $msg .= "\n$bar\n";
 
-//Send message
-mail($sendTo, $subject, $msg, "From: $email");
+// Send message
+mail($settings->email, $subject, $msg, $from);
 header("Location: $thanksUri");
 ?>
