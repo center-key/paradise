@@ -27,30 +27,35 @@ aside { float: right; font-size: 0.9rem; margin: 0px 0px 20px 20px; }
 
 /* Links */
 a { text-decoration: none; color: dimgray; }
-:not(.plain) > a:not(.plain):not(.image-link) { border-bottom: 1px dotted; }
-:not(.plain) > a:not(.plain):not(.image-link):visited { color: darkgray; }
-:not(.plain) > a:not(.plain):not(.image-link):hover { color: white; outline: 2px solid; }
-:not(.plain) > a:not(.plain) img, :not(.plain) > a:not(.plain) i.fa { opacity: 0.8; }
-:not(.plain) > a:not(.plain) img:hover, :not(.plain) > a:not(.plain) i.fa:hover { opacity: 1.0; }
+:not(.plain) >a:not(.plain):not(.image-link) { border-bottom: 1px dotted; }
+:not(.plain) >a:not(.plain):not(.image-link):visited { color: darkgray; }
+:not(.plain) >a:not(.plain):not(.image-link):hover { color: white; outline: 2px solid; }
+:not(.plain) >a:not(.plain) img, :not(.plain) >a:not(.plain) i.fa { opacity: 0.8; }
+:not(.plain) >a:not(.plain) img:hover, :not(.plain) >a:not(.plain) i.fa:hover { opacity: 1.0; }
 a, a img, a i.fa { transition: all 0.3s; }
 i.fa { font-size: 150%; }
-.hover-glow { transition: box-shadow 0.3s; }
-.hover-glow:hover { box-shadow: 0px 0px 0.2em deepskyblue; }
+
+/* Links color */
+:not(.plain) >a:not(.plain):not(.image-link) { border-color: steelblue; }
+:not(.plain) >a:not(.plain):not(.image-link):hover { background-color: steelblue; outline-color: steelblue; }
 
 /* Button and forms */
 button, input[type=checkbox], input[type=radio], input[type=file], select { cursor: pointer; }
 button, input, select, textarea, optgroup, option, fieldset { transition: 0.3s opacity; }
-input, textarea { font-size: 1.1rem; background-color: mintcream; border: 1px solid silver; border-radius: 5px; padding: 0.3em; }
+input, textarea { font-size: 1.1rem; background-color: aliceblue; border: 1px solid silver; border-radius: 5px; padding: 0.3em; outline: none; }
 select { font-size: 1.1rem; }
 label { display: block; margin-bottom: 0.5em; }
 label span { display: inline-block; width: 100px; vertical-align: top; text-align: right; padding-top: 0.5em; }
 label select { margin: 0.4em 0.0em 0.0em 0.2em; }
 label input[type=checkbox] { margin: 0.0em 0.4em 0.3em 0.3em; }
 label input[type=radio] { margin: 0.55em 0.4em 0.0.0em 0.3em; }
+label+button { margin-left: 108px; }
 
 /* Flat buttons */
 button      { font-size: 1.1rem; font-weight: bold; color: white; border: none; border-radius: 0.4em; padding: 0.6em 1.2em; outline: none; transition: background-color 0.4s; }
 button i.fa { vertical-align: middle; font-size: 120%; padding-right: 0.2em; }
+button       { background-color: steelblue; }
+button:hover { background-color: royalblue; }
 
 /* Utilities */
 .hide-me { display: none !important; }
