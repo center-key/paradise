@@ -18,13 +18,13 @@ function createDataFolders() {
 function createCustomCss() {
    global $customCssFile;
    $customCss =
-      "/* PPAGES - PHP Portfolio Art Gallery Exhibit Showcase   */\n" .
-      "/* Edit this CSS file to customize the look of the       */\n" .
-      "/* gallery.  Put custom images in the 'graphics' folder. */\n" .
-      "/* Find colors at: http://centerkey.com/colors           */\n\n" .
+      "/* PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase */\n" .
+      "/* Edit this CSS file to customize the look of the        */\n" .
+      "/* gallery.  Put custom images in the 'graphics' folder.  */\n" .
+      "/* Find colors at: http://centerkey.com/colors            */\n\n" .
       "body           { color: whitesmoke; background-color: dimgray; }\n" .
       "div.image img  { border-color: black; }\n" .
-      "footer         { background-color: #777; border-color: black; }";
+      "footer         { background-color: gray; border-color: black; }";
    if (!is_file($customCssFile))
       file_put_contents($customCssFile, $customCss);
    }
