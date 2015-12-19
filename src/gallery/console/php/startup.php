@@ -27,11 +27,8 @@ $defaultSettingsDb = array(
 
 function setupDataFolder($dataFolder, $name) {
    $folder =      "{$dataFolder}/{$name}";
-   $defaultPage = "{$dataFolder}/{$name}/index.html";
-   if (!is_dir($folder) && !mkdir($folder, 0777))
+   if (!is_dir($folder) && !mkdir($folder))
       exit("Unable to create data folder: {$folder}");
-   if (!is_file($defaultPage) && !file_put_contents($defaultPage, "Nothing to see here."))
-      exit("Unable to write to data folder: {$defaultPage}");
    }
 
 function setupInstallKey($folder) {
@@ -49,10 +46,26 @@ function setupDb($dbFilename, $defaultDb) {
       exit("Error creating database: {$dbFilename}");
    }
 
+function setupCustomCss($dataFolder) {
+   $defaultCss = array(
+      '/*  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase    */',
+      '/*  Edit this CSS file to customize the look of the gallery.  */',
+      '/*  Put custom images in: "gallery/data/graphics"             */',
+      '',
+      'body { color: whitesmoke; background-color: dimgray; }',
+      'body >footer { background-color: gray; border-color: black; }',
+      '.gallery-images .image img { border-color: black; }'
+      );
+   $filename = "{$dataFolder}/custom-style.css";
+   if (!is_file($filename) && !file_put_contents($filename, implode("\n", $defaultCss) . "\n"))
+      exit("Error creating CSS file: {$filename}");
+   }
+
 date_default_timezone_set("UTC");
 foreach(["", "graphics", "portfolio", "uploads"] as $name)
    setupDataFolder($dataFolder, $name);
 $installKey = setupInstallKey($dataFolder);
 setupDb($settingsDbFile, $defaultSettingsDb);
 setupDb($galleryDbFile, []);
+setupCustomCss($dataFolder);
 ?>
