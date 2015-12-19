@@ -1,0 +1,59 @@
+<?php $noAuth = true; $redirectAuth = "console"; require "php/security.php"; ?>
+<!doctype html>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!--  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase   -->
+<!--  centerkey.com/ppages                                     -->
+<!--  GPLv3 - Copyright (c) individual contributors            -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<html>
+<head>
+<meta charset=utf-8>
+<meta name=apple-mobile-web-app-title content="Console">
+<title>PPAGES &bull; Administrator Console</title>
+<link rel=icon             href="http://centerkey.com/ppages/graphics/bookmark.png">
+<link rel=apple-touch-icon href="http://centerkey.com/ppages/graphics/mobile-home-screen.png">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
+<link rel=stylesheet       href="../css/reset.css">
+<link rel=stylesheet       href="style.css">
+</head>
+<body>
+
+<header>
+   <aside>
+      <button data-href="..">Visit Gallery</button>
+   </aside>
+   <h1>PPAGES &ndash; PHP Portfolio Art Gallery Exhibit to Showcase</h1>
+   <h2>Administrator Console</h2>
+</header>
+
+<main>
+   <div>
+      <section>
+         <h3>Sign in</h3>
+         <label>
+            <span>Email:</span>
+            <input type=email placeholder="Entery your email" data-on-load=dna.ui.focus required>
+         </label>
+         <label>
+            <span>Password:</span>
+            <input type=password data-enter-key=app.security.login placeholder="Entery your password" required>
+         </label>
+         <button data-click=app.security.login>Sign in</button>
+      </section>
+   </div>
+</main>
+
+<footer>
+   <div class=plain>
+      Questions and bugs:<br>
+      <a href="https://github.com/center-key/ppages/issues">github.com/center-key/ppages/issues</a>
+   </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js"></script>
+<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
