@@ -1,17 +1,10 @@
+<?php require "php/gallery.php"; ?>
 <!doctype html>
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!--  PPAGES - PHP Portfolio Art Gallery Exhibit Showcase  -->
-<!--  centerkey.com/ppages - Open Source (GPL)             -->
-<!--  Copyright (c) individual contributors                -->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<?php
-   $dataFolder = "data/";
-   include "php/common.php";
-   include "php/gallery.php";
-   $settings = readDb($settingsDbFile);
-   $gallery =  readDb($galleryDbFile);
-   $pages = $settings->pages;
-?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!--  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase   -->
+<!--  centerkey.com/ppages                                     -->
+<!--  GPLv3 - Copyright (c) individual contributors            -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <html>
 <head>
 <meta charset=utf-8>
@@ -49,17 +42,17 @@
    </nav>
    <div id=gallery-panels class=dna-panels>
       <section data-hash=images class=gallery-images>
-         <?php foreach ($gallery as $image) displayImage($image); ?>
+         <?php displayImages($gallery); ?>
       </section>
       <section data-hash=artist>
-         <?php displayCustomPage($dataFolder . "page-artist.html"); ?>
+         <?php if ($pages[1]->show) readfile("data/page-{$pages[1]->name}.html"); ?>
       </section>
       <section data-hash=contact>
          <h3>Contact the Artist</h3>
          <form class=feedback method=post>
             <label>
                <span>Message:</span>
-               <textarea name=message rows=6 cols=50 placeholder="Enter your message"></textarea>
+               <textarea name=message rows=6 cols=50 placeholder="Enter your message" required></textarea>
             </label>
             <label>
                <span>Name:</span>
@@ -67,7 +60,7 @@
             </label>
             <label>
                <span>Email:</span>
-               <input name=email size=40 type=email placeholder="Enter your email address">
+               <input name=email size=40 type=email placeholder="Enter your email address" required>
             </label>
             <button type=submit>Send Message</button>
             <aside>Gallery powered by <a href="http://centerkey.com/ppages/">PPAGES</a></aside>
@@ -88,13 +81,12 @@
       </a>
    </div>
    <div id=social-buttons class=<?= showHideClass($settings->{"bookmarks"}) ?>></div>
-   <div><?= $settings->{"footer-html"} ?></div>
+   <div><?= $settings->{"footer"} ?></div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/slimbox/2/js/slimbox2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
-<script src="js/library.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

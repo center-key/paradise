@@ -4,10 +4,7 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
-// Setup
-$dataFolder = "data/";
-include "php/common.php";
-$settings = readDb($settingsDbFile);
+require "php/gallery.php";
 
 // Initialize
 $subject =   "PPAGES - Gallery Feedback";

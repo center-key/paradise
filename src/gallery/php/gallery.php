@@ -4,6 +4,12 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
+function getData($dbFilename) {
+   if (!is_file($dbFilename))
+      exit("Setup incomplete");
+   return json_decode(file_get_contents($dbFilename));
+   }
+
 function showHideClass($show) {
    return $show ? "show-me" : "hide-me";
    }
@@ -27,13 +33,15 @@ function displayImage($image) {
       </div>";
    }
 
-function displayCustomPage($filename) {
-   if (!file_exists($filename)) {
-      $defaultHtml = "<h3>This page is under construction.</h3>\n<hr>\nEdit: ";
-      touch($filename);
-      file_put_contents($filename, $defaultHtml . realpath($filename) . PHP_EOL);
-      }
-   readfile($filename);
+function displayImages($gallery) {
+   if (empty($gallery))
+      echo "<h3>Gallery is empty</h3>";
+   else
+      foreach ($gallery as $image)
+         displayImage($image);
    }
 
+$settings = getData("data/settings-db.json");
+$gallery =  getData("data/gallery-db.json");
+$pages = $settings->pages;
 ?>
