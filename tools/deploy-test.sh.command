@@ -28,14 +28,13 @@ unzipRelease() {
    echo "*** Unzip Release"
    cd $webServerFolder
    unzip -o $projectFolder/releases/ppages-install-files
-   cd gallery
-   chmod ugo=rwx data
+   chmod o=rwx gallery
    pwd
    echo
    }
 
 openConsole() {
-   echo "*** Gallery Management Console"
+   echo "*** PPAGES Console"
    consoleUrl="http://localhost/$webServerPath/gallery/console/"
    echo $consoleUrl
    open $consoleUrl
