@@ -4,89 +4,55 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
-$authTimestamp = "active";
-$sessionTimout = 1200;  //20 mintues
+// Library
+// Constants and general utilities
 
-$customCssFile =   $dataFolder . "style.css";  //for site customizations
-$graphicsFolder =  $dataFolder . "graphics/";  //for site customizations
-$maskDataFile =    $dataFolder . "index.html";  //block folder browsing
-$uploadsFolder =   $dataFolder . "uploads/";
-$portfolioFolder = $dataFolder . "portfolio/";
-$galleryDbFile =   $dataFolder . dbFileName("gallery");
+$version =        "v0.0.5";
+$dataFolder =     "../data";
+$settingsDbFile = "{$dataFolder}/settings-db.json";
+$galleryDbFile =  "{$dataFolder}/gallery-db.json";
 
-$origFileCode =  "-original";
-$thumbFileCode = "-small";
-$thumbFileExt =  ".png";
-$fullFileCode =  "-large";
-$fullFileExt =   ".jpg";
-
-$thumbHeight =      150;
-$fullWidthMax =    1100;
-$fullHeightMax =    800;
-$imageDbFilter =   $portfolioFolder . dbFileName("*");
-$imageOrigFilter = $portfolioFolder . "*" . $origFileCode . "*";
-
-$imageFieldId =           "id";  //three digits, ex: "007"
-$imageFieldOrigFileName = "original-file-name";
-$imageFieldUploadDate =   "upload-date";  //ex: "2012-03-10"
-$imageFieldDisplay =      "display";  //boolean
-$imageFieldCaption =      "caption";
-$imageFieldDescription =  "description";
-$imageFieldBadge =        "badge";
-
-$actionField =           "action";
-$actionUpdateImage =     "update-image";
-$actionDeleteImage =     "delete-image";
-$actionUpdateSettings =  "update-settings";
-$actionUpdateMenuBar =   "update-menu-bar";
-$actionReprocessImages = "reprocess-images";
-$actionChangePassword =  "change-password";
-$actionCreateAccount =   "create-account";
-//$actionsMenuBar = ["up"=>"&uarr;", "down"=>"&darr;", "show"=>"Show", "hide"=>"Hide", "edit"=>"Edit", "del"=>"&times;"];
-$actionsMenuBar = ["show"=>"Show", "hide"=>"Hide"];
-
-$settingsDbFile = $dataFolder . dbFileName("settings");
-
-class ErrorStatus {
-   public static $authFail = array("code" => 100, "msg" => "Authenticataion Failed!");
-   public static $general =  array("code" => 101, "msg" => "Unknown Error");
-   };
-
-include "php/console.php";
-include "php/console-login.php";
-include "php/console-transfer.php";
-include "php/console-accounts.php";
-include "php/console-settings.php";
-include "php/console-portfolio.php";
-include "php/console-process.php";
-
-function dbFileName($dbName) {
-   return $dbName . "-db.json";
+function readDb($dbFilename) {
+   logEvent("read-db", $dbFilename);
+   $dbStr = file_get_contents($dbFilename);
+   if ($dbStr === false)
+      exit("Error reading database: {$dbFilename}");
+   return json_decode($dbStr);
    }
 
-function createEmptyDb() {
-   return json_decode("{}");
+function saveDb($dbFilename, $db) {
+   logEvent("save-db", $dbFilename);
+   if (!file_put_contents($dbFilename, json_encode($db)))
+      exit("Error saving database: {$dbFilename}");
    }
 
-function saveDb($dbFile, $db) {
-   logEvent("save-db", $dbFile);
-   return file_put_contents($dbFile, json_encode($db));
+function formatMsg($msg) {
+   return is_null($msg) ? "[null]" : (empty($msg) ? "[empty]" :
+      ($msg === true ? "[true]" : ($msg === false ? "[false]" :
+      (is_object($msg) ? get_class($msg) . ":" . count($msg) : $msg))));
    }
 
-function getFileExtension($fileName) {
-   return strtolower(strrchr($fileName, "."));
+function logEvent() {  //any number of parameters to log
+   global $installKey, $dataFolder;
+   $delimiter = " | ";
+   $logFilename =     "{$dataFolder}/log-{$installKey}.txt";
+   $archiveFilename = "{$dataFolder}/log-archive-{$installKey}.txt";
+   $milliseconds = substr(explode(" ", microtime())[0], 1, 4);
+   $event = array(date("Y-m-d H:i:s"), $milliseconds, $delimiter, formatMsg($_SESSION["username"]));
+   foreach (func_get_args() as $msg) {
+      $event[] = $delimiter;
+      $event[] = formatMsg($msg);
+      }
+   $event[] = PHP_EOL;
+   file_put_contents($logFilename, $event, FILE_APPEND);
+   if (filesize($logFilename) > 100000)  //approximate file size limit: 100 KB
+      rename($logFilename, $archiveFilename);
    }
 
-function isImageFile($fileName) {
-   return stripos("..jpg.jpeg.png.", getFileExtension($fileName) . ".") > 0;
-   }
-
-function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight, $newFile) {
-   $newImage = imagecreatetruecolor($newWidth, $newHeight);
-   imagecopyresampled($newImage, $origImage, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
-   getFileExtension($newfile) == ".png" ?
-      imagepng($newImage, $newFile) : imagejpeg($newImage, $newFile);
-   imagedestroy($newImage);
+function httpJsonResponse($data) {
+   header("Cache-Control: no-cache");
+   header("Content-Type:  application/json");
+   echo json_encode($data);
    }
 
 ?>
