@@ -3,30 +3,50 @@
 /* GPL ~ Copyright (c) individual contributors */
 /***********************************************/
 
-/* Gallery Management Console */
+/* Administrator Console */
+
+/* Page layout */
+body { padding: 10px; margin: 20px 0px 0px 0px; }
+body >header, body >main, body >footer { width: 900px; clear: both; margin: 0px auto 20px auto; }
+body >header h1 { font-size: 1.4rem; margin: 0px; }
+body >header h2 { font-size: 1.1rem; font-weight: normal; }
+body >header aside {text-align: right; }
+body >footer { display: -webkit-flex; -webkit-justify-content: space-between; -webkit-align-items: center; }  /* vendor specific */
+body >footer { display: flex; justify-content: space-between; align-items: center; }
+body >footer { font-size: 0.8rem; color: white; background-color: darkgray; padding: 10px; }
+body >footer a { color: white; }
+body >footer >div:last-child { text-align: right; }
+
+/* Color blocks (two columns): <main> -> <div (column)> -> <section (block)> -> <h3>|<h4>|<aside> */
+main { display: -webkit-flex; -webkit-justify-content: space-between; }  /* vendor specific */
+main { display: flex; justify-content: space-between; }
+main >div:nth-child(1) { width: 62%; }  /* 1st column (2% for gap) */
+main >div:nth-child(2) { width: 36%; }  /* 2nd column (2% for gap) */
+main >div >section { border-width: 2px; border-style: solid; padding: 10px; margin-bottom: 10px; }
+main >div >section h3 { font-size: 1.2rem; color: white; padding: 3px 8px; margin: -10px -10px 10px -10px; }
+main >div >section h4 { display: table; font-size: 0.8rem; background-color: silver; color: white; padding: 2px 8px; margin-bottom: 2px; }
+main >div >section aside { width: 35%; text-align: center; font-size: 0.8rem; border: 1px solid silver; padding: 5px; }
+main >div >section aside img { width: 100%; border: 1px solid black; }
+main >div:nth-child(1) >section:nth-child(3n+1)    { border-color:     rosybrown; }
+main >div:nth-child(1) >section:nth-child(3n+1) h3 { background-color: rosybrown; }
+main >div:nth-child(1) >section:nth-child(3n+2)    { border-color:     cadetblue; }
+main >div:nth-child(1) >section:nth-child(3n+2) h3 { background-color: cadetblue; }
+main >div:nth-child(1) >section:nth-child(3n+3)    { border-color:     silver; }
+main >div:nth-child(1) >section:nth-child(3n+3) h3 { background-color: silver; }
+main >div:nth-child(2) >section:nth-child(3n+1)    { border-color:     lightslategray; }
+main >div:nth-child(2) >section:nth-child(3n+1) h3 { background-color: lightslategray; }
+main >div:nth-child(2) >section:nth-child(3n+2)    { border-color:     darkkhaki; }
+main >div:nth-child(2) >section:nth-child(3n+2) h3 { background-color: darkkhaki; }
+main >div:nth-child(2) >section:nth-child(3n+3)    { border-color:     darkseagreen; }
+main >div:nth-child(2) >section:nth-child(3n+3) h3 { background-color: darkseagreen; }
+
+/* Flat buttons */
+button { font-size: 0.9rem; padding: 0.5em 1.1em; }
 
 /* Foundation */
-body     { padding: 10px 0px 10px 30px; }
 fieldset { text-align: right; border-width: 1px; border-style: solid; margin-bottom: 10px; }
 legend   { direction: rtl; }
-aside    { float: right; margin: 0px 0px 10px 30px; }
 
-/* Header, Footer, Columns, and Blocks */
-body >header     { width: 950px; }
-body >header h1  { font-size: 140%; }
-body >header h2  { font-size: 120%; font-weight: normal; margin-bottom: 20px; }
-body >header div { float: right; text-align: right; margin-top: 5px; }
-body >header >aside { text-align: right; }
-.col1       { float: left; width: 600px; margin-right: 10px; }
-.col2       { float: left; width: 340px; }
-body >footer     { clear: both; width: 950px; font-size: 75%;
-   color: white; background-color: darkgray; padding: 10px; margin-top: 10px;
-   display: -webkit-flex;
-   display:         flex;
-   -webkit-justify-content: space-between;
-   justify-content:         space-between;
-   }
-body >footer >div:last-child { text-align: right; }
 
 /* Tools */
 .field-tiny   { width:  40px; }
@@ -36,27 +56,6 @@ body >footer >div:last-child { text-align: right; }
 textarea.field-medium { height: 60px; }
 textarea.field-large  { height: 80px; }
 .picture-frame { border: 3px solid slategray; }
-
-/* Color Blocks */
-.block1, .block2, .block3, .block4, .block5 { border-width: 2px;
-              border-style: solid; padding: 10px; margin-bottom: 10px; }
-.block4, .block5 { padding-bottom: 0px; }
-.block1 h3, .block2 h3, .block3 h3, .block4 h3, .block5 h3 {
-              color: white; padding: 3px 7px; margin: -10px -10px 10px -10px; }
-.block1 h3  { background-color: rosybrown; }
-.block2 h3  { background-color: cadetblue; }
-.block3 h3  { background-color: lightslategray; }
-.block4 h3  { background-color: darkkhaki; }
-.block5 h3  { background-color: darkseagreen; }
-.block1     { border-color: rosybrown; }
-.block2     { border-color: cadetblue; }
-.block3     { border-color: lightslategray; }
-.block4     { border-color: darkkhaki; }
-.block5     { border-color: darkseagreen; }
-.block4 fieldset { border-color: darkkhaki; }
-.block5 fieldset { border-color: darkseagreen; }
-.block4 fieldset legend { color: darkkhaki; border-color: darkkhaki; }
-.block5 fieldset legend { color: darkseagreen; border-color: darkseagreen; }
 
 /* More... */
 .image-box  { background-color: gainsboro; border: 2px solid silver;
@@ -75,10 +74,6 @@ textarea.field-large  { height: 80px; }
 #settings-website .input-group-down div.input-group { vertical-align: top; text-align: left; }
 #settings-menu-bar input { width: 150px; }
 
-a >i.fa { font-size: 130%; color: cornflowerblue; transition: color 0.4s; }
-a >i.fa:hover { color: royalblue; }
-
-.block2 { padding-bottom: 0px; }  /* add proper id */
 
 /* Customize photo upload button */
 .qq-upload-button {

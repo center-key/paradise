@@ -1,88 +1,76 @@
-<?php session_start(); ?>
+<?php require "php/security.php"; ?>
 <!doctype html>
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!--  PPAGES - PHP Portfolio Art Gallery Exhibit Showcase                      -->
-<!--  http://centerkey.com/ppages                                              -->
-<!--                                                                           -->
-<!--  GNU General Public License:                                              -->
-<!--  This program is free software; you can redistribute it and/or modify it  -->
-<!--  under the terms of the GNU General Public License as published by the    -->
-<!--  Free Software Foundation; either version 2 of the License, or (at your   -->
-<!--  option) any later version.                                               -->
-<!--                                                                           -->
-<!--  This program is distributed in the hope that it will be useful, but      -->
-<!--  WITHOUT ANY WARRANTY; without even the implied warranty of               -->
-<!--  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                     -->
-<!--                                                                           -->
-<!--  See the GNU General Public License at http://www.gnu.org for more        -->
-<!--  details.                                                                 -->
-<!--                                                                           -->
-<!--  Copyright (c) individual contributors to the PPAGES project              -->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!--  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase   -->
+<!--  centerkey.com/ppages                                     -->
+<!--  GPLv3 - Copyright (c) individual contributors            -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <html>
 <head>
 <meta charset=utf-8>
-<title>PPAGES &bull; Gallery Management Console</title>
-<link rel=icon             href="../graphics/bookmark.png">
-<link rel=apple-touch-icon href="graphics/mobile-home-screen.png">
+<meta name=apple-mobile-web-app-title content="Console">
+<title>PPAGES &bull; Administrator Console</title>
+<link rel=icon             href="http://centerkey.com/ppages/graphics/bookmark.png">
+<link rel=apple-touch-icon href="http://centerkey.com/ppages/graphics/mobile-home-screen.png">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/jquery.ui/1/jquery-ui.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
-<link rel=stylesheet       href="file-uploader/fileuploader.css">
 <link rel=stylesheet       href="../css/reset.css">
 <link rel=stylesheet       href="style.css">
-<?php
-   $dataFolder = "../data/";
-   include "../php/common.php";
-
-   include "php/library.php";
-   function successfullLogin() {
-      return $_POST["action"] == "login" && accountValidHash($_POST["username"], $_POST["hash"]);
-      }
-   if (isset($_GET["logout"]))
-      session_unset();
-   if (isset($_SESSION[$authTimestamp]) && time() - $_SESSION[$authTimestamp] > $sessionTimout)
-      session_unset();
-   if (isset($_SESSION[$authTimestamp]) || successfullLogin())
-      $_SESSION[$authTimestamp] = time();
-   $loggedIn = isset($_SESSION[$authTimestamp]);
-?>
 </head>
 <body>
 
 <header>
    <aside>
-      <button data-href=".." class=space-below-half>Visit Gallery</button><br>
-      <?php if ($loggedIn) { ?>
-      <button data-href="?logout">Sign out</button><br>
-      <?php } ?>
+      <p><button data-href="..">Visit Gallery</button></p>
+      <p><button data-href="sign-out">Sign out</button></p>
    </aside>
-   <h1>PPAGES &ndash; PHP Portfolio Art Gallery Exhibit Showcase</h1>
-   <h2>Gallery Management Console</h2>
+   <h1>PPAGES &ndash; PHP Portfolio Art Gallery Exhibit to Showcase</h1>
+   <h2>Administrator Console</h2>
 </header>
 
-<?php $loggedIn ? displayConsole() : displayLogin(); ?>
+<main>
+   <div>
+      <section>
+         <h3>Status</h3>
+         <p>Wow!</p>
+      </section>
+      <section>
+         <h3>Image Portfolio</h3>
+         <p>Wow!</p>
+      </section>
+   </div>
+   <div>
+      <section>
+         <h3>Transfer Photos to Gallery</h3>
+         <p>Wow!</p>
+      </section>
+      <section>
+         <h3>Gallery Settings</h3>
+         <p>Wow!</p>
+      </section>
+      <section>
+         <h3>User Accounts</h3>
+         <p>Wow!</p>
+      </section>
+   </div>
+</main>
 
-<?php if ($loggedIn) echo "
-   <footer>
-      <div>
-         PPAGES &ndash; PHP Portfolio Art Gallery Exhibit Showcase<br>
-         A web application to manage and display a photo gallery
-      </div>
-      <div>
-         You are logged into <b>" . $_SERVER['HTTP_HOST'] . "</b> as <b>" . $_SESSION["username"] .
-         "</b><br>PPAGES $version
-      </div>
-   </footer>";
-?>
+<footer>
+   <div class=plain>
+      Questions and bugs:<br>
+      <a href="https://github.com/center-key/ppages/issues">github.com/center-key/ppages/issues</a>
+   </div>
+   <div>
+      You are logged into <b><?= $_SERVER["HTTP_HOST"] ?></b><br>
+      PPAGES <?= $version ?>
+   </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.ui/1/jquery-ui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha1.js"></script>
+<script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js"></script>
 <script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
-<script src="../js/library.js"></script>
-<script src="js/user-auth.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/console.js"></script>
-<script src="js/start.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
