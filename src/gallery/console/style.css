@@ -15,11 +15,11 @@ body >footer { display: -webkit-flex; -webkit-justify-content: space-between; -w
 body >footer { display: flex; justify-content: space-between; align-items: center; }
 body >footer { font-size: 0.8rem; color: white; background-color: darkgray; padding: 10px; }
 body >footer a { color: white; }
-body >footer >div:last-child { text-align: right; }
+body >footer >div:last-child:not(:first-child) { text-align: right; }
 
 /* Color blocks (two columns): <main> -> <div (column)> -> <section (block)> -> <h3>|<h4>|<aside> */
 main { display: -webkit-flex; -webkit-justify-content: space-between; }  /* vendor specific */
-main { display: flex; justify-content: space-between; }
+main { display: flex; justify-content: space-between; min-height: 300px; }
 main >div:nth-child(1) { width: 62%; }  /* 1st column (2% for gap) */
 main >div:nth-child(2) { width: 36%; }  /* 2nd column (2% for gap) */
 main >div >section { border-width: 2px; border-style: solid; padding: 10px; margin-bottom: 10px; }
