@@ -24,6 +24,11 @@ $defaultSettingsDb = array(
       array("name" => "contact", "title" => "Contact", "show" =>  true)
       )
    );
+$defaultGalleryDb = array();
+$defaultAccountsDb = array(
+   "invites" => array(),  //code -> from, to, expiration (epoch)
+   "users" =>   array()   //email -> created (epoch), hash, enabled (boolean)
+   );
 
 function setupDataFolder($dataFolder, $name) {
    $folder =      "{$dataFolder}/{$name}";
@@ -57,7 +62,7 @@ function setupCustomCss($dataFolder) {
       '.gallery-images .image img { border-color: black; }'
       );
    $filename = "{$dataFolder}/custom-style.css";
-   if (!is_file($filename) && !file_put_contents($filename, implode("\n", $defaultCss) . "\n"))
+   if (!is_file($filename) && !file_put_contents($filename, implode(PHP_EOL, $defaultCss)))
       exit("Error creating CSS file: {$filename}");
    }
 
@@ -65,7 +70,11 @@ date_default_timezone_set("UTC");
 foreach(["", "graphics", "portfolio", "uploads"] as $name)
    setupDataFolder($dataFolder, $name);
 $installKey = setupInstallKey($dataFolder);
+$settingsDbFile = "{$dataFolder}/settings-db.json";
+$galleryDbFile =  "{$dataFolder}/gallery-db.json";
+$accountsDbFile = "{$dataFolder}/accounts-db-{$installKey}.json";
 setupDb($settingsDbFile, $defaultSettingsDb);
-setupDb($galleryDbFile, []);
+setupDb($galleryDbFile,  $defaultGalleryDb);
+setupDb($accountsDbFile, $defaultAccountsDb);
 setupCustomCss($dataFolder);
 ?>

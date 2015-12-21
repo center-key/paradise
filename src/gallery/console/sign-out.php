@@ -5,6 +5,7 @@
 /////////////////////////////////////////////////
 
 // Sign out
+session_start();
 session_unset();
 header("Location: ./sign-in");
 ?>

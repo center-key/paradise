@@ -61,8 +61,8 @@
       <a href="https://github.com/center-key/ppages/issues">github.com/center-key/ppages/issues</a>
    </div>
    <div>
-      You are logged into <b><?= $_SERVER["HTTP_HOST"] ?></b><br>
-      PPAGES <?= $version ?>
+      PPAGES <?= $version ?><br>
+      You (<b><?= $_SESSION["user"] ?></b>) are logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
    </div>
 </footer>
 

@@ -9,8 +9,6 @@
 
 $version =        "v0.0.5";
 $dataFolder =     "../data";
-$settingsDbFile = "{$dataFolder}/settings-db.json";
-$galleryDbFile =  "{$dataFolder}/gallery-db.json";
 
 function readDb($dbFilename) {
    logEvent("read-db", $dbFilename);
@@ -38,7 +36,7 @@ function logEvent() {  //any number of parameters to log
    $logFilename =     "{$dataFolder}/log-{$installKey}.txt";
    $archiveFilename = "{$dataFolder}/log-archive-{$installKey}.txt";
    $milliseconds = substr(explode(" ", microtime())[0], 1, 4);
-   $event = array(date("Y-m-d H:i:s"), $milliseconds, $delimiter, formatMsg($_SESSION["username"]));
+   $event = array(date("Y-m-d H:i:s"), $milliseconds, $delimiter, formatMsg($_SESSION["user"]));
    foreach (func_get_args() as $msg) {
       $event[] = $delimiter;
       $event[] = formatMsg($msg);
@@ -53,6 +51,7 @@ function httpJsonResponse($data) {
    header("Cache-Control: no-cache");
    header("Content-Type:  application/json");
    echo json_encode($data);
+   logEvent("http-json-response", json_encode($data));
    }
 
 ?>

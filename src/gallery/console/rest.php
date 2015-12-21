@@ -8,12 +8,15 @@
 //
 // Get resource:
 //    gallery/console/rest?type=gallery
+// Update value:
+//    gallery/console/rest?type=settings&action=update&caption-italic=true
 
 $noAuth = true;
 require "php/security.php";
 
 function restError($code) {
    $messages = array(
+      400 => "Invalid parameters",
       401 => "Unauthorized access",
       404 => "Resource not found",
       500 => "Unknown error"
@@ -34,12 +37,15 @@ function getResource() {
       "settings" => $settingsDbFile,
       "gallery"  => $galleryDbFile
       );
-   if (!$loggedIn)
+   if ($type === "security")
+      $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"]);
+   elseif (!$loggedIn)
       $resource = restError(401);
    elseif (array_key_exists($type, $dbs))
       $resource = readDb($dbs[$type]);
    else
       $resource = restError(404);
+   logEvent("get-resource", $type, $action, $id, !isset($resource["error"]));
    return $resource;
    }
 

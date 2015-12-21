@@ -1,4 +1,4 @@
-<?php $noAuth = true; $redirectAuth = "console"; require "php/security.php"; ?>
+<?php $noAuth = true; $redirectAuth = "."; require "php/security.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!--  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase   -->
@@ -29,15 +29,22 @@
 
 <main>
    <div>
-      <section>
-         <h3>Sign in</h3>
+      <section id=component-security class=<?= userListEmpty() ? "create" : "login"; ?>>
+         <h3 class=for-login>Sign in</h3>
+         <h3 class=for-create>Create account</h3>
+         <p class=for-create>No user accounts exist yet.&nbsp; Create your account to continue the setup.</p>
+         <p class=error-message></p>
          <label>
             <span>Email:</span>
-            <input type=email placeholder="Entery your email" data-on-load=dna.ui.focus required>
+            <input type=email data-enter-key=app.security.login data-on-load=dna.ui.focus placeholder="Enter your email" required>
          </label>
          <label>
             <span>Password:</span>
-            <input type=password data-enter-key=app.security.login placeholder="Entery your password" required>
+            <input type=password data-enter-key=app.security.login placeholder="Enter your password" required>
+         </label>
+         <label class=for-create>
+            <span>Confirm:</span>
+            <input type=password data-enter-key=app.security.login placeholder="Re-enter your password">
          </label>
          <button data-click=app.security.login>Sign in</button>
       </section>

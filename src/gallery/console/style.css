@@ -43,6 +43,17 @@ main >div:nth-child(2) >section:nth-child(3n+3) h3 { background-color: darkseagr
 /* Flat buttons */
 button { font-size: 0.9rem; padding: 0.5em 1.1em; }
 
+/* Componoents */
+#component-security.create .for-create { display: block; }
+#component-security.create .for-login  { display: none; }
+#component-security.login  .for-login  { display: block; }
+#component-security.login  .for-create { display: none; }
+#component-security.create .for-create { display: block; }
+#component-security >p { color: firebrick; }
+
+
+/////////////////
+
 /* Foundation */
 fieldset { text-align: right; border-width: 1px; border-style: solid; margin-bottom: 10px; }
 legend   { direction: rtl; }
