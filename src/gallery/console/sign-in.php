@@ -29,14 +29,18 @@
 
 <main>
    <div>
-      <section id=component-security class=<?= userListEmpty() ? "create" : "login"; ?>>
-         <h3 class=for-login>Sign in</h3>
+      <section class=component-security data-on-load=app.security.loginSetup>
+         <h3>Sign in</h3>
          <h3 class=for-create>Create account</h3>
          <p class=for-create>No user accounts exist yet.&nbsp; Create your account to continue the setup.</p>
          <p class=error-message></p>
+         <label class=invite-code>
+            <span>Invite code:</span>
+            <input placeholder="Enter invite code">
+         </label>
          <label>
             <span>Email:</span>
-            <input type=email data-enter-key=app.security.login data-on-load=dna.ui.focus placeholder="Enter your email" required>
+            <input type=email data-enter-key=app.security.login placeholder="Enter your email address" required>
          </label>
          <label>
             <span>Password:</span>
@@ -61,6 +65,7 @@
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js"></script>
 <script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
+<script>var app = {}; app.clientData = <?= appClientData() ?>;</script>
 <script src="js/app.js"></script>
 </body>
 </html>

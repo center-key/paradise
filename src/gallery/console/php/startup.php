@@ -26,8 +26,8 @@ $defaultSettingsDb = array(
    );
 $defaultGalleryDb = array();
 $defaultAccountsDb = array(
-   "invites" => array(),  //code -> from, to, expiration (epoch)
-   "users" =>   array()   //email -> created (epoch), hash, enabled (boolean)
+   "users" =>   array(),  //email -> created (epoch), hash, enabled (boolean)
+   "invites" => array()   //inviteCode -> from, to, expires (epoch), accepted (epoch)
    );
 
 function setupDataFolder($dataFolder, $name) {

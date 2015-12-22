@@ -38,7 +38,7 @@ function getResource() {
       "gallery"  => $galleryDbFile
       );
    if ($type === "security")
-      $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"]);
+      $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
    elseif (!$loggedIn)
       $resource = restError(401);
    elseif (array_key_exists($type, $dbs))
