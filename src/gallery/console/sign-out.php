@@ -4,8 +4,10 @@
 // GPL ~ Copyright (c) individual contributors //
 /////////////////////////////////////////////////
 
-// Sign out
-session_start();
-session_unset();
+// User logout
+$noAuth = true;
+require "php/security.php";
+logEvent("user-logout", session_id());
+session_destroy();
 header("Location: ./sign-in");
 ?>

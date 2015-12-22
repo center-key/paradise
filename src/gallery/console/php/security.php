@@ -35,6 +35,7 @@ function verifyPassword($user, $hash) {
 function loginUser($email) {
    $_SESSION["user"] = $email;
    $_SESSION["active"] = time();
+   logEvent("user-login", session_id());
    }
 
 function createUser($accountsDb, $email, $hash) {
