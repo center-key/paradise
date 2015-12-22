@@ -7,27 +7,53 @@
 // Library
 // Constants and general utilities
 
-$version =        "v0.0.5";
-$dataFolder =     "../data";
+$version =    "v0.0.5";
+$dataFolder = "../data";
+
+function getProperty($object, $name) {
+   return isset($object[$name]) ? $object[$name] : null;
+   }
+
+function appClientData() {
+   $data = array(
+      "version" =>         $version,
+      "user-list-empty" => empty(readAccountsDb()->users)
+      );
+   return json_encode($data);
+   }
 
 function readDb($dbFilename) {
-   logEvent("read-db", $dbFilename);
    $dbStr = file_get_contents($dbFilename);
    if ($dbStr === false)
       exit("Error reading database: {$dbFilename}");
    return json_decode($dbStr);
    }
 
+function readAccountsDb() {
+   global $accountsDbFile;
+   logEvent("read-accounts-db");
+   return readDb($accountsDbFile);
+   }
+
 function saveDb($dbFilename, $db) {
-   logEvent("save-db", $dbFilename);
    if (!file_put_contents($dbFilename, json_encode($db)))
       exit("Error saving database: {$dbFilename}");
    }
 
+function saveSettingsDb($db) {
+   global $settingsDbFile;
+   saveDb($settingsDbFile, $db);
+   }
+
+function saveAccountsDb($db) {
+   global $accountsDbFile;
+   logEvent("save-accounts-db", count($db->users), count($db->invites));
+   saveDb($accountsDbFile, $db);
+   }
+
 function formatMsg($msg) {
-   return is_null($msg) ? "[null]" : (empty($msg) ? "[empty]" :
-      ($msg === true ? "[true]" : ($msg === false ? "[false]" :
-      (is_object($msg) ? get_class($msg) . ":" . count($msg) : $msg))));
+   return is_null($msg) ? "[null]" : ($msg === true ? "[true]" : ($msg === false ? "[false]" :
+      (empty($msg) ? "[empty]" : (is_object($msg) || is_array($msg) ? json_encode($msg) : $msg))));
    }
 
 function logEvent() {  //any number of parameters to log
@@ -51,7 +77,7 @@ function httpJsonResponse($data) {
    header("Cache-Control: no-cache");
    header("Content-Type:  application/json");
    echo json_encode($data);
-   logEvent("http-json-response", json_encode($data));
+   logEvent("http-json-response", $data);
    }
 
 ?>
