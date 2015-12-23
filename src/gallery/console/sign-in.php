@@ -29,7 +29,7 @@
 
 <main>
    <div>
-      <section class=component-security data-on-load=app.security.loginSetup>
+      <section class=component-security data-on-load=app.login.setup>
          <h3>Sign in</h3>
          <h3 class=for-create>Create account</h3>
          <p class=for-create>No user accounts exist yet.&nbsp; Create your account to continue the setup.</p>
@@ -40,17 +40,17 @@
          </label>
          <label>
             <span>Email:</span>
-            <input type=email data-enter-key=app.security.login placeholder="Enter your email address" required>
+            <input type=email data-enter-key=app.login.submit placeholder="Enter your email address" required>
          </label>
          <label>
             <span>Password:</span>
-            <input type=password data-enter-key=app.security.login placeholder="Enter your password" required>
+            <input type=password data-enter-key=app.login.submit placeholder="Enter your password" required>
          </label>
          <label class=for-create>
             <span>Confirm:</span>
-            <input type=password data-enter-key=app.security.login placeholder="Re-enter your password">
+            <input type=password data-enter-key=app.login.submit placeholder="Re-enter your password">
          </label>
-         <button data-click=app.security.login>Sign in</button>
+         <button data-click=app.login.submit>Sign in</button>
       </section>
    </div>
 </main>
@@ -65,7 +65,8 @@
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js"></script>
 <script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
-<script>var app = {}; app.clientData = <?= appClientData() ?>;</script>
-<script src="js/app.js"></script>
+<script>var app = {}; app.clientData = <?= appClientData(false) ?>;</script>
+<script src="js/library.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>

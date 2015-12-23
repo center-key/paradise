@@ -62,15 +62,15 @@
    </div>
    <div>
       PPAGES <?= $version ?><br>
-      You (<b><?= $_SESSION["user"] ?></b>) are logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
+      <b><?= $_SESSION["user"] ?></b> logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
    </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js"></script>
 <script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
-<script src="js/auth.js"></script>
+<script>var app = {}; app.clientData = <?= appClientData(true) ?>;</script>
+<script src="js/library.js"></script>
 <script src="js/console.js"></script>
-<script src="js/app.js"></script>
 </body>
 </html>
