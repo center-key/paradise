@@ -14,6 +14,16 @@ webServerRoot=$(grep ^DocumentRoot $httpdConf | awk -F\" '{ print $2 }')
 webServerPath=centerkey.com/ppages
 ftpFolder=$webServerRoot/$webServerPath
 
+getColorBlocks() {
+   echo "*** Reuse Color Blocks CSS"
+   cd $websiteFolder
+   note="/* src/gallery/console/css/color-blocks.css */"
+   echo "$note" | cat - ../src/gallery/console/css/color-blocks.css > $websiteFolder/color-blocks.css
+   head -1 color-blocks.css
+   ls -l color-blocks.css
+   echo
+   }
+
 viewWebsite() {
    echo "*** Open HTML files"
    cd $websiteFolder
@@ -39,5 +49,6 @@ echo
 echo "PPAGES ~ View Project Website"
 echo "============================="
 echo
+getColorBlocks
 viewWebsite
 [ -d $ftpFolder ] && copyToFtpFolder
