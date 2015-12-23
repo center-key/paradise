@@ -1,9 +1,9 @@
 #!/bin/sh
 
-###############################################
-# PPAGES ~ centerkey.com/ppages               #
-# GPL ~ Copyright (c) individual contributors #
-###############################################
+#################################################
+# PPAGES ~ centerkey.com/ppages                 #
+# GPLv3 ~ Copyright (c) individual contributors #
+#################################################
 
 # Deploy:
 # Unzips current release into web server folder

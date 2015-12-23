@@ -1,10 +1,9 @@
 <?php require "php/gallery.php"; ?>
 <!doctype html>
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!--  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase   -->
-<!--  centerkey.com/ppages                                     -->
-<!--  GPLv3 - Copyright (c) individual contributors            -->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- PPAGES ~ centerkey.com/ppages                 -->
+<!-- GPLv3 ~ Copyright (c) individual contributors -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <html>
 <head>
 <meta charset=utf-8>

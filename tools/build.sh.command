@@ -1,9 +1,9 @@
 #!/bin/sh
 
-###############################################
-# PPAGES ~ centerkey.com/ppages               #
-# GPL ~ Copyright (c) individual contributors #
-###############################################
+#################################################
+# PPAGES ~ centerkey.com/ppages                 #
+# GPLv3 ~ Copyright (c) individual contributors #
+#################################################
 
 # Build:
 # Creates the release file (zip) with the version number in the file
