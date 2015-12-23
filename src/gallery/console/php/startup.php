@@ -32,8 +32,11 @@ $defaultAccountsDb = array(
 
 function setupDataFolder($dataFolder, $name) {
    $folder =      "{$dataFolder}/{$name}";
+   $defaultView = "{$dataFolder}/index.html";
    if (!is_dir($folder) && !mkdir($folder))
       exit("Unable to create data folder: {$folder}");
+   if (!is_file($defaultView) && !file_put_contents($defaultView, "Nothing to see."))
+      exit("Unable to write into data folder: {$defaultView}");
    }
 
 function setupInstallKey($folder) {
@@ -53,13 +56,13 @@ function setupDb($dbFilename, $defaultDb) {
 
 function setupCustomCss($dataFolder) {
    $defaultCss = array(
-      '/*  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase    */',
-      '/*  Edit this CSS file to customize the look of the gallery.  */',
-      '/*  Put custom images in: "gallery/data/graphics"             */',
-      '',
-      'body { color: whitesmoke; background-color: dimgray; }',
-      'body >footer { background-color: gray; border-color: black; }',
-      '.gallery-images .image img { border-color: black; }'
+      "/*  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase    */",
+      "/*  Edit this CSS file to customize the look of the gallery.  */",
+      "/*  Put custom images in: gallery/data/graphics               */",
+      "",
+      "body { color: whitesmoke; background-color: dimgray; }",
+      "body >footer { background-color: gray; border-color: black; }",
+      ".gallery-images .image img { border-color: black; }"
       );
    $filename = "{$dataFolder}/custom-style.css";
    if (!is_file($filename) && !file_put_contents($filename, implode(PHP_EOL, $defaultCss)))
