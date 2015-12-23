@@ -28,7 +28,7 @@ function restError($code) {
       );
    }
 
-function getResource() {
+function getResource($loggedIn) {
    global $settingsDbFile, $galleryDbFile;
    $type =   $_GET["type"];
    $action = $_GET["action"];
@@ -45,9 +45,9 @@ function getResource() {
       $resource = readDb($dbs[$type]);
    else
       $resource = restError(404);
-   logEvent("get-resource", $type, $action, $id, !isset($resource["error"]));
+   logEvent("get-resource", $type, $action, $id, !getProperty($resource, "error"));
    return $resource;
    }
 
-httpJsonResponse(getResource());
+httpJsonResponse(getResource($loggedIn));
 ?>

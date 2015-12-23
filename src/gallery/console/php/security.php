@@ -28,6 +28,10 @@ function redirectToPage($page) {
    exit();
    }
 
+function userEnabled() {
+   return readAccountsDb()->users->{$_SESSION["user"]}->enabled;  //TODO: optimize to prevent re-reading db later
+   }
+
 function verifyPassword($user, $hash) {
    return $user && $user->enabled && $user->hash === $hash;
    }
@@ -101,7 +105,7 @@ function securityRequest($action, $email, $password, $confirm, $inviteCode) {
       );
    }
 
-$loggedIn = isset($_SESSION["active"]) && time() < $_SESSION["active"] + $sessionTimout;
+$loggedIn = isset($_SESSION["user"]) && time() < $_SESSION["active"] + $sessionTimout && userEnabled();
 if ($loggedIn)
    $_SESSION["active"] = time();
 if ($loggedIn && $redirectAuth)

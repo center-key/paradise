@@ -10,8 +10,9 @@
 $version =    "v0.0.5";
 $dataFolder = "../data";
 
-function getProperty($object, $name) {
-   return isset($object[$name]) ? $object[$name] : null;
+function getProperty($map, $key) {
+   return is_array($map) && isset($map[$key]) ? $map[$key] :
+      (is_object($map) && isset($map->{$key}) ? $map->{$key} : null);
    }
 
 function appClientData() {
@@ -31,7 +32,6 @@ function readDb($dbFilename) {
 
 function readAccountsDb() {
    global $accountsDbFile;
-   logEvent("read-accounts-db");
    return readDb($accountsDbFile);
    }
 
