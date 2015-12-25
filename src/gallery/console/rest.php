@@ -28,21 +28,25 @@ function restError($code) {
       );
    }
 
+function getPortfolioResource() {
+   $resource = readGalleryDb();  //Temporary... until read portfolio folder is ready
+   return $resource;
+   }
+
 function getResource($loggedIn) {
-   global $settingsDbFile, $galleryDbFile;
    $type =   $_GET["type"];
    $action = $_GET["action"];
    $id =     $_GET["id"];
-   $dbs = array(
-      "settings" => $settingsDbFile,
-      "gallery"  => $galleryDbFile
-      );
    if ($type === "security")
       $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
    elseif (!$loggedIn)
       $resource = restError(401);
-   elseif (array_key_exists($type, $dbs))
-      $resource = readDb($dbs[$type]);
+   elseif ($type === "settings")
+      $resource = readSettingsDb();
+   elseif ($type === "gallery")
+      $resource = readGalleryDb();
+   elseif ($type === "portfolio")
+      $resource = getPortfolioResource();
    else
       $resource = restError(404);
    logEvent("get-resource", $type, $action, $id, !getProperty($resource, "error"));

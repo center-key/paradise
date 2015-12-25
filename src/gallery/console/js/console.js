@@ -1,7 +1,24 @@
-/////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages               //
-// GPL ~ Copyright (c) individual contributors //
-/////////////////////////////////////////////////
+///////////////////////////////////////////////////
+// PPAGES ~ centerkey.com/ppages                 //
+// GPLv3 ~ Copyright (c) individual contributors //
+///////////////////////////////////////////////////
+
+// Application console
+
+app.setup = {
+   go: function() {
+      function handleSettings(data) {
+         dna.clone('gallery-settings', data);
+         };
+      function handlePortfolio(data) {
+         dna.clone('portfolio-image', data);
+         };
+      library.rest.get('settings', { callback: handleSettings });
+      library.rest.get('portfolio',  { callback: handlePortfolio });
+      }
+   };
+
+$(app.setup.go);
 
 // Gallery Management Console
 

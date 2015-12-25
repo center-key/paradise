@@ -1,30 +1,32 @@
 <?php
-/////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages               //
-// GPL ~ Copyright (c) individual contributors //
-/////////////////////////////////////////////////
+///////////////////////////////////////////////////
+// PPAGES ~ centerkey.com/ppages                 //
+// GPLv3 ~ Copyright (c) individual contributors //
+///////////////////////////////////////////////////
 
 // Console
 
-$blockNum = 0;
+$googleFonts = array(  //see https://www.google.com/fonts
+   "Allan", "Allerta", "Allerta Stencil", "Anonymous Pro", "Arimo",
+   "Arvo", "Bentham", "Bowlby One SC", "Buda", "Cabin", "Cantarell", "Cardo",
+   "Cherry Cream Soda", "Chewy", "Chango", "Coda", "Copse",
+   "Corben", "Cousine", "Crimson Text", "Cuprum",
+   "Droid Sans", "Droid Sans Mono", "Droid Serif", "Geo", "Gruppo",
+   "Homemade Apple", "IM Fell",
+   "Inconsolata", "Josefin Sans", "Josefin Slab", "Just Another Hand",
+   "Kenia", "Kristi", "Lato", "Lekton", "Lobster",
+   "Merriweather", "Molengo", "Neucha", "Neuton",
+   "Nobile", "Old Standard TT", "Orbitron",
+   "PT Sans", "Philosopher", "Puritan", "Raleway", "Reenie Beanie",
+   "Rock Salt", "Slackey", "Sniglet", "Special Elite",
+   "Syncopate", "Tangerine", "Tinos", "Ubuntu", "UnifrakturCook",
+   "UnifrakturMaguntia", "Vibur", "Vollkorn", "Yanone Kaffeesatz"
+   );
 
-function displayBlock($header, $displayFunction) {
-   global $blockNum;
-   $blockNum++;
-   echo "<div class=block$blockNum><h3>$header</h3>\n";
-   $displayFunction();
-   echo "</div>  <!-- end block$blockNum -->\n";
-   }
-
-function displayConsole() {
-   echo "<div class=col1>\n";
-   displayBlock("Status", "displayProcessStatus");
-   displayBlock("Portfolio", "displayPortfolio");
-   echo "</div>  <!-- end col1 -->\n<div class=col2>\n";
-   displayBlock("Transfer Photos to Gallery", "displayTransfer");
-   displayBlock("Gallery Settings", "displaySettings");
-   displayBlock("User Accounts", "displayAccounts");
-   echo "</div>  <!-- end col2 -->";
+function displayFontOptions() {
+   global $googleFonts;
+   foreach ($googleFonts as $font)
+      echo "<option value='{$font}'>{$font}</option>\n";
    }
 
 ?>

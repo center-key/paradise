@@ -30,6 +30,16 @@ function readDb($dbFilename) {
    return json_decode($dbStr);
    }
 
+function readSettingsDb() {
+   global $settingsDbFile;
+   return readDb($settingsDbFile);
+   }
+
+function readGalleryDb() {
+   global $galleryDbFile;
+   return readDb($galleryDbFile);
+   }
+
 function readAccountsDb() {
    global $accountsDbFile;
    return readDb($accountsDbFile);

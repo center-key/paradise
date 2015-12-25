@@ -1,4 +1,5 @@
 <?php require "php/security.php"; ?>
+<?php require "php/console.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- PPAGES ~ centerkey.com/ppages                 -->
@@ -14,6 +15,7 @@
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
 <link rel=stylesheet       href="../css/reset.css">
+<link rel=stylesheet       href="css/color-blocks.css">
 <link rel=stylesheet       href="css/style.css">
 </head>
 <body>
@@ -29,28 +31,118 @@
 
 <main>
    <div>
+
       <section>
          <h3>Status</h3>
          <p>Wow!</p>
       </section>
       <section>
          <h3>Image Portfolio</h3>
-         <p>Wow!</p>
+         <div>
+            <div id=portfolio-image class=dna-template>
+            </div>
+         </div>
       </section>
+
    </div>
    <div>
+
       <section>
          <h3>Transfer Photos to Gallery</h3>
          <p>Wow!</p>
       </section>
-      <section>
+
+      <section id=gallery-settings class=dna-template>
          <h3>Gallery Settings</h3>
-         <p>Wow!</p>
+         <fieldset class=settings-website>
+            <legend>Website</legend>
+            <label>
+               <span>Title:</span>
+               <input name=title value=~~title~~ placeholder="Enter website header">
+            </label>
+            <label>
+               <span>Title font:</span>
+               <select data-option=~~title-font~~>
+                  <?= displayFontOptions(); ?>
+               </select>
+               <i data-href="https://www.google.com/fonts/specimen/~~title-font~~" class="fa fa-info-circle external-site"></i>
+            </label>
+            <label>
+               <span>Title size:</span>
+               <select data-option=~~title-size~~>
+                  <option value=100%>100%</option>
+                  <option value=200%>200%</option>
+                  <option value=300%>300%</option>
+                  <option value=400%>400%</option>
+                  <option value=500%>500%</option>
+                  <option value=600%>600%</option>
+                  <option value=700%>700%</option>
+                  <option value=800%>800%</option>
+                  <option value=900%>900%</option>
+               </select>
+            </label>
+            <label>
+               <span>Subtitle:</span>
+               <input name=Subtitle value=~~subtitle~~ placeholder="Enter website subheader">
+            </label>
+            <div>
+               <span>Captions:</span>
+               <span>
+                  <label>
+                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~>
+                     <span><i>italic</i></span>
+                  </label>
+                  <label>
+                     <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~>
+                     <span class=small-caps>all caps</span>
+                  </label>
+               </span>
+            </div>
+            <label>
+               <span>Creative Commons:</span>
+               <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~>
+               <span>display</span>
+               <a href="http://creativecommons.org/licenses/by-sa/4.0/" class=external-site title="CC BY 4.0">
+                  <i class="fa fa-info-circle"></i>
+               </a>
+            </label>
+            <label>
+               <span>Social share icons:</span>
+               <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~>
+               <span>display</span>
+            </label>
+            <label>
+               <span>Footer:</span>
+               <input type=text name=Footer value=~~footer~~>
+            </label>
+            <label>
+               <span>E-mail:</span>
+               <input type=email name=email value=~~email~~ placeholder="Address for feedback">
+               <a href="../#contact" class=external-site><i class="fa fa-info-circle"></i></a>
+            </label>
+         </fieldset>
+         <fieldset class=settings-tabs>
+            <legend>Tabs</legend>
+            <div>
+               <div data-array=~~pages~~>
+                  <label>
+                     <span>#<span>~~[count]~~</span>:</span>
+                     <input value=~~title~~ placeholder="Title for menu tab">
+                  </label>
+                  <label>
+                     <input type=checkbox name=~~name~~ data-prop-checked=~~show~~>
+                     <span>display</span>
+                  </label>
+               </div>
+            </div>
+         </fieldset>
       </section>
+
       <section>
          <h3>User Accounts</h3>
          <p>Wow!</p>
       </section>
+
    </div>
 </main>
 

@@ -10,6 +10,7 @@
 * { box-sizing: inherit; }
 html { font-size: 100%; font-family: geneva, tahoma, sans-serif; box-sizing: border-box; overflow-y: scroll; }
 html, body { min-height: 100%; }
+body { color: dimgray; }
 h1, h2, h3, h4, h5, h6 { padding: 0px; margin: 0px 0px 0.2em 0px; }
 p { padding: 0px; margin: 0px 0px 0.8em 0px; }
 img { border: none; }
@@ -43,9 +44,9 @@ i.fa { font-size: 150%; }
 button, input[type=checkbox], input[type=radio], input[type=file], select { cursor: pointer; }
 button, input, select, textarea, optgroup, option, fieldset { transition: 0.3s opacity; }
 input, textarea { font-size: 1.1rem; background-color: aliceblue; border: 1px solid silver; border-radius: 5px; padding: 0.3em; outline: none; }
-select { font-size: 1.1rem; }
+select { font-size: 1.1rem; outline: none; }
 label { display: block; margin-bottom: 0.5em; }
-label span { display: inline-block; width: 100px; vertical-align: top; text-align: right; padding-top: 0.5em; }
+label >span:first-child { display: inline-block; width: 100px; vertical-align: top; text-align: right; padding-top: 0.5em; }
 label select { margin: 0.4em 0.0em 0.0em 0.2em; }
 label input[type=checkbox] { margin: 0.0em 0.4em 0.3em 0.3em; }
 label input[type=radio] { margin: 0.55em 0.4em 0.0.0em 0.3em; }
