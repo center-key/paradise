@@ -54,11 +54,6 @@ body >main #gallery-panels >section {
    border: 1px solid whitesmoke;
    padding: 20px 25px;
    }
-body >footer {  /* vendor specific */
-   display: -webkit-flex;
-   -webkit-justify-content: space-between;
-   -webkit-align-items: center;
-   }
 body >footer {
    display: flex;
    justify-content: space-between;

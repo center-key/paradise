@@ -13,7 +13,6 @@
 /*          <fieldset>             */
 /*             <legend>            */
 /***********************************/
-main { display: -webkit-flex; -webkit-justify-content: space-between; }  /* vendor specific */
 main { display: flex; justify-content: space-between; min-height: 300px; }
 main >div:nth-child(1) { width: 62%; }  /* 1st column (2% for gap) */
 main >div:nth-child(2) { width: 36%; }  /* 2nd column (2% for gap) */
