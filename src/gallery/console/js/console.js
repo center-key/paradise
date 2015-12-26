@@ -5,6 +5,25 @@
 
 // Application console
 
+app.ui = {
+   statusMsg: function(message) {
+      $('#status-msg').text(message).hide().fadeIn();
+      },
+   saveSettings: function(elem) {
+      var field = elem.attr('name');
+      var val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
+      app.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
+      var params = { [field]: val };
+      function addItemParams() {
+         params.id =   elem.closest('div').index() + 1;  /* elem.data().itemId; */
+         params.item = elem.data().item;
+         }
+      if (elem.data().item)
+         addItemParams();
+      library.rest.get('settings', { action: 'update', params: params  });
+      }
+   };
+
 app.setup = {
    go: function() {
       function handleSettings(data) {

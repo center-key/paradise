@@ -22,7 +22,7 @@
 
 <header>
    <aside>
-      <p><button data-href="..">Visit Gallery</button></p>
+      <p><button data-href=".." class=external-site>Visit Gallery</button></p>
       <p><button data-href="sign-out">Sign out</button></p>
    </aside>
    <h1>PPAGES &ndash; PHP Portfolio Art Gallery Exhibit to Showcase</h1>
@@ -34,8 +34,9 @@
 
       <section>
          <h3>Status</h3>
-         <p>Wow!</p>
+         <div id=status-msg></div>
       </section>
+
       <section>
          <h3>Image Portfolio</h3>
          <div>
@@ -58,18 +59,18 @@
             <legend>Website</legend>
             <label>
                <span>Title:</span>
-               <input name=title value=~~title~~ placeholder="Enter website header">
+               <input name=title value=~~title~~ data-smart-update=app.ui.saveSettings placeholder="Enter website header">
             </label>
             <label>
                <span>Title font:</span>
-               <select data-option=~~title-font~~>
+               <select name=title-font data-option=~~title-font~~ data-change=app.ui.saveSettings>
                   <?= displayFontOptions(); ?>
                </select>
                <i data-href="https://www.google.com/fonts/specimen/~~title-font~~" class="fa fa-info-circle external-site"></i>
             </label>
             <label>
                <span>Title size:</span>
-               <select data-option=~~title-size~~>
+               <select name=title-size data-option=~~title-size~~ data-change=app.ui.saveSettings>
                   <option value=100%>100%</option>
                   <option value=200%>200%</option>
                   <option value=300%>300%</option>
@@ -83,24 +84,24 @@
             </label>
             <label>
                <span>Subtitle:</span>
-               <input name=Subtitle value=~~subtitle~~ placeholder="Enter website subheader">
+               <input name=subtitle value=~~subtitle~~ data-smart-update=app.ui.saveSettings placeholder="Enter website subheader">
             </label>
             <div>
                <span>Captions:</span>
                <span>
                   <label>
-                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~>
+                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~ data-change=app.ui.saveSettings>
                      <span><i>italic</i></span>
                   </label>
                   <label>
-                     <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~>
+                     <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~ data-change=app.ui.saveSettings>
                      <span class=small-caps>all caps</span>
                   </label>
                </span>
             </div>
             <label>
                <span>Creative Commons:</span>
-               <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~>
+               <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~ data-change=app.ui.saveSettings>
                <span>display</span>
                <a href="http://creativecommons.org/licenses/by-sa/4.0/" class=external-site title="CC BY 4.0">
                   <i class="fa fa-info-circle"></i>
@@ -108,16 +109,16 @@
             </label>
             <label>
                <span>Social share icons:</span>
-               <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~>
+               <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~ data-change=app.ui.saveSettings>
                <span>display</span>
             </label>
             <label>
                <span>Footer:</span>
-               <input type=text name=Footer value=~~footer~~>
+               <input type=text name=footer value=~~footer~~ data-smart-update=app.ui.saveSettings>
             </label>
             <label>
                <span>E-mail:</span>
-               <input type=email name=email value=~~email~~ placeholder="Address for feedback">
+               <input type=email name=contact-email value=~~contact-email~~ placeholder="Address for feedback" data-smart-update=app.ui.saveSettings>
                <a href="../#contact" class=external-site><i class="fa fa-info-circle"></i></a>
             </label>
          </fieldset>
@@ -127,10 +128,10 @@
                <div data-array=~~pages~~>
                   <label>
                      <span>#<span>~~[count]~~</span>:</span>
-                     <input value=~~title~~ placeholder="Title for menu tab">
+                     <input name=title value=~~title~~ data-item=page data-item-id=~~[count]~~ data-smart-update=app.ui.saveSettings placeholder="Title for menu tab">
                   </label>
                   <label>
-                     <input type=checkbox name=~~name~~ data-prop-checked=~~show~~>
+                     <input name=show type=checkbox data-prop-checked=~~show~~ data-item=page data-item-id=~~[count]~~ data-change=app.ui.saveSettings>
                      <span>display</span>
                   </label>
                </div>

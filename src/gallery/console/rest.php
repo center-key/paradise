@@ -28,21 +28,67 @@ function restError($code) {
       );
    }
 
+function fieldValue($value, $type) {
+   $value = iconv("UTF-8", "UTF-8//IGNORE", $value);
+   $value = str_replace("<", "&lt;", str_replace(">", "&gt;", $value));
+   if ($type === "boolean")
+      $value = $value === "true";
+   elseif ($type === "integer")
+      $value = intval($value);
+   return $value;
+   }
+
+function updateItem($resource, $itemName) {
+   if ($itemName === "page") {
+      $item = $resource->pages[fieldValue($_GET["id"], "integer") - 1];
+      if (isset($_GET["title"]))
+         $item->title = fieldValue($_GET["title"], "string");
+      if (isset($_GET["show"]))
+         $item->show = fieldValue($_GET["show"], "boolean");
+      }
+   }
+
+function updateSettings() {
+   $fields = array(
+      "title" =>          "string",
+      "title-font" =>     "string",
+      "title-size" =>     "string",
+      "subtitle" =>       "string",
+      "footer" =>         "string",
+      "caption-caps" =>   "boolean",
+      "caption-italic" => "boolean",
+      "cc-license" =>     "boolean",
+      "bookmarks" =>      "boolean",
+      "contact-email" =>  "string"
+      );
+   $resource = readSettingsDb();
+   if (isset($_GET["item"]))
+      updateItem($resource, $_GET["item"]);
+   else
+      foreach ($fields as $field => $type)
+         if (isset($_GET[$field]))
+            $resource->{$field} = fieldValue($_GET[$field], $type);
+   return saveSettingsDb($resource);
+   }
+
 function getPortfolioResource() {
    $resource = readGalleryDb();  //Temporary... until read portfolio folder is ready
    return $resource;
    }
 
-function getResource($loggedIn) {
+function resource($loggedIn) {
    $type =   $_GET["type"];
    $action = $_GET["action"];
    $id =     $_GET["id"];
+   $updateMode = $action === "update";
    if ($type === "security")
       $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
    elseif (!$loggedIn)
       $resource = restError(401);
+   elseif (!in_array($action, array(null, "get", "update")))
+      $resource = restError(400);
    elseif ($type === "settings")
-      $resource = readSettingsDb();
+      $resource = $updateMode ? updateSettings() : readSettingsDb();
    elseif ($type === "gallery")
       $resource = readGalleryDb();
    elseif ($type === "portfolio")
@@ -53,5 +99,5 @@ function getResource($loggedIn) {
    return $resource;
    }
 
-httpJsonResponse(getResource($loggedIn));
+httpJsonResponse(resource($loggedIn));
 ?>

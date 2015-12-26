@@ -54,6 +54,7 @@ textarea.field-large  { height: 80px; }
 .picture-frame { border: 3px solid slategray; }
 
 /* More... */
+#status-msg { font-weight: bold; }
 .image-box  { background-color: gainsboro; border: 2px solid silver;
               padding: 10px 10px 0px 10px; margin-bottom: 10px; }
 .image-box label span:first-of-type { width: 90px; }

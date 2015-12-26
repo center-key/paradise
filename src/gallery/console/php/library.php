@@ -48,17 +48,18 @@ function readAccountsDb() {
 function saveDb($dbFilename, $db) {
    if (!file_put_contents($dbFilename, json_encode($db)))
       exit("Error saving database: {$dbFilename}");
+   return $db;
    }
 
 function saveSettingsDb($db) {
    global $settingsDbFile;
-   saveDb($settingsDbFile, $db);
+   return saveDb($settingsDbFile, $db);
    }
 
 function saveAccountsDb($db) {
    global $accountsDbFile;
    logEvent("save-accounts-db", count($db->users), count($db->invites));
-   saveDb($accountsDbFile, $db);
+   return saveDb($accountsDbFile, $db);
    }
 
 function formatMsg($msg) {

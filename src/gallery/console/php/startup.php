@@ -69,6 +69,15 @@ function setupCustomCss($dataFolder) {
       exit("Error creating CSS file: {$filename}");
    }
 
+function setupCustomPage($dataFolder, $pageName) {
+   $filename = "{$dataFolder}/page-{$pageName}.html";
+   if (!file_exists($filename)) {
+      $defaultHtml = "<h3>This page is under construction.</h3>\n<hr>\nEdit: ";
+      touch($filename);
+      file_put_contents($filename, $defaultHtml . realpath($filename) . PHP_EOL);
+      }
+   }
+
 date_default_timezone_set("UTC");
 foreach(["", "graphics", "portfolio", "uploads"] as $name)
    setupDataFolder($dataFolder, $name);
@@ -80,4 +89,5 @@ setupDb($settingsDbFile, $defaultSettingsDb);
 setupDb($galleryDbFile,  $defaultGalleryDb);
 setupDb($accountsDbFile, $defaultAccountsDb);
 setupCustomCss($dataFolder);
+setupCustomPage($dataFolder, $defaultSettingsDb["pages"][1]["name"]);
 ?>
