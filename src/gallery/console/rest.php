@@ -13,6 +13,7 @@
 
 $noAuth = true;
 require "php/security.php";
+require "php/image-processing.php";
 
 function restError($code) {
    $messages = array(
@@ -28,9 +29,15 @@ function restError($code) {
       );
    }
 
+function test() {  //url: http://localhost/ppages-test/gallery/console/rest?type=command&action=test
+   return array("test" => true);
+   }
+
 function runCommand($action) {
-   if ($action === "process-uploads")
-      $resource = array("files" => 3, "message" => "TBD");  //TODO: processUploads();
+   if ($action == "test" && $_SERVER["HTTP_HOST"] === "localhost")
+      $resource = test();
+   elseif ($action === "process-uploads")
+      $resource = processUploads();
    else
       $resource = restError(400);
    return $resource;

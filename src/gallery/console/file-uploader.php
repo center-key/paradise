@@ -24,7 +24,7 @@
 require "php/security.php";
 require "file-uploader/php.php";
 
-$allowedExtensions = array("jpg", "jpeg", "png", "gif");
+$allowedExtensions = array("jpg", "jpeg", "png");
 $sizeLimit =         1 * 1024 * 1024;  //1MB
 $uploadFolder =      "../data/uploads/";
 

@@ -14,15 +14,14 @@ app.ui = {
       library.rest.get('settings',  { callback: handle });
       },
    loadPortfolio: function() {
-      function handle(data) { dna.clone('portfolio-image', data, { empty: true }); };
+      function handle(data) { dna.clone('portfolio-image', data, { empty: true, fade: true }); };
       library.rest.get('portfolio', { callback: handle });
       },
    createUploader: function() {
       var spinner = $('#processing-files').hide();
       function handle(data) {
          app.ui.statusMsg(data.message);
-         app.ui.loadPortfolio();
-         spinner.delay(2000).fadeOut();
+         spinner.delay(2000).fadeOut(app.ui.loadPortfolio);
          }
       function start() { spinner.fadeIn(); }
       var lastTimeoutId = null;
@@ -38,7 +37,7 @@ app.ui = {
          element:           $('#file-uploader')[0],
          uploadButtonText:  'Upload images',
          action:            'file-uploader.php',
-         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+         allowedExtensions: ['jpg', 'jpeg', 'png'],
          sizeLimit:         1048576,  //1MB
          onSubmit:          start,
          onComplete:        done

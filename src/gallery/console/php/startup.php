@@ -78,13 +78,15 @@ function setupCustomPage($dataFolder, $pageName) {
       }
    }
 
-date_default_timezone_set("UTC");
 foreach(["", "graphics", "portfolio", "uploads"] as $name)
    setupDataFolder($dataFolder, $name);
 $installKey = setupInstallKey($dataFolder);
 $settingsDbFile = "{$dataFolder}/settings-db.json";
 $galleryDbFile =  "{$dataFolder}/gallery-db.json";
 $accountsDbFile = "{$dataFolder}/accounts-db-{$installKey}.json";
+$uploadsFolder =   "{$dataFolder}/uploads";
+$portfolioFolder = "{$dataFolder}/portfolio";
+$galleryFolder =   "{$dataFolder}/gallery";
 setupDb($settingsDbFile, $defaultSettingsDb);
 setupDb($galleryDbFile,  $defaultGalleryDb);
 setupDb($accountsDbFile, $defaultAccountsDb);

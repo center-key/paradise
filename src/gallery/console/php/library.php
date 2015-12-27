@@ -10,6 +10,8 @@
 $version =    "v0.0.5";
 $dataFolder = "../data";
 
+date_default_timezone_set("UTC");
+
 function getProperty($map, $key) {
    return is_array($map) && isset($map[$key]) ? $map[$key] :
       (is_object($map) && isset($map->{$key}) ? $map->{$key} : null);
