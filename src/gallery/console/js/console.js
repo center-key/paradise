@@ -9,6 +9,42 @@ app.ui = {
    statusMsg: function(message) {
       $('#status-msg').text(message).hide().fadeIn();
       },
+   loadSettings: function() {
+      function handle(data) { dna.clone('gallery-settings', data); };
+      library.rest.get('settings',  { callback: handle });
+      },
+   loadPortfolio: function() {
+      function handle(data) { dna.clone('portfolio-image', data, { empty: true }); };
+      library.rest.get('portfolio', { callback: handle });
+      },
+   createUploader: function() {
+      var spinner = $('#processing-files').hide();
+      function handle(data) {
+         app.ui.statusMsg(data.message);
+         app.ui.loadPortfolio();
+         spinner.delay(2000).fadeOut();
+         }
+      function start() { spinner.fadeIn(); }
+      var lastTimeoutId = null;
+      function done(id, fileName, responseJSON) {
+         function processUploads() {
+            if (timeoutId === lastTimeoutId)
+               library.rest.get('command', { action: 'process-uploads', callback: handle });
+            }
+         var timeoutId = window.setTimeout(processUploads, 3000);  //workaround to guess when last upload in done
+         lastTimeoutId = timeoutId;
+         }
+      var options = {
+         element:           $('#file-uploader')[0],
+         uploadButtonText:  'Upload images',
+         action:            'file-uploader.php',
+         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+         sizeLimit:         1048576,  //1MB
+         onSubmit:          start,
+         onComplete:        done
+         };
+      return new qq.FileUploader(options);
+      },
    saveSettings: function(elem) {
       var field = elem.attr('name');
       var val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
@@ -26,14 +62,9 @@ app.ui = {
 
 app.setup = {
    go: function() {
-      function handleSettings(data) {
-         dna.clone('gallery-settings', data);
-         };
-      function handlePortfolio(data) {
-         dna.clone('portfolio-image', data);
-         };
-      library.rest.get('settings', { callback: handleSettings });
-      library.rest.get('portfolio',  { callback: handlePortfolio });
+      app.ui.loadSettings();
+      app.ui.loadPortfolio();
+      app.ui.createUploader();
       }
    };
 

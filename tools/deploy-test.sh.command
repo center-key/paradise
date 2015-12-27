@@ -28,7 +28,7 @@ unzipRelease() {
    echo "*** Unzip Release"
    cd $webServerFolder
    unzip -o $projectFolder/releases/ppages-install-files
-   chmod o=rwx gallery
+   chmod o+rwx gallery
    pwd
    echo
    }

@@ -14,6 +14,7 @@
 <link rel=apple-touch-icon href="http://centerkey.com/ppages/graphics/mobile-home-screen.png">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
+<link rel=stylesheet       href="file-uploader/fileuploader.css">
 <link rel=stylesheet       href="../css/reset.css">
 <link rel=stylesheet       href="css/color-blocks.css">
 <link rel=stylesheet       href="css/style.css">
@@ -22,7 +23,7 @@
 
 <header>
    <aside>
-      <p><button data-href=".." class=external-site>Visit Gallery</button></p>
+      <p><button data-href=".." class=external-site>Visit gallery</button></p>
       <p><button data-href="sign-out">Sign out</button></p>
    </aside>
    <h1>PPAGES &ndash; PHP Portfolio Art Gallery Exhibit to Showcase</h1>
@@ -49,8 +50,9 @@
    <div>
 
       <section>
-         <h3>Transfer Photos to Gallery</h3>
-         <p>Wow!</p>
+         <h3>Gallery Uploader</h3>
+         <i id=processing-files class="fa fa-spinner fa-spin"></i>
+         <div id=file-uploader></div>
       </section>
 
       <section id=gallery-settings class=dna-template>
@@ -161,6 +163,7 @@
 <script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js"></script>
 <script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
+<script src="file-uploader/fileuploader.js"></script>
 <script>var app = {}; app.clientData = <?= appClientData(true) ?>;</script>
 <script src="js/library.js"></script>
 <script src="js/console.js"></script>

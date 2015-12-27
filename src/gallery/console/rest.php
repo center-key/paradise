@@ -28,6 +28,14 @@ function restError($code) {
       );
    }
 
+function runCommand($action) {
+   if ($action === "process-uploads")
+      $resource = array("files" => 3, "message" => "TBD");  //TODO: processUploads();
+   else
+      $resource = restError(400);
+   return $resource;
+   }
+
 function fieldValue($value, $type) {
    $value = iconv("UTF-8", "UTF-8//IGNORE", $value);
    $value = str_replace("<", "&lt;", str_replace(">", "&gt;", $value));
@@ -85,6 +93,8 @@ function resource($loggedIn) {
       $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
    elseif (!$loggedIn)
       $resource = restError(401);
+   elseif ($type === "command")
+      $resource = runCommand($action);
    elseif (!in_array($action, array(null, "get", "update")))
       $resource = restError(400);
    elseif ($type === "settings")

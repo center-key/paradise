@@ -21,15 +21,15 @@
 //       ppages/src/gallery/console/file-uploader/
 //////////////////////////////////////
 
-require "php/library.php";
+require "php/security.php";
 require "file-uploader/php.php";
 
-$allowedExtensions = array("jpg", "jpeg", "png");
+$allowedExtensions = array("jpg", "jpeg", "png", "gif");
 $sizeLimit =         1 * 1024 * 1024;  //1MB
 $uploadFolder =      "../data/uploads/";
 
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 $result = $uploader->handleUpload($uploadFolder);
-logEvent("file-upload", $result["success"], $uploadFolder, $result["newFilename"]);
+logEvent("file-upload", $result["success"], $uploadFolder, $result);
 httpJsonResponse($result);
 ?>

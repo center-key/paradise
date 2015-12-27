@@ -55,6 +55,7 @@ textarea.field-large  { height: 80px; }
 
 /* More... */
 #status-msg { font-weight: bold; }
+#processing-files { float: right; font-size: 2.0rem; }
 .image-box  { background-color: gainsboro; border: 2px solid silver;
               padding: 10px 10px 0px 10px; margin-bottom: 10px; }
 .image-box label span:first-of-type { width: 90px; }
@@ -77,11 +78,15 @@ textarea.field-large  { height: 80px; }
    width: auto;
    font-size: 1.1rem;
    font-weight: bold;
+   background-color: steelblue;
    border-radius: 0.4em;
-   background-color: cornflowerblue;
-   transition: background-color 0.4s;
    padding: 0.6em 1.2em;
+   margin-bottom: 10px;
+   transition: background-color 0.4s;
    }
 .qq-upload-button:hover {
    background-color: royalblue;
+   }
+.qq-upload-list li.qq-upload-success {
+   background-color: lightslategray;
    }
