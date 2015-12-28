@@ -14,7 +14,8 @@
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
 <link rel=stylesheet       href="../css/reset.css">
-<link rel=stylesheet       href="style.css">
+<link rel=stylesheet       href="css/color-blocks.css">
+<link rel=stylesheet       href="css/style.css">
 </head>
 <body>
 

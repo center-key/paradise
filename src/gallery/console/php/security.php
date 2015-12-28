@@ -12,7 +12,7 @@
 // $noAuth (optional): If true, redirect will not happen but $loggedIn will be set to true or false.
 // $redirectAuth (optional): If set and user is authorized, redirects to named page.
 
-$sessionTimout =  1200;  //1200 seconds --> 20 mintues
+$sessionTimout =  3600;  //seconds --> 1 hour
 session_start();
 require "php/library.php";
 require "php/startup.php";
@@ -62,7 +62,7 @@ function useInvite($accountsDb, $inviteCode) {
    }
 
 function validateCreateUser($accountsDb, $email, $password, $confirm, $hash, $inviteCode, $securityMsgs) {
-   $basicEmailPattern = "/.+@.+[.].+/";
+   $basicEmailPattern = "/^.+@.+[.].+$/";
    if (!preg_match($basicEmailPattern, $email))
       $code = "invalid-email";
    elseif ($accountsDb->users->{$email})

@@ -61,7 +61,7 @@
                <span>Email:</span>
                <input name=email size=40 type=email placeholder="Enter your email address" required>
             </label>
-            <button type=submit>Send Message</button>
+            <button type=submit>Send message</button>
             <aside>Gallery powered by <a href="http://centerkey.com/ppages/">PPAGES</a></aside>
          </form>
       </section>
