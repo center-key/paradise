@@ -24,7 +24,6 @@ $defaultSettingsDb = array(
       array("name" => "contact", "title" => "Contact", "show" =>  true)
       )
    );
-$defaultGalleryDb = array();
 $defaultAccountsDb = array(
    "users" =>   array(),  //email -> created (epoch), hash, enabled (boolean)
    "invites" => array()   //inviteCode -> from, to, expires (epoch), accepted (epoch)
@@ -78,6 +77,19 @@ function setupCustomPage($dataFolder, $pageName) {
       }
    }
 
+function workaroundToUpgradePortfolio() {
+   global $portfolioFolder;
+   foreach (glob("{$portfolioFolder}/*-db.json") as $dbFilename) {
+      $db = readDb($dbFilename);
+      $db->sort =      isset($db->sort) ? $db->sort : intval($db->id) * 10000;
+      $db->original =  isset($db->original) ? $db->original : $db->{"original-file-name"};
+      $db->uploaded = isset($db->uploaded) ? $db->uploaded : $db->{"upload-date"};
+      $db->display =  isset($db->display) ? $db->display === "on" || $db->display === true : true;
+      saveDb($dbFilename, $db);
+      }
+   logEvent("portfolio-upgrade-done", "last-image", $db->id, $db);
+   }
+
 foreach(["", "graphics", "portfolio", "uploads"] as $name)
    setupDataFolder($dataFolder, $name);
 $installKey = setupInstallKey($dataFolder);
@@ -88,8 +100,8 @@ $uploadsFolder =   "{$dataFolder}/uploads";
 $portfolioFolder = "{$dataFolder}/portfolio";
 $galleryFolder =   "{$dataFolder}/gallery";
 setupDb($settingsDbFile, $defaultSettingsDb);
-setupDb($galleryDbFile,  $defaultGalleryDb);
 setupDb($accountsDbFile, $defaultAccountsDb);
 setupCustomCss($dataFolder);
 setupCustomPage($dataFolder, $defaultSettingsDb["pages"][1]["name"]);
+generateGalleryDb();
 ?>

@@ -32,9 +32,10 @@ function readDb($dbFilename) {
    return json_decode($dbStr);
    }
 
-function readSettingsDb() {
-   global $settingsDbFile;
-   return readDb($settingsDbFile);
+function saveDb($dbFilename, $db) {
+   if (!file_put_contents($dbFilename, json_encode($db)))
+      exit("Error saving database: {$dbFilename}");
+   return $db;
    }
 
 function readGalleryDb() {
@@ -42,15 +43,34 @@ function readGalleryDb() {
    return readDb($galleryDbFile);
    }
 
-function readAccountsDb() {
-   global $accountsDbFile;
-   return readDb($accountsDbFile);
+function saveGalleryDb($db) {
+   global $galleryDbFile;
+   return saveDb($galleryDbFile, $db);
    }
 
-function saveDb($dbFilename, $db) {
-   if (!file_put_contents($dbFilename, json_encode($db)))
-      exit("Error saving database: {$dbFilename}");
-   return $db;
+function readPortfolioDb() {
+   global $portfolioFolder;
+   $portfolioDb = array_map("readDb", glob("{$portfolioFolder}/*-db.json"));
+   usort($portfolioDb, function($a, $b) { return $a->sort < $b->sort ? -1 : 1; });
+   return $portfolioDb;
+   }
+
+function readPortfolioImageDb($id) {
+   global $portfolioFolder;
+   $dbFilename = "{$portfolioFolder}/{$id}-db.json";
+   logEvent("readPortfolioImageDb", $dbFilename);
+   return is_file($dbFilename) ? readDb($dbFilename, $db) : false;
+   }
+
+function savePortfolioImageDb($db) {
+   global $portfolioFolder;
+   logEvent("{$portfolioFolder}/{$db->id}-db.json", $db);
+   return saveDb("{$portfolioFolder}/{$db->id}-db.json", $db);
+   }
+
+function readSettingsDb() {
+   global $settingsDbFile;
+   return readDb($settingsDbFile);
    }
 
 function saveSettingsDb($db) {
@@ -58,10 +78,29 @@ function saveSettingsDb($db) {
    return saveDb($settingsDbFile, $db);
    }
 
+function readAccountsDb() {
+   global $accountsDbFile;
+   return readDb($accountsDbFile);
+   }
+
 function saveAccountsDb($db) {
    global $accountsDbFile;
    logEvent("save-accounts-db", count($db->users), count($db->invites));
    return saveDb($accountsDbFile, $db);
+   }
+
+function displayTrue($imageDb) { return $imageDb->display; }
+function convert($imageDb) {
+   return array(
+      "id" =>          $imageDb->id,
+      "caption" =>     $imageDb->caption,
+      "description" => $imageDb->description,
+      "badge" =>       $imageDb->badge
+      );
+   }
+function generateGalleryDb() {
+   return saveGalleryDb(array_map("convert", array_values(
+      array_filter(readPortfolioDb(), "displayTrue"))));
    }
 
 function formatMsg($msg) {

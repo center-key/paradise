@@ -1,5 +1,6 @@
 <?php require "php/security.php"; ?>
 <?php require "php/console.php"; ?>
+<?php workaroundToUpgradePortfolio(); ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- PPAGES ~ centerkey.com/ppages                 -->
@@ -41,9 +42,32 @@
       <section>
          <h3>Image Portfolio</h3>
          <div>
-            <div id=portfolio-image class=dna-template>
+            <div id=portfolio-image class=dna-template data-item-id=~~id~~>
+               <figure>
+                  <img data-attr-src="../data/portfolio/~~id~~-large.jpg" class=external-site
+                     data-href="../data/portfolio/~~id~~-large.jpg" alt="Thumbnail">
+                  <figcaption>Uploaded: <b>~~uploaded~~</b></figcaption>
+               </figure>
+               <label>
+                  <span>Display:</span>
+                  <input name=display type=checkbox data-prop-checked=~~display~~ data-change=app.ui.savePortfolio>
+                  <span>(show in gallery)</span>
+               </label>
+               <label>
+                  <span>Caption:</span>
+                  <input name=caption value=~~caption~~ data-smart-update=app.ui.savePortfolio>
+               </label>
+               <label>
+                  <span>Description:</span>
+                  <textarea name=description data-smart-update=app.ui.savePortfolio>~~description~~</textarea>
+               </label>
+               <label>
+                  <span>Badge:</span>
+                  <input name=badge value=~~badge~~ data-smart-update=app.ui.savePortfolio>
+               </label>
             </div>
          </div>
+         <div data-placeholder=portfolio-image>No images in your portfolio yet.</div>
       </section>
 
    </div>
@@ -127,13 +151,13 @@
          <fieldset class=settings-tabs>
             <legend>Tabs</legend>
             <div>
-               <div data-array=~~pages~~>
+               <div data-array=~~pages~~ data-item-id=~~[count]~~ data-item-type=page>
                   <label>
                      <span>#<span>~~[count]~~</span>:</span>
-                     <input name=title value=~~title~~ data-item=page data-item-id=~~[count]~~ data-smart-update=app.ui.saveSettings placeholder="Title for menu tab">
+                     <input name=title value=~~title~~ data-smart-update=app.ui.saveSettings placeholder="Title for menu tab">
                   </label>
                   <label>
-                     <input name=show type=checkbox data-prop-checked=~~show~~ data-item=page data-item-id=~~[count]~~ data-change=app.ui.saveSettings>
+                     <input name=show type=checkbox data-prop-checked=~~show~~ data-change=app.ui.saveSettings>
                      <span>display</span>
                   </label>
                </div>

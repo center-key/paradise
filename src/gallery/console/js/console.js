@@ -14,8 +14,32 @@ app.ui = {
       library.rest.get('settings',  { callback: handle });
       },
    loadPortfolio: function() {
-      function handle(data) { dna.clone('portfolio-image', data, { empty: true, fade: true }); };
+      function handle(data) {
+         dna.clone('portfolio-image', data, { empty: true, fade: true });
+         app.ui.statusMsg('Portfolio images: ' + data.length);
+         };
       library.rest.get('portfolio', { callback: handle });
+      },
+   save: function(elem, type, id) {
+      var field = elem.attr('name');
+      var val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
+      app.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
+      var params = { [field]: val };
+      var item = elem.closest('[data-item-id]').data();
+      if (item && item.itemId)
+         params.id = item.itemId;
+      if (item && item.itemType)
+         params.item = item.itemType;
+      library.rest.get(type, { action: 'update', params: params  });
+      },
+   savePortfolio: function(elem) {
+      app.ui.save(elem, 'portfolio');
+      },
+   saveSettings: function(elem) {
+      var item = elem.closest('[data-item-id]');  //workaround
+      if (item.length)                            //workaround
+         item.data().itemId = item.index() + 1;   //workaround
+      app.ui.save(elem, 'settings');
       },
    createUploader: function() {
       var spinner = $('#processing-files').hide();
@@ -43,19 +67,6 @@ app.ui = {
          onComplete:        done
          };
       return new qq.FileUploader(options);
-      },
-   saveSettings: function(elem) {
-      var field = elem.attr('name');
-      var val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
-      app.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
-      var params = { [field]: val };
-      function addItemParams() {
-         params.id =   elem.closest('div').index() + 1;  /* elem.data().itemId; */
-         params.item = elem.data().item;
-         }
-      if (elem.data().item)
-         addItemParams();
-      library.rest.get('settings', { action: 'update', params: params  });
       }
    };
 

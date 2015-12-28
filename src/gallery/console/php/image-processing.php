@@ -58,8 +58,6 @@ function createImages($origFile, $id) {
 
 function processUploads() {
    global $uploadsFolder, $portfolioFolder;
-   $files = scandir($uploadsFolder);
-   logEvent("process-uploads-folder", $uploadsFolder, count($files), $files);
    $files = glob("{$uploadsFolder}/*.{jpg,jpeg,png}", GLOB_BRACE);
    foreach ($files as $filename) {
       $id = getNextImageId();
@@ -69,9 +67,14 @@ function processUploads() {
       createImages($origFile, $id);
       $dbFilename = "{$portfolioFolder}/{$id}-db.json";
       $imageDb = array(
-         "id" =>       $id,
-         "original" => basename($filename),
-         "uploaded" => gmdate("Y-m-d")
+         "id" =>          $id,
+         "sort" =>        intval($id) * 10000,
+         "original" =>    basename($filename),
+         "uploaded" =>    gmdate("Y-m-d"),
+         "display" =>     false,
+         "caption" =>     "",
+         "description" => "",
+         "badge" =>       ""
          );
       saveDb($dbFilename, $imageDb);
       }

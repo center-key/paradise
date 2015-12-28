@@ -38,6 +38,8 @@ function runCommand($action) {
       $resource = test();
    elseif ($action === "process-uploads")
       $resource = processUploads();
+   elseif ($action === "generate-gallery")
+      $resource = generateGalleryDb();
    else
       $resource = restError(400);
    return $resource;
@@ -53,8 +55,8 @@ function fieldValue($value, $type) {
    return $value;
    }
 
-function updateItem($resource, $itemName) {
-   if ($itemName === "page") {
+function updateItem($resource, $itemType) {
+   if ($itemType === "page") {
       $item = $resource->pages[fieldValue($_GET["id"], "integer") - 1];
       if (isset($_GET["title"]))
          $item->title = fieldValue($_GET["title"], "string");
@@ -86,9 +88,23 @@ function updateSettings() {
    return saveSettingsDb($resource);
    }
 
-function getPortfolioResource() {
-   $resource = readGalleryDb();  //Temporary... until read portfolio folder is ready
-   return $resource;
+function updatePortfolio($id) {
+   $fields = array(
+      "sort" =>        "integer",
+      "display" =>     "boolean",
+      "caption" =>     "string",
+      "description" => "string",
+      "badge" =>       "string"
+      );
+   $resource = readPortfolioImageDb($id);
+   if ($resource) {
+      foreach ($fields as $field => $type)
+         if (isset($_GET[$field]))
+            $resource->{$field} = fieldValue($_GET[$field], $type);
+      savePortfolioImageDb($resource);
+      generateGalleryDb();
+      }
+   return $resource ?: restError(404);
    }
 
 function resource($loggedIn) {
@@ -109,7 +125,7 @@ function resource($loggedIn) {
    elseif ($type === "gallery")
       $resource = readGalleryDb();
    elseif ($type === "portfolio")
-      $resource = getPortfolioResource();
+      $resource = $updateMode ? updatePortfolio($id) : readPortfolioDb();
    else
       $resource = restError(404);
    logEvent("get-resource", $type, $action, $id, !getProperty($resource, "error"));

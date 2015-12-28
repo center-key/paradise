@@ -16,7 +16,27 @@ body >footer { font-size: 0.8rem; color: white; background-color: darkgray; padd
 body >footer a { color: white; }
 body >footer >div:last-child:not(:first-child) { text-align: right; }
 
-/* Form fields */
+/* Component: Security */
+.component-security.create h3:first-child { display: none; }
+.component-security.create h3:first-child { display: none; }
+.component-security.invite p.for-create   { display: none; }
+.component-security .for-create           { display: none; }
+.component-security.create .for-create    { display: block; }
+.component-security .invite-code          { display: none; }
+.component-security.invite .invite-code   { display: block; }
+.component-security >p { color: firebrick; }
+
+/* Component: Image Portfolio */
+.portfolio-image { background-color: gainsboro; border: 2px solid silver; padding: 10px; margin: 10px 0px 0px 0px; }
+.portfolio-image figure { float: right; text-align: center; margin: 0px; }
+.portfolio-image figure img { max-width: 180px; max-height: 180px; border: 2px solid black; transition: all 0.4s; }
+.portfolio-image figure img:hover { border-color: darkgray; }
+.portfolio-image figure figcaption { font-size: 0.7rem; }
+.portfolio-image >label >input[type=checkbox] { margin: 12px 0px 0px 3px; }
+.portfolio-image >label >[name] { max-width: 200px; }
+.portfolio-image >label >[name=badge] { width: 100px; }
+
+/* Component: Gallery Settings */
 fieldset >label { display: flex; justify-content: flex-end; align-items: center; }
 fieldset >label { width: auto; margin-bottom: 15px; }
 fieldset >label:last-child { margin-bottom: 5px; }
@@ -34,43 +54,9 @@ fieldset >div >div >label:first-child input { width: 140px; }
 fieldset >div >div >label:last-child input { margin: 0px 0px 0px 10px; }
 fieldset >div >div:first-child >label:last-child { visibility: hidden; }
 
-/* Componoents */
-.component-security.create h3:first-child { display: none; }
-.component-security.create h3:first-child { display: none; }
-.component-security.invite p.for-create   { display: none; }
-.component-security .for-create           { display: none; }
-.component-security.create .for-create    { display: block; }
-.component-security .invite-code          { display: none; }
-.component-security.invite .invite-code   { display: block; }
-.component-security >p { color: firebrick; }
-
-/* Tools */
-.field-tiny   { width:  40px; }
-.field-small  { width:  80px; }
-.field-medium { width: 160px; }
-.field-large  { width: 240px; }
-textarea.field-medium { height: 60px; }
-textarea.field-large  { height: 80px; }
-.picture-frame { border: 3px solid slategray; }
-
-/* More... */
+/* Extras */
 #status-msg { font-weight: bold; }
 #processing-files { float: right; font-size: 2.0rem; }
-.image-box  { background-color: gainsboro; border: 2px solid silver;
-              padding: 10px 10px 0px 10px; margin-bottom: 10px; }
-.image-box label span:first-of-type { width: 90px; }
-.image-box .sans-label { margin-left: 95px; }
-.image-box .portfolio-caption { width: 230px; }
-.image-box .portfolio-description { width: 230px; height: 60px; }
-.image-box .portfolio-badge { width: 100px; }
-.image-box img { max-width: 200px; }
-#settings-website input[type=text] { width: 200px; }
-#settings-website select[name=title-font] { font-size: 90%; }
-#settings-website .input-group-down > label { padding-top: 0.5em; }
-#settings-website .input-group-down span { width: auto; padding: 0px; }
-#settings-website .input-group-down input { margin: 0px !important; }
-#settings-website .input-group-down div.input-group { vertical-align: top; text-align: left; }
-#settings-menu-bar input { width: 150px; }
 
 /* Customize photo upload button */
 .qq-upload-button {
