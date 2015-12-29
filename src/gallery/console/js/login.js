@@ -28,7 +28,6 @@ app.login = {
          dna.ui.slidingFlasher(component.find('.error-message').text(msg));
          }
       function handle(data) {
-         console.log('response:', data);
          if (data.authenticated)
             window.location.href = '.';
          else
@@ -46,6 +45,5 @@ app.login = {
       component.find('input[type=email]').val(params.email);
       function isEmpty() { return !$(this).val().length; }
       component.find('input:visible').filter(isEmpty).first().focus();
-      console.log('login-setup', component.attr('class'), params);
       }
    };

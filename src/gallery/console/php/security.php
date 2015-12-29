@@ -14,8 +14,8 @@
 
 $sessionTimout =  3600;  //seconds --> 1 hour
 session_start();
-require "php/library.php";
-require "php/startup.php";
+require "library.php";
+require "startup.php";
 
 function redirectToPage($page) {
    logEvent("page-redirect", $page, $_SERVER["REQUEST_URI"]);
@@ -30,7 +30,6 @@ function userEnabled() {
 function calculateHash($user, $password) {
    $blowfish = "$2y$10$";
    $salt = md5(getProperty($user, "created"));  //md5 (32 characters) used to meet 22 character minimum
-   logEvent("calculate-hash", $user, $password, $blowfish, $salt, crypt($password, "$2y$10$" . $salt));
    return crypt($password, $blowfish . $salt);
    }
 

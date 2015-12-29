@@ -90,7 +90,7 @@ function workaroundToUpgradePortfolio() {
    logEvent("portfolio-upgrade-done", "last-image", $db->id, $db);
    }
 
-foreach(["", "graphics", "portfolio", "uploads"] as $name)
+foreach(array("", "graphics", "portfolio", "uploads") as $name)
    setupDataFolder($dataFolder, $name);
 $installKey = setupInstallKey($dataFolder);
 $settingsDbFile = "{$dataFolder}/settings-db.json";

@@ -22,7 +22,8 @@ function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight,
    $newImage = imagecreatetruecolor($newWidth, $newHeight);
    imagecopyresampled($newImage, $origImage, 0, 0, 0, 0,
       $newWidth, $newHeight, $origWidth, $origHeight);
-   if (pathinfo($newfile)["extension"] === ".png")
+   $pathInfo = pathinfo($newfile);
+   if ($pathInfo["extension"] === ".png")
       imagepng($newImage, $newFile);
    else
       imagejpeg($newImage, $newFile);
@@ -61,7 +62,8 @@ function processUploads() {
    $files = glob("{$uploadsFolder}/*.{jpg,jpeg,png}", GLOB_BRACE);
    foreach ($files as $filename) {
       $id = getNextImageId();
-      $extention = strtolower(pathinfo($filename)["extension"]);
+      $pathInfo = pathinfo($newfile);
+      $extention = strtolower($pathInfo["extension"]);
       $origFile = "{$portfolioFolder}/{$id}-original.{$extention}";
       rename($filename, $origFile);
       createImages($origFile, $id);

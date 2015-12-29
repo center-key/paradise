@@ -1,4 +1,4 @@
-<?php $noAuth = true; $redirectAuth = "."; require "php/security.php"; ?>
+<?php $noAuth = true; $redirectAuth = ".."; require "../php/security.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- PPAGES ~ centerkey.com/ppages                 -->
@@ -13,9 +13,9 @@
 <link rel=apple-touch-icon href="http://centerkey.com/ppages/graphics/mobile-home-screen.png">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
-<link rel=stylesheet       href="../css/reset.css">
-<link rel=stylesheet       href="css/color-blocks.css">
-<link rel=stylesheet       href="css/style.css">
+<link rel=stylesheet       href="../../css/reset.css">
+<link rel=stylesheet       href="../css/color-blocks.css">
+<link rel=stylesheet       href="../css/style.css">
 </head>
 <body>
 
@@ -66,7 +66,7 @@
 <script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js"></script>
 <script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
 <script>var app = {}; app.clientData = <?= appClientData(false) ?>;</script>
-<script src="js/library.js"></script>
-<script src="js/login.js"></script>
+<script src="../js/library.js"></script>
+<script src="../js/login.js"></script>
 </body>
 </html>

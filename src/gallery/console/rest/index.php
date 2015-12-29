@@ -12,8 +12,8 @@
 //    gallery/console/rest?type=settings&action=update&caption-italic=true
 
 $noAuth = true;
-require "php/security.php";
-require "php/image-processing.php";
+require "../php/security.php";
+require "../php/image-processing.php";
 
 function restError($code) {
    $messages = array(

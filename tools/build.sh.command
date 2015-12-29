@@ -15,9 +15,7 @@ version=$(awk -F\" '/version = / { print $2 }' $projectFolder/src/gallery/consol
 runStaticAnalyzer() {
    echo "*** Analyzing"
    cd $projectFolder/src
-   for file in gallery/*.php gallery/console/*.php gallery/console/php/*.php; do
-      php -l $file
-      done
+   find . -name "*.php" -exec php -l {} \;
    echo
    }
 

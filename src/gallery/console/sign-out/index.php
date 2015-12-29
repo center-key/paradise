@@ -6,8 +6,8 @@
 
 // User logout
 $noAuth = true;
-require "php/security.php";
+require "../php/security.php";
 logEvent("user-logout", session_id());
 session_destroy();
-header("Location: ./sign-in");
+header("Location: ../sign-in");
 ?>

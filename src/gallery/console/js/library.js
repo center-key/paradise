@@ -13,7 +13,8 @@ library.rest = {
    // Example:
    //    library.rest.get('book', { id: 21, callback: handle });
    makeUrl: function(resourceType, action, params) {
-      var url = 'rest?type=' + resourceType;
+      var url = window.location.href.match(/^.*console/)[0] + '/rest/?type=' + resourceType;
+      //TODO: figure out why trailing slash is needed for post requests, see: http://stackoverflow.com/questions/12195883/jquery-ajax-is-sending-get-instead-of-post
       if (action)
          url = url + '&action=' + action;
       function appendParam(key) { url = url + '&' + key + '=' + encodeURIComponent(params[key]); }
@@ -36,7 +37,6 @@ library.rest = {
       var url = library.rest.makeUrl(resourceType, options.action, options.params);
       console.log('post:', url);
       function handleResponse(json) {
-         console.log('handle-response', options, json);
          if (json.error)
             console.error(url, json);
          else if (options.callback)

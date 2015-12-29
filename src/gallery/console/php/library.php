@@ -8,7 +8,7 @@
 // Constants and general utilities
 
 $version =    "v0.1.0";
-$dataFolder = "../data";
+$dataFolder = str_replace("console/php", "data", __DIR__);
 
 date_default_timezone_set("UTC");
 
@@ -113,8 +113,8 @@ function logEvent() {  //any number of parameters to log
    $delimiter = " | ";
    $logFilename =     "{$dataFolder}/log-{$installKey}.txt";
    $archiveFilename = "{$dataFolder}/log-archive-{$installKey}.txt";
-   $milliseconds = substr(explode(" ", microtime())[0], 1, 4);
-   $event = array(date("Y-m-d H:i:s"), $milliseconds, $delimiter, formatMsg($_SESSION["user"]));
+   $milliseconds = substr(microtime(), 2, 3);
+   $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg($_SESSION["user"]));
    foreach (func_get_args() as $msg) {
       $event[] = $delimiter;
       $event[] = formatMsg($msg);
