@@ -7,7 +7,7 @@
 // Library
 // Constants and general utilities
 
-$version =    "v0.0.5";
+$version =    "v0.1.0";
 $dataFolder = "../data";
 
 date_default_timezone_set("UTC");
