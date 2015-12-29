@@ -21,7 +21,7 @@ $defaultSettingsDb = array(
    "pages" => array(
       array("name" => "gallery", "title" => "Gallery", "show" =>  true),
       array("name" => "artist",  "title" => "Artist",  "show" =>  false),
-      array("name" => "contact", "title" => "Contact", "show" =>  true)
+      array("name" => "contact", "title" => "Contact", "show" =>  false)
       )
    );
 $defaultAccountsDb = array(
