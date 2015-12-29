@@ -17,11 +17,6 @@ session_start();
 require "php/library.php";
 require "php/startup.php";
 
-function getHash($password) {
-   global $installKey;
-   return crypt($password, "$2a$10$" . $installKey);
-   }
-
 function redirectToPage($page) {
    logEvent("page-redirect", $page, $_SERVER["REQUEST_URI"]);
    header("Location: ./{$page}");
@@ -32,7 +27,15 @@ function userEnabled() {
    return readAccountsDb()->users->{$_SESSION["user"]}->enabled;  //TODO: optimize to prevent re-reading db later
    }
 
-function verifyPassword($user, $hash) {
+function calculateHash($user, $password) {
+   $blowfish = "$2y$10$";
+   $salt = md5(getProperty($user, "created"));  //md5 (32 characters) used to meet 22 character minimum
+   logEvent("calculate-hash", $user, $password, $blowfish, $salt, crypt($password, "$2y$10$" . $salt));
+   return crypt($password, $blowfish . $salt);
+   }
+
+function verifyPassword($user, $password) {
+   $hash = calculateHash($user, $password);  //always calculate hash to counter timing attacks
    return $user && $user->enabled && $user->hash === $hash;
    }
 
@@ -42,9 +45,10 @@ function loginUser($email) {
    logEvent("user-login", session_id());
    }
 
-function createUser($accountsDb, $email, $hash) {
+function createUser($accountsDb, $email, $password) {
    logEvent("create-user", $email);
-   $user = array("created" => time(), "hash" => $hash, "enabled" => true);
+   $user = array("created" => time(), "enabled" => true);
+   $user["hash"] = calculateHash($user, $password);
    $accountsDb->users[$email] = $user;
    saveAccountsDb($accountsDb);
    loginUser($email);
@@ -61,7 +65,7 @@ function useInvite($accountsDb, $inviteCode) {
    return $invite && $invite->accepted === $now;
    }
 
-function validateCreateUser($accountsDb, $email, $password, $confirm, $hash, $inviteCode, $securityMsgs) {
+function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode, $securityMsgs) {
    $basicEmailPattern = "/^.+@.+[.].+$/";
    if (!preg_match($basicEmailPattern, $email))
       $code = "invalid-email";
@@ -70,7 +74,7 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $hash, $in
    elseif ($password !== $confirm)
       $code = "mismatch";
    elseif (empty($accountsDb->users) || useInvite($accountsDb, $inviteCode))
-      createUser($accountsDb, $email, $hash);
+      createUser($accountsDb, $email, $password);
    else
       $code = "bad-invite-code";
    logEvent("validate-create-user", is_null($code), $code);
@@ -86,14 +90,13 @@ function securityRequest($action, $email, $password, $confirm, $inviteCode) {
       "user-exists" =>     "That email address is already in use.",
       "create-fail" =>     "Cannot create user."
       );
-   $hash = getHash($password);  //always run crypt to counter timing attacks
    $email = strtolower(trim($email));
    $accountsDb = readAccountsDb();
    $user = array_key_exists($email, $accountsDb->users) ? $accountsDb->users->{$email} : null;
    if ($action === "login")
-      $msg = verifyPassword($user, $hash) ? loginUser($email) : $securityMsgs["bad-credentials"];
+      $msg = verifyPassword($user, $password) ? loginUser($email) : $securityMsgs["bad-credentials"];
    elseif ($action === "create")
-      $msg = validateCreateUser($accountsDb, $email, $password, $confirm, $hash, $inviteCode, $securityMsgs);
+      $msg = validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode, $securityMsgs);
    else
       $msg = "Invalid request.";
    $success = is_null($msg);
