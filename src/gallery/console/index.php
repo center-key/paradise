@@ -24,8 +24,8 @@
 
 <header>
    <aside>
-      <p><button data-href=".." class=external-site>Visit gallery</button></p>
-      <p><button data-href="sign-out">Sign out</button></p>
+      <button data-href=".." class=external-site>Visit gallery</button>
+      <button data-href="sign-out">Sign out</button>
    </aside>
    <h1>PPAGES &ndash; PHP Portfolio Art Gallery Exhibit to Showcase</h1>
    <h2>Administrator Console</h2>
@@ -173,7 +173,7 @@
             <div><b><?= $_SESSION["user"] ?></b></div>
          </fieldset>
          <fieldset>
-            <legend>Accounts</legend>
+            <legend>All accounts</legend>
             <div>
                <div id=user-account class=dna-template>~~[value]~~</div>
             </div>
