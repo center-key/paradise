@@ -7,7 +7,7 @@
 
 app.ui = {
    statusMsg: function(message) {
-      $('#status-msg').text(message).hide().fadeIn();
+      $('#status-msg').text(message).fadeOut(0).fadeIn();
       },
    loadSettings: function() {
       function handle(data) { dna.clone('gallery-settings', data); }
