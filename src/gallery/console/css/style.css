@@ -28,7 +28,8 @@ body >footer >div:last-child:not(:first-child) { text-align: right; }
 .component-security >p { color: firebrick; }
 
 /* Component: Image Portfolio */
-.portfolio-image { background-color: gainsboro; border: 2px solid silver; padding: 10px; margin: 10px 0px 0px 0px; }
+.portfolio-image { background-color: gainsboro; border: 2px solid silver; }
+.portfolio-image { padding: 10px; margin: 10px 0px 0px 0px; }
 .portfolio-image figure { float: right; text-align: center; margin: 0px; }
 .portfolio-image figure img { max-width: 180px; max-height: 180px; border: 2px solid black; transition: all 0.4s; }
 .portfolio-image figure img:hover { border-color: darkgray; }
@@ -63,20 +64,8 @@ fieldset >div >div:first-child >label:last-child { visibility: hidden; }
 #processing-files { float: right; font-size: 2.0rem; }
 
 /* Customize photo upload button */
-.qq-upload-button {
-   display: inline-block;
-   width: auto;
-   font-size: 1.1rem;
-   font-weight: bold;
-   background-color: steelblue;
-   border-radius: 0.4em;
-   padding: 0.6em 1.2em;
-   margin-bottom: 10px;
-   transition: background-color 0.4s;
-   }
-.qq-upload-button:hover {
-   background-color: royalblue;
-   }
-.qq-upload-list li.qq-upload-success {
-   background-color: lightslategray;
-   }
+.qq-upload-button { display: inline-block; width: auto; font-size: 1.1rem; font-weight: bold;
+   background-color: steelblue; border-radius: 0.4em; padding: 0.6em 1.2em; margin-bottom: 10px;
+   transition: background-color 0.4s; }
+.qq-upload-button:hover { background-color: royalblue; }
+.qq-upload-list li.qq-upload-success { background-color: lightslategray; }

@@ -22,8 +22,8 @@ main >div >section h3 { font-size: 1.2rem; color: white; padding: 3px 8px; margi
 main >div >section h4 { display: table; font-size: 0.8rem; background-color: silver; color: white; padding: 2px 8px; margin-bottom: 2px; }
 main >div >section aside { width: 35%; text-align: center; font-size: 0.8rem; border: 1px solid silver; padding: 5px; }
 main >div >section aside img { width: 100%; border: 1px solid black; }
-main >div >section fieldset { text-align: right; border: 1px solid; border-color: inherit; margin: 15px 0px 5px 0px; }
-main >div >section fieldset legend { border-color: inherit; }
+main >div >section fieldset { border: 1px solid; border-color: inherit; margin: 15px 0px 5px 0px; }
+main >div >section fieldset legend { text-align: right; border-color: inherit; }
 main >div:nth-child(1) >section:nth-child(3n+1)    { border-color:     rosybrown; }
 main >div:nth-child(1) >section:nth-child(3n+1) h3 { background-color: rosybrown; }
 main >div:nth-child(1) >section:nth-child(3n+2)    { border-color:     cadetblue; }
