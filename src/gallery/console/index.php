@@ -48,7 +48,7 @@
                      data-href="../data/portfolio/~~id~~-large.jpg" alt="Thumbnail">
                   <figcaption>Uploaded: <b>~~uploaded~~</b></figcaption>
                </figure>
-               <label>
+               <label data-class=~~display,display-on,display-off~~>
                   <span>Display:</span>
                   <input name=display type=checkbox data-prop-checked=~~display~~ data-change=app.ui.savePortfolio>
                   <span>(show in gallery)</span>
@@ -166,8 +166,18 @@
       </section>
 
       <section>
-         <h3>User Accounts</h3>
-         <p>Wow!</p>
+         <h3>Administrators</h3>
+         <fieldset>
+            <legend>Your profile</legend>
+            <div>Email:</div>
+            <div><b><?= $_SESSION["user"] ?></b></div>
+         </fieldset>
+         <fieldset>
+            <legend>Accounts</legend>
+            <div>
+               <div id=user-account class=dna-template>~~[value]~~</div>
+            </div>
+         </fieldset>
       </section>
 
    </div>
@@ -180,7 +190,7 @@
    </div>
    <div>
       PPAGES <?= $version ?><br>
-      <b><?= $_SESSION["user"] ?></b> logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
+      Logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
    </div>
 </footer>
 

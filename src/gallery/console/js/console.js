@@ -10,14 +10,14 @@ app.ui = {
       $('#status-msg').text(message).hide().fadeIn();
       },
    loadSettings: function() {
-      function handle(data) { dna.clone('gallery-settings', data); };
+      function handle(data) { dna.clone('gallery-settings', data); }
       library.rest.get('settings',  { callback: handle });
       },
    loadPortfolio: function() {
       function handle(data) {
          dna.clone('portfolio-image', data, { empty: true, fade: true });
          app.ui.statusMsg('Portfolio images: ' + data.length);
-         };
+         }
       library.rest.get('portfolio', { callback: handle });
       },
    save: function(elem, type, id) {
@@ -40,6 +40,10 @@ app.ui = {
       if (item.length)                            //workaround
          item.data().itemId = item.index() + 1;   //workaround
       app.ui.save(elem, 'settings');
+      },
+   loadAccounts: function(elem) {
+      function handle(data) { dna.clone('user-account', data); }
+      library.rest.get('account', { callback: handle });
       },
    createUploader: function() {
       var spinner = $('#processing-files').hide();
@@ -74,6 +78,7 @@ app.setup = {
    go: function() {
       app.ui.loadSettings();
       app.ui.loadPortfolio();
+      app.ui.loadAccounts();
       app.ui.createUploader();
       }
    };

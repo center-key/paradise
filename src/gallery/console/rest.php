@@ -126,6 +126,8 @@ function resource($loggedIn) {
       $resource = readGalleryDb();
    elseif ($type === "portfolio")
       $resource = $updateMode ? updatePortfolio($id) : readPortfolioDb();
+   elseif ($type === "account")
+      $resource = array_keys(get_object_vars(readAccountsDb()->users));
    else
       $resource = restError(404);
    logEvent("get-resource", $type, $action, $id, !getProperty($resource, "error"));

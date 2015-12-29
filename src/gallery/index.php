@@ -14,8 +14,8 @@
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/slimbox/2/css/slimbox2.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
-<link rel=stylesheet       href="css/reset.css" >
-<link rel=stylesheet       href="css/style.css" >
+<link rel=stylesheet       href="css/reset.css">
+<link rel=stylesheet       href="css/style.css">
 <link rel=stylesheet       href="data/custom-style.css">
 <style>
    @import url(http://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
