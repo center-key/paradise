@@ -4,12 +4,21 @@
 // GPLv3 ~ Copyright (c) individual contributors //
 ///////////////////////////////////////////////////
 
-// REST
+// REST Web Services
 //
-// Get resource:
-//    gallery/console/rest?type=gallery
+// Example read resource:
+//    GET/HTTP gallery/console/rest?type=gallery
 // Update value:
-//    gallery/console/rest?type=settings&action=update&caption-italic=true
+//    GET/HTTP gallery/console/rest?type=settings&action=update&caption-italic=true
+//
+// Type       Action
+// ---------  ------
+// security   login, create
+// command    process-uploads, generate-gallery
+// settings   get, update
+// gallery    get
+// portfolio  get, update, list
+// account    list
 
 $noAuth = true;
 require "../php/security.php";
@@ -107,30 +116,43 @@ function updatePortfolio($id) {
    return $resource ?: restError(404);
    }
 
+function settingsRequest($action) {
+   return $action === "update" ? updateSettings() : readSettingsDb();
+   }
+
+function galleryRequest() {
+   return readGalleryDb();
+   }
+
+function portfolioRequest($action, $id) {
+   return $action === "update" ? updatePortfolio($id) : readPortfolioDb();
+   }
+
+function accountRequest($action, $email) {
+   return array_keys(get_object_vars(readAccountsDb()->users));
+   }
+
 function resource($loggedIn) {
+   $routes = array(
+      "settings" =>  function($action) { return settingsRequest($action); },
+      "gallery" =>   function($action) { return galleryRequest(); },
+      "portfolio" => function($action) { return portfolioRequest($action, $_GET["id"]); },
+      "account" =>   function($action) { return accountRequest($action, $_GET["email"]); }
+      );
    $type =   $_GET["type"];
-   $action = $_GET["action"];
-   $id =     $_GET["id"];
-   $updateMode = $action === "update";
+   $action = $_GET["action"] ?: "get";
+   $standardAction = in_array($action, array("create", "get", "update", "list"));
    if ($type === "security")
       $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
    elseif (!$loggedIn)
       $resource = restError(401);
    elseif ($type === "command")
       $resource = runCommand($action);
-   elseif (!in_array($action, array(null, "get", "update")))
-      $resource = restError(400);
-   elseif ($type === "settings")
-      $resource = $updateMode ? updateSettings() : readSettingsDb();
-   elseif ($type === "gallery")
-      $resource = readGalleryDb();
-   elseif ($type === "portfolio")
-      $resource = $updateMode ? updatePortfolio($id) : readPortfolioDb();
-   elseif ($type === "account")
-      $resource = array_keys(get_object_vars(readAccountsDb()->users));
+   elseif (isset($routes[$type]) && $standardAction)
+      $resource = $routes[$type]($action);
    else
-      $resource = restError(404);
-   logEvent("get-resource", $type, $action, $id, !getProperty($resource, "error"));
+      $resource = restError(400);
+   logEvent("get-resource", $type, $action, $_GET["id"], !getProperty($resource, "error"));
    return $resource;
    }
 
