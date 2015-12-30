@@ -165,7 +165,7 @@
          </fieldset>
       </section>
 
-      <section>
+      <section class=admin-accounts>
          <h3>Administrators</h3>
          <fieldset>
             <legend>Your profile</legend>
@@ -173,9 +173,28 @@
             <div><b><?= $_SESSION["user"] ?></b></div>
          </fieldset>
          <fieldset>
-            <legend>All accounts</legend>
+            <legend>Accounts</legend>
             <div>
                <div id=user-account class=dna-template>~~[value]~~</div>
+            </div>
+         </fieldset>
+         <fieldset>
+            <legend>Current invitations</legend>
+            <div>
+               <div id=account-invite class=dna-template>
+                  <span>~~date~~</span>: <b>~~to~~</b>
+               </div>
+            </div>
+            <i data-placeholder=account-invite>No outstanding invitations.</i>
+            <div class=send-invite>
+               <button data-click=app.invites.prompt>New account</button>
+               <div>
+                  <label>
+                     <span>Email:</span>
+                     <input type=email data-key-up=app.invites.validate placeholder="New user's email address">
+                  </label>
+                  <button data-click=app.invites.send disabled>Send invitation</button>
+               </div>
             </div>
          </fieldset>
       </section>

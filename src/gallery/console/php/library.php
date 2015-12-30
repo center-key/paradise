@@ -103,6 +103,11 @@ function generateGalleryDb() {
       array_filter(readPortfolioDb(), "displayTrue"))));
    }
 
+function validEmailFormat($email) {
+   $basicEmailPattern = "/^.+@.+[.].+$/";
+   return preg_match($basicEmailPattern, $email) === 1;
+   }
+
 function formatMsg($msg) {
    return is_null($msg) ? "[null]" : ($msg === true ? "[true]" : ($msg === false ? "[false]" :
       (empty($msg) ? "[empty]" : (is_object($msg) || is_array($msg) ? json_encode($msg) : $msg))));

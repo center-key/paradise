@@ -11,11 +11,14 @@ body >header, body >main, body >footer { width: 900px; clear: both; margin: 0px 
 body >header h1 { font-size: 1.4rem; margin: 0px; }
 body >header h2 { font-size: 1.1rem; font-weight: normal; }
 body >header aside { text-align: right; }
-body >header aside button { font-size: 0.9rem; }
 body >footer { display: flex; justify-content: space-between; align-items: center; }
 body >footer { font-size: 0.8rem; color: white; background-color: darkgray; padding: 10px; }
 body >footer a { color: white; }
 body >footer >div:last-child:not(:first-child) { text-align: right; }
+
+/* Style */
+button { font-size: 0.9rem; }
+#status-msg { font-weight: bold; }
 
 /* Component: Security */
 .component-security.create h3:first-child { display: none; }
@@ -40,6 +43,14 @@ body >footer >div:last-child:not(:first-child) { text-align: right; }
 .portfolio-image >label >[name] { max-width: 200px; }
 .portfolio-image >label >[name=badge] { width: 100px; }
 
+/* Component: File Uploader */
+.qq-upload-button { display: inline-block; width: auto; font-size: 1.1rem; font-weight: bold;
+   background-color: steelblue; border-radius: 0.4em; padding: 0.6em 1.2em; margin-bottom: 10px;
+   transition: background-color 0.4s; }
+.qq-upload-button:hover { background-color: royalblue; }
+.qq-upload-list li.qq-upload-success { background-color: lightslategray; }
+#processing-files { float: right; font-size: 2.0rem; }
+
 /* Component: Gallery Settings */
 section.gallery-settings fieldset { text-align: right; }
 fieldset >label { display: flex; justify-content: flex-end; align-items: center; }
@@ -59,13 +70,8 @@ fieldset >div >div >label:first-child input { width: 140px; }
 fieldset >div >div >label:last-child input { margin: 0px 0px 0px 10px; }
 fieldset >div >div:first-child >label:last-child { visibility: hidden; }
 
-/* Extras */
-#status-msg { font-weight: bold; }
-#processing-files { float: right; font-size: 2.0rem; }
-
-/* Customize photo upload button */
-.qq-upload-button { display: inline-block; width: auto; font-size: 1.1rem; font-weight: bold;
-   background-color: steelblue; border-radius: 0.4em; padding: 0.6em 1.2em; margin-bottom: 10px;
-   transition: background-color 0.4s; }
-.qq-upload-button:hover { background-color: royalblue; }
-.qq-upload-list li.qq-upload-success { background-color: lightslategray; }
+/* Component: Administrator Accounts */
+.admin-accounts .send-invite { text-align: right; padding-top: 10px; }
+.admin-accounts .send-invite >button+div { display: none; }
+.admin-accounts .send-invite label span { width: auto; }
+.admin-accounts .send-invite label input { width: 80%; }

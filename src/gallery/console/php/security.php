@@ -53,6 +53,36 @@ function createUser($accountsDb, $email, $password) {
    loginUser($email);
    }
 
+function sendAccountInvite($email) {
+   $day  = 24 * 60 * 60;
+   $invite = array(
+      "from" =>    $_SESSION["user"],
+      "to" =>      $email,
+      "expires" => time() + 3 * $day
+      );
+   $code = "Q" . mt_rand() . mt_rand();
+   $db = readAccountsDb();
+   $db->invites->{$code} = $invite;
+   saveAccountsDb($db);
+   //TODO: send out invitation
+   $invite["message"] = "Account invitation sent to: {$email}";
+   logEvent("send-account-invite", $code, $invite["to"], $invite["expires"]);
+   return $invite;
+   }
+
+function notExpired($invite) { return time() < $invite->expires; }
+function displayDate($invite) {
+   $invite->date = date("Y-m-d", $invite->expires);
+   return $invite;
+   }
+function inviteRequest($action, $email) {
+   if ($action === "create")
+      $resource = validEmailFormat($email) ? sendAccountInvite($email) : restError(404);
+   else
+      $resource = array_map("displayDate", array_filter(array_values((array)readAccountsDb()->invites), "notExpired"));
+   return $resource;
+   }
+
 function useInvite($accountsDb, $inviteCode) {
    $invite = getProperty($accountsDb->invites, $inviteCode);
    $now = time();
@@ -65,8 +95,7 @@ function useInvite($accountsDb, $inviteCode) {
    }
 
 function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode, $securityMsgs) {
-   $basicEmailPattern = "/^.+@.+[.].+$/";
-   if (!preg_match($basicEmailPattern, $email))
+   if (!validEmailFormat($email))
       $code = "invalid-email";
    elseif ($accountsDb->users->{$email})
       $code = "user-exists";

@@ -19,6 +19,7 @@
 // gallery    get
 // portfolio  get, update, list
 // account    list
+// invite     list, send
 
 $noAuth = true;
 require "../php/security.php";
@@ -137,7 +138,8 @@ function resource($loggedIn) {
       "settings" =>  function($action) { return settingsRequest($action); },
       "gallery" =>   function($action) { return galleryRequest(); },
       "portfolio" => function($action) { return portfolioRequest($action, $_GET["id"]); },
-      "account" =>   function($action) { return accountRequest($action, $_GET["email"]); }
+      "account" =>   function($action) { return accountRequest($action, $_GET["email"]); },
+      "invite" =>    function($action) { return inviteRequest($action, $_GET["email"]); },
       );
    $type =   $_GET["type"];
    $action = $_GET["action"] ?: "get";

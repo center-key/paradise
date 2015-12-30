@@ -46,11 +46,11 @@ library.rest = {
       }
    };
 
-library.start = {
-   go: function() {
+library.ui = {
+   start: function() {
       $('a.external-site').attr('target', '_blank');
       $('a img, a i.fa').parent().addClass('plain');
       }
    };
 
-$(library.start.go);
+$(library.ui.start);

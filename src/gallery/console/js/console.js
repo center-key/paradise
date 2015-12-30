@@ -11,14 +11,14 @@ app.ui = {
       },
    loadSettings: function() {
       function handle(data) { dna.clone('gallery-settings', data); }
-      library.rest.get('settings',  { callback: handle });
+      library.rest.get('settings', { callback: handle });
       },
    loadPortfolio: function() {
       function handle(data) {
          dna.clone('portfolio-image', data, { empty: true, fade: true });
          app.ui.statusMsg('Portfolio images: ' + data.length);
          }
-      library.rest.get('portfolio', { callback: handle });
+      library.rest.get('portfolio', { action: 'list', callback: handle });
       },
    save: function(elem, type, id) {
       var field = elem.attr('name');
@@ -43,7 +43,7 @@ app.ui = {
       },
    loadAccounts: function(elem) {
       function handle(data) { dna.clone('user-account', data); }
-      library.rest.get('account', { callback: handle });
+      library.rest.get('account', { action: 'list', callback: handle });
       },
    createUploader: function() {
       var spinner = $('#processing-files').hide();
@@ -74,11 +74,47 @@ app.ui = {
       }
    };
 
+app.invites = {
+   elem: {
+      startButton: $('.admin-accounts .send-invite >button'),
+      form:        $('.admin-accounts .send-invite >button+div'),
+      email:       $('.admin-accounts .send-invite >button+div input[type=email]'),
+      sendButton:  $('.admin-accounts .send-invite >button+div button'),
+      },
+   component: $('.admin-accounts .send-invite'),
+   prompt: function() {
+      dna.ui.slideFadeOut(app.invites.elem.startButton);
+      dna.ui.slideFadeIn(app.invites.elem.form);
+      app.invites.elem.email.focus();
+      },
+   validate: function(elem) {
+      var basicEmailPattern = /.+@.+[.].+/;
+      var invalid = !elem.val().match(basicEmailPattern);
+      app.invites.component.find('div button').prop('disabled', invalid);
+      },
+   send: function(elem) {
+      app.invites.component.find('div button').prop('disabled', true);
+      function handle(data) {
+         app.ui.statusMsg(data.message);
+         dna.ui.slideFadeIn(app.invites.elem.startButton);
+         dna.ui.slideFadeOut(app.invites.elem.form);
+         app.invites.loadList();
+         }
+      var email = app.invites.component.find('input[type=email]').val();
+      library.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
+      },
+   loadList: function() {
+      function handle(data) { dna.clone('account-invite', data, { empty: true, fade: true }) };
+      library.rest.get('invite', { action: 'list', callback: handle });
+      }
+   };
+
 app.setup = {
    go: function() {
       app.ui.loadSettings();
       app.ui.loadPortfolio();
       app.ui.loadAccounts();
+      app.invites.loadList();
       app.ui.createUploader();
       }
    };
