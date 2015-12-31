@@ -95,8 +95,8 @@ function restRequestInvite($action, $email) {
    if ($action === "create")
       $resource = validEmailFormat($email) ? sendAccountInvite($email) : restError(404);
    else
-      $resource = array_map("displayDate",
-         array_filter(array_values((array)readAccountsDb()->invites), "outstanding"));
+      $resource = array_values(array_map("displayDate",
+         array_filter(array_values((array)readAccountsDb()->invites), "outstanding")));
    return $resource;
    }
 
