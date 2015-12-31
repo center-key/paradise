@@ -50,7 +50,7 @@ releaseInstructions() {
    echo "      git tag -af current -m \"Current release\""
    echo "      git remote -v"
    echo "      git push origin --tags --force"
-   echo "   3) Increment version in src/gallery/php/library.php and check in with the comment:"
+   echo "   3) Increment version in src/gallery/php/library.php and check file in with the comment:"
    echo "      Next release"
    echo
    }
