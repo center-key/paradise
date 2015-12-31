@@ -62,9 +62,9 @@ function processUploads() {
    $files = glob("{$uploadsFolder}/*.{jpg,jpeg,png}", GLOB_BRACE);
    foreach ($files as $filename) {
       $id = getNextImageId();
-      $pathInfo = pathinfo($newfile);
-      $extention = strtolower($pathInfo["extension"]);
-      $origFile = "{$portfolioFolder}/{$id}-original.{$extention}";
+      $pathInfo = pathinfo($filename);
+      $extension = strtolower($pathInfo["extension"]);
+      $origFile = "{$portfolioFolder}/{$id}-original.{$extension}";
       rename($filename, $origFile);
       createImages($origFile, $id);
       $dbFilename = "{$portfolioFolder}/{$id}-db.json";
