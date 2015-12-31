@@ -44,7 +44,7 @@ function test() {  //url: http://localhost/ppages-test/gallery/console/rest?type
    }
 
 function runCommand($action) {
-   if ($action == "test" && $_SERVER["HTTP_HOST"] === "localhost")
+   if ($action == "test")
       $resource = test();
    elseif ($action === "process-uploads")
       $resource = processUploads();
@@ -143,6 +143,7 @@ function resource($loggedIn) {
       );
    $type =   $_GET["type"];
    $action = $_GET["action"] ?: "get";
+   $_GET["email"] = strtolower($_GET["email"]);
    $standardAction = in_array($action, array("create", "get", "update", "list"));
    if ($type === "security")
       $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);

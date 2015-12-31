@@ -48,7 +48,7 @@ function createUser($accountsDb, $email, $password) {
    logEvent("create-user", $email);
    $user = array("created" => time(), "enabled" => true);
    $user["hash"] = calculateHash($user, $password);
-   $accountsDb->users[$email] = $user;
+   $accountsDb->users->{$email} = $user;
    saveAccountsDb($accountsDb);
    loginUser($email);
    }
@@ -56,42 +56,59 @@ function createUser($accountsDb, $email, $password) {
 function sendAccountInvite($email) {
    $day  = 24 * 60 * 60;
    $invite = array(
-      "from" =>    $_SESSION["user"],
-      "to" =>      $email,
-      "expires" => time() + 3 * $day
+      "from" =>     $_SESSION["user"],
+      "to" =>       $email,
+      "accepted" => false,
+      "expires" =>  time() + 3 * $day
       );
    $code = "Q" . mt_rand() . mt_rand();
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;
    saveAccountsDb($db);
-   //TODO: send out invitation
-   $invite["message"] = "Account invitation sent to: {$email}";
+   $inviteLink = getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
+   $subjectLine = "PPAGES - Invitation to sign up for an administrator account";
+   $messageLines = array(
+      "You have been invited to create an account to administer the PPAGES gallery at:",
+      getGalleryUrl(),
+      "",
+      "To sign up and start uploading images, go to:",
+      $inviteLink,
+      "",
+      "- PPAGES"
+      );
+   $invite["message"] = sendEmail($subjectLine, $invite["to"], $messageLines) ?
+      "Account invitation sent to: {$email}" : "Error emailing invitation!";
    logEvent("send-account-invite", $code, $invite["to"], $invite["expires"]);
    return $invite;
    }
 
-function notExpired($invite) { return time() < $invite->expires; }
+function outstanding($invite) {
+   return $invite && !$invite->accepted && time() < $invite->expires;
+   }
+
 function displayDate($invite) {
    $invite->date = date("Y-m-d", $invite->expires);
    return $invite;
    }
+
 function inviteRequest($action, $email) {
    if ($action === "create")
       $resource = validEmailFormat($email) ? sendAccountInvite($email) : restError(404);
    else
-      $resource = array_map("displayDate", array_filter(array_values((array)readAccountsDb()->invites), "notExpired"));
+      $resource = array_map("displayDate",
+         array_filter(array_values((array)readAccountsDb()->invites), "outstanding"));
    return $resource;
    }
 
-function useInvite($accountsDb, $inviteCode) {
-   $invite = getProperty($accountsDb->invites, $inviteCode);
+function useInvite($accountsDb, $code) {
+   $invite = getProperty($accountsDb->invites, $code);
    $now = time();
-   if ($invite && $invite->accepted === null && $now < $invite->expires) {
-      $invite->accepted = $now;
+   if (outstanding($invite)) {
+      $invite->accepted = true;
       saveAccountsDb($accountsDb);
       logEvent("use-invite", $invite);
       }
-   return $invite && $invite->accepted === $now;
+   return $invite && $invite->accepted;
    }
 
 function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode, $securityMsgs) {
@@ -101,11 +118,11 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCod
       $code = "user-exists";
    elseif ($password !== $confirm)
       $code = "mismatch";
-   elseif (empty($accountsDb->users) || useInvite($accountsDb, $inviteCode))
+   elseif (emptyObj($accountsDb->users) || useInvite($accountsDb, $inviteCode))
       createUser($accountsDb, $email, $password);
    else
       $code = "bad-invite-code";
-   logEvent("validate-create-user", is_null($code), $code);
+   logEvent("validate-create-user", is_null($code), $code, $email, $inviteCode);
    return $code ? $securityMsgs[$code] : null;
    }
 

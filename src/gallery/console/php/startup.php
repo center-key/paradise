@@ -25,8 +25,8 @@ $defaultSettingsDb = array(
       )
    );
 $defaultAccountsDb = array(
-   "users" =>   array(),  //email -> created (epoch), hash, enabled (boolean)
-   "invites" => array()   //inviteCode -> from, to, expires (epoch), accepted (epoch)
+   "users" =>   json_decode("{}"),  //email -> created (epoch), hash, enabled (boolean)
+   "invites" => json_decode("{}")   //inviteCode -> from, to, expires (epoch), accepted (epoch)
    );
 
 function setupDataFolder($dataFolder, $name) {

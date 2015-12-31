@@ -12,15 +12,24 @@ $dataFolder = str_replace("console/php", "data", __DIR__);
 
 date_default_timezone_set("UTC");
 
+function getGalleryUrl() {
+   return ($_SERVER["HTTPS"] === "on" ? "https://" : "http://") . $_SERVER["HTTP_HOST"] .
+      str_replace("/console/rest/index.php", "", $_SERVER["SCRIPT_NAME"]);
+   }
+
 function getProperty($map, $key) {
    return is_array($map) && isset($map[$key]) ? $map[$key] :
       (is_object($map) && isset($map->{$key}) ? $map->{$key} : null);
    }
 
+function emptyObj($object) {
+   return count(get_object_vars($object)) === 0;
+   }
+
 function appClientData() {
    $data = array(
       "version" =>         $version,
-      "user-list-empty" => empty(readAccountsDb()->users)
+      "user-list-empty" => emptyObj(readAccountsDb()->users)
       );
    return json_encode($data);
    }
@@ -135,6 +144,27 @@ function httpJsonResponse($data) {
    header("Content-Type:  application/json");
    echo json_encode($data);
    logEvent("http-json-response", $data);
+   }
+
+function sendEmail($subjectLine, $sendTo, $messageLines) {
+   $sendFrom = $_SESSION["user"];
+   $success = mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
+   logEvent("send-email", $success, $sendTo, $subjectLine);
+   $confirmationSubject = "PPAGES email confirmation notice";
+   $confirmationLines = array(
+      "This is an automated message from the PPAGES system.",
+      "",
+      "An email message was just sent on your behalf as follows:",
+      "\tSubject: {$subjectLine}",
+      "\tTo: {$sendTo}",
+      "",
+      "This is an informational message only -- no action is required on your part.",
+      "",
+      "- PPAGES"
+      );
+   if ($success)
+      mail($sendFrom, $confirmationSubject, implode(PHP_EOL, $confirmationLines), "From: $sendFrom");
+   return $success;
    }
 
 ?>

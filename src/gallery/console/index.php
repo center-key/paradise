@@ -182,7 +182,7 @@
             <legend>Current invitations</legend>
             <div>
                <div id=account-invite class=dna-template>
-                  <span>~~date~~</span>: <b>~~to~~</b>
+                  <small>~~date~~</small>: <b>~~to~~</b>
                </div>
             </div>
             <i data-placeholder=account-invite>No outstanding invitations.</i>

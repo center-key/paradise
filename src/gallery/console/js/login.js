@@ -21,7 +21,7 @@ app.login = {
          email:    email,
          password: calcHash(password),
          confirm:  calcHash(confirm),
-         intite:   inviteCode
+         invite:   inviteCode
          };
       function displayError(msg) {
          component.find('button').prop('disabled', false);
