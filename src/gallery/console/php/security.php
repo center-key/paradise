@@ -91,7 +91,7 @@ function displayDate($invite) {
    return $invite;
    }
 
-function inviteRequest($action, $email) {
+function restRequestInvite($action, $email) {
    if ($action === "create")
       $resource = validEmailFormat($email) ? sendAccountInvite($email) : restError(404);
    else
@@ -126,7 +126,7 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCod
    return $code ? $securityMsgs[$code] : null;
    }
 
-function securityRequest($action, $email, $password, $confirm, $inviteCode) {
+function restRequestSecurity($action, $email, $password, $confirm, $inviteCode) {
    $securityMsgs  = array(
       "bad-invite-code" => "Invite code is missing, expired, or invalid.",
       "bad-credentials" => "The email address or password you entered is incorrect.",

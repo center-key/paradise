@@ -117,36 +117,36 @@ function updatePortfolio($id) {
    return $resource ?: restError(404);
    }
 
-function settingsRequest($action) {
+function restRequestSettings($action) {
    return $action === "update" ? updateSettings() : readSettingsDb();
    }
 
-function galleryRequest() {
+function restRequestGallery() {
    return readGalleryDb();
    }
 
-function portfolioRequest($action, $id) {
+function restRequestPortfolio($action, $id) {
    return $action === "update" ? updatePortfolio($id) : readPortfolioDb();
    }
 
-function accountRequest($action, $email) {
+function restRequestAccount($action, $email) {
    return array_keys(get_object_vars(readAccountsDb()->users));
    }
 
 function resource($loggedIn) {
    $routes = array(
-      "settings" =>  function($action) { return settingsRequest($action); },
-      "gallery" =>   function($action) { return galleryRequest(); },
-      "portfolio" => function($action) { return portfolioRequest($action, $_GET["id"]); },
-      "account" =>   function($action) { return accountRequest($action, $_GET["email"]); },
-      "invite" =>    function($action) { return inviteRequest($action, $_GET["email"]); },
+      "settings" =>  function($action) { return restRequestSettings($action); },
+      "gallery" =>   function($action) { return restRequestGallery(); },
+      "portfolio" => function($action) { return restRequestPortfolio($action, $_GET["id"]); },
+      "account" =>   function($action) { return restRequestAccount($action, $_GET["email"]); },
+      "invite" =>    function($action) { return restRequestInvite($action, $_GET["email"]); },
       );
    $type =   $_GET["type"];
    $action = $_GET["action"] ?: "get";
    $_GET["email"] = strtolower($_GET["email"]);
    $standardAction = in_array($action, array("create", "get", "update", "list"));
    if ($type === "security")
-      $resource = securityRequest($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
+      $resource = restRequestSecurity($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
    elseif (!$loggedIn)
       $resource = restError(401);
    elseif ($type === "command")
