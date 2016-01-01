@@ -20,6 +20,11 @@ body >footer >div:last-child:not(:first-child) { text-align: right; }
 button { font-size: 0.9rem; }
 #status-msg { font-weight: bold; }
 
+/* Utilities */
+i.fa.icon-popup-anchor + div { position: absolute; bottom: 15px; left: 20px; visibility: hidden; opacity: 0; transition: all 0.5s; white-space: nowrap; font-weight: bold; text-align: right; color: firebrick; background-color: white; border: 3px solid steelblue; border-radius: 5px; padding: 15px 25px; }
+i.fa.icon-popup-anchor:hover + div,
+i.fa.icon-popup-anchor + div:hover { visibility: visible; opacity: 1; }
+
 /* Component: Security */
 .component-security.create h3:first-child { display: none; }
 .component-security.create h3:first-child { display: none; }
@@ -31,7 +36,7 @@ button { font-size: 0.9rem; }
 .component-security >p { color: firebrick; }
 
 /* Component: Image Portfolio */
-.portfolio-image { background-color: gainsboro; border: 2px solid silver; }
+.portfolio-image { position: relative; background-color: gainsboro; border: 2px solid silver; }
 .portfolio-image { padding: 10px; margin: 10px 0px 0px 0px; }
 .portfolio-image figure { float: right; text-align: center; margin: 0px; }
 .portfolio-image figure img { max-width: 180px; max-height: 180px; border: 2px solid black; transition: all 0.4s; }
@@ -42,6 +47,12 @@ button { font-size: 0.9rem; }
 .portfolio-image >label >input[type=checkbox] { margin: 12px 0px 0px 3px; }
 .portfolio-image >label >[name] { max-width: 200px; }
 .portfolio-image >label >[name=badge] { width: 100px; }
+.portfolio-image .actions { position: absolute; left: 0px; bottom: 0px; text-align: center; padding: 5px 15px 0px 2px; opacity: 0; transition: all 0.5s; }
+.portfolio-image .actions:hover { opacity: 1; }
+.portfolio-image .actions i.fa { display: block; font-size: 1.6rem; margin: 4px; transition: all 0.5s; }
+.portfolio-image .actions i.fa:hover { color: black; }
+.portfolio-image:first-child .actions i.fa[data-action=up]   { visibility: hidden; }
+.portfolio-image:last-child  .actions i.fa[data-action=down] { visibility: hidden; }
 
 /* Component: File Uploader */
 .qq-upload-button { display: inline-block; width: auto; font-size: 1.1rem; font-weight: bold;

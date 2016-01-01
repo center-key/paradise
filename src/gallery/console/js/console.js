@@ -41,6 +41,11 @@ app.ui = {
          item.data().itemId = item.index() + 1;   //workaround
       app.ui.save(elem, 'settings');
       },
+   delete: function(elem) {
+      var id = dna.getModel(elem).id;
+      function handle(data) { dna.bye(elem); }
+      library.rest.get('portfolio', { action: 'delete', params: { id: id }, callback: handle });
+      },
    loadAccounts: function(elem) {
       function handle(data) { dna.clone('user-account', data); }
       library.rest.get('account', { action: 'list', callback: handle });

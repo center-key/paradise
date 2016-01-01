@@ -65,6 +65,13 @@
                   <span>Badge:</span>
                   <input name=badge value=~~badge~~ data-smart-update=app.ui.savePortfolio>
                </label>
+               <div class=actions>
+                  <i class="fa fa-times icon-popup-anchor"></i>
+                  <div>
+                     <p>Permanently delete this image?</p>
+                     <button data-click=app.ui.delete>Delete image</button>
+                  </div>
+               </div>
             </div>
          </div>
          <div data-placeholder=portfolio-image>No images in your portfolio yet.</div>

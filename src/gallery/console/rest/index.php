@@ -17,9 +17,9 @@
 // command    process-uploads, generate-gallery
 // settings   get, update
 // gallery    get
-// portfolio  get, update, list
+// portfolio  get, update, delete, list
 // account    list
-// invite     list, send
+// invite     list, send(create???)
 
 $noAuth = true;
 require "../php/security.php";
@@ -30,7 +30,8 @@ function restError($code) {
       400 => "Invalid parameters",
       401 => "Unauthorized access",
       404 => "Resource not found",
-      500 => "Unknown error"
+      500 => "Unknown error",
+      501 => "Not implemented"
       );
    return array(
       "error"   => true,
@@ -117,6 +118,15 @@ function updatePortfolio($id) {
    return $resource ?: restError(404);
    }
 
+function deletePortfolio($id) {
+   $resource = readPortfolioImageDb($id);
+   if ($resource) {
+      deleteImages($id);
+      generateGalleryDb();
+      }
+   return $resource ?: restError(404);
+   }
+
 function restRequestSettings($action) {
    return $action === "update" ? updateSettings() : readSettingsDb();
    }
@@ -126,7 +136,14 @@ function restRequestGallery() {
    }
 
 function restRequestPortfolio($action, $id) {
-   return $action === "update" ? updatePortfolio($id) : readPortfolioDb();
+   $actions = array(
+      "create" => function($id) { return restError(400); },
+      "get" =>    function($id) { return restError(501); },
+      "update" => function($id) { return updatePortfolio($id); },
+      "delete" => function($id) { return deletePortfolio($id); },
+      "list" =>   function($id) { return readPortfolioDb(); }
+      );
+   return $actions[$action]($id);
    }
 
 function restRequestAccount($action, $email) {
@@ -144,7 +161,7 @@ function resource($loggedIn) {
    $type =   $_GET["type"];
    $action = $_GET["action"] ?: "get";
    $_GET["email"] = strtolower($_GET["email"]);
-   $standardAction = in_array($action, array("create", "get", "update", "list"));
+   $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($type === "security")
       $resource = restRequestSecurity($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
    elseif (!$loggedIn)

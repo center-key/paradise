@@ -57,6 +57,13 @@ function createImages($origFile, $id) {
    logEvent("create-images", $origFile, $id, $aspectRatio);
    }
 
+function deleteImages($id) {
+   global $portfolioFolder;
+   foreach (glob("{$portfolioFolder}/{$id}-*") as $filename)
+      unlink($filename);
+   logEvent("delete-images", $id);
+   }
+
 function processUploads() {
    global $uploadsFolder, $portfolioFolder;
    $files = glob("{$uploadsFolder}/*.{jpg,jpeg,png}", GLOB_BRACE);
