@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages                 //
+// Paradise ~ centerkey.com/paradise             //
 // GPLv3 ~ Copyright (c) individual contributors //
 ///////////////////////////////////////////////////
 

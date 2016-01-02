@@ -1,6 +1,6 @@
 <?php
 ///////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages                 //
+// Paradise ~ centerkey.com/paradise             //
 // GPLv3 ~ Copyright (c) individual contributors //
 ///////////////////////////////////////////////////
 
@@ -40,7 +40,7 @@ function restError($code) {
       );
    }
 
-function test() {  //url: http://localhost/ppages-test/gallery/console/rest?type=command&action=test
+function test() {  //url: http://localhost/paradise-test/gallery/console/rest?type=command&action=test
    return array("test" => true);
    }
 

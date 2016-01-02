@@ -1,20 +1,22 @@
-### PPAGES &ndash; PHP Portfolio Art Gallery Exhibit to Showcase
+### Paradise PHP Image Gallery
 
-*A web application to manage and display a photo gallery*
+*A simple and aesthetic way to showcase your art portfolio*
 
 ---
 
-PPAGES is an open source software package for displaying a portfolio of photos on a website in a clean, professional style.  Use PPAGES to create an online exhibit for an artist or organization.
+Paradise is an open source software package for displaying a collection of photos on a website in
+a clean, professional style.  Use Paradise to create an online exhibit for an artist or
+organization.
 
-**[:large_blue_circle: Download current release](https://github.com/center-key/ppages/raw/master/releases/ppages-install-files.zip)**
+**[:large_blue_circle: Download current release](https://github.com/center-key/paradise/raw/master/releases/paradise-install-files.zip)**
 
 #### Project:
-   * [Instructions](http://centerkey.com/ppages/)
-   * [Releases](https://github.com/center-key/ppages/tree/master/releases)
-   * [Questions and bugs](https://github.com/center-key/ppages/issues)
+   * [Instructions](http://centerkey.com/paradise/)
+   * [Releases](https://github.com/center-key/paradise/tree/master/releases)
+   * [Questions and bugs](https://github.com/center-key/paradise/issues)
 
 ===
-PPAGES is an open source project licensed under
-[GPLv3](https://github.com/center-key/ppages/blob/master/src/gallery/license.txt)
+Paradise is an open source project licensed under
+[GPLv3](https://github.com/center-key/paradise/blob/master/src/gallery/license.txt)
 with the website and documentation licensed under
 [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0).

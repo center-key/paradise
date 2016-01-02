@@ -1,5 +1,5 @@
 /*************************************************/
-/* PPAGES ~ centerkey.com/ppages                 */
+/* Paradise ~ centerkey.com/paradise             */
 /* GPLv3 ~ Copyright (c) individual contributors */
 /*************************************************/
 
@@ -22,6 +22,6 @@ button          { background-color: steelblue; }
 button:hover    { background-color: royalblue; }
 
 /* More... */
-img.ppages-logo { float: left; width: 80px; margin: 0px 10px 10px 0px; }
+img.paradise-logo { float: left; width: 80px; margin: 0px 10px 10px 0px; }
 p code { font-size: 0.9rem; padding: 0px; }
 #github-banner { position: absolute; top: 0px; right: 0px; }

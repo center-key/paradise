@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #################################################
-# PPAGES ~ centerkey.com/ppages                 #
+# Paradise ~ centerkey.com/paradise             #
 # GPLv3 ~ Copyright (c) individual contributors #
 #################################################
 
@@ -11,7 +11,7 @@
 websiteFolder=$(dirname $0)
 httpdConf=/private/etc/apache2/httpd.conf
 webServerRoot=$(grep ^DocumentRoot $httpdConf | awk -F\" '{ print $2 }')
-webServerPath=centerkey.com/ppages
+webServerPath=centerkey.com/paradise
 ftpFolder=$webServerRoot/$webServerPath
 
 getColorBlocks() {
@@ -46,8 +46,8 @@ copyToFtpFolder() {
    }
 
 echo
-echo "PPAGES ~ View Project Website"
-echo "============================="
+echo "Paradise ~ View Project Website"
+echo "==============================="
 echo
 getColorBlocks
 viewWebsite

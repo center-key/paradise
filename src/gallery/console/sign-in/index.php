@@ -1,16 +1,16 @@
 <?php $noAuth = true; $redirectAuth = ".."; require "../php/security.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- PPAGES ~ centerkey.com/ppages                 -->
+<!-- Paradise ~ centerkey.com/paradise             -->
 <!-- GPLv3 - Copyright (c) individual contributors -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <html>
 <head>
 <meta charset=utf-8>
 <meta name=apple-mobile-web-app-title content="Console">
-<title>PPAGES &bull; Administrator Console</title>
-<link rel=icon             href="http://centerkey.com/ppages/graphics/bookmark.png">
-<link rel=apple-touch-icon href="http://centerkey.com/ppages/graphics/mobile-home-screen.png">
+<title>Paradise &bull; Administrator Console</title>
+<link rel=icon             href="http://centerkey.com/paradise/graphics/bookmark.png">
+<link rel=apple-touch-icon href="http://centerkey.com/paradise/graphics/mobile-home-screen.png">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
 <link rel=stylesheet       href="../../css/reset.css">
@@ -23,7 +23,7 @@
    <aside>
       <button data-href="..">Visit Gallery</button>
    </aside>
-   <h1>PPAGES &ndash; PHP Portfolio Art Gallery Exhibit to Showcase</h1>
+   <h1>Paradise PHP Image Gallery</h1>
    <h2>Administrator Console</h2>
 </header>
 
@@ -58,7 +58,7 @@
 <footer>
    <div class=plain>
       Questions and bugs:<br>
-      <a href="https://github.com/center-key/ppages/issues">github.com/center-key/ppages/issues</a>
+      <a href="https://github.com/center-key/paradise/issues">github.com/center-key/paradise/issues</a>
    </div>
 </footer>
 

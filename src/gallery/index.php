@@ -1,7 +1,7 @@
 <?php require "php/gallery.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- PPAGES ~ centerkey.com/ppages                 -->
+<!-- Paradise ~ centerkey.com/paradise             -->
 <!-- GPLv3 ~ Copyright (c) individual contributors -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <html>
@@ -9,8 +9,8 @@
 <meta charset=utf-8>
 <meta name=apple-mobile-web-app-title content="Gallery">
 <title><?= $settings->{"title"} ?> &bull; <?= $settings->{"subtitle"} ?></title>
-<link rel=icon             href="http://centerkey.com/ppages/graphics/bookmark.png">
-<link rel=apple-touch-icon href="http://centerkey.com/ppages/graphics/mobile-home-screen.png">
+<link rel=icon             href="http://centerkey.com/paradise/graphics/bookmark.png">
+<link rel=apple-touch-icon href="http://centerkey.com/paradise/graphics/mobile-home-screen.png">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/slimbox/2/css/slimbox2.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
@@ -62,7 +62,7 @@
                <input name=email size=40 type=email placeholder="Enter your email address" required>
             </label>
             <button type=submit>Send message</button>
-            <aside>Gallery powered by <a href="http://centerkey.com/ppages/">PPAGES</a></aside>
+            <aside>Gallery powered by <a href="http://centerkey.com/paradise/">Paradise</a></aside>
          </form>
       </section>
       <section data-hash=thanks>

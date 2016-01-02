@@ -1,6 +1,6 @@
 <?php
 ///////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages                 //
+// Paradise ~ centerkey.com/paradise             //
 // GPLv3 ~ Copyright (c) individual contributors //
 ///////////////////////////////////////////////////
 
@@ -17,8 +17,8 @@
 //       client/fileuploader.js
 //       client/loading.gif
 //       server/php.php
-//    into the PPAGES project folder:
-//       ppages/src/gallery/console/file-uploader/
+//    into the Paradise project folder:
+//       paradise/src/gallery/console/file-uploader/
 //////////////////////////////////////
 
 require "php/security.php";

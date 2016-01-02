@@ -1,6 +1,6 @@
 <?php
 ///////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages                 //
+// Paradise ~ centerkey.com/paradise             //
 // GPLv3 ~ Copyright (c) individual contributors //
 ///////////////////////////////////////////////////
 
@@ -163,9 +163,9 @@ function sendEmail($subjectLine, $sendTo, $messageLines) {
    $sendFrom = $_SESSION["user"];
    $success = mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
    logEvent("send-email", $success, $sendTo, $subjectLine);
-   $confirmationSubject = "PPAGES email confirmation notice";
+   $confirmationSubject = "Paradise email confirmation notice";
    $confirmationLines = array(
-      "This is an automated message from the PPAGES system.",
+      "This is an automated message from the Paradise PHP Image Gallery system.",
       "",
       "An email message was just sent on your behalf as follows:",
       "\tSubject: {$subjectLine}",
@@ -173,7 +173,7 @@ function sendEmail($subjectLine, $sendTo, $messageLines) {
       "",
       "This is an informational message only -- no action is required on your part.",
       "",
-      "- PPAGES"
+      "- Paradise PHP Image Gallery"
       );
    if ($success)
       mail($sendFrom, $confirmationSubject, implode(PHP_EOL, $confirmationLines), "From: $sendFrom");

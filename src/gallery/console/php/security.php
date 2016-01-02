@@ -1,6 +1,6 @@
 <?php
 ///////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages                 //
+// Paradise ~ centerkey.com/paradise             //
 // GPLv3 ~ Copyright (c) individual contributors //
 ///////////////////////////////////////////////////
 
@@ -66,15 +66,15 @@ function sendAccountInvite($email) {
    $db->invites->{$code} = $invite;
    saveAccountsDb($db);
    $inviteLink = getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
-   $subjectLine = "PPAGES - Invitation to sign up for an administrator account";
+   $subjectLine = "Paradise - Invitation to sign up for an administrator account";
    $messageLines = array(
-      "You have been invited to create an account to administer the PPAGES gallery at:",
+      "You have been invited to create an account to administer the Paradise PHP Image Gallery gallery at:",
       getGalleryUrl(),
       "",
       "To sign up and start uploading images, go to:",
       $inviteLink,
       "",
-      "- PPAGES"
+      "- Paradise PHP Image Gallery"
       );
    $invite["message"] = sendEmail($subjectLine, $invite["to"], $messageLines) ?
       "Account invitation sent to: {$email}" : "Error emailing invitation!";

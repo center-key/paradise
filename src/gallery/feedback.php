@@ -1,14 +1,14 @@
 <?php
 ///////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages                 //
+// Paradise ~ centerkey.com/paradise             //
 // GPLv3 ~ Copyright (c) individual contributors //
 ///////////////////////////////////////////////////
 
 require "php/gallery.php";
 
 // Initialize
-$subject =   "PPAGES - Gallery Feedback";
-$from =      "From: PPAGES <{$settings->email}>";
+$subject =   "Paradise PHP Image Gallery - Gallery Feedback";
+$from =      "From: Paradise <{$settings->email}>";
 $thanksUri = "./#thanks";
 $bar =       "-----------------------";
 

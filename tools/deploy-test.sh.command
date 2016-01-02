@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #################################################
-# PPAGES ~ centerkey.com/ppages                 #
+# Paradise ~ centerkey.com/paradise             #
 # GPLv3 ~ Copyright (c) individual contributors #
 #################################################
 
@@ -17,7 +17,7 @@ webServerSetup() {
    grep php5 $httpdConf
    apachectl configtest  #to start web server: sudo apachectl restart
    webServerRoot=$(grep ^DocumentRoot $httpdConf | awk -F\" '{ print $2 }')
-   webServerPath=ppages-test
+   webServerPath=paradise-test
    webServerFolder=$webServerRoot/$webServerPath
    echo "Web server folder: $webServerFolder"
    mkdir -p $webServerFolder
@@ -27,14 +27,14 @@ webServerSetup() {
 unzipRelease() {
    echo "*** Unzip Release"
    cd $webServerFolder
-   unzip -o $projectFolder/releases/ppages-install-files
+   unzip -o $projectFolder/releases/paradise-install-files
    chmod o+rwx gallery
    pwd
    echo
    }
 
 openConsole() {
-   echo "*** PPAGES Console"
+   echo "*** Administrator Console"
    consoleUrl="http://localhost/$webServerPath/gallery/console/"
    echo $consoleUrl
    open $consoleUrl
@@ -42,8 +42,8 @@ openConsole() {
    }
 
 echo
-echo "PPAGES ~ Deploy Test"
-echo "===================="
+echo "Paradise ~ Deploy Test"
+echo "======================"
 echo
 webServerSetup
 unzipRelease

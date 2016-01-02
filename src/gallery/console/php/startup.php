@@ -1,6 +1,6 @@
 <?php
 ///////////////////////////////////////////////////
-// PPAGES ~ centerkey.com/ppages                 //
+// Paradise ~ centerkey.com/paradise             //
 // GPLv3 ~ Copyright (c) individual contributors //
 ///////////////////////////////////////////////////
 
@@ -55,7 +55,7 @@ function setupDb($dbFilename, $defaultDb) {
 
 function setupCustomCss($dataFolder) {
    $defaultCss = array(
-      "/*  PPAGES - PHP Portfolio Art Gallery Exhibit to Showcase    */",
+      "/*  Paradise PHP Image Gallery                                */",
       "/*  Edit this CSS file to customize the look of the gallery.  */",
       "/*  Put custom images in: gallery/data/graphics               */",
       "",

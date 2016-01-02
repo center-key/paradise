@@ -1,13 +1,13 @@
 #!/bin/sh
 
 #################################################
-# PPAGES ~ centerkey.com/ppages                 #
+# Paradise ~ centerkey.com/paradise             #
 # GPLv3 ~ Copyright (c) individual contributors #
 #################################################
 
 # Build:
 # Creates the release file (zip) with the version number in the file
-# name (extracted from ppages/src/gallery/console/php/library.php)
+# name (extracted from paradise/src/gallery/console/php/library.php)
 
 projectFolder=$(cd $(dirname $0)/..; pwd)
 version=$(awk -F\" '/version = / { print $2 }' $projectFolder/src/gallery/console/php/library.php)
@@ -24,13 +24,13 @@ zipUpRelease() {
    echo "*** Zipping"
    cd $projectFolder/src
    echo "Making version ${version}..."
-   zipFile=$projectFolder/releases/ppages-install-files.zip
+   zipFile=$projectFolder/releases/paradise-install-files.zip
    rm -f $zipFile
    zip --recurse-paths --quiet $zipFile gallery/ --exclude "*/.*"
    cd $projectFolder/releases
    pwd
-   cp ppages-install-files.zip ppages-${version}.zip
-   ls -l ppages-install-files.zip ppages-${version}.zip
+   cp paradise-install-files.zip paradise-${version}.zip
+   ls -l paradise-install-files.zip paradise-${version}.zip
    echo
    }
 
@@ -52,8 +52,8 @@ releaseInstructions() {
    }
 
 echo
-echo "PPAGES ~ Build"
-echo "=============="
+echo "Paradise ~ Build"
+echo "================"
 echo
 runStaticAnalyzer
 zipUpRelease
