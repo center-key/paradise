@@ -15,26 +15,22 @@ version=$(awk -F\" '/version = / { print $2 }' $projectFolder/src/gallery/consol
 runStaticAnalyzer() {
    echo "*** Analyzing"
    cd $projectFolder/src
-   find . -name "*.php" -exec php -l {} \;
+   pwd
+   find . -name "*.php" -exec php --syntax-check {} \;
    echo
    }
 
 zipUpRelease() {
    echo "*** Zipping"
    cd $projectFolder/src
-   echo Making version ${version}...
+   echo "Making version ${version}..."
    zipFile=$projectFolder/releases/ppages-install-files.zip
    rm -f $zipFile
-   zip -r $zipFile gallery/ --exclude "*/.*" "*/3rd-party/*"
-   echo
-   }
-
-listReleases() {
-   echo "*** Releases"
+   zip --recurse-paths --quiet $zipFile gallery/ --exclude "*/.*"
    cd $projectFolder/releases
    pwd
    cp ppages-install-files.zip ppages-${version}.zip
-   ls -l
+   ls -l ppages-install-files.zip ppages-${version}.zip
    echo
    }
 
@@ -61,5 +57,4 @@ echo "=============="
 echo
 runStaticAnalyzer
 zipUpRelease
-listReleases
 releaseInstructions
