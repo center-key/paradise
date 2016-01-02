@@ -34,7 +34,7 @@ function setupDataFolder($dataFolder, $name) {
    $defaultView = "{$dataFolder}/index.html";
    if (!is_dir($folder) && !mkdir($folder))
       exit("Unable to create data folder: {$folder}");
-   if (!is_file($defaultView) && !file_put_contents($defaultView, "Nothing to see."))
+   if (!is_file($defaultView) && !file_put_contents($defaultView, "Nothing to see."))  //TODO: cover all folders
       exit("Unable to write into data folder: {$defaultView}");
    }
 
@@ -81,8 +81,8 @@ function workaroundToUpgradePortfolio() {
    global $portfolioFolder;
    foreach (glob("{$portfolioFolder}/*-db.json") as $dbFilename) {
       $db = readDb($dbFilename);
-      $db->sort =      isset($db->sort) ? $db->sort : intval($db->id) * 10000;
-      $db->original =  isset($db->original) ? $db->original : $db->{"original-file-name"};
+      $db->sort =     isset($db->sort) ? $db->sort : intval($db->id) * 10000;
+      $db->original = isset($db->original) ? $db->original : $db->{"original-file-name"};
       $db->uploaded = isset($db->uploaded) ? $db->uploaded : $db->{"upload-date"};
       $db->display =  isset($db->display) ? $db->display === "on" || $db->display === true : true;
       saveDb($dbFilename, $db);
