@@ -112,6 +112,9 @@ function updatePortfolio($id) {
       foreach ($fields as $field => $type)
          if (isset($_GET[$field]))
             $resource->{$field} = fieldValue($_GET[$field], $type);
+      $move = $_GET["move"];
+      if ($move)
+         $resource->sort = calcNewPortfolioSort($resource->sort, $move === "up");
       savePortfolioImageDb($resource);
       generateGalleryDb();
       }

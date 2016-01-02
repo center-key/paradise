@@ -112,6 +112,19 @@ function generateGalleryDb() {
       array_filter(readPortfolioDb(), "displayTrue"))));
    }
 
+function extractSort($imageDb) { return $imageDb->sort; }
+
+function calcNewPortfolioSort($currentSort, $up) {
+   $sorts = array_map("extractSort", readPortfolioDb());
+   array_unshift($sorts, 0);                //in case move to the top
+   array_push($sorts, end($sorts) + 10000);  //in case move to the bottom
+   $currentLoc = array_search($currentSort, $sorts);
+   $nearLoc = min(max($currentLoc + ($up ? -1 : 1), 1), count($sorts) - 2);
+   $farLoc =  min(max($currentLoc + ($up ? -2 : 2), 0), count($sorts) - 1);
+   logEvent("move-image", $currentLoc - 1, $currentSort);
+   return floor(($sorts[$nearLoc] + $sorts[$farLoc]) / 2);
+   }
+
 function validEmailFormat($email) {
    $basicEmailPattern = "/^.+@.+[.].+$/";
    return preg_match($basicEmailPattern, $email) === 1;
@@ -119,7 +132,7 @@ function validEmailFormat($email) {
 
 function formatMsg($msg) {
    return is_null($msg) ? "[null]" : ($msg === true ? "[true]" : ($msg === false ? "[false]" :
-      (empty($msg) ? "[empty]" : (is_object($msg) || is_array($msg) ? json_encode($msg) : $msg))));
+      ($msg === "" ? "[empty]" : (is_object($msg) || is_array($msg) ? json_encode($msg) : $msg))));
    }
 
 function logEvent() {  //any number of parameters to log

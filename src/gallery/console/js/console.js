@@ -41,10 +41,25 @@ app.ui = {
          item.data().itemId = item.index() + 1;   //workaround
       app.ui.save(elem, 'settings');
       },
-   delete: function(elem) {
-      var id = dna.getModel(elem).id;
-      function handle(data) { dna.bye(elem); }
-      library.rest.get('portfolio', { action: 'delete', params: { id: id }, callback: handle });
+   action: function(elem) {
+      var action = elem.data().action;
+      var params = { id: dna.getModel(elem).id };
+      var erase = action === 'delete';
+      function move() {
+         var box = dna.getClone(elem);
+         var ghostBox = box.clone();
+         if (action === 'up')
+            box.hide().prev().before(box).after(ghostBox);
+         else
+            box.hide().next().after(box).before(ghostBox);
+         dna.ui.slideFadeIn(box);
+         dna.ui.slideFadeDelete(ghostBox);
+         }
+      function handle(data) { return erase ? dna.bye(elem) : move(); }
+      if (!erase)
+         params.move = action;
+      var restAction = erase ? action : 'update';
+      library.rest.get('portfolio', { action: restAction, params: params, callback: handle });
       },
    loadAccounts: function(elem) {
       function handle(data) { dna.clone('user-account', data); }
@@ -109,7 +124,7 @@ app.invites = {
       library.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
       },
    loadList: function() {
-      function handle(data) { dna.clone('account-invite', data, { empty: true, fade: true }) };
+      function handle(data) { dna.clone('account-invite', data, { empty: true, fade: true }); }
       library.rest.get('invite', { action: 'list', callback: handle });
       }
    };

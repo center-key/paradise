@@ -66,10 +66,12 @@
                   <input name=badge value=~~badge~~ data-smart-update=app.ui.savePortfolio>
                </label>
                <div class=actions>
+                  <i class="fa fa-arrow-up"   data-click=app.ui.action data-action=up></i>
+                  <i class="fa fa-arrow-down" data-click=app.ui.action data-action=down></i>
                   <i class="fa fa-times icon-popup-anchor"></i>
                   <div>
                      <p>Permanently delete this image?</p>
-                     <button data-click=app.ui.delete>Delete image</button>
+                     <button data-click=app.ui.action data-action=delete>Delete image</button>
                   </div>
                </div>
             </div>
