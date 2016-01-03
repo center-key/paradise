@@ -54,19 +54,19 @@ function createUser($accountsDb, $email, $password) {
    }
 
 function sendAccountInvite($email) {
-   $day  = 24 * 60 * 60;
+   $daysValid = 3;
    $invite = array(
       "from" =>     $_SESSION["user"],
       "to" =>       $email,
       "accepted" => false,
-      "expires" =>  time() + 3 * $day
+      "expires" =>  time() + $daysValid * (24 * 60 * 60)
       );
    $code = "Q" . mt_rand() . mt_rand();
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;
    saveAccountsDb($db);
    $inviteLink = getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
-   $subjectLine = "Paradise - Invitation to sign up for an administrator account";
+   $subjectLine = "Paradise PHP Image Gallery - Sign up invitation";
    $messageLines = array(
       "You have been invited to create an account to administer the Paradise PHP Image Gallery gallery at:",
       getGalleryUrl(),
@@ -74,7 +74,9 @@ function sendAccountInvite($email) {
       "To sign up and start uploading images, go to:",
       $inviteLink,
       "",
-      "- Paradise PHP Image Gallery"
+      "The above link expires in {$daysValid} days.",
+      "",
+      "- Paradise"
       );
    $invite["message"] = sendEmail($subjectLine, $invite["to"], $messageLines) ?
       "Account invitation sent to: {$email}" : "Error emailing invitation!";

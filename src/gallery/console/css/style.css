@@ -39,7 +39,7 @@ i.fa.icon-popup-anchor + div:hover { visibility: visible; opacity: 1; }
 .portfolio-image { position: relative; background-color: gainsboro; border: 2px solid silver; }
 .portfolio-image { padding: 10px; margin: 10px 0px 0px 0px; }
 .portfolio-image figure { float: right; text-align: center; margin: 0px; }
-.portfolio-image figure img { max-width: 180px; max-height: 180px; border: 2px solid black; transition: all 0.4s; }
+.portfolio-image figure img { max-width: 180px; max-height: 170px; border: 2px solid black; transition: all 0.4s; }
 .portfolio-image figure img:hover { border-color: darkgray; }
 .portfolio-image figure figcaption { font-size: 0.7rem; }
 .portfolio-image >label >span { transition: color 0.4s; }

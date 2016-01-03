@@ -21,7 +21,7 @@
 
 <header>
    <aside>
-      <button data-href="..">Visit Gallery</button>
+      <button data-href="../..">Visit Gallery</button>
    </aside>
    <h1>Paradise PHP Image Gallery</h1>
    <h2>Administrator Console</h2>
