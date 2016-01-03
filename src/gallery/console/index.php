@@ -27,7 +27,7 @@
       <button data-href=".." class=external-site>Visit gallery</button>
       <button data-href="sign-out">Sign out</button>
    </aside>
-   <h1>Paradise PHP Image Gallery</h1>
+   <h1>Paradise PHP Photo Gallery</h1>
    <h2>Administrator Console</h2>
 </header>
 
@@ -217,7 +217,7 @@
       <a href="https://github.com/center-key/paradise/issues">github.com/center-key/paradise/issues</a>
    </div>
    <div>
-      Paradise PHP Image Gallery <?= $version ?><br>
+      Paradise PHP Photo Gallery <?= $version ?><br>
       Logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
    </div>
 </footer>

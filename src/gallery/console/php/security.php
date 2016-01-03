@@ -66,19 +66,17 @@ function sendAccountInvite($email) {
    $db->invites->{$code} = $invite;
    saveAccountsDb($db);
    $inviteLink = getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
-   $subjectLine = "Paradise PHP Image Gallery - Sign up invitation";
+   $subjectLine = "Sign up invitation";
    $messageLines = array(
-      "You have been invited to create an account to administer the Paradise PHP Image Gallery gallery at:",
+      "You have been invited to create an account to administer the Paradise PHP Photo Gallery gallery at:",
       getGalleryUrl(),
       "",
       "To sign up and start uploading images, go to:",
       $inviteLink,
       "",
       "The above link expires in {$daysValid} days.",
-      "",
-      "- Paradise"
       );
-   $invite["message"] = sendEmail($subjectLine, $invite["to"], $messageLines) ?
+   $invite["message"] = sendEmail($invite["to"], $subjectLine, $messageLines) ?
       "Account invitation sent to: {$email}" : "Error emailing invitation!";
    logEvent("send-account-invite", $code, $invite["to"], $invite["expires"]);
    return $invite;

@@ -23,7 +23,7 @@
    <aside>
       <button data-href="../..">Visit Gallery</button>
    </aside>
-   <h1>Paradise PHP Image Gallery</h1>
+   <h1>Paradise PHP Photo Gallery</h1>
    <h2>Administrator Console</h2>
 </header>
 

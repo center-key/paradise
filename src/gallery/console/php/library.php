@@ -159,24 +159,30 @@ function httpJsonResponse($data) {
    logEvent("http-json-response", $data);
    }
 
-function sendEmail($subjectLine, $sendTo, $messageLines) {
+function finishSendEmail($sendTo, $subjectLine, $messageLines) {
    $sendFrom = $_SESSION["user"];
-   $success = mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
+   $subjectLine = "Paradise PHP Photo Gallery - {$subjectLine}";
+   $messageLines[] = "";
+   $messageLines[] = "- Paradise";
+   $messageLines[] = "";
+   return mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
+   }
+
+function sendEmail($sendTo, $subjectLine, $messageLines) {
+   $success = finishSendEmail($sendTo, $subjectLine, $messageLines);
    logEvent("send-email", $success, $sendTo, $subjectLine);
-   $confirmationSubject = "Paradise email confirmation notice";
+   $confirmationSubject = "Email confirmation";
    $confirmationLines = array(
-      "This is an automated message from the Paradise PHP Image Gallery system.",
+      "This is an automated message from the Paradise PHP Photo Gallery system.",
       "",
       "An email message was just sent on your behalf as follows:",
       "\tSubject: {$subjectLine}",
       "\tTo: {$sendTo}",
       "",
       "This is an informational message only -- no action is required on your part.",
-      "",
-      "- Paradise PHP Image Gallery"
       );
    if ($success)
-      mail($sendFrom, $confirmationSubject, implode(PHP_EOL, $confirmationLines), "From: $sendFrom");
+      finishSendEmail($_SESSION["user"], $confirmationSubject, $confirmationLines);
    return $success;
    }
 

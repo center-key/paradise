@@ -55,7 +55,7 @@ function setupDb($dbFilename, $defaultDb) {
 
 function setupCustomCss($dataFolder) {
    $defaultCss = array(
-      "/*  Paradise PHP Image Gallery                                */",
+      "/*  Paradise PHP Photo Gallery                                */",
       "/*  Edit this CSS file to customize the look of the gallery.  */",
       "/*  Put custom images in: gallery/data/graphics               */",
       "",

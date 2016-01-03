@@ -1,6 +1,6 @@
-### Paradise PHP Image Gallery
+### Paradise PHP Photo Gallery
 
-*A simple and aesthetic way to showcase your art portfolio*
+*A simple and aesthetic image gallery to showcase your art portfolio*
 
 ---
 <img align=right width=300 src="website/graphics/paradise-logo.png?raw=true">
@@ -17,7 +17,7 @@ organization.
    * [Questions and bugs](https://github.com/center-key/paradise/issues)
 
 ===
-Paradise is an open source project licensed under
+Paradise is open source and licensed under
 [GPLv3](https://github.com/center-key/paradise/blob/master/src/gallery/license.txt)
 with the website and documentation licensed under
 [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0).
