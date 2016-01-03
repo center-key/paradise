@@ -17,7 +17,7 @@ organization.
    * [Questions and bugs](https://github.com/center-key/paradise/issues)
 
 ===
-Paradise is open source and licensed under
+Paradise is licensed under
 [GPLv3](https://github.com/center-key/paradise/blob/master/src/gallery/license.txt)
 with the website and documentation licensed under
 [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0).
