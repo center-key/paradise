@@ -6,7 +6,7 @@
 /* Page layout */
 body { padding: 10px; margin: 20px 0px 0px 0px; }
 body >header, body >main, body >footer { width: 900px; clear: both; margin: 0px auto 20px auto; }
-body >header h1 { font-size: 1.5rem; font-family: geneva, tahoma, sans-serif; margin: 0px; }
+body >header h1 { font-size: 2.2rem; margin: 0px; }
 body >header h2 { font-size: 1.1rem; font-weight: normal; }
 body >header aside {text-align: right; }
 body >footer { display: flex; justify-content: space-between; align-items: center; }
