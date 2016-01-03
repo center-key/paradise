@@ -45,14 +45,16 @@ app.ui = {
       var action = elem.data().action;
       var params = { id: dna.getModel(elem).id };
       var erase = action === 'delete';
+      var up =    action === 'up';
       function move() {
          var box = dna.getClone(elem);
-         var ghostBox = box.clone();
-         if (action === 'up')
-            box.hide().prev().before(box).after(ghostBox);
+         var submissiveBox = up ? box.prev() : box.next();
+         var ghostBox = submissiveBox.clone();
+         if (up)
+            box.after(submissiveBox.hide()).before(ghostBox);
          else
-            box.hide().next().after(box).before(ghostBox);
-         dna.ui.slideFadeIn(box);
+            box.before(submissiveBox.hide()).after(ghostBox);
+         dna.ui.slideFadeIn(submissiveBox);
          dna.ui.slideFadeDelete(ghostBox);
          }
       function handle(data) { return erase ? dna.bye(elem) : move(); }
