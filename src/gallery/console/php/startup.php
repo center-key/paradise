@@ -57,7 +57,7 @@ function setupCustomCss($dataFolder) {
    $defaultCss = array(
       "/*  Paradise PHP Photo Gallery                                */",
       "/*  Edit this CSS file to customize the look of the gallery.  */",
-      "/*  Put custom images in: gallery/data/graphics               */",
+      "/*  Put custom images in: gallery/~data~/graphics             */",
       "",
       "body { color: whitesmoke; background-color: dimgray; }",
       "body >footer { background-color: gray; border-color: black; }",

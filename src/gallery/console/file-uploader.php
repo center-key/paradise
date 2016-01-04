@@ -26,7 +26,7 @@ require "file-uploader/php.php";
 
 $allowedExtensions = array("jpg", "jpeg", "png");
 $sizeLimit =         1 * 1024 * 1024;  //1MB
-$uploadFolder =      "../data/uploads/";
+$uploadFolder =      "../~data~/uploads/";
 
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 $result = $uploader->handleUpload($uploadFolder);

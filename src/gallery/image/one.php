@@ -11,13 +11,13 @@
 <meta name=apple-mobile-web-app-title content="Gallery">
 <title><?= $caption ?> &bull; <?= $settings->{"title"} ?></title>
 <link rel=icon             href="http://centerkey.com/paradise/graphics/bookmark.png">
-<link rel=apple-touch-icon href="../../data/portfolio/<?= $id ?>-small.png">
+<link rel=apple-touch-icon href="../../~data~/portfolio/<?= $id ?>-small.png">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/slimbox/2/css/slimbox2.css">
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
 <link rel=stylesheet       href="../../css/reset.css">
 <link rel=stylesheet       href="../../css/style.css">
-<link rel=stylesheet       href="../../data/custom-style.css">
+<link rel=stylesheet       href="../../~data~/custom-style.css">
 <style>
    @import url(http://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
    h1 {
@@ -37,7 +37,7 @@
    <div class=one-image>
       <figure>
          <figcaption><?= $caption ?></figcaption>
-         <img src="../../data/portfolio/<?= $id ?>-large.jpg" data-href="../.."  alt="<?= $caption ?>">
+         <img src="../../~data~/portfolio/<?= $id ?>-large.jpg" data-href="../.."  alt="<?= $caption ?>">
       </figure>
       <p><?= $description ?></p>
    </div>

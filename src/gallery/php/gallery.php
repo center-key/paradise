@@ -21,12 +21,17 @@ function styleClasses($settings) {
 
 function displayImage($image) {
    $badge = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
+   //TODO: Switch to colorbox to be html5 compliant
+   // https://cdn.jsdelivr.net/colorbox/1.6.3/jquery.colorbox-min.js
+   // https://cdn.jsdelivr.net/colorbox/1.6.3/jquery.colorbox.js
+   // http://www.jacklmoore.com/colorbox/
+   // $('.image a').colorbox();
    echo "
       <div class=image>
          {$badge}
-         <a rel=lightbox-gallery href='data/portfolio/{$image->id}-large.jpg'
+         <a rel=lightbox-gallery href='~data~/portfolio/{$image->id}-large.jpg'
             title='<span class=image-caption>{$image->caption}</span><br>{$image->description}'>
-            <img src='data/portfolio/{$image->id}-small.png' alt='Thumbnail'
+            <img src='~data~/portfolio/{$image->id}-small.png' alt='Thumbnail'
                title='Click for full size, and right arrow to advance'>
          </a>
          <p class=image-caption>
@@ -47,7 +52,7 @@ function displayImages($gallery) {
 function getImageInfo($uri, $gallery) {
    preg_match("/\/image\/([0-9]+)/", $uri, $matches);
    $id = $matches[1];
-   $dbFilename = __DIR__ . "/../data/portfolio/{$id}-db.json";
+   $dbFilename = __DIR__ . "/../~data~/portfolio/{$id}-db.json";
    if (is_file($dbFilename))
       $imageDb = json_decode(file_get_contents($dbFilename));
    else
@@ -55,7 +60,7 @@ function getImageInfo($uri, $gallery) {
    return array($id, $imageDb->caption, $imageDb->description);
    }
 
-$settings = getData(__DIR__ . "/../data/settings-db.json");
-$gallery =  getData(__DIR__ . "/../data/gallery-db.json");
+$settings = getData(__DIR__ . "/../~data~/settings-db.json");
+$gallery =  getData(__DIR__ . "/../~data~/gallery-db.json");
 $pages = $settings->pages;
 ?>

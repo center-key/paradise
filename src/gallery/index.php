@@ -16,7 +16,7 @@
 <link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
 <link rel=stylesheet       href="css/reset.css">
 <link rel=stylesheet       href="css/style.css">
-<link rel=stylesheet       href="data/custom-style.css">
+<link rel=stylesheet       href="~data~/custom-style.css">
 <style>
    @import url(http://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
    h1 {
@@ -46,7 +46,7 @@
       </section>
       <section data-hash=artist>
          <h3 class=hide-me>The Artist</h3>
-         <?php if ($pages[1]->show) readfile("data/page-{$pages[1]->name}.html"); ?>
+         <?php if ($pages[1]->show) readfile("~data~/page-{$pages[1]->name}.html"); ?>
       </section>
       <section data-hash=contact>
          <h3>Contact the Artist</h3>

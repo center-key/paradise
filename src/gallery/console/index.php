@@ -44,8 +44,8 @@
          <div>
             <div id=portfolio-image class=dna-template data-item-id=~~id~~>
                <figure>
-                  <img data-attr-src="../data/portfolio/~~id~~-large.jpg" class=external-site
-                     data-href="../data/portfolio/~~id~~-large.jpg" alt="Thumbnail">
+                  <img data-attr-src="../~data~/portfolio/~~id~~-large.jpg" class=external-site
+                     data-href="../~data~/portfolio/~~id~~-large.jpg" alt="Thumbnail">
                   <figcaption>Uploaded: <b>~~uploaded~~</b></figcaption>
                </figure>
                <label data-class=~~display,display-on,display-off~~>
