@@ -98,10 +98,19 @@ function saveAccountsDb($db) {
    return saveDb($accountsDbFile, $db);
    }
 
-function displayTrue($imageDb) { return $imageDb->display; }
+function toUriCode($caption) {
+   return $code = preg_replace("/\s+/", "-",
+       trim(preg_replace("/[^a-z]/", " ", strtolower($caption))));  //TODO: Figure out why "/[^\p{L}]/" bombs on Korean text
+   }
+
+function displayTrue($imageDb) {
+   return $imageDb->display;
+   }
+
 function convert($imageDb) {
    return array(
       "id" =>          $imageDb->id,
+      "code" =>        toUriCode($imageDb->caption),
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
       "badge" =>       $imageDb->badge
@@ -112,7 +121,9 @@ function generateGalleryDb() {
       array_filter(readPortfolioDb(), "displayTrue"))));
    }
 
-function extractSort($imageDb) { return $imageDb->sort; }
+function extractSort($imageDb) {
+   return $imageDb->sort;
+   }
 
 function calcNewPortfolioSort($currentSort, $up) {
    $sorts = array_map("extractSort", readPortfolioDb());

@@ -29,7 +29,10 @@ function displayImage($image) {
             <img src='data/portfolio/{$image->id}-small.png' alt='Thumbnail'
                title='Click for full size, and right arrow to advance'>
          </a>
-         <p class=image-caption>{$image->caption}</p>
+         <p class=image-caption>
+            {$image->caption}
+            <a href='image/{$image->id}/{$image->code}' class=plain><i class='fa fa-link'></i></a>
+         </p>
       </div>";
    }
 
@@ -41,7 +44,18 @@ function displayImages($gallery) {
          displayImage($image);
    }
 
-$settings = getData("data/settings-db.json");
-$gallery =  getData("data/gallery-db.json");
+function getImageInfo($uri, $gallery) {
+   preg_match("/\/image\/([0-9]+)/", $uri, $matches);
+   $id = $matches[1];
+   $dbFilename = __DIR__ . "/../data/portfolio/{$id}-db.json";
+   if (is_file($dbFilename))
+      $imageDb = json_decode(file_get_contents($dbFilename));
+   else
+      $imageDb = json_decode('{ "caption": "That image does not appear to exist", "description": "" }');
+   return array($id, $imageDb->caption, $imageDb->description);
+   }
+
+$settings = getData(__DIR__ . "/../data/settings-db.json");
+$gallery =  getData(__DIR__ . "/../data/gallery-db.json");
 $pages = $settings->pages;
 ?>

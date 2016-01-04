@@ -93,9 +93,9 @@ function workaroundToUpgradePortfolio() {
 foreach(array("", "graphics", "portfolio", "uploads") as $name)
    setupDataFolder($dataFolder, $name);
 $installKey = setupInstallKey($dataFolder);
-$settingsDbFile = "{$dataFolder}/settings-db.json";
-$galleryDbFile =  "{$dataFolder}/gallery-db.json";
-$accountsDbFile = "{$dataFolder}/accounts-db-{$installKey}.json";
+$settingsDbFile =  "{$dataFolder}/settings-db.json";
+$galleryDbFile =   "{$dataFolder}/gallery-db.json";
+$accountsDbFile =  "{$dataFolder}/accounts-db-{$installKey}.json";
 $uploadsFolder =   "{$dataFolder}/uploads";
 $portfolioFolder = "{$dataFolder}/portfolio";
 $galleryFolder =   "{$dataFolder}/gallery";

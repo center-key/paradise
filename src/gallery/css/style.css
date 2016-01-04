@@ -104,6 +104,18 @@ body >footer >div:first-child {
    padding: 3px 5px;
    opacity: 0.6;
    }
+.gallery-images .image .image-caption a i.fa {
+   position: absolute;
+   bottom: 0px;
+   right: 0px;
+   font-size: 1.0rem;
+   color: white;
+   opacity: 0;
+   transition: all 0.5;
+   }
+.gallery-images .image .image-caption:hover a i.fa {
+   opacity: 1;
+   }
 body.caption-italic .image-caption {
    font-style: italic;
    }
@@ -121,4 +133,24 @@ form.feedback aside {
    bottom: 10px;
    font-size: 0.7rem;
    margin: 0px;
+   }
+
+/* One image */
+.one-image {
+   text-align: center;
+   border: 1px solid white;
+   padding: 30px 0px;
+   }
+.one-image figure figcaption {
+   font-size: 1.8rem;
+   font-weight: bold;
+   margin-bottom: 10px;
+   }
+.one-image figure img {
+   max-width: 100%;
+   border: 8px solid black;
+   }
+.one-image p {
+   font-size: 1.0rem;
+   padding: 0px 20%;
    }

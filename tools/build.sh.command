@@ -26,7 +26,7 @@ zipUpRelease() {
    echo "Making version ${version}..."
    zipFile=$projectFolder/releases/paradise-install-files.zip
    rm -f $zipFile
-   zip --recurse-paths --quiet $zipFile gallery/ --exclude "*/.*"
+   zip --recurse-paths --quiet $zipFile gallery/ --exclude "*/.DS_Store"
    cd $projectFolder/releases
    pwd
    cp paradise-install-files.zip paradise-${version}.zip
