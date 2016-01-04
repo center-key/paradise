@@ -41,9 +41,11 @@
    </nav>
    <div id=gallery-panels class=dna-panels>
       <section data-hash=images class=gallery-images>
+         <h3 class=hide-me>Gallery Images</h3>
          <?php displayImages($gallery); ?>
       </section>
       <section data-hash=artist>
+         <h3 class=hide-me>The Artist</h3>
          <?php if ($pages[1]->show) readfile("data/page-{$pages[1]->name}.html"); ?>
       </section>
       <section data-hash=contact>
@@ -55,7 +57,7 @@
             </label>
             <label>
                <span>Name:</span>
-               <input name=name size=35 placeholder="Enter your name"></p>
+               <input name=name size=35 placeholder="Enter your name">
             </label>
             <label>
                <span>Email:</span>
