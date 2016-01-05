@@ -114,6 +114,7 @@ body >footer >div:first-child {
    transition: all 0.5;
    }
 .gallery-images .image .image-caption:hover a i.fa {
+   text-shadow: 0px 0px 0.3em black;
    opacity: 1;
    }
 body.caption-italic .image-caption {

@@ -18,7 +18,8 @@ main { display: flex; justify-content: space-between; min-height: 300px; }
 main >div:nth-child(1) { width: 62%; }  /* 1st column (2% for gap) */
 main >div:nth-child(2) { width: 36%; }  /* 2nd column (2% for gap) */
 main >div >section { border-width: 2px; border-style: solid; padding: 10px; margin-bottom: 10px; }
-main >div >section h3 { font-size: 1.2rem; color: white; padding: 3px 8px; margin: -10px -10px 10px -10px; }
+main >div >section h3 { position: relative; font-size: 1.2rem; color: white; padding: 3px 8px; margin: -10px -10px 10px -10px; }
+main >div >section h3 >i.fa { position: absolute; top: 6px; right: 6px; font-size: 100%; }
 main >div >section h4 { display: table; font-size: 0.8rem; background-color: silver; color: white; padding: 2px 8px; margin-bottom: 2px; }
 main >div >section aside { width: 35%; text-align: center; font-size: 0.8rem; border: 1px solid silver; padding: 5px; }
 main >div >section aside img { width: 100%; border: 1px solid black; }

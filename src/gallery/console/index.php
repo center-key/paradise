@@ -50,7 +50,8 @@
                </figure>
                <label data-class=~~display,display-on,display-off~~>
                   <span>Display:</span>
-                  <input name=display type=checkbox data-prop-checked=~~display~~ data-change=app.ui.savePortfolio>
+                  <input name=display type=checkbox data-prop-checked=~~display~~
+                     data-change=app.ui.savePortfolio>
                   <span>(show in gallery)</span>
                </label>
                <label>
@@ -59,7 +60,8 @@
                </label>
                <label>
                   <span>Description:</span>
-                  <textarea name=description data-smart-update=app.ui.savePortfolio>~~description~~</textarea>
+                  <textarea name=description
+                     data-smart-update=app.ui.savePortfolio>~~description~~</textarea>
                </label>
                <label>
                   <span>Badge:</span>
@@ -83,7 +85,11 @@
    <div>
 
       <section>
-         <h3>Gallery Uploader</h3>
+         <h3>
+            Gallery Uploader
+            <i class="fa fa-info-circle external-site"
+               data-href="https://github.com/center-key/paradise/wiki/faq"></i>
+         </h3>
          <i id=processing-files class="fa fa-spinner fa-spin"></i>
          <div id=file-uploader></div>
       </section>
@@ -94,14 +100,16 @@
             <legend>Website</legend>
             <label>
                <span>Title:</span>
-               <input name=title value=~~title~~ data-smart-update=app.ui.saveSettings placeholder="Enter website header">
+               <input name=title value=~~title~~ data-smart-update=app.ui.saveSettings
+                  placeholder="Enter website header">
             </label>
             <label>
                <span>Title font:</span>
                <select name=title-font data-option=~~title-font~~ data-change=app.ui.saveSettings>
                   <?= displayFontOptions(); ?>
                </select>
-               <i data-href="https://www.google.com/fonts/specimen/~~title-font~~" class="fa fa-info-circle external-site"></i>
+               <i data-href="https://www.google.com/fonts/specimen/~~title-font~~"
+                  class="fa fa-info-circle external-site"></i>
             </label>
             <label>
                <span>Title size:</span>
@@ -119,32 +127,36 @@
             </label>
             <label>
                <span>Subtitle:</span>
-               <input name=subtitle value=~~subtitle~~ data-smart-update=app.ui.saveSettings placeholder="Enter website subheader">
+               <input name=subtitle value=~~subtitle~~ data-smart-update=app.ui.saveSettings
+                  placeholder="Enter website subheader">
             </label>
             <div>
                <span>Captions:</span>
                <span>
                   <label>
-                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~ data-change=app.ui.saveSettings>
+                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
+                        data-change=app.ui.saveSettings>
                      <span><i>italic</i></span>
                   </label>
                   <label>
-                     <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~ data-change=app.ui.saveSettings>
+                     <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~
+                        data-change=app.ui.saveSettings>
                      <span class=small-caps>all caps</span>
                   </label>
                </span>
             </div>
             <label>
                <span>Creative Commons:</span>
-               <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~ data-change=app.ui.saveSettings>
+               <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
+                  data-change=app.ui.saveSettings>
                <span>display</span>
-               <a href="http://creativecommons.org/licenses/by-sa/4.0/" class=external-site title="CC BY 4.0">
-                  <i class="fa fa-info-circle"></i>
-               </a>
+               <i class="fa fa-info-circle external-site" title="CC BY 4.0"
+                  data-href="http://creativecommons.org/licenses/by-sa/4.0/"></i>
             </label>
             <label>
                <span>Social share icons:</span>
-               <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~ data-change=app.ui.saveSettings>
+               <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~
+                  data-change=app.ui.saveSettings>
                <span>display</span>
             </label>
             <label>
@@ -153,8 +165,9 @@
             </label>
             <label>
                <span>E-mail:</span>
-               <input type=email name=contact-email value=~~contact-email~~ placeholder="Address for feedback" data-smart-update=app.ui.saveSettings>
-               <a href="../#contact" class=external-site><i class="fa fa-info-circle"></i></a>
+               <input type=email name=contact-email value=~~contact-email~~
+                  data-smart-update=app.ui.saveSettings placeholder="Address for feedback">
+               <i class="fa fa-info-circle external-site" data-href="../#contact"></i>
             </label>
          </fieldset>
          <fieldset class=settings-tabs>
@@ -163,10 +176,12 @@
                <div data-array=~~pages~~ data-item-id=~~[count]~~ data-item-type=page>
                   <label>
                      <span>#<span>~~[count]~~</span>:</span>
-                     <input name=title value=~~title~~ data-smart-update=app.ui.saveSettings placeholder="Title for menu tab">
+                     <input name=title value=~~title~~ data-smart-update=app.ui.saveSettings
+                        placeholder="Title for menu tab">
                   </label>
                   <label>
-                     <input name=show type=checkbox data-prop-checked=~~show~~ data-change=app.ui.saveSettings>
+                     <input name=show type=checkbox data-prop-checked=~~show~~
+                        data-change=app.ui.saveSettings>
                      <span>display</span>
                   </label>
                </div>
@@ -200,7 +215,8 @@
                <div>
                   <label>
                      <span>Email:</span>
-                     <input type=email data-key-up=app.invites.validate placeholder="New user's email address">
+                     <input type=email data-key-up=app.invites.validate
+                        placeholder="New user's email address">
                   </label>
                   <button data-click=app.invites.send disabled>Send invitation</button>
                </div>
@@ -213,11 +229,12 @@
 
 <footer>
    <div class=plain>
-      Questions and bugs:<br>
-      <a href="https://github.com/center-key/paradise/issues">github.com/center-key/paradise/issues</a>
+      Paradise <?= $version ?><br>
+      FAQ: <a href="https://github.com/center-key/paradise/wiki/faq" class=external-site>
+         github.com/center-key/paradise/wiki/faq</a>
    </div>
    <div>
-      Paradise PHP Photo Gallery <?= $version ?><br>
+      <b><?= $_SESSION["user"] ?></b><br>
       Logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
    </div>
 </footer>

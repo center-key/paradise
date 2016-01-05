@@ -61,6 +61,8 @@ button:hover { background-color: royalblue; }
 
 /* Utilities */
 .hide-me { display: none !important; }
+i.fa[data-href] { opacity: 0.8; transition: all 0.5s; }
+i.fa[data-href]:hover { opacity: 1.0; }
 
 /* Social buttons */
 #social-buttons span i.fa {

@@ -28,7 +28,7 @@
 <body class="<?= styleClasses($settings) ?>">
 
 <header>
-   <h1><?= $settings->{"title"} ?></h1>
+   <h1 data-href="."><?= $settings->{"title"} ?></h1>
    <h2><?= $settings->{"subtitle"} ?></h2>
 </header>
 

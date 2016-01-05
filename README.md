@@ -14,7 +14,8 @@ organization.
 #### Project:
    * [Instructions](http://centerkey.com/paradise/)
    * [Releases](https://github.com/center-key/paradise/tree/master/releases)
-   * [Questions and bugs](https://github.com/center-key/paradise/issues)
+   * [Issues](https://github.com/center-key/paradise/issues)
+   * [FAQ](https://github.com/center-key/paradise/wiki/faq)
 
 ===
 Paradise is licensed under

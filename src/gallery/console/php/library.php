@@ -187,7 +187,7 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
       "This is an automated message from the Paradise PHP Photo Gallery system.",
       "",
       "An email message was just sent on your behalf as follows:",
-      "\tSubject: {$subjectLine}",
+      "\tSubject: Paradise PHP Photo Gallery - {$subjectLine}",
       "\tTo: {$sendTo}",
       "",
       "This is an informational message only -- no action is required on your part.",

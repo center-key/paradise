@@ -57,8 +57,10 @@
 
 <footer>
    <div class=plain>
-      Questions and bugs:<br>
-      <a href="https://github.com/center-key/paradise/issues">github.com/center-key/paradise/issues</a>
+      FAQ:<br>
+      <a href="https://github.com/center-key/paradise/wiki/faq">
+         github.com/center-key/paradise/wiki/faq
+      </a>
    </div>
 </footer>
 
