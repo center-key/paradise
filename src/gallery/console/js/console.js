@@ -88,7 +88,7 @@ app.ui = {
          uploadButtonText:  'Upload images',
          action:            'file-uploader.php',
          allowedExtensions: ['jpg', 'jpeg', 'png'],
-         sizeLimit:         1048576,  //1MB
+         sizeLimit:         2 * 1024 * 1024,  //2 MB
          onSubmit:          start,
          onComplete:        done
          };

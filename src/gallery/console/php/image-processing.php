@@ -6,9 +6,9 @@
 
 // Image processing library
 
-$thumbHeight =   150;
-$fullWidthMax = 1100;
-$fullHeightMax = 800;
+$thumbHeight =    150;
+$fullWidthMax =  1600;
+$fullHeightMax = 1200;
 
 function getNextImageId() {
    global $portfolioFolder;
