@@ -149,8 +149,8 @@ function formatMsg($msg) {
 function logEvent() {  //any number of parameters to log
    global $installKey, $dataFolder;
    $delimiter = " | ";
-   $logFilename =     "{$dataFolder}/log-{$installKey}.txt";
-   $archiveFilename = "{$dataFolder}/log-archive-{$installKey}.txt";
+   $logFilename =     "{$dataFolder}/system-{$installKey}.log";
+   $archiveFilename = "{$dataFolder}/system-{$installKey}.archive.log";
    $milliseconds = substr(microtime(), 2, 3);
    $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg($_SESSION["user"]));
    foreach (func_get_args() as $msg) {
@@ -159,7 +159,7 @@ function logEvent() {  //any number of parameters to log
       }
    $event[] = PHP_EOL;
    file_put_contents($logFilename, $event, FILE_APPEND);
-   if (filesize($logFilename) > 100000)  //approximate file size limit: 100 KB
+   if (filesize($logFilename) > 500000)  //approximate file size limit: 500 KB
       rename($logFilename, $archiveFilename);
    }
 
