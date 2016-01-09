@@ -49,6 +49,7 @@ function createFullImage($origImage, $origWidth, $origHeight, $file) {
 function createImages($origFile, $id) {
    global $portfolioFolder;
    list($origWidth, $origHeight, $origType) = getimagesize($origFile);
+   ini_set("memory_limit", "64M");
    $origImage = $origType == 2 ? imagecreatefromjpeg($origFile) : imagecreatefrompng($origFile);
    $aspectRatio = $origWidth / $origHeight;
    createThumbnail($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-small.png");
