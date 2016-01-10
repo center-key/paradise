@@ -21,18 +21,12 @@ function styleClasses($settings) {
 
 function displayImage($image) {
    $badge = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
-   //TODO: Switch to colorbox to be html5 compliant
-   // https://cdn.jsdelivr.net/colorbox/1.6.3/jquery.colorbox-min.js
-   // https://cdn.jsdelivr.net/colorbox/1.6.3/jquery.colorbox.js
-   // http://www.jacklmoore.com/colorbox/
-   // $('.image a').colorbox();
    echo "
       <div class=image>
          {$badge}
-         <a rel=lightbox-gallery href='~data~/portfolio/{$image->id}-large.jpg'
-            title='<span class=image-caption>{$image->caption}</span><br>{$image->description}'>
-            <img src='~data~/portfolio/{$image->id}-small.png' alt='Thumbnail'
-               title='Click for full size, and right arrow to advance'>
+         <a href='~data~/portfolio/{$image->id}-large.jpg'
+            data-title='<span class=image-caption>{$image->caption}</span><br>{$image->description}'>
+            <img src='~data~/portfolio/{$image->id}-small.png' alt='Thumbnail'>
          </a>
          <p class=image-caption>
             {$image->caption}

@@ -17,7 +17,7 @@ body >footer a { color: white; }
 body >footer >div:last-child:not(:first-child) { text-align: right; }
 
 /* Style */
-button { font-size: 0.9rem; }
+.flat button { font-size: 0.9rem; }
 #status-msg { font-weight: bold; }
 
 /* Utilities */

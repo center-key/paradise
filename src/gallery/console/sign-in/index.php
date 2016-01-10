@@ -17,7 +17,7 @@
 <link rel=stylesheet       href="../css/color-blocks.css">
 <link rel=stylesheet       href="../css/style.css">
 </head>
-<body>
+<body class=flat>
 
 <header>
    <aside>
