@@ -19,9 +19,9 @@
 <link rel=stylesheet       href="../~data~/custom-style.css">
 <style>
    <?php importFonts(); ?>
-   .font-sampler { width: 100%; }
    .font-sampler tr { border-top: 1px solid silver; }
    .font-sampler td { vertical-align: middle; padding: 10px; }
+   .font-sampler td:last-child { width: 100%; }
 </style>
 </head>
 <body>
