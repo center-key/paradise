@@ -108,8 +108,7 @@
                <select name=title-font data-option=~~title-font~~ data-change=app.ui.saveSettings>
                   <?= displayFontOptions(); ?>
                </select>
-               <i data-href="https://www.google.com/fonts/specimen/~~title-font~~"
-                  class="fa fa-info-circle external-site"></i>
+               <i data-href="fonts.php" class="fa fa-info-circle external-site"></i>
             </label>
             <label>
                <span>Title size:</span>
