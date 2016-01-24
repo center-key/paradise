@@ -34,6 +34,11 @@ function appClientData() {
    return json_encode($data);
    }
 
+function initializeFile($filename, $fileContents) {
+   if (!is_file($filename) && !file_put_contents($filename, $fileContents))
+      exit("Error initializing file: {$filename}");
+   }
+
 function readDb($dbFilename) {
    $dbStr = file_get_contents($dbFilename);
    if ($dbStr === false)

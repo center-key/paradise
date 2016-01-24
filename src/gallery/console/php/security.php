@@ -16,6 +16,8 @@ $sessionTimout =  3600;  //60x60 seconds --> 1 hour
 session_start();
 require "library.php";
 require "startup.php";
+$loginMsgFile = __DIR__ . "/../../~data~/login-message.html";
+$loginMsg = "<!--\n<section>\n<h3>Custom message</h3>\n<p>Text goes here.</p>\n</section>\n-->\n";
 
 function redirectToPage($page) {
    logEvent("page-redirect", $page, $_SERVER["REQUEST_URI"]);
@@ -160,4 +162,5 @@ if ($loggedIn && $redirectAuth)
    redirectToPage($redirectAuth);
 elseif (!$loggedIn && !$noAuth)
    redirectToPage("sign-in");
+initializeFile($loginMsgFile, $loginMsg);
 ?>

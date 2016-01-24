@@ -34,8 +34,7 @@ function setupDataFolder($dataFolder, $name) {
    $defaultView = "{$dataFolder}/index.html";
    if (!is_dir($folder) && !mkdir($folder))
       exit("Unable to create data folder: {$folder}");
-   if (!is_file($defaultView) && !file_put_contents($defaultView, "Nothing to see."))  //TODO: cover all folders
-      exit("Unable to write into data folder: {$defaultView}");
+   initializeFile($defaultView, "Nothing to see.");  //TODO: cover all folders
    }
 
 function setupInstallKey($folder) {
@@ -49,8 +48,7 @@ function setupInstallKey($folder) {
    }
 
 function setupDb($dbFilename, $defaultDb) {
-   if (!is_file($dbFilename) && !file_put_contents($dbFilename, json_encode($defaultDb)))
-      exit("Error creating database: {$dbFilename}");
+   initializeFile($dbFilename, json_encode($defaultDb));
    }
 
 function setupCustomCss($dataFolder) {
@@ -64,8 +62,7 @@ function setupCustomCss($dataFolder) {
       ".gallery-images .image img { border-color: black; }"
       );
    $filename = "{$dataFolder}/custom-style.css";
-   if (!is_file($filename) && !file_put_contents($filename, implode(PHP_EOL, $defaultCss)))
-      exit("Error creating CSS file: {$filename}");
+   initializeFile($filename, implode(PHP_EOL, $defaultCss));
    }
 
 function setupCustomPage($dataFolder, $pageName) {
