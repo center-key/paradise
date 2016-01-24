@@ -41,27 +41,18 @@ app.ui = {
          item.data().itemId = item.index() + 1;   //workaround
       app.ui.save(elem, 'settings');
       },
-   action: function(elem) {
-      var action = elem.data().action;
+   move: function(elem) {
+      var params = {
+         id:   dna.getModel(elem).id,
+         move: elem.data().move
+         };
+      function handle(data) { return params.move === 'up' ? dna.up(elem) : dna.down(elem); }
+      library.rest.get('portfolio', { action: 'update', params: params, callback: handle });
+      },
+   delete: function(elem) {
       var params = { id: dna.getModel(elem).id };
-      var erase = action === 'delete';
-      var up =    action === 'up';
-      function move() {
-         var box = dna.getClone(elem);
-         var submissiveBox = up ? box.prev() : box.next();
-         var ghostBox = submissiveBox.clone();
-         if (up)
-            box.after(submissiveBox.hide()).before(ghostBox);
-         else
-            box.before(submissiveBox.hide()).after(ghostBox);
-         dna.ui.slideFadeIn(submissiveBox);
-         dna.ui.slideFadeDelete(ghostBox);
-         }
-      function handle(data) { return erase ? dna.bye(elem) : move(); }
-      if (!erase)
-         params.move = action;
-      var restAction = erase ? action : 'update';
-      library.rest.get('portfolio', { action: restAction, params: params, callback: handle });
+      function handle(data) { dna.bye(elem); }
+      library.rest.get('portfolio', { action: 'delete', params: params, callback: handle });
       },
    loadAccounts: function(elem) {
       function handle(data) { dna.clone('user-account', data); }

@@ -9,16 +9,17 @@
 <html>
 <head>
 <meta charset=utf-8>
+<meta name=viewport                   content="width=device-width, initial-scale=1">
 <meta name=apple-mobile-web-app-title content="Console">
 <title>Paradise &bull; Administrator Console</title>
-<link rel=icon             href="http://centerkey.com/paradise/graphics/bookmark.png">
-<link rel=apple-touch-icon href="http://centerkey.com/paradise/graphics/mobile-home-screen.png">
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
-<link rel=stylesheet       href="file-uploader/fileuploader.css">
-<link rel=stylesheet       href="../css/reset.css">
-<link rel=stylesheet       href="css/color-blocks.css">
-<link rel=stylesheet       href="css/style.css">
+<link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
+<link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/0/dna.css>
+<link rel=stylesheet       href=file-uploader/fileuploader.css>
+<link rel=stylesheet       href=../css/reset.css>
+<link rel=stylesheet       href=css/color-blocks.css>
+<link rel=stylesheet       href=css/style.css>
 </head>
 <body class=flat>
 
@@ -68,12 +69,12 @@
                   <input name=badge value=~~badge~~ data-smart-update=app.ui.savePortfolio>
                </label>
                <div class=actions>
-                  <i class="fa fa-arrow-up"   data-click=app.ui.action data-action=up></i>
-                  <i class="fa fa-arrow-down" data-click=app.ui.action data-action=down></i>
+                  <i class="fa fa-arrow-up"   data-click=app.ui.move data-move=up></i>
+                  <i class="fa fa-arrow-down" data-click=app.ui.move data-move=down></i>
                   <i class="fa fa-times icon-popup-anchor"></i>
                   <div>
                      <p>Permanently delete this image?</p>
-                     <button data-click=app.ui.action data-action=delete>Delete image</button>
+                     <button data-click=app.ui.delete>Delete image</button>
                   </div>
                </div>
             </div>
@@ -88,7 +89,7 @@
          <h3>
             Gallery Uploader
             <i class="fa fa-info-circle external-site"
-               data-href="https://github.com/center-key/paradise/wiki/faq"></i>
+               data-href=https://github.com/center-key/paradise/wiki/faq></i>
          </h3>
          <i id=processing-files class="fa fa-spinner fa-spin"></i>
          <div id=file-uploader></div>
@@ -149,7 +150,7 @@
                <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
                   data-change=app.ui.saveSettings>
                <span>display</span>
-               <i class="fa fa-info-circle external-site" title="CC BY 4.0"
+               <i class="fa fa-info-circle external-site"
                   data-href="http://creativecommons.org/licenses/by-sa/4.0/"></i>
             </label>
             <label>
@@ -229,7 +230,7 @@
 <footer>
    <div class=plain>
       Paradise <?= $version ?><br>
-      FAQ: <a href="https://github.com/center-key/paradise/wiki/faq" class=external-site>
+      FAQ: <a href=https://github.com/center-key/paradise/wiki/faq class=external-site>
          github.com/center-key/paradise/wiki/faq</a>
    </div>
    <div>
@@ -238,12 +239,12 @@
    </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js"></script>
-<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
-<script src="file-uploader/fileuploader.js"></script>
+<script src=https://cdn.jsdelivr.net/jquery/2/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js></script>
+<script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
+<script src=file-uploader/fileuploader.js></script>
 <script>var app = {}; app.clientData = <?= appClientData(true) ?>;</script>
-<script src="js/library.js"></script>
-<script src="js/console.js"></script>
+<script src=js/library.js></script>
+<script src=js/console.js></script>
 </body>
 </html>
