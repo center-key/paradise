@@ -43,6 +43,7 @@ function verifyPassword($user, $password) {
 function loginUser($email) {
    $_SESSION["user"] = $email;
    $_SESSION["active"] = time();
+   $_SESSION["read-only-user"] = isReadOnlyExampleEmailAddress($email);
    logEvent("user-login", session_id());
    }
 
@@ -96,6 +97,8 @@ function displayDate($invite) {
 function restRequestInvite($action, $email) {
    if ($action === "create")
       $resource = validEmailFormat($email) ? sendAccountInvite($email) : restError(404);
+   elseif ($_SESSION["read-only-user"])
+      $resource = array(array("to" => "lee@example.com", "date" => date("Y-m-d")));
    else
       $resource = array_values(array_map("displayDate",
          array_filter(array_values((array)readAccountsDb()->invites), "outstanding")));

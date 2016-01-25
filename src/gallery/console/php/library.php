@@ -47,7 +47,7 @@ function readDb($dbFilename) {
    }
 
 function saveDb($dbFilename, $db) {
-   if (!file_put_contents($dbFilename, json_encode($db)))
+   if (!$_SESSION["read-only-user"] && !file_put_contents($dbFilename, json_encode($db)))
       exit("Error saving database: {$dbFilename}");
    return $db;
    }
@@ -175,13 +175,20 @@ function httpJsonResponse($data) {
    logEvent("http-json-response", $data);
    }
 
+function isReadOnlyExampleEmailAddress($email) {
+   return preg_match("/@example[.]com$/", $email) === 1;
+   }
+
 function finishSendEmail($sendTo, $subjectLine, $messageLines) {
    $sendFrom = $_SESSION["user"];
    $subjectLine = "Paradise PHP Photo Gallery - {$subjectLine}";
    $messageLines[] = "";
    $messageLines[] = "- Paradise";
    $messageLines[] = "";
-   return mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
+   if (isReadOnlyExampleEmailAddress($sendTo))
+      $sendTo = $sendFrom;
+   return $_SESSION["read-only-user"] ||
+      mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
    }
 
 function sendEmail($sendTo, $subjectLine, $messageLines) {

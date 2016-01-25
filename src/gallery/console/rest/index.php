@@ -19,7 +19,11 @@
 // gallery    get
 // portfolio  get, update, delete, list
 // account    list
-// invite     list, send(create???)
+// invite     list, create
+//
+// Note:
+//    Query parameters are used instead of path parameters to avoid the need for
+//    URL (.htaccess) configuration.
 
 $noAuth = true;
 require "../php/security.php";
@@ -123,7 +127,7 @@ function updatePortfolio($id) {
 
 function deletePortfolio($id) {
    $resource = readPortfolioImageDb($id);
-   if ($resource) {
+   if (!$_SESSION["read-only-user"] && $resource) {
       deleteImages($id);
       generateGalleryDb();
       }
@@ -166,7 +170,8 @@ function resource($loggedIn) {
    $_GET["email"] = strtolower($_GET["email"]);
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($type === "security")
-      $resource = restRequestSecurity($action, $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
+      $resource = restRequestSecurity($action,
+         $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
    elseif (!$loggedIn)
       $resource = restError(401);
    elseif ($type === "command")
