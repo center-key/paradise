@@ -8,7 +8,7 @@
 # Update Web Files:
 # Copies files to FTP folder
 
-websiteFolder=$(dirname $0)
+websiteFolder=$(cd $(dirname $0); pwd)
 httpdConf=/private/etc/apache2/httpd.conf
 webServerRoot=$(grep ^DocumentRoot $httpdConf | awk -F\" '{ print $2 }')
 webServerPath=centerkey.com/paradise
