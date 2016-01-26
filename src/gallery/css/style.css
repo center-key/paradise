@@ -79,6 +79,7 @@ body >footer >div:first-child {
    margin: 0px 10px 20px 10px;
    }
 .gallery-images .image img {
+   max-width: 100%;
    border: 5px solid black;
    transition: 1s;
    }
