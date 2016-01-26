@@ -30,7 +30,11 @@
 <main>
    <div>
       <section class=component-security data-on-load=app.login.setup>
-         <h3>Sign in</h3>
+         <h3>
+            Sign in
+            <i class="fa fa-info-circle external-site"
+               data-href=https://github.com/center-key/paradise/wiki/faq#4-is-my-password-send-over-the-internet-in-clear-text></i>
+         </h3>
          <h3 class=for-create>Create account</h3>
          <p class=for-create>No user accounts exist yet.&nbsp; Create your account to continue the setup.</p>
          <p class=error-message></p>
