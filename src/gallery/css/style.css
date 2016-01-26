@@ -29,7 +29,6 @@ h3 {
 /* Page layout */
 body >header {
    margin-bottom: 10px;
-   overflow: scroll;
    }
 body >main >nav {
    background-color: darkgray; /* IE8,IE9 */
