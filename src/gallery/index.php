@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset=utf-8>
+<meta name=viewport                   content="width=device-width, initial-scale=1">
 <meta name=apple-mobile-web-app-title content="Gallery">
 <title><?= $settings->{"title"} ?> &bull; <?= $settings->{"subtitle"} ?></title>
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>

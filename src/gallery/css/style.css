@@ -29,6 +29,7 @@ h3 {
 /* Page layout */
 body >header {
    margin-bottom: 10px;
+   overflow: scroll;
    }
 body >main >nav {
    background-color: darkgray; /* IE8,IE9 */
@@ -126,6 +127,10 @@ body.caption-caps .image-caption {
    }
 
 /* Contact form */
+form.feedback label textarea,
+form.feedback label input {
+   max-width: 60%;
+   }
 form.feedback button {
    margin: 15px 0px 0px 105px;
    }
@@ -175,4 +180,34 @@ form.feedback aside {
 .mfp-gallery .mfp-content .mfp-counter {
    color: dimgray;
    font-weight: bold;
+   }
+
+/* Mobile */
+@media only screen and (max-device-width: 480px) {
+   body {
+      padding: 0px;
+      }
+   body >header {
+      font-size: 70%;
+      }
+   body >footer {
+      flex-direction: column;
+      }
+   body >footer >* {
+      margin: 3px 0px;
+      }
+   body >footer >div:first-child {
+      padding-right: 0px;
+      }
+   form.feedback label >span:first-child {
+      display: block;
+      text-align: left;
+      }
+   form.feedback label textarea,
+   form.feedback label input {
+      max-width: 100%;
+      }
+   form.feedback button {
+      margin: 10px 0px 15px 0px;
+      }
    }
