@@ -79,6 +79,7 @@ body >footer >div:first-child {
    margin: 0px 10px 20px 10px;
    }
 .gallery-images .image img {
+   max-width: 100%;
    border: 5px solid black;
    transition: 1s;
    }
@@ -114,6 +115,7 @@ body >footer >div:first-child {
    transition: all 0.5;
    }
 .gallery-images .image .image-caption:hover a i.fa {
+   text-shadow: 0px 0px 0.3em black;
    opacity: 1;
    }
 body.caption-italic .image-caption {
@@ -124,6 +126,10 @@ body.caption-caps .image-caption {
    }
 
 /* Contact form */
+form.feedback label textarea,
+form.feedback label input {
+   max-width: 60%;
+   }
 form.feedback button {
    margin: 15px 0px 0px 105px;
    }
@@ -153,4 +159,54 @@ form.feedback aside {
 .one-image p {
    font-size: 1.0rem;
    padding: 0px 20%;
+   }
+
+/* Magnific Popup */
+.mfp-gallery .mfp-content img {
+   transition: all 0.5s;
+   }
+.mfp-gallery .mfp-content {
+   background-color: white;
+   border: 10px solid white;
+   border-top: none;
+   box-shadow: 0px 0px 1.0em silver;
+   }
+.mfp-gallery .mfp-content .mfp-figure:after {
+   box-shadow: none;
+   }
+.mfp-gallery .mfp-content .mfp-close,
+.mfp-gallery .mfp-content .mfp-title,
+.mfp-gallery .mfp-content .mfp-counter {
+   color: dimgray;
+   font-weight: bold;
+   }
+
+/* Mobile */
+@media only screen and (max-device-width: 480px) {
+   body {
+      padding: 0px;
+      }
+   body >header {
+      font-size: 70%;
+      }
+   body >footer {
+      flex-direction: column;
+      }
+   body >footer >* {
+      margin: 3px 0px;
+      }
+   body >footer >div:first-child {
+      padding-right: 0px;
+      }
+   form.feedback label >span:first-child {
+      display: block;
+      text-align: left;
+      }
+   form.feedback label textarea,
+   form.feedback label input {
+      max-width: 100%;
+      }
+   form.feedback button {
+      margin: 10px 0px 15px 0px;
+      }
    }

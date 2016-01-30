@@ -17,7 +17,7 @@ body >footer a { color: white; }
 body >footer >div:last-child:not(:first-child) { text-align: right; }
 
 /* Style */
-button { font-size: 0.9rem; }
+.flat button { font-size: 0.9rem; }
 #status-msg { font-weight: bold; }
 
 /* Utilities */
@@ -49,10 +49,10 @@ i.fa.icon-popup-anchor + div:hover { visibility: visible; opacity: 1; }
 .portfolio-image >label >[name=badge] { width: 100px; }
 .portfolio-image .actions { position: absolute; left: 0px; bottom: 0px; text-align: center; padding: 5px 15px 0px 2px; opacity: 0; transition: all 0.5s; }
 .portfolio-image .actions:hover { opacity: 1; }
-.portfolio-image .actions i.fa { display: block; font-size: 1.6rem; margin: 4px; transition: all 0.5s; }
+.portfolio-image .actions i.fa { display: block; font-size: 1.6rem; margin: 4px; opacity: 1; transition: all 0.5s; }
 .portfolio-image .actions i.fa:hover { color: black; }
-.portfolio-image:first-child .actions i.fa[data-action=up]   { visibility: hidden; }
-.portfolio-image:last-child  .actions i.fa[data-action=down] { visibility: hidden; }
+.portfolio-image:first-child .actions i.fa[data-move=up],
+.portfolio-image:last-child  .actions i.fa[data-move=down] { opacity: 0.2; pointer-events: none; }
 
 /* Component: File Uploader */
 .qq-upload-button { display: inline-block; width: auto; font-size: 1.1rem; font-weight: bold;

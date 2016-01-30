@@ -7,15 +7,16 @@
 <html>
 <head>
 <meta charset=utf-8>
+<meta name=viewport                   content="width=device-width, initial-scale=1">
 <meta name=apple-mobile-web-app-title content="Gallery">
 <title><?= $settings->{"title"} ?> &bull; <?= $settings->{"subtitle"} ?></title>
-<link rel=icon             href="http://centerkey.com/paradise/graphics/bookmark.png">
-<link rel=apple-touch-icon href="http://centerkey.com/paradise/graphics/mobile-home-screen.png">
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/slimbox/2/css/slimbox2.css">
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
+<link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
+<link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css>
+<link rel=stylesheet       href="https://cdn.jsdelivr.net/jquery.magnific-popup/1/magnific-popup.css">
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/0/dna.css>
 <link rel=stylesheet       href="css/reset.css">
-<link rel=stylesheet       href="css/style.css">
+<link rel=stylesheet       href=css/style.css>
 <link rel=stylesheet       href="~data~/custom-style.css">
 <style>
    @import url(http://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
@@ -28,7 +29,7 @@
 <body class="<?= styleClasses($settings) ?>">
 
 <header>
-   <h1><?= $settings->{"title"} ?></h1>
+   <h1 data-href="."><?= $settings->{"title"} ?></h1>
    <h2><?= $settings->{"subtitle"} ?></h2>
 </header>
 
@@ -48,7 +49,7 @@
          <h3 class=hide-me>The Artist</h3>
          <?php if ($pages[1]->show) readfile("~data~/page-{$pages[1]->name}.html"); ?>
       </section>
-      <section data-hash=contact>
+      <section data-hash=contact class=flat>
          <h3>Contact the Artist</h3>
          <form class=feedback method=post>
             <label>
@@ -64,7 +65,7 @@
                <input name=email size=40 type=email placeholder="Enter your email address" required>
             </label>
             <button type=submit>Send message</button>
-            <aside>Gallery powered by <a href="http://centerkey.com/paradise/">Paradise</a></aside>
+            <aside>Gallery powered by <a href=http://centerkey.com/paradise/>Paradise</a></aside>
          </form>
       </section>
       <section data-hash=thanks>
@@ -85,9 +86,9 @@
    <div><?= $settings->{"footer"} ?></div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/slimbox/2/js/slimbox2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
+<script src=https://cdn.jsdelivr.net/jquery/2/jquery.min.js></script>
+<script src="https://cdn.jsdelivr.net/jquery.magnific-popup/1/jquery.magnific-popup.min.js"></script>
+<script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
 <script src="js/app.js"></script>
 </body>
 </html>

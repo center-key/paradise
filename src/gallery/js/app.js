@@ -57,6 +57,13 @@ app.start = {
       $('a.external-site').attr('target', '_blank');
       $('a img').parent().addClass('plain');
       $('form.feedback').attr('action', 'feedback.php');  //bots are lazy
+      var options = {
+         delegate: '>a', // child items selector, by clicking on it popup will open
+         type:     'image',
+         image:    { titleSrc: 'data-title' },
+         gallery:  { enabled: true }
+         };
+      $('.gallery-images .image').magnificPopup(options);
       }
    };
 

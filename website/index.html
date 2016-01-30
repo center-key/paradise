@@ -8,28 +8,27 @@
 <meta charset=utf-8>
 <meta name=apple-mobile-web-app-title content="Paradise">
 <title>Paradise &bull; A simple and aesthetic image gallery to showcase your art portfolio</title>
-<link rel=icon             href="graphics/bookmark.png">
-<link rel=apple-touch-icon href="graphics/mobile-home-screen.png">
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/dna.js/0/dna.css">
-<link rel=stylesheet       href="http://centerkey.com/css/reset.css">
-<link rel=stylesheet       href="color-blocks.css">
-<link rel=stylesheet       href="style.css">
+<link rel=icon             href=graphics/bookmark.png>
+<link rel=apple-touch-icon href=graphics/mobile-home-screen.png>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/0/dna.css>
+<link rel=stylesheet       href=http://centerkey.com/css/reset.css>
+<link rel=stylesheet       href=color-blocks.css>
+<link rel=stylesheet       href=style.css>
 </head>
-<body>
+<body class=flat>
 
 <header>
    <aside>
       <button
-         data-href="https://github.com/center-key/paradise/raw/master/releases/paradise-install-files.zip">
+         data-href=https://github.com/center-key/paradise/raw/master/releases/paradise-install-files.zip>
          Download
       </button>
    </aside>
    <h1>Paradise PHP Photo Gallery</h1>
    <h2>A simple and aesthetic image gallery to showcase your art portfolio</h2>
-   <a id=github-banner href="https://github.com/center-key/paradise">
-      <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
-         alt="Fork me on GitHub">
+   <a id=github-banner href=https://github.com/center-key/paradise>
+      <img src=https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png alt=GitHub>
    </a>
 </header>
 
@@ -37,30 +36,33 @@
    <div>
       <section>
          <h3>Build an Art Exhibit</h3>
-         <a href="http://centerkey.com/paradise/" class=plain>
-            <img class=paradise-logo src="graphics/paradise-logo.png" alt="Paradise logo">
+         <a href=http://centerkey.com/paradise/ class=plain>
+            <img class=paradise-logo src=graphics/paradise-logo.png alt=Paradise>
          </a>
          <p>
             Paradise is a free open source software package for displaying a portfolio of photos on
             a website in a clean, professional style.&nbsp; Use Paradise to create an online
             exhibit for an artist or organization.
          </p>
-         Example websites:
-         <ul>
-            <li><a href="http://www.christopherpilafian.com/" class=external-site>christopherpilafian.com</a></li>
-            <li><a href="http://www.frazierart.com/"          class=external-site>frazierart.com</a></li>
-            <li><a href="http://www.mgsteiner.com/"           class=external-site>mgsteiner.com</a></li>
+         <div style="clear: both;">Paradise galleries:<div>
+         <ul class=external-site>
+            <li><a href=http://centerkey.com/paradise-galleries/console-demo/>World Photos</a></li>
+            <li><a href=http://www.christopherpilafian.com/>Christopher Pilafian</a></li>
+            <li><a href=http://www.frazierart.com/>Frazier Art</a></li>
+            <li><a href=http://www.mgsteiner.com/>Michael Gold Steiner</a></li>
          </ul>
       </section>
       <section>
          <h3>Just the Facts</h3>
-         <aside>
+         <aside class=external-site>
             <div>
-               <a href="../paradise-gallery" class=external-site>
-                  <img src="graphics/paradise-screenshots.png" alt="Screenshot thumbnail">
+               <a href=http://centerkey.com/paradise-galleries/console-demo/console>
+                  <img src=graphics/screenshot-admin-console.png alt=Demo>
                </a>
             </div>
-            <a href="gallery" class=external-site>Screenshots</a>
+            <a href=http://centerkey.com/paradise-galleries/console-demo/console>
+               Administrator Console Demo
+            </a>
          </aside>
          Paradise Requirements:
          <ul>
@@ -72,17 +74,18 @@
             <li>Gallery automatically fills width of user's browser</li>
             <li>Slideshow viewer allows users to easily advance to next image</li>
             <li>SEO friendly URL for each image</li>
+            <li>Optimized for mobile devices</li>
             <li>Contact form for sending a message to the artist</li>
             <li>Administrator Console is password protected</li>
             <li>Passwords are sent one-way encrypted (cryptographic hash) and encrypted a second
                time before storing on the server</li>
             <li>Upload multiple images files at one time</li>
             <li>Automatic thumbnail generation</li>
-            <li>Over 50 fonts to choose from for the title</li>
+            <li>50 fonts to choose from for the title</li>
             <li>NoSQL &ndash; no relational database to setup or maintain</li>
             <li>Data is stored in simple JSON text files</li>
             <li>Open Source
-               (<a href="https://github.com/center-key/paradise/blob/master/src/gallery/license.txt">GPLv3</a>)
+               (<a href=https://github.com/center-key/paradise/blob/master/src/gallery/license.txt>GPLv3</a>)
                &ndash; you have the freedom to examine, copy, and modify the code</li>
             <li>Free &ndash; as in free beer</li>
          </ul>
@@ -93,13 +96,13 @@
          </p>
          The Paradise project is built on the work of others, including:
          <ul>
-            <li><a href="http://www.digitalia.be/software/slimbox2">Slimbox 2</a></li>
-            <li><a href="http://jquery.com/">jQuery</a></li>
-            <li><a href="http://valums-file-uploader.github.io/file-uploader/">Valum's AJAX File-Uploader</a></li>
-            <li><a href="http://dnajs.org">dna.js Semantic Templates</a></li>
-            <li><a href="https://www.google.com/fonts">Google Fonts</a></li>
-            <li><a href="https://code.google.com/p/crypto-js/">CryptoJS</a></li>
-            <li><a href="https://commons.wikimedia.org/wiki/File:8th_division_emblem_-_Bird_of_paradise_flower.svg">Ju gatsu mikka</a></li>
+            <li><a href=http://dimsemenov.com/plugins/magnific-popup/>Magnific Popup</a></li>
+            <li><a href=http://jquery.com/>jQuery</a></li>
+            <li><a href=http://valums-file-uploader.github.io/file-uploader/>Valum's AJAX File-Uploader</a></li>
+            <li><a href=http://dnajs.org>dna.js Semantic Templates</a></li>
+            <li><a href=https://www.google.com/fonts>Google Fonts</a></li>
+            <li><a href=https://code.google.com/p/crypto-js/>CryptoJS</a></li>
+            <li><a href=https://commons.wikimedia.org/wiki/File:8th_division_emblem_-_Bird_of_paradise_flower.svg>Ju gatsu mikka</a></li>
          </ul>
       </section>
    </div>
@@ -108,7 +111,7 @@
          <h3>Get Going</h3>
          Install and Setup:
          <ol>
-            <li><a href="https://github.com/center-key/paradise/raw/master/releases/paradise-install-files.zip"
+            <li><a href=https://github.com/center-key/paradise/raw/master/releases/paradise-install-files.zip
                class=external-site>Download</a> and unzip the Paradise install file.</li>
             <li>FTP the <code>gallery</code> folder up to your website.</li>
             <li>Open the <i>Administrator Console</i> by appending
@@ -122,6 +125,10 @@
             prompted to create a user account for yourself.&nbsp;  Once in the console,
             upload photos or use the "Create New User Account" feature to create an account
             for the artist to upload photos directly.
+         </p>
+         Gallery of screenshots:
+         <p class=block-indent>
+            <a href=http://centerkey.com/paradise-galleries/install-screenshots/>Install steps</a>
          </p>
       </section>
       <section>
@@ -139,21 +146,25 @@
       </section>
       <section>
          <h3>Community</h3>
-         Questions and bugs:
+         Frequently Asked Questions (FAQ):
          <p class=block-indent>
-            <a href="https://github.com/center-key/paradise/issues">GitHub Issues</a>
+            <a href=https://github.com/center-key/paradise/wiki/faq>Wiki</a>
          </p>
          Source code:
          <p class=block-indent>
-            <a href="https://github.com/center-key/paradise">GitHub (paradise)</a>
+            <a href=https://github.com/center-key/paradise>GitHub (paradise)</a>
+         </p>
+         Issues:
+         <p class=block-indent>
+            <a href=https://github.com/center-key/paradise/issues>GitHub Issues</a>
          </p>
       </section>
    </div>
 </main>
 
 <footer>
-   <a rel=license href="http://creativecommons.org/licenses/by-sa/4.0/" class=external-site>
-      <img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Creative Commons License">
+   <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/ class=external-site>
+      <img src=https://i.creativecommons.org/l/by-sa/4.0/88x31.png alt=License>
       <span class=bubble-help>
          This work is licensed under a<br>
          <i>Creative Commons Attribution-ShareAlike 4.0<br>International License</i>.
@@ -162,8 +173,8 @@
    <div id=social-buttons></div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/dna.js/0/dna.min.js"></script>
-<script src="http://centerkey.com/js/library.js"></script>
+<script src=https://cdn.jsdelivr.net/jquery/2/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
+<script src=http://centerkey.com/js/library.js></script>
 </body>
 </html>

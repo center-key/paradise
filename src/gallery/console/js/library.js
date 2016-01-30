@@ -26,7 +26,9 @@ library.rest = {
       var url = library.rest.makeUrl(resourceType, options.action, options.params);
       console.log('get:', url);
       function handleResponse(json) {
-         if (json.error)
+         if (json.code === 401)
+            window.location = '.';
+         else if (json.error)
             console.error(url, json);
          else if (options.callback)
             options.callback(json);

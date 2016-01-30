@@ -7,7 +7,7 @@
 // Library
 // Constants and general utilities
 
-$version =    "v0.1.4";
+$version =    "v0.1.7";
 $dataFolder = str_replace("console/php", "~data~", __DIR__);
 
 date_default_timezone_set("UTC");
@@ -34,6 +34,11 @@ function appClientData() {
    return json_encode($data);
    }
 
+function initializeFile($filename, $fileContents) {
+   if (!is_file($filename) && !file_put_contents($filename, $fileContents))
+      exit("Error initializing file: {$filename}");
+   }
+
 function readDb($dbFilename) {
    $dbStr = file_get_contents($dbFilename);
    if ($dbStr === false)
@@ -42,7 +47,7 @@ function readDb($dbFilename) {
    }
 
 function saveDb($dbFilename, $db) {
-   if (!file_put_contents($dbFilename, json_encode($db)))
+   if (!$_SESSION["read-only-user"] && !file_put_contents($dbFilename, json_encode($db)))
       exit("Error saving database: {$dbFilename}");
    return $db;
    }
@@ -149,8 +154,8 @@ function formatMsg($msg) {
 function logEvent() {  //any number of parameters to log
    global $installKey, $dataFolder;
    $delimiter = " | ";
-   $logFilename =     "{$dataFolder}/log-{$installKey}.txt";
-   $archiveFilename = "{$dataFolder}/log-archive-{$installKey}.txt";
+   $logFilename =     "{$dataFolder}/system-{$installKey}.log";
+   $archiveFilename = "{$dataFolder}/system-{$installKey}.archive.log";
    $milliseconds = substr(microtime(), 2, 3);
    $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg($_SESSION["user"]));
    foreach (func_get_args() as $msg) {
@@ -159,7 +164,7 @@ function logEvent() {  //any number of parameters to log
       }
    $event[] = PHP_EOL;
    file_put_contents($logFilename, $event, FILE_APPEND);
-   if (filesize($logFilename) > 100000)  //approximate file size limit: 100 KB
+   if (filesize($logFilename) > 500000)  //approximate file size limit: 500 KB
       rename($logFilename, $archiveFilename);
    }
 
@@ -170,13 +175,20 @@ function httpJsonResponse($data) {
    logEvent("http-json-response", $data);
    }
 
+function isReadOnlyExampleEmailAddress($email) {
+   return preg_match("/@example[.]com$/", $email) === 1;
+   }
+
 function finishSendEmail($sendTo, $subjectLine, $messageLines) {
    $sendFrom = $_SESSION["user"];
    $subjectLine = "Paradise PHP Photo Gallery - {$subjectLine}";
    $messageLines[] = "";
    $messageLines[] = "- Paradise";
    $messageLines[] = "";
-   return mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
+   if (isReadOnlyExampleEmailAddress($sendTo))
+      $sendTo = $sendFrom;
+   return $_SESSION["read-only-user"] ||
+      mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
    }
 
 function sendEmail($sendTo, $subjectLine, $messageLines) {
@@ -187,7 +199,7 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
       "This is an automated message from the Paradise PHP Photo Gallery system.",
       "",
       "An email message was just sent on your behalf as follows:",
-      "\tSubject: {$subjectLine}",
+      "\tSubject: Paradise PHP Photo Gallery - {$subjectLine}",
       "\tTo: {$sendTo}",
       "",
       "This is an informational message only -- no action is required on your part.",

@@ -6,9 +6,9 @@
 
 // Image processing library
 
-$thumbHeight =   150;
-$fullWidthMax = 1100;
-$fullHeightMax = 800;
+$thumbHeight =    150;
+$fullWidthMax =  1600;
+$fullHeightMax = 1200;
 
 function getNextImageId() {
    global $portfolioFolder;
@@ -49,6 +49,7 @@ function createFullImage($origImage, $origWidth, $origHeight, $file) {
 function createImages($origFile, $id) {
    global $portfolioFolder;
    list($origWidth, $origHeight, $origType) = getimagesize($origFile);
+   ini_set("memory_limit", "128M");
    $origImage = $origType == 2 ? imagecreatefromjpeg($origFile) : imagecreatefrompng($origFile);
    $aspectRatio = $origWidth / $origHeight;
    createThumbnail($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-small.png");
@@ -66,19 +67,19 @@ function deleteImages($id) {
 
 function processUploads() {
    global $uploadsFolder, $portfolioFolder;
-   $files = glob("{$uploadsFolder}/*.{jpg,jpeg,png}", GLOB_BRACE);
+   $files = array_values(preg_grep("/[.](jpg|jpeg|png)$/i", scandir($uploadsFolder)));
    foreach ($files as $filename) {
       $id = getNextImageId();
       $pathInfo = pathinfo($filename);
       $extension = strtolower($pathInfo["extension"]);
       $origFile = "{$portfolioFolder}/{$id}-original.{$extension}";
-      rename($filename, $origFile);
+      rename("{$uploadsFolder}/{$filename}", $origFile);
       createImages($origFile, $id);
       $dbFilename = "{$portfolioFolder}/{$id}-db.json";
       $imageDb = array(
          "id" =>          $id,
          "sort" =>        intval($id) * 10000,
-         "original" =>    basename($filename),
+         "original" =>    $filename,
          "uploaded" =>    gmdate("Y-m-d"),
          "display" =>     false,
          "caption" =>     "",
@@ -88,7 +89,7 @@ function processUploads() {
       saveDb($dbFilename, $imageDb);
       }
    $msg = "Images processed: " . count($files);
-   return array("count" => count($files), "files" => array_map("basename", $files), "message" => $msg);
+   return array("count" => count($files), "files" => $files, "message" => $msg);
    }
 
 ?>
