@@ -29,22 +29,26 @@ $defaultAccountsDb = array(
    "invites" => json_decode("{}")   //inviteCode -> from, to, expires (epoch), accepted (epoch)
    );
 
-function setupDataFolder($dataFolder, $name) {
-   $folder =      "{$dataFolder}/{$name}";
-   $defaultView = "{$dataFolder}/index.html";
-   if (!is_dir($folder) && !mkdir($folder))
-      exit("Unable to create data folder: {$folder}");
-   initializeFile($defaultView, "Nothing to see.");  //TODO: cover all folders
+function workaroundToUpgradeToNewSecureFolder($dataFolder, $secureFolder) {
+   $fileSearch = glob("{$dataFolder}/key-*.txt");
+   if (count($fileSearch) !== 0) {
+      preg_match("/key-(.*)[.]txt/", $fileSearch[0], $matches);
+      $installKey = $matches[1];
+      rename("{$dataFolder}/accounts-db-{$installKey}.json", "{$secureFolder}/accounts-db.json");
+      unlink("{$dataFolder}/key-{$installKey}.txt");
+      }
    }
 
-function setupInstallKey($folder) {
-   $fileSearch = glob("{$folder}/key-*.txt");
+function setupSecureFolder($dataFolder) {
+   $pattern = "{$dataFolder}/secure-*";
+   $fileSearch = glob($pattern);
    if (count($fileSearch) === 0) {
-      $fileSearch[] = "{$folder}/key-" . mt_rand() . mt_rand() . mt_rand() . ".txt";
-      touch($fileSearch[0]);
+      if (!mkdir("{$dataFolder}/secure-" . mt_rand() . mt_rand() . mt_rand()))
+         exit("Unable to create secure data folder");
+      $fileSearch = glob($pattern);
       }
-   preg_match("/key-(.*)[.]txt/", $fileSearch[0], $matches);
-   return $matches[1];
+   workaroundToUpgradeToNewSecureFolder($dataFolder, $fileSearch[0]);
+   return $fileSearch[0];
    }
 
 function setupDb($dbFilename, $defaultDb) {
@@ -74,28 +78,13 @@ function setupCustomPage($dataFolder, $pageName) {
       }
    }
 
-function workaroundToUpgradePortfolio() {
-   global $portfolioFolder;
-   foreach (glob("{$portfolioFolder}/*-db.json") as $dbFilename) {
-      $db = readDb($dbFilename);
-      $db->sort =     isset($db->sort) ? $db->sort : intval($db->id) * 10000;
-      $db->original = isset($db->original) ? $db->original : $db->{"original-file-name"};
-      $db->uploaded = isset($db->uploaded) ? $db->uploaded : $db->{"upload-date"};
-      $db->display =  isset($db->display) ? $db->display === "on" || $db->display === true : true;
-      saveDb($dbFilename, $db);
-      }
-   logEvent("portfolio-upgrade-done", "last-image", $db->id, $db);
-   }
-
-foreach(array("", "graphics", "portfolio", "uploads") as $name)
-   setupDataFolder($dataFolder, $name);
-$installKey = setupInstallKey($dataFolder);
+initializeFolder($dataFolder, true);
+$uploadsFolder =   initializeFolder("{$dataFolder}/uploads", false);
+$portfolioFolder = initializeFolder("{$dataFolder}/portfolio", true);
+$secureFolder =    setupSecureFolder($dataFolder);
+$accountsDbFile =  "{$secureFolder}/accounts-db.json";
 $settingsDbFile =  "{$dataFolder}/settings-db.json";
 $galleryDbFile =   "{$dataFolder}/gallery-db.json";
-$accountsDbFile =  "{$dataFolder}/accounts-db-{$installKey}.json";
-$uploadsFolder =   "{$dataFolder}/uploads";
-$portfolioFolder = "{$dataFolder}/portfolio";
-$galleryFolder =   "{$dataFolder}/gallery";
 setupDb($settingsDbFile, $defaultSettingsDb);
 setupDb($accountsDbFile, $defaultAccountsDb);
 setupCustomCss($dataFolder);

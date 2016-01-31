@@ -1,6 +1,5 @@
 <?php require "php/security.php"; ?>
 <?php require "php/console.php"; ?>
-<?php workaroundToUpgradePortfolio(); ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise             -->

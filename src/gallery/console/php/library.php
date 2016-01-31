@@ -37,6 +37,15 @@ function appClientData() {
 function initializeFile($filename, $fileContents) {
    if (!is_file($filename) && !file_put_contents($filename, $fileContents))
       exit("Error initializing file: {$filename}");
+   return $filename;
+   }
+
+function initializeFolder($folder, $blockDirIndex) {
+   if (!is_dir($folder) && !mkdir($folder))
+      exit("Error initializing file: {$folder}");
+   if ($blockDirIndex)
+      initializeFile("{$folder}/index.html", "Nothing to see.");
+   return $folder;
    }
 
 function readDb($dbFilename) {
@@ -152,10 +161,10 @@ function formatMsg($msg) {
    }
 
 function logEvent() {  //any number of parameters to log
-   global $installKey, $dataFolder;
+   global $secureFolder;
    $delimiter = " | ";
-   $logFilename =     "{$dataFolder}/system-{$installKey}.log";
-   $archiveFilename = "{$dataFolder}/system-{$installKey}.archive.log";
+   $logFilename =     "{$secureFolder}/events.log";
+   $archiveFilename = "{$secureFolder}/events-archive.log";
    $milliseconds = substr(microtime(), 2, 3);
    $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg($_SESSION["user"]));
    foreach (func_get_args() as $msg) {
