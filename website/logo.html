@@ -21,35 +21,29 @@
       text-align: center;
       padding: 50px;
       }
-   .logo {
-      display: inline-block;
-      vertical-align: bottom;
-      text-align: center;
-      font-family: "Josefin Sans";
-      font-weight: 300;
-      color: white;
-      background-color: dimgray;
-      margin: 10px;
+   h2 {
+      border-top: 1px solid silver;
       }
-   #bookmark {
-      width: 96px;
-      height: 96px;
-      font-size: 96px;
-      padding-top: 10px;
+   .raw img {
+      border: 5px solid black;
       }
-   #mobile {
-      width: 180px;
-      height: 180px;
-      font-size: 180px;
-      padding-top: 19px;
+   .raw img#bookmark {
+      height: 106px;
+      background-color: pink;
+      padding: 0px 8px;
       }
-   #website {
-      width: 300px;
-      height: 300px;
-      font-size: 300px;
-      padding-top: 33px;
+   .raw img#mobile {
+      height: 190px;
+      padding: 0px 15px;
       }
-   img {
+   .raw img#website {
+      width: 510px;
+      background-color: pink;
+      padding: 0px 7px;
+      }
+   p img {
+      background-color: pink;
+      border: 1px solid black;
       margin: 0px 10px;
       }
 </style>
@@ -58,21 +52,27 @@
 
 <article>
    <h1>Paradise Logo</h1>
-   <div class=logo id=bookmark>P</div>
-   <div class=logo id=mobile>P</div>
-   <div class=logo id=website>P</div>
-   <hr>
+   <h2>Raw</h2>
+   <div class=raw>
+      <img id=bookmark src=graphics/paradise-logo.svg alt=Original>
+      <img id=mobile   src=graphics/paradise-logo.svg alt=Original>
+      <img id=website  src=graphics/paradise-logo.svg alt=Original>
+   </div>
+   <h2>PNGs</h2>
    <p>
-      <img src="graphics/bookmark.png" alt="Bookmark icon"><br>
-      Bookmark icon (96x96 &ndash; bookmark.png)
+      <img src=graphics/bookmark.png alt=Bookmark><br>
+      Bookmark icon (96x96)<br>
+      <code>bookmark.png</code>
    </p>
    <p>
-      <img src="graphics/mobile-home-screen.png" alt="Mobile home screen"><br>
-      Mobile home screen (180x180 &ndash; mobile-home-screen.png)
+      <img src=graphics/mobile-home-screen.png alt=Mobile><br>
+      Mobile home screen (180x180)<br>
+      <code>mobile-home-screen.png</code>
    </p>
    <p>
-      <img src=graphics/paradise-logo.png alt="Logo"><br>
-      Website (300x300 &ndash; paradise-logo.png)
+      <img src=graphics/paradise-logo.png alt=Logo><br>
+      Website (500x585)<br>
+      <code>paradise-logo.png</code>
    </p>
 </article>
 
