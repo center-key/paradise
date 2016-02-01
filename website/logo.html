@@ -21,60 +21,84 @@
       text-align: center;
       padding: 50px;
       }
-   h2 {
+   section {
       border-top: 1px solid silver;
       }
-   .raw img {
-      border: 5px solid black;
+   section.raw figure {
+      display: inline-block;
+      position: relative;
+      outline: 5px solid black;
+      margin: 10px;
       }
-   .raw img#bookmark {
-      height: 106px;
-      background-color: pink;
-      padding: 0px 8px;
+   section.raw figure img {
+      position: absolute;
       }
-   .raw img#mobile {
-      height: 190px;
-      padding: 0px 15px;
+   section.raw figure#bookmark {
+      width:  96px;
+      height: 96px;
       }
-   .raw img#website {
-      width: 510px;
-      background-color: pink;
-      padding: 0px 7px;
+   section.raw figure#bookmark img {
+      top: -1px;
+      left: 7px;
+      width: 85%;
       }
-   p img {
-      background-color: pink;
+   section.raw figure#mobile {
+      width:  180px;
+      height: 180px;
+      }
+   section.raw figure#mobile img {
+      top: 3px;
+      left: 18px;
+      width: 80%;
+      }
+   section.raw figure#website {
+      width:  500px;
+      height: 570px;
+      }
+   section.raw figure#website img {
+      top: -25px;
+      left: -9px;
+      width: 104%;
+      }
+   section.pngs figure img {
       border: 1px solid black;
+      background-color: pink;
       margin: 0px 10px;
       }
 </style>
 </head>
 <body>
 
-<article>
+<main>
    <h1>Paradise Logo</h1>
-   <h2>Raw</h2>
-   <div class=raw>
-      <img id=bookmark src=graphics/paradise-logo.svg alt=Original>
-      <img id=mobile   src=graphics/paradise-logo.svg alt=Original>
-      <img id=website  src=graphics/paradise-logo.svg alt=Original>
-   </div>
-   <h2>PNGs</h2>
-   <p>
-      <img src=graphics/bookmark.png alt=Bookmark><br>
-      Bookmark icon (96x96)<br>
-      <code>bookmark.png</code>
-   </p>
-   <p>
-      <img src=graphics/mobile-home-screen.png alt=Mobile><br>
-      Mobile home screen (180x180)<br>
-      <code>mobile-home-screen.png</code>
-   </p>
-   <p>
-      <img src=graphics/paradise-logo.png alt=Logo><br>
-      Website (500x585)<br>
-      <code>paradise-logo.png</code>
-   </p>
-</article>
+   <section class=raw>
+      <h2>Raw</h2>
+      <figure id=bookmark>
+         <img src=graphics/paradise-logo.svg alt=Original>
+      </figure>
+      <figure id=mobile>
+         <img src=graphics/paradise-logo.svg alt=Original>
+      </figure>
+      <figure id=website>
+         <img src=graphics/paradise-logo.svg alt=Original>
+      </figure>
+   </section>
+   <section class=pngs>
+      <h2>PNGs</h2>
+      <figure>
+         <img src=graphics/bookmark.png alt=Bookmark>
+         <figcaption>Bookmark icon (96x96 / transparent)<br><code>bookmark.png</code></figcaption>
+      </figure>
+      <figure>
+         <img src=graphics/mobile-home-screen.png alt=Mobile>
+         <figcaption>Mobile home (180x180)<br><code>mobile-home-screen.png</code></figcaption>
+      </figure>
+      <figure>
+         <img src=graphics/paradise-logo.png alt=Logo>
+         <figcaption>Website (500x570 / transparent)<br><code>paradise-logo.png</code></figcaption>
+      </figure>
+   </section>
+</main>
 
 </body>
 </html>
