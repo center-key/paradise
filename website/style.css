@@ -25,3 +25,17 @@ button:hover    { background-color: royalblue; }
 img.paradise-logo { float: left; width: 80px; margin-right: 15px; }
 p code { font-size: 0.9rem; padding: 0px; }
 #github-banner { position: absolute; top: 0px; right: 0px; }
+
+/* Mobile screenshot */
+.mobile-screenshot {
+   display: inline-block;
+   width: 250px;
+   height: 511px;  /* width * 1.15 * 16 / 9 */
+   background: no-repeat url("graphics/iphone6-template-16x9.png");
+   background-size: 100% auto;
+   text-align: center;
+   padding-top: 69px;  /* width * 0.275 */;
+   }
+.mobile-screenshot img {  /* note: use screenshot emailed (png) from an iphone 6 */
+   width: 82%;
+   }

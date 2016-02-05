@@ -3,7 +3,7 @@
 *A simple and aesthetic image gallery to showcase your art portfolio*
 
 ---
-<img align=right width=300 src="website/graphics/paradise-logo.png?raw=true">
+<img align=right width=260 src="website/graphics/paradise-logo.png?raw=true">
 
 Paradise is an open source software package for displaying a collection of photos on a website in
 a clean, professional style.  Use Paradise to create an online exhibit for an artist or
