@@ -1,0 +1,23 @@
+Video Tutorial -- Getting Started
+
+Transcript:
+
+1) Welcome to the Getting Started instructions for Paradise PHP Photo Gallery.  Paradise is an open source web application for publishing a portfolio of images.
+
+2) Start by going to the Paradise website at centerkey.com/paradise and clicking the blue download button to get the install file.  It's a zip of a folder named "gallery", which contains the Paradise web application files.  You can rename the folder if you like.
+
+3) Move the "gallery" folder into the local folder that holds the rest of your website files.  Now launch your FTP client and upload the "gallery" folder to your host server.  Once the upload is complete, open your web browser and go to the Paradise Administrator Console.  Get to the Administrator Console by appending "gallery/console" to your website's URL in the location bar.
+
+4) The first time you visit the Administrator Console, you will be prompted to create a user account.  Enter your email address and password.  Then re-enter your password in the "Confirm" field, and click the "Sign in" button.
+
+5) At this point you can view the gallery, but of course, it will be empty.  So, go back to the Administrator Console and click the "Upload images" button.  The images you select will be processed and placed into the image portfolio.  For demonstration, let's upload some travel photos.
+
+6) Once the images are in the portfolio, designate which images to display and give each image a caption, a description, and optionally a badge.  For example, we will title the first photo "Purple Hut" and add the additional text "Belize".  To rearrange or permanently remove an image, click the appropriate "up", "down", or "delete" icon.  For demonstration, let's display the rest of the images except the very last one.
+
+7) Configure additional items in the Gallery Settings section on the right side of the Administrator Console.  The first field is for the title of the gallery.  In this case, we will name the gallery "Travel Photos".  Click the information icon to view the available fonts for the gallery title.  Once you have identified your desired font, return to the Administrator Console and select the font from the drop-down list.  Also, adjust the font size as desired.  And here we will specify that captions should be all uppercase.
+
+8) Paradise includes an optional contact form for users to send messages to the artist.  Enter the email address for these messages into the email field.  Let's change the label of the navigation tab for the contact form to read "Say hi!".  Now enable the “display” checkbox to show the contact form on the website.  To view the contact form, click the information icon.
+
+9) We can see the navigation tab is labeled “Say hi!”, and from here we can navigate to the gallery.  Hovering over a thumbnail shows that the thumbnail is clickable.  Click a thumbnail to bring up the slideshow.  Note that the gallery, including the slideshow, displays well on mobile devices.
+
+10) If you have any questions, visit the Paradise website and follow the link to the GitHub project page.  From there, submit an issue with your question.  Thanks.
