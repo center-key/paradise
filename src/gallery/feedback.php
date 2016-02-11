@@ -15,7 +15,7 @@ $bar =       "-----------------------";
 // Create message
 $msg =  $_SERVER["HTTP_HOST"] . "\n$bar";
 $msg .= "\nName: " .    htmlspecialchars($_POST["name"]);
-$msg .= "\nE-mail: " .  htmlspecialchars($_POST["email"]);
+$msg .= "\nEmail: " .   htmlspecialchars($_POST["email"]);
 $msg .= "\nMessage: " . htmlspecialchars($_POST["message"]);
 $msg .= "\n$bar\n";
 

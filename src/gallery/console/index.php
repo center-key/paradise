@@ -163,7 +163,7 @@
                <input type=text name=footer value=~~footer~~ data-smart-update=app.ui.saveSettings>
             </label>
             <label>
-               <span>E-mail:</span>
+               <span>Email:</span>
                <input type=email name=contact-email value=~~contact-email~~
                   data-smart-update=app.ui.saveSettings placeholder="Address for feedback">
                <i class="fa fa-info-circle external-site" data-href="../#contact"></i>
