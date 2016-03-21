@@ -8,15 +8,16 @@
 <html>
 <head>
 <meta charset=utf-8>
-<meta name=apple-mobile-web-app-title content="Gallery">
+<meta name=viewport                   content="width=device-width, initial-scale=1">
+<meta name=apple-mobile-web-app-title content="<?= $caption ?>">
 <title><?= $caption ?> &bull; <?= $settings->{"title"} ?></title>
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
-<link rel=apple-touch-icon href="../../~data~/portfolio/<?= $id ?>-small.png">
+<link rel=apple-touch-icon href=../../~data~/portfolio/<?= $id ?>-small.png>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/0/dna.css>
 <link rel=stylesheet       href=../../css/reset.css>
-<link rel=stylesheet       href="../../css/style.css">
-<link rel=stylesheet       href="../../~data~/custom-style.css">
+<link rel=stylesheet       href=../../css/style.css>
+<link rel=stylesheet       href=../../~data~/custom-style.css>
 <style>
    @import url(http://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
    h1 {
@@ -28,7 +29,7 @@
 <body class="<?= styleClasses($settings) ?>">
 
 <header>
-   <h1 data-href="../.."><?= $settings->{"title"} ?></h1>
+   <h1 data-href=../..><?= $settings->{"title"} ?></h1>
    <h2><?= $settings->{"subtitle"} ?></h2>
 </header>
 
@@ -36,7 +37,7 @@
    <div class=one-image>
       <figure>
          <figcaption><?= $caption ?></figcaption>
-         <img src="../../~data~/portfolio/<?= $id ?>-large.jpg" data-href="../.."  alt="<?= $caption ?>">
+         <img src=../../~data~/portfolio/<?= $id ?>-large.jpg data-href=../..  alt="<?= $caption ?>">
       </figure>
       <p><?= $description ?></p>
    </div>
@@ -44,9 +45,8 @@
 
 <footer>
    <div class=<?= showHideClass($settings->{"cc-license"}) ?>>
-      <a class=external-site rel=license href="http://creativecommons.org/licenses/by-sa/4.0/">
-         <img src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" alt="Creative Commons License"
-            title="This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.">
+      <a class=external-site rel=license href=http://creativecommons.org/licenses/by-sa/4.0>
+         <img src=https://i.creativecommons.org/l/by-sa/4.0/80x15.png alt=License>
       </a>
    </div>
    <div id=social-buttons class=<?= showHideClass($settings->{"bookmarks"}) ?>></div>
@@ -55,6 +55,6 @@
 
 <script src=https://cdn.jsdelivr.net/jquery/2/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
-<script src="../../js/app.js"></script>
+<script src=../../js/app.js></script>
 </body>
 </html>
