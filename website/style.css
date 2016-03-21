@@ -22,11 +22,12 @@ button          { background-color: steelblue; }
 button:hover    { background-color: royalblue; }
 
 /* More... */
-img.paradise-logo { float: left; width: 80px; margin-right: 15px; }
+img.paradise-logo { float: left; width: 80px; margin: 0px 15px 10px 0px; }
 p code { font-size: 0.9rem; padding: 0px; }
 .video-container { margin-bottom: 20px; opacity: 0.8; transition: all 0.4s; }
+.video-container iframe { border-color: dimgray; pointer-events: none; transition: all 1s; }
 .video-container:hover { opacity: 1; }
-.video-container iframe { pointer-events: none; }
+.video-container:hover iframe { opacity: 1; border-color: black; }
 #github-banner { position: absolute; top: 0px; right: 0px; }
 
 /* Mobile screenshot */
@@ -34,7 +35,7 @@ p code { font-size: 0.9rem; padding: 0px; }
    display: inline-block;
    width: 250px;
    height: 511px;  /* width * 1.15 * 16 / 9 */
-   background: no-repeat url("graphics/iphone6-template-16x9.png");
+   background: no-repeat url(graphics/iphone6-template-16x9.png);
    background-size: 100% auto;
    text-align: center;
    padding-top: 69px;  /* width * 0.275 */;
