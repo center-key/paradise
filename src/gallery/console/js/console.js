@@ -24,7 +24,8 @@ app.ui = {
       var field = elem.attr('name');
       var val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
       app.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
-      var params = { [field]: val };
+      var params = {};
+      params[field] = val;
       var item = elem.closest('[data-item-id]').data();
       if (item && item.itemId)
          params.id = item.itemId;
