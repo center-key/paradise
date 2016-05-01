@@ -76,6 +76,7 @@ app.ui = {
          lastTimeoutId = timeoutId;
          }
       var options = {
+         debug: true,       //view any upload errors in the js console
          element:           $('#file-uploader')[0],
          uploadButtonText:  'Upload images',
          action:            'file-uploader.php',
