@@ -43,7 +43,7 @@
    <span data-href=https://www.google.com/fonts>www.google.com/fonts</span>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/2/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/jquery/3/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
 
 </body>

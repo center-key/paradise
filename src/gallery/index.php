@@ -13,11 +13,11 @@
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css>
-<link rel=stylesheet       href="https://cdn.jsdelivr.net/jquery.magnific-popup/1/magnific-popup.css">
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1/magnific-popup.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/0/dna.css>
-<link rel=stylesheet       href="css/reset.css">
+<link rel=stylesheet       href=css/reset.css>
 <link rel=stylesheet       href=css/style.css>
-<link rel=stylesheet       href="~data~/custom-style.css">
+<link rel=stylesheet       href=~data~/custom-style.css>
 <style>
    @import url(http://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
    h1 {
@@ -29,7 +29,7 @@
 <body class="<?= styleClasses($settings) ?>">
 
 <header>
-   <h1 data-href="."><?= $settings->{"title"} ?></h1>
+   <h1 data-href=.><?= $settings->{"title"} ?></h1>
    <h2><?= $settings->{"subtitle"} ?></h2>
 </header>
 
@@ -77,8 +77,8 @@
 
 <footer>
    <div class=<?= showHideClass($settings->{"cc-license"}) ?>>
-      <a class=external-site rel=license href="http://creativecommons.org/licenses/by-sa/4.0/">
-         <img src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" alt="Creative Commons License"
+      <a class=external-site rel=license href=http://creativecommons.org/licenses/by-sa/4.0>
+         <img src=https://i.creativecommons.org/l/by-sa/4.0/80x15.png alt="Creative Commons License"
             title="This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.">
       </a>
    </div>
@@ -86,9 +86,9 @@
    <div><?= $settings->{"footer"} ?></div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/2/jquery.min.js></script>
-<script src="https://cdn.jsdelivr.net/jquery.magnific-popup/1/jquery.magnific-popup.min.js"></script>
+<script src=https://cdn.jsdelivr.net/jquery/3/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/jquery.magnific-popup/1/jquery.magnific-popup.min.js></script>
 <script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
-<script src="js/app.js"></script>
+<script src=js/app.js></script>
 </body>
 </html>

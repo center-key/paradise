@@ -238,7 +238,7 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/2/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/jquery/3/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js></script>
 <script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
 <script src=file-uploader/fileuploader.js></script>
