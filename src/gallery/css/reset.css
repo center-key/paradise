@@ -33,7 +33,7 @@ a { text-decoration: none; color: dimgray; }
 :not(.plain) >a:not(.plain):not(.image-link):hover { color: white; outline: 2px solid; }
 :not(.plain) >a:not(.plain) img, :not(.plain) >a:not(.plain) i.fa { opacity: 0.8; }
 :not(.plain) >a:not(.plain) img:hover, :not(.plain) >a:not(.plain) i.fa:hover { opacity: 1.0; }
-a, a img, a i.fa { transition: all 0.3s; }
+a, a img, a i.fa { transition: all 0.4s; }
 i.fa { font-size: 150%; }
 
 /* Links color */
@@ -42,7 +42,7 @@ i.fa { font-size: 150%; }
 
 /* Button and forms */
 button, input[type=checkbox], input[type=radio], input[type=file], select { cursor: pointer; }
-button, input, select, textarea, optgroup, option, fieldset { transition: 0.3s opacity; }
+button, input, select, textarea, optgroup, option, fieldset { transition: opacity 0.4s; }
 input, textarea { font-size: 1.1rem; background-color: aliceblue; border: 1px solid silver; border-radius: 5px; padding: 0.3em; outline: none; }
 select { font-size: 1.1rem; outline: none; }
 label { display: block; margin-bottom: 0.5em; }
@@ -62,7 +62,7 @@ label+button { margin-left: 108px; }
 /* Utilities */
 .hide-me              { display: none !important; }
 .block-indent         { display: block; margin-left: 40px; }
-i.fa[data-href]       { opacity: 0.8; transition: all 0.5s; }
+i.fa[data-href]       { opacity: 0.8; transition: all 0.4s; }
 i.fa[data-href]:hover { opacity: 1.0; }
 
 /* Video container */
@@ -97,7 +97,7 @@ i.fa[data-href]:hover { opacity: 1.0; }
    border: 1px solid silver;
    border-radius: 0.2em;
    margin-left: 8px;
-   transition: 0.5s;
+   transition: all 0.4s;
    }
 #social-buttons span i.fa:hover {
    color: cornflowerblue;

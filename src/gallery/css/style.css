@@ -81,7 +81,7 @@ body >footer >div:first-child {
 .gallery-images .image img {
    max-width: 100%;
    border: 5px solid black;
-   transition: 1s;
+   transition: all 1s;
    }
 .gallery-images .image img:hover {
    border-color: white;
@@ -112,7 +112,7 @@ body >footer >div:first-child {
    font-size: 1.0rem;
    color: white;
    opacity: 0;
-   transition: all 0.5;
+   transition: all 0.4s;
    }
 .gallery-images .image .image-caption:hover a i.fa {
    text-shadow: 0px 0px 0.3em black;
@@ -163,7 +163,7 @@ form.feedback aside {
 
 /* Magnific Popup */
 .mfp-gallery .mfp-content img {
-   transition: all 0.5s;
+   transition: all 0.4s;
    }
 .mfp-gallery .mfp-content {
    background-color: white;

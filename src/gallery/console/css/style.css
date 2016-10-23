@@ -21,7 +21,7 @@ body >footer >div:last-child:not(:first-child) { text-align: right; }
 #status-msg { font-weight: bold; }
 
 /* Utilities */
-i.fa.icon-popup-anchor + div { position: absolute; bottom: 15px; left: 20px; visibility: hidden; opacity: 0; transition: all 0.5s; white-space: nowrap; font-weight: bold; text-align: right; color: firebrick; background-color: white; border: 3px solid steelblue; border-radius: 5px; padding: 15px 25px; }
+i.fa.icon-popup-anchor + div { position: absolute; bottom: 15px; left: 20px; visibility: hidden; opacity: 0; transition: all 0.4s; white-space: nowrap; font-weight: bold; text-align: right; color: firebrick; background-color: white; border: 3px solid steelblue; border-radius: 5px; padding: 15px 25px; }
 i.fa.icon-popup-anchor:hover + div,
 i.fa.icon-popup-anchor + div:hover { visibility: visible; opacity: 1; }
 
@@ -47,9 +47,9 @@ i.fa.icon-popup-anchor + div:hover { visibility: visible; opacity: 1; }
 .portfolio-image >label >input[type=checkbox] { margin: 12px 0px 0px 3px; }
 .portfolio-image >label >[name] { max-width: 200px; }
 .portfolio-image >label >[name=badge] { width: 100px; }
-.portfolio-image .actions { position: absolute; left: 0px; bottom: 0px; text-align: center; padding: 5px 15px 0px 2px; opacity: 0; transition: all 0.5s; }
+.portfolio-image .actions { position: absolute; left: 0px; bottom: 0px; text-align: center; padding: 5px 15px 0px 2px; opacity: 0; transition: all 0.4s; }
 .portfolio-image .actions:hover { opacity: 1; }
-.portfolio-image .actions i.fa { display: block; font-size: 1.6rem; margin: 4px; opacity: 1; transition: all 0.5s; }
+.portfolio-image .actions i.fa { display: block; font-size: 1.6rem; margin: 4px; opacity: 1; transition: all 0.4s; }
 .portfolio-image .actions i.fa:hover { color: black; }
 .portfolio-image:first-child .actions i.fa[data-move=up],
 .portfolio-image:last-child  .actions i.fa[data-move=down] { opacity: 0.2; pointer-events: none; }
