@@ -10,7 +10,7 @@ app.login = {
    submit: function(elem) {
       var minPaswordLength = 8;
       var component = elem.closest('.component-security');
-      component.find('button').prop('disabled', true);
+      component.find('button').prop({ disabled: true });
       function calcHash(passwd) { return CryptoJS.SHA256(passwd + app.login.salt).toString(); }
       var action =     component.hasClass('create') ? 'create' : 'login';
       var email =      component.find('input[type=email]').val().trim().toLowerCase();
@@ -24,7 +24,7 @@ app.login = {
          invite:   inviteCode
          };
       function displayError(msg) {
-         component.find('button').prop('disabled', false);
+         component.find('button').prop({ disabled: false });
          dna.ui.slidingFlasher(component.find('.error-message').text(msg));
          }
       function handle(data) {
@@ -32,7 +32,7 @@ app.login = {
             window.location.href = '.';
          else
             displayError(data.message);
-         };
+         }
       if (action === 'create' && password.length < minPaswordLength)
          displayError('Password must be at least ' + minPaswordLength + ' characters long.');
       else

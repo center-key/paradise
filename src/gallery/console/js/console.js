@@ -105,10 +105,10 @@ app.invites = {
    validate: function(elem) {
       var basicEmailPattern = /.+@.+[.].+/;
       var invalid = !elem.val().match(basicEmailPattern);
-      app.invites.component.find('div button').prop('disabled', invalid);
+      app.invites.component.find('div button').prop({ disabled: invalid });
       },
    send: function(elem) {
-      app.invites.component.find('div button').prop('disabled', true);
+      app.invites.component.find('div button').prop({ disabled: true });
       function handle(data) {
          app.ui.statusMsg(data.message);
          dna.ui.slideFadeIn(app.invites.elem.startButton);
