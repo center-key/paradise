@@ -50,9 +50,13 @@ library.rest = {
 
 library.ui = {
    start: function() {
-      $('a.external-site').attr('target', '_blank');
-      $('a img, a i.fa').parent().addClass('plain');
+      var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Apple/.test(navigator.vendor);
+      $('a img, a i[data-icon], footer a').parent().addClass('plain');
+      if (!iOS)
+         $('.external-site a, a.external-site').attr({ target: '_blank' });
       }
    };
 
 $(library.ui.start);
+function makeIcon() { $(this).addClass('fa fa-' + $(this).data().icon); }
+$('i[data-icon]').each(makeIcon);

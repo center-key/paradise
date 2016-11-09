@@ -4,8 +4,7 @@
 ///////////////////////////////////////////////////
 
 // Application
-
-var app = {};
+window.app = {};
 
 // Social bookmarking
 app.social = {
@@ -53,12 +52,17 @@ app.social = {
 
 app.start = {
    go: function() {
+      var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Apple/.test(navigator.vendor);
       app.social.setup();
-      $('a.external-site').attr('target', '_blank');
+      function makeIcon() { $(this).addClass('fa fa-' + $(this).data().icon); }
+      $('i[data-icon]').each(makeIcon);
       $('a img').parent().addClass('plain');
-      $('form.feedback').attr('action', 'feedback.php');  //bots are lazy
+      $('input[type=email]').attr({ spellcheck: false, autocorrect: 'off' });
+      $('form.send-message').attr({ method: 'post', action: 'send-message.php' });  //bots are lazy
+      if (!iOS)
+         $('a.external-site, .external-site a').attr({ target: '_blank' });
       var options = {
-         delegate: '>a', // child items selector, by clicking on it popup will open
+         delegate: '>a',  //child items selector, click to open popup
          type:     'image',
          image:    { titleSrc: 'data-title' },
          gallery:  { enabled: true }
