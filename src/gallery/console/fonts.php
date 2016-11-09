@@ -5,16 +5,17 @@
 <!-- Paradise ~ centerkey.com/paradise             -->
 <!-- GPLv3 ~ Copyright (c) individual contributors -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
-<html>
+<html lang=en>
 <head>
 <meta charset=utf-8>
+<meta name=viewport                   content="width=device-width, initial-scale=1">
 <meta name=apple-mobile-web-app-title content="Gallery">
 <title>Fonts Sampler &bull; Paradise</title>
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/0/dna.css>
-<link rel=stylesheet       href=../css/reset.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4.7/css/font-awesome.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.0/dna.css>
+<link rel=stylesheet       href=http://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=../css/style.css>
 <link rel=stylesheet       href=../~data~/custom-style.css>
 <style>
@@ -43,8 +44,8 @@
    <span data-href=https://www.google.com/fonts>www.google.com/fonts</span>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/3/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/jquery/3.1/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/dna.js/1.0/dna.min.js></script>
 
 </body>
 </html>
