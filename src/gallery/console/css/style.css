@@ -6,27 +6,20 @@
 /* Administrator Console */
 
 /* Page layout */
-body { padding: 10px; margin: 20px 0px 0px 0px; }
-body >header, body >main, body >footer { width: 900px; clear: both; margin: 0px auto 20px auto; }
-body >header h1 { font-size: 1.4rem; margin: 0px; }
-body >header h2 { font-size: 1.1rem; font-weight: normal; }
-body >header aside { text-align: right; }
-body >footer { display: flex; justify-content: space-between; align-items: center; }
-body >footer { font-size: 0.8rem; color: white; background-color: darkgray; padding: 10px; }
-body >footer a { color: white; }
-body >footer >div:last-child:not(:first-child) { text-align: right; }
+body >header h1 { font-size: 1.7rem; }
+body >header h1+h2 { font-size: 1.3rem; }
 
 /* Style */
-.flat button { font-size: 0.9rem; }
+button { font-size: 0.9rem; }
 #status-msg { font-weight: bold; }
 
 /* Utilities */
-i.fa.icon-popup-anchor + div { position: absolute; bottom: 15px; left: 20px; visibility: hidden; opacity: 0; transition: all 0.4s; white-space: nowrap; font-weight: bold; text-align: right; color: firebrick; background-color: white; border: 3px solid steelblue; border-radius: 5px; padding: 15px 25px; }
-i.fa.icon-popup-anchor:hover + div,
-i.fa.icon-popup-anchor + div:hover { visibility: visible; opacity: 1; }
+i.icon-popup-anchor+div { position: absolute; visibility: hidden; opacity: 0; transition: all 0.4s; white-space: nowrap; font-weight: bold; text-align: right; color: firebrick; background-color: white; border: 3px solid steelblue; border-radius: 5px; padding: 15px 25px; }
+i.icon-popup-anchor:hover+div,
+i.icon-popup-anchor+div:hover { visibility: visible; opacity: 1; }
 
 /* Component: Security */
-.component-security.create h3:first-child { display: none; }
+.component-security form                  { max-width: 20em; }
 .component-security.create h3:first-child { display: none; }
 .component-security.invite p.for-create   { display: none; }
 .component-security .for-create           { display: none; }
@@ -35,54 +28,60 @@ i.fa.icon-popup-anchor + div:hover { visibility: visible; opacity: 1; }
 .component-security.invite .invite-code   { display: block; }
 .component-security >p { color: firebrick; }
 
-/* Component: Image Portfolio */
-.portfolio-image { position: relative; background-color: gainsboro; border: 2px solid silver; }
-.portfolio-image { padding: 10px; margin: 10px 0px 0px 0px; }
-.portfolio-image figure { float: right; text-align: center; margin: 0px; }
-.portfolio-image figure img { max-width: 180px; max-height: 170px; border: 2px solid black; transition: all 0.4s; }
+/* Component: Image Portfolio
+Structure:
+   div.portfolio-image
+      form
+         label.display-on | label.display-off
+            span
+            input | textarea
+            span
+         div.actions
+            i[data-icon]
+            div
+               p
+               button
+      figure
+         img
+         figcaption
+*/
+.portfolio-image { position: relative; display: flex; background-color: gainsboro; border: 2px solid silver; padding: 10px; margin: 10px 0px 0px 0px; }
+.portfolio-image form { flex-grow: 1; max-width: none; }
+.portfolio-image form label:first-child span { display: inline-block; transition: color 0.4s; }
+.portfolio-image form label:first-child input { margin: 0px 5px 1em 0px; }
+.portfolio-image form label.display-off >span:first-child { color: firebrick; }
+.portfolio-image form label:last-of-type { text-align: right; }
+.portfolio-image form label:last-of-type span { display: inline-block; }
+.portfolio-image form label:last-of-type input { width: 4em; margin: 0px; }
+.portfolio-image form .actions { position: absolute; left: 5px; bottom: 4px; text-align: center; padding: 5px 15px 0px 2px; opacity: 0; transition: all 0.4s; }
+.portfolio-image form .actions:hover { opacity: 1; }
+.portfolio-image form .actions i[data-icon] { font-size: 1.8rem; margin-right: 2px; opacity: 1; transition: all 0.4s; }
+.portfolio-image form .actions i[data-icon]:hover { color: black; }
+.portfolio-image form .actions i[data-icon][data-icon=times] { font-size: 2.0rem; }
+.portfolio-image:first-child form .actions i[data-icon][data-move=up],
+.portfolio-image:last-child  form .actions i[data-icon][data-move=down] { opacity: 0.2; pointer-events: none; }
+.portfolio-image form .actions i.icon-popup-anchor+div { bottom: 15px; left: 85px; }
+.portfolio-image figure { flex: 0 0 180px; text-align: center; margin-left: 10px; }
+.portfolio-image figure img { max-width: 100%; max-height: 210px; border: 2px solid black; transition: all 0.4s; }
 .portfolio-image figure img:hover { border-color: darkgray; }
 .portfolio-image figure figcaption { font-size: 0.7rem; }
-.portfolio-image >label >span { transition: color 0.4s; }
-.portfolio-image >label.display-off >span:first-child { color: firebrick; }
-.portfolio-image >label >input[type=checkbox] { margin: 12px 0px 0px 3px; }
-.portfolio-image >label >[name] { max-width: 200px; }
-.portfolio-image >label >[name=badge] { width: 100px; }
-.portfolio-image .actions { position: absolute; left: 0px; bottom: 0px; text-align: center; padding: 5px 15px 0px 2px; opacity: 0; transition: all 0.4s; }
-.portfolio-image .actions:hover { opacity: 1; }
-.portfolio-image .actions i.fa { display: block; font-size: 1.6rem; margin: 4px; opacity: 1; transition: all 0.4s; }
-.portfolio-image .actions i.fa:hover { color: black; }
-.portfolio-image:first-child .actions i.fa[data-move=up],
-.portfolio-image:last-child  .actions i.fa[data-move=down] { opacity: 0.2; pointer-events: none; }
 
 /* Component: File Uploader */
 .qq-upload-button { display: inline-block; width: auto; font-size: 1.1rem; font-weight: bold;
-   background-color: steelblue; border-radius: 0.4em; padding: 0.6em 1.2em; margin-bottom: 10px;
-   transition: background-color 0.4s; }
+   background-color: cornflowerblue; border-radius: 0.4em; padding: 0.6em 1.2em;
+   margin-bottom: 10px; transition: background-color 0.4s; }
 .qq-upload-button:hover { background-color: royalblue; }
 .qq-upload-list li.qq-upload-success { background-color: lightslategray; }
 #processing-files { float: right; font-size: 2.0rem; }
 
 /* Component: Gallery Settings */
-section.gallery-settings fieldset { text-align: right; }
-fieldset >label { display: flex; justify-content: flex-end; align-items: center; }
-fieldset >label { width: auto; margin-bottom: 15px; }
-fieldset >label:last-child { margin-bottom: 5px; }
-fieldset >label >* { margin: 0px; }
-fieldset >label >span:first-child { width: auto; padding: 0px 8px 0px 0px; }
-fieldset >label >input { width: 70%; }
-fieldset >label >input[type=checkbox] { width: auto; margin: 0px 5px 0px 0px; }
-fieldset >label i.fa { font-size: 120%; padding-left: 5px; }
-fieldset >div >span >label { display: inline-block; margin: 0px 0px 15px 0px; }
-fieldset >div >span >label span.small-caps { font-size: 70%; text-transform: uppercase; }
-fieldset >div >span >label input[type=checkbox] { margin: 0px 0px 0px 8px; }
-fieldset >div >div >label { display: inline-block; }
-fieldset >div >div >label:first-child span { width: auto; }
-fieldset >div >div >label:first-child input { width: 140px; }
-fieldset >div >div >label:last-child input { margin: 0px 0px 0px 10px; }
-fieldset >div >div:first-child >label:last-child { visibility: hidden; }
+.gallery-settings fieldset.settings-website input[name=caption-caps]+span { font-size: 0.8em; text-transform: uppercase; }
+.gallery-settings fieldset.settings-tabs label { display: inline; }
+.gallery-settings fieldset.settings-tabs label span { display: inline; }
+.gallery-settings fieldset.settings-tabs label input[name=title] { width: 40%; }
+.gallery-settings fieldset.settings-tabs label input[type=checkbox] { margin-left: 3px; }
+.gallery-settings fieldset.settings-tabs [data-item-type=page]:first-child label:last-child { display: none; }
 
 /* Component: Administrator Accounts */
-.admin-accounts .send-invite { text-align: right; padding-top: 10px; }
 .admin-accounts .send-invite >button+div { display: none; }
-.admin-accounts .send-invite label span { width: auto; }
-.admin-accounts .send-invite label input { width: 80%; }
+.admin-accounts p { font-size: 0.9rem; font-style: italic; }

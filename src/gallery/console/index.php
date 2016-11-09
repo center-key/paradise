@@ -5,7 +5,7 @@
 <!-- Paradise ~ centerkey.com/paradise             -->
 <!-- GPLv3 - Copyright (c) individual contributors -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
-<html>
+<html lang=en>
 <head>
 <meta charset=utf-8>
 <meta name=viewport                   content="width=device-width, initial-scale=1">
@@ -13,69 +13,71 @@
 <title>Paradise &bull; Administrator Console</title>
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/0/dna.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4.7/css/font-awesome.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.0/dna.css>
 <link rel=stylesheet       href=file-uploader/fileuploader.css>
-<link rel=stylesheet       href=../css/reset.css>
-<link rel=stylesheet       href=css/color-blocks.css>
+<link rel=stylesheet       href=http://centerkey.com/css/reset.css>
+<link rel=stylesheet       href=http://centerkey.com/css/layout-color-blocks.css>
 <link rel=stylesheet       href=css/style.css>
 </head>
-<body class=flat>
+<body>
 
 <header>
    <aside>
-      <button data-href=".." class=external-site>Visit gallery</button>
-      <button data-href="sign-out">Sign out</button>
+      <button data-href=.. class=external-site>Gallery</button>
+      <button data-href=sign-out>Sign out</button>
    </aside>
    <h1>Paradise PHP Photo Gallery</h1>
    <h2>Administrator Console</h2>
 </header>
 
 <main>
-   <div>
+   <div class=external-site>
 
       <section>
-         <h3>Status</h3>
+         <h2>Status</h2>
          <div id=status-msg></div>
       </section>
 
       <section>
-         <h3>Image Portfolio</h3>
+         <h2>Image Portfolio</h2>
          <div>
             <div id=portfolio-image class=dna-template data-item-id=~~id~~>
+               <form>
+                  <label data-class=~~display,display-on,display-off~~>
+                     <span>Display:</span>
+                     <input name=display type=checkbox data-prop-checked=~~display~~
+                        data-change=app.ui.savePortfolio>
+                     (show in gallery)
+                  </label>
+                  <label>
+                     <span>Caption:</span>
+                     <input name=caption value=~~caption~~ data-smart-update=app.ui.savePortfolio>
+                  </label>
+                  <label>
+                     <span>Description:</span>
+                     <textarea name=description
+                        data-smart-update=app.ui.savePortfolio>~~description~~</textarea>
+                  </label>
+                  <label>
+                     <span>Badge:</span>
+                     <input name=badge value=~~badge~~ data-smart-update=app.ui.savePortfolio>
+                  </label>
+                  <div class=actions>
+                     <i data-icon=arrow-up   data-click=app.ui.move data-move=up></i>
+                     <i data-icon=arrow-down data-click=app.ui.move data-move=down></i>
+                     <i data-icon=times class=icon-popup-anchor></i>
+                     <div>
+                        <p>Permanently delete this image?</p>
+                        <button data-click=app.ui.delete>Delete image</button>
+                     </div>
+                  </div>
+               </form>
                <figure>
-                  <img data-attr-src="../~data~/portfolio/~~id~~-large.jpg" class=external-site
-                     data-href="../~data~/portfolio/~~id~~-large.jpg" alt="Thumbnail">
+                  <img data-attr-src=../~data~/portfolio/~~id~~-large.jpg
+                     data-href=../~data~/portfolio/~~id~~-large.jpg alt=thumbnail>
                   <figcaption>Uploaded: <b>~~uploaded~~</b></figcaption>
                </figure>
-               <label data-class=~~display,display-on,display-off~~>
-                  <span>Display:</span>
-                  <input name=display type=checkbox data-prop-checked=~~display~~
-                     data-change=app.ui.savePortfolio>
-                  <span>(show in gallery)</span>
-               </label>
-               <label>
-                  <span>Caption:</span>
-                  <input name=caption value=~~caption~~ data-smart-update=app.ui.savePortfolio>
-               </label>
-               <label>
-                  <span>Description:</span>
-                  <textarea name=description
-                     data-smart-update=app.ui.savePortfolio>~~description~~</textarea>
-               </label>
-               <label>
-                  <span>Badge:</span>
-                  <input name=badge value=~~badge~~ data-smart-update=app.ui.savePortfolio>
-               </label>
-               <div class=actions>
-                  <i class="fa fa-arrow-up"   data-click=app.ui.move data-move=up></i>
-                  <i class="fa fa-arrow-down" data-click=app.ui.move data-move=down></i>
-                  <i class="fa fa-times icon-popup-anchor"></i>
-                  <div>
-                     <p>Permanently delete this image?</p>
-                     <button data-click=app.ui.delete>Delete image</button>
-                  </div>
-               </div>
             </div>
          </div>
          <div data-placeholder=portfolio-image>No images in your portfolio yet.</div>
@@ -85,17 +87,16 @@
    <div>
 
       <section>
-         <h3>
+         <h2>
             Gallery Uploader
-            <i class="fa fa-info-circle external-site"
-               data-href=https://github.com/center-key/paradise/wiki/faq></i>
-         </h3>
-         <i id=processing-files class="fa fa-spinner fa-spin"></i>
+            <i data-icon=info-circle data-href=https://github.com/center-key/paradise/wiki/faq></i>
+         </h2>
+         <i id=processing-files data-icon=spinner class=fa-spin></i>
          <div id=file-uploader></div>
       </section>
 
       <section id=gallery-settings class=dna-template>
-         <h3>Gallery Settings</h3>
+         <h2>Gallery Settings</h2>
          <fieldset class=settings-website>
             <legend>Website</legend>
             <label>
@@ -104,11 +105,10 @@
                   placeholder="Enter website header">
             </label>
             <label>
-               <span>Title font:</span>
+               <span>Title font: <i data-href=fonts.php data-icon=info-circle></i></span>
                <select name=title-font data-option=~~title-font~~ data-change=app.ui.saveSettings>
                   <?= displayFontOptions(); ?>
                </select>
-               <i data-href="fonts.php" class="fa fa-info-circle external-site"></i>
             </label>
             <label>
                <span>Title size:</span>
@@ -130,43 +130,41 @@
                   placeholder="Enter website subheader">
             </label>
             <div>
-               <span>Captions:</span>
-               <span>
+               Captions:
+               <div>
                   <label>
                      <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
-                        data-change=app.ui.saveSettings>
-                     <span><i>italic</i></span>
+                        data-change=app.ui.saveSettings><i>italic</i>
                   </label>
                   <label>
                      <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~
-                        data-change=app.ui.saveSettings>
-                     <span class=small-caps>all caps</span>
+                        data-change=app.ui.saveSettings><span>all caps</span>
                   </label>
-               </span>
+               </div>
             </div>
-            <label>
-               <span>Creative Commons:</span>
-               <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
-                  data-change=app.ui.saveSettings>
-               <span>display</span>
-               <i class="fa fa-info-circle external-site"
-                  data-href="http://creativecommons.org/licenses/by-sa/4.0/"></i>
-            </label>
-            <label>
+            <div>
+               Creative Commons:
+               <i data-icon=info-circle data-href=http://creativecommons.org/licenses/by-sa/4.0></i>
+               <label>
+                  <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
+                     data-change=app.ui.saveSettings>display
+               </label>
+            </div>
+            <div>
                <span>Social share icons:</span>
-               <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~
-                  data-change=app.ui.saveSettings>
-               <span>display</span>
-            </label>
+               <label>
+                  <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~
+                     data-change=app.ui.saveSettings>display
+               </label>
+            </div>
             <label>
                <span>Footer:</span>
                <input type=text name=footer value=~~footer~~ data-smart-update=app.ui.saveSettings>
             </label>
             <label>
-               <span>Email:</span>
+               <span>Email: <i data-icon=info-circle data-href=../#contact></i></span>
                <input type=email name=contact-email value=~~contact-email~~
-                  data-smart-update=app.ui.saveSettings placeholder="Address for feedback">
-               <i class="fa fa-info-circle external-site" data-href="../#contact"></i>
+                  data-smart-update=app.ui.saveSettings placeholder="Address for messages">
             </label>
          </fieldset>
          <fieldset class=settings-tabs>
@@ -180,8 +178,7 @@
                   </label>
                   <label>
                      <input name=show type=checkbox data-prop-checked=~~show~~
-                        data-change=app.ui.saveSettings>
-                     <span>display</span>
+                        data-change=app.ui.saveSettings>display
                   </label>
                </div>
             </div>
@@ -189,7 +186,7 @@
       </section>
 
       <section class=admin-accounts>
-         <h3>Administrators</h3>
+         <h2>Administrators</h2>
          <fieldset>
             <legend>Your profile</legend>
             <div>Email:</div>
@@ -208,7 +205,7 @@
                   <small>~~date~~</small>: <b>~~to~~</b>
                </div>
             </div>
-            <i data-placeholder=account-invite>No outstanding invitations.</i>
+            <p data-placeholder=account-invite>No outstanding invitations.</p>
             <div class=send-invite>
                <button data-click=app.invites.prompt>New account</button>
                <div>
@@ -227,7 +224,7 @@
 </main>
 
 <footer>
-   <div class=plain>
+   <div>
       Paradise <?= $version ?><br>
       FAQ: <a href=https://github.com/center-key/paradise/wiki/faq class=external-site>
          github.com/center-key/paradise/wiki/faq</a>
@@ -238,9 +235,9 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/3/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/jquery/3.1/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js></script>
-<script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/dna.js/1.0/dna.min.js></script>
 <script src=file-uploader/fileuploader.js></script>
 <script>var app = {}; app.clientData = <?= appClientData(true) ?>;</script>
 <script src=js/library.js></script>
