@@ -1,5 +1,4 @@
 #!/bin/sh
-
 #################################################
 # Paradise ~ centerkey.com/paradise             #
 # GPLv3 ~ Copyright (c) individual contributors #
@@ -24,13 +23,14 @@ zipUpRelease() {
    echo "*** Zipping"
    cd $projectFolder/src
    echo "Making version ${version}..."
+   find . -name ".DS_Store" -delete
    zipFile=$projectFolder/releases/paradise-install-files.zip
    rm -f $zipFile
-   zip --recurse-paths --quiet $zipFile gallery/ --exclude "*/.DS_Store"
+   zip --recurse-paths --quiet $zipFile gallery/
    cd $projectFolder/releases
    pwd
-   cp paradise-install-files.zip paradise-${version}.zip
-   ls -l paradise-install-files.zip paradise-${version}.zip
+   cp paradise-install-files.zip previous/paradise-${version}.zip
+   ls -l paradise-install-files.zip previous/paradise-${version}.zip
    echo
    }
 
