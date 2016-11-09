@@ -4,7 +4,7 @@
 <!-- Paradise ~ centerkey.com/paradise             -->
 <!-- GPLv3 ~ Copyright (c) individual contributors -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
-<html>
+<html lang=en>
 <head>
 <meta charset=utf-8>
 <meta name=viewport                   content="width=device-width, initial-scale=1">
@@ -12,10 +12,10 @@
 <title><?= $settings->{"title"} ?> &bull; <?= $settings->{"subtitle"} ?></title>
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1/magnific-popup.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/0/dna.css>
-<link rel=stylesheet       href=css/reset.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4.7/css/font-awesome.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/magnific-popup.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.0/dna.css>
+<link rel=stylesheet       href=http://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=css/style.css>
 <link rel=stylesheet       href=~data~/custom-style.css>
 <style>
@@ -49,24 +49,26 @@
          <h3 class=hide-me>The Artist</h3>
          <?php if ($pages[1]->show) readfile("~data~/page-{$pages[1]->name}.html"); ?>
       </section>
-      <section data-hash=contact class=flat>
+      <section data-hash=contact>
          <h3>Contact the Artist</h3>
-         <form class=feedback method=post>
+         <form class=send-message>
             <label>
                <span>Message:</span>
-               <textarea name=message rows=6 cols=50 placeholder="Enter your message" required></textarea>
+               <textarea name=message placeholder="Enter your message" required></textarea>
             </label>
             <label>
                <span>Name:</span>
-               <input name=name size=35 placeholder="Enter your name">
+               <input name=name placeholder="Enter your name">
             </label>
             <label>
                <span>Email:</span>
-               <input name=email size=40 type=email placeholder="Enter your email address" required>
+               <input name=email type=email placeholder="Enter your email address" required>
             </label>
-            <button type=submit>Send message</button>
-            <aside>Gallery powered by <a href=http://centerkey.com/paradise/>Paradise</a></aside>
+            <p>
+               <button type=submit>Send message</button>
+            </p>
          </form>
+         <nav>Gallery powered by <a href=http://centerkey.com/paradise/>Paradise</a></nav>
       </section>
       <section data-hash=thanks>
          <h3>Thanks!</h3>
@@ -86,9 +88,9 @@
    <div><?= $settings->{"footer"} ?></div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/3/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/jquery.magnific-popup/1/jquery.magnific-popup.min.js></script>
-<script src=https://cdn.jsdelivr.net/dna.js/0/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/jquery/3.1/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/jquery.magnific-popup.min.js></script>
+<script src=https://cdn.jsdelivr.net/dna.js/1.0/dna.min.js></script>
 <script src=js/app.js></script>
 </body>
 </html>
