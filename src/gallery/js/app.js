@@ -28,7 +28,8 @@ app.social = {
    share: function() {
       var button = app.social.buttons[$(this).data().social];
       function insert(str, find, value) { return str.replace(find, encodeURIComponent(value)); }
-      var link = insert(insert(button.link, '${url}', location.href), '${title}', document.title);
+      var link = insert(button.link, '${url}', window.location.href);
+      link = insert(link, '${title}', window.document.title);
       app.social.popup(link, { width: button.x, height: button.y });
       },
    setup: function() {
@@ -52,7 +53,8 @@ app.social = {
 
 app.start = {
    go: function() {
-      var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Apple/.test(navigator.vendor);
+      var iOS = /iPad|iPhone|iPod/.test(window.navigator.userAgent) &&
+         /Apple/.test(window.navigator.vendor);
       app.social.setup();
       function makeIcon() { $(this).addClass('fa fa-' + $(this).data().icon); }
       $('i[data-icon]').each(makeIcon);
