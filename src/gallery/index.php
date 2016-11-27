@@ -14,7 +14,7 @@
 <link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4.7/css/font-awesome.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/magnific-popup.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.0/dna.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.1/dna.css>
 <link rel=stylesheet       href=http://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=css/style.css>
 <link rel=stylesheet       href=~data~/custom-style.css>
@@ -90,7 +90,7 @@
 
 <script src=https://cdn.jsdelivr.net/jquery/3.1/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/jquery.magnific-popup.min.js></script>
-<script src=https://cdn.jsdelivr.net/dna.js/1.0/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/dna.js/1.1/dna.min.js></script>
 <script src=js/app.js></script>
 </body>
 </html>
