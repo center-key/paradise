@@ -13,7 +13,7 @@
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4.7/css/font-awesome.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.1/dna.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.2/dna.css>
 <link rel=stylesheet       href=http://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=http://centerkey.com/css/layout-color-blocks.css>
 <link rel=stylesheet       href=../css/style.css>
@@ -74,9 +74,9 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/3.1/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/jquery/3.2/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/crypto-js/3.1/rollups/sha256.js></script>
-<script src=https://cdn.jsdelivr.net/dna.js/1.1/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/dna.js/1.2/dna.min.js></script>
 <script>var app = {}; app.clientData = <?= appClientData(false) ?>;</script>
 <script src=../js/library.js></script>
 <script src=../js/login.js></script>
