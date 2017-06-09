@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////
 
 // Application
-window.app = {};
+var app = {};
 
 // Social bookmarking
 app.social = {
