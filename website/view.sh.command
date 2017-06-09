@@ -40,4 +40,4 @@ echo "Paradise ~ View Project Website"
 echo "==============================="
 echo
 viewWebsite
-[ -w $ftpFolder ] && copyToFtpFolder
+test -w $ftpFolder && copyToFtpFolder
