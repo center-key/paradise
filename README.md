@@ -1,6 +1,7 @@
 ### Paradise PHP Photo Gallery
 
 *A simple and aesthetic image gallery to showcase your art portfolio*
+[![Build Status](https://travis-ci.org/center-key/paradise.svg?branch=master)](https://travis-ci.org/center-key/paradise)
 
 ---
 <img src=website/graphics/paradise-logo.png align=right width=260 alt=logo>
