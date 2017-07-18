@@ -36,7 +36,6 @@
      }
   },
   "devDependencies": {
-    "file-loader": "^0.11.2",
     "jshint": "^2.9.5"
   }
 }
