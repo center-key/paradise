@@ -19,6 +19,22 @@
     "url": "https://github.com/eomci/paradise/issues"
   },
   "homepage": "https://github.com/eomci/paradise#readme",
+  "jshintConfig": {
+     "esversion": 6,
+     "strict":    "implied",
+     "jquery":    true,
+     "node":      true,
+     "undef":     true,
+     "unused":    true,
+     "globals": {
+       "window":    false,
+       "dna":       false,
+       "app":       false,
+       "library":   false,
+       "qq":        false,
+       "CryptoJS":  false
+     }
+  },
   "devDependencies": {
     "file-loader": "^0.11.2",
     "jshint": "^2.9.5"
