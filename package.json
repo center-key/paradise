@@ -1,41 +1,41 @@
 {
-  "name": "paradise",
-  "version": "1.0.0",
-  "description": "Paradise PHP Photo Gallery http://centerkey.com/paradise",
-  "main": "index.js",
-  "scripts": {
-    "test": "jshint src/gallery/js/*.js src/gallery/console/js/*.js"
-  },
-  "repository": "centerkey/paradise",
-  "keywords": [
-    "php",
-    "paradise",
-    "photo",
-    "gallery"
-  ],
-  "author": "individual contributors",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/eomci/paradise/issues"
-  },
-  "homepage": "https://github.com/eomci/paradise#readme",
-  "jshintConfig": {
-     "esversion": 6,
-     "strict":    "implied",
-     "jquery":    true,
-     "node":      true,
-     "undef":     true,
-     "unused":    true,
-     "globals": {
-       "window":    false,
-       "dna":       false,
-       "app":       false,
-       "library":   false,
-       "qq":        false,
-       "CryptoJS":  false
-     }
-  },
-  "devDependencies": {
-    "jshint": "^2.9.5"
-  }
+   "name": "paradise",
+   "version": "1.0.0",
+   "description": "Paradise PHP Photo Gallery http://centerkey.com/paradise",
+   "main": "index.js",
+   "scripts": {
+      "test": "jshint src/gallery/js/*.js src/gallery/console/js/*.js"
+   },
+   "repository": "centerkey/paradise",
+   "keywords": [
+      "php",
+      "paradise",
+      "photo",
+      "gallery"
+   ],
+   "author": "individual contributors",
+   "license": "GPL-3.0",
+   "bugs": {
+      "url": "https://github.com/eomci/paradise/issues"
+   },
+   "homepage": "https://github.com/eomci/paradise#readme",
+   "jshintConfig": {
+       "esversion":   6,
+       "strict":      "implied",
+       "jquery":      true,
+       "node":        true,
+       "undef":       true,
+       "unused":      true,
+       "globals": {
+          "window":   false,
+          "dna":      false,
+          "app":      false,
+          "library":  false,
+          "qq":       false,
+          "CryptoJS": false
+       }
+   },
+   "devDependencies": {
+      "jshint": "^2.9.5"
+   }
 }
