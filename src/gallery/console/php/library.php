@@ -42,7 +42,7 @@ function initializeFile($filename, $fileContents) {
 
 function initializeFolder($folder, $blockDirIndex) {
    if (!is_dir($folder) && !mkdir($folder))
-      exit("Error initializing file: {$folder}");
+      exit("Error initializing folder: {$folder}");
    if ($blockDirIndex)
       initializeFile("{$folder}/index.html", "Nothing to see.");
    return $folder;
