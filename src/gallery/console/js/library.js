@@ -50,7 +50,7 @@ library.rest = {
 
 library.ui = {
    start: function() {
-      var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Apple/.test(navigator.vendor);
+      var iOS = /iPad|iPhone|iPod/.test(window.navigator.userAgent) && /Apple/.test(window.navigator.vendor);
       $('a img, a i[data-icon], footer a').parent().addClass('plain');
       if (!iOS)
          $('.external-site a, a.external-site').attr({ target: '_blank' });
@@ -58,5 +58,5 @@ library.ui = {
    };
 
 $(library.ui.start);
-function makeIcon() { $(this).addClass('fa fa-' + $(this).data().icon); }
+function makeIcon(i, el) { $(el).addClass('fa fa-' + $(el).data().icon); }
 $('i[data-icon]').each(makeIcon);
