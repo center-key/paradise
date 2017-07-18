@@ -20,7 +20,7 @@ app.ui = {
          }
       library.rest.get('portfolio', { action: 'list', callback: handle });
       },
-   save: function(elem, type, id) {
+   save: function(elem, type) {
       var field = elem.attr('name');
       var val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
       app.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
@@ -47,15 +47,15 @@ app.ui = {
          id:   dna.getModel(elem).id,
          move: elem.data().move
          };
-      function handle(data) { return params.move === 'up' ? dna.up(elem) : dna.down(elem); }
+      function handle() { return params.move === 'up' ? dna.up(elem) : dna.down(elem); }
       library.rest.get('portfolio', { action: 'update', params: params, callback: handle });
       },
    delete: function(elem) {
       var params = { id: dna.getModel(elem).id };
-      function handle(data) { dna.bye(elem); }
+      function handle() { dna.bye(elem); }
       library.rest.get('portfolio', { action: 'delete', params: params, callback: handle });
       },
-   loadAccounts: function(elem) {
+   loadAccounts: function() {
       function handle(data) { dna.clone('user-account', data); }
       library.rest.get('account', { action: 'list', callback: handle });
       },
@@ -67,7 +67,7 @@ app.ui = {
          }
       function start() { spinner.fadeIn(); }
       var lastTimeoutId = null;
-      function done(id, fileName, responseJSON) {
+      function done() {
          function processUploads() {
             if (timeoutId === lastTimeoutId)
                library.rest.get('command', { action: 'process-uploads', callback: handle });
@@ -107,7 +107,7 @@ app.invites = {
       var invalid = !elem.val().match(basicEmailPattern);
       app.invites.component.find('div button').prop({ disabled: invalid });
       },
-   send: function(elem) {
+   send: function() {
       app.invites.component.find('div button').prop({ disabled: true });
       function handle(data) {
          app.ui.statusMsg(data.message);

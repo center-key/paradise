@@ -6,7 +6,7 @@
 // Login
 
 app.login = {
-   salt: location.hostname,
+   salt: window.location.hostname,
    submit: function(elem) {
       var minPaswordLength = 8;
       var component = elem.closest('.component-security');
@@ -43,7 +43,7 @@ app.login = {
       component.toggleClass('create', app.clientData['user-list-empty'] || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);
-      function isEmpty() { return !$(this).val().length; }
+      function isEmpty(el) { return !$(el).val().length; }
       component.find('input:visible').filter(isEmpty).first().focus();
       }
    };

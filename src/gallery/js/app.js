@@ -55,7 +55,7 @@ app.start = {
       var iOS = /iPad|iPhone|iPod/.test(window.navigator.userAgent) &&
          /Apple/.test(window.navigator.vendor);
       app.social.setup();
-      function makeIcon() { $(this).addClass('fa fa-' + $(this).data().icon); }
+      function makeIcon(i, el) { $(el).addClass('fa fa-' + $(el).data().icon); }
       $('i[data-icon]').each(makeIcon);
       $('a img').parent().addClass('plain');
       $('input[type=email]').attr({ spellcheck: false, autocorrect: 'off' });

@@ -4,7 +4,7 @@
    "description": "Paradise PHP Photo Gallery http://centerkey.com/paradise",
    "main": "index.js",
    "scripts": {
-      "test": "jshint src/gallery/js/app.js"
+      "test": "jshint src/gallery/js/*.js src/gallery/console/js/*.js"
    },
    "repository": "centerkey/paradise",
    "keywords": [
@@ -19,6 +19,22 @@
       "url": "https://github.com/eomci/paradise/issues"
    },
    "homepage": "https://github.com/eomci/paradise#readme",
+   "jshintConfig": {
+       "esversion":   6,
+       "strict":      "implied",
+       "jquery":      true,
+       "node":        true,
+       "undef":       true,
+       "unused":      true,
+       "globals": {
+          "window":   false,
+          "dna":      false,
+          "app":      false,
+          "library":  false,
+          "qq":       false,
+          "CryptoJS": false
+       }
+   },
    "devDependencies": {
       "jshint": "^2.9.5"
    }
