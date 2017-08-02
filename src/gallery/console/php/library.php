@@ -36,13 +36,13 @@ function appClientData() {
 
 function initializeFile($filename, $fileContents) {
    if (!is_file($filename) && !file_put_contents($filename, $fileContents))
-      exit("Error initializing file: {$filename}");
+      exit("Error initializing file, check permissions for: {$filename}");
    return $filename;
    }
 
 function initializeFolder($folder, $blockDirIndex) {
    if (!is_dir($folder) && !mkdir($folder))
-      exit("Error initializing folder: {$folder}");
+      exit("Error initializing folder, check permissions for: {$folder}");
    if ($blockDirIndex)
       initializeFile("{$folder}/index.html", "Nothing to see.");
    return $folder;

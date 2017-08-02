@@ -44,7 +44,7 @@ function setupSecureFolder($dataFolder) {
    $fileSearch = glob($pattern);
    if (count($fileSearch) === 0) {
       if (!mkdir("{$dataFolder}/secure-" . mt_rand() . mt_rand() . mt_rand()))
-         exit("Unable to create secure data folder");
+         exit("Unable to create secure data folder, check permissions in: {$dataFolder}");
       $fileSearch = glob($pattern);
       }
    workaroundToUpgradeToNewSecureFolder($dataFolder, $fileSearch[0]);
