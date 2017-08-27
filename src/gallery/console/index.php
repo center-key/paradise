@@ -13,8 +13,8 @@
 <title>Paradise &bull; Administrator Console</title>
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4.7/css/font-awesome.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.2/dna.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/font-awesome@4.7/css/font-awesome.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.3/dna.css>
 <link rel=stylesheet       href=file-uploader/fileuploader.css>
 <link rel=stylesheet       href=http://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=http://centerkey.com/css/layout-color-blocks.css>
@@ -235,9 +235,9 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/3.2/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js></script>
-<script src=https://cdn.jsdelivr.net/dna.js/1.2/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/dna.js@1.3/dna.min.js></script>
 <script src=file-uploader/fileuploader.js></script>
 <script>var app = {}; app.clientData = <?= appClientData(true) ?>;</script>
 <script src=js/library.js></script>

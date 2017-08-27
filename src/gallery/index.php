@@ -12,9 +12,9 @@
 <title><?= $settings->{"title"} ?> &bull; <?= $settings->{"subtitle"} ?></title>
 <link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/fontawesome/4.7/css/font-awesome.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/font-awesome@4.7/css/font-awesome.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/magnific-popup.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/dna.js/1.2/dna.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.3/dna.css>
 <link rel=stylesheet       href=http://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=css/style.css>
 <link rel=stylesheet       href=~data~/custom-style.css>
@@ -88,9 +88,9 @@
    <div><?= $settings->{"footer"} ?></div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/jquery/3.2/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/jquery.magnific-popup.min.js></script>
-<script src=https://cdn.jsdelivr.net/dna.js/1.2/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/dna.js@1.3/dna.min.js></script>
 <script src=js/app.js></script>
 </body>
 </html>
