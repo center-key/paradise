@@ -18,7 +18,8 @@ webServerSetup() {
    webServerRoot=$(grep ^DocumentRoot $httpdConf | awk -F\" '{ print $2 }')
    webServerPath=paradise-test
    webServerFolder=$webServerRoot/$webServerPath
-   echo "Web server folder: $webServerFolder"
+   echo "Web server folder:"
+   echo $webServerFolder
    mkdir -p $webServerFolder
    echo
    }
