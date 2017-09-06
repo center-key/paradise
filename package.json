@@ -1,41 +1,44 @@
 {
    "name": "paradise",
    "version": "1.0.0",
-   "description": "Paradise PHP Photo Gallery http://centerkey.com/paradise",
+   "description": "Paradise PHP Photo Gallery",
+   "summary": "A simple and aesthetic image gallery to showcase your art portfolio",
+   "license": "GPL-3.0",
    "main": "index.js",
-   "scripts": {
-      "test": "jshint src/gallery/js/*.js src/gallery/console/js/*.js"
-   },
    "repository": "centerkey/paradise",
+   "homepage": "https://github.com/center-key/paradise",
+   "bugs": "https://github.com/center-key/paradise/issues",
+   "docs": "http://centerkey.com/paradise",
    "keywords": [
       "php",
       "paradise",
       "photo",
       "gallery"
    ],
-   "author": "individual contributors",
-   "license": "GPL-3.0",
-   "bugs": {
-      "url": "https://github.com/eomci/paradise/issues"
+   "author": {
+      "name": "Center Key",
+      "url": "http://centerkey.com"
    },
-   "homepage": "https://github.com/eomci/paradise#readme",
    "jshintConfig": {
-       "esversion":   6,
-       "strict":      "implied",
-       "jquery":      true,
-       "node":        true,
-       "undef":       true,
-       "unused":      true,
-       "globals": {
-          "window":   false,
-          "dna":      false,
-          "app":      false,
-          "library":  false,
-          "qq":       false,
-          "CryptoJS": false
-       }
+      "esversion": 6,
+      "strict": "implied",
+      "jquery": true,
+      "node": true,
+      "undef": true,
+      "unused": true,
+      "globals": {
+         "window": false,
+         "dna": false,
+         "app": false,
+         "library": false,
+         "qq": false,
+         "CryptoJS": false
+      }
+   },
+   "scripts": {
+      "test": "jshint src/gallery/js/*.js src/gallery/console/js/*.js"
    },
    "devDependencies": {
-      "jshint": "^2.9.5"
+      "jshint": "~2.9"
    }
 }
