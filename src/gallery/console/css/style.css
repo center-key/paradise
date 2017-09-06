@@ -71,7 +71,7 @@ Structure:
    background-color: cornflowerblue; border-radius: 0.4em; padding: 0.6em 1.2em;
    margin-bottom: 10px; transition: background-color 0.4s; }
 .qq-upload-button:hover { background-color: royalblue; }
-.qq-upload-list li.qq-upload-success { background-color: lightslategray; }
+.qq-upload-list li.qq-upload-success { text-indent: 0px; background-color: lightslategray; }
 #processing-files { float: right; font-size: 2.0rem; }
 
 /* Component: Gallery Settings */
