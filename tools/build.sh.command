@@ -8,12 +8,28 @@
 # Creates the release file (zip) with the version number in the file
 # name (extracted from paradise/src/gallery/console/php/library.php)
 
-projectFolder=$(cd $(dirname $0)/..; pwd)
-version=$(awk -F\" '/version = / { print $2 }' $projectFolder/src/gallery/console/php/library.php)
+projectHome=$(cd $(dirname $0)/..; pwd)
+version=$(awk -F\" '/version = / { print $2 }' $projectHome/src/gallery/console/php/library.php)
+
+info() {
+   # Check for Node.js installation and download project dependencies
+   cd $projectHome
+   pwd
+   echo
+   echo "Node.js:"
+   which node || { echo "Need to install Node.js: https://nodejs.org"; exit; }
+   node --version
+   test -d node_modules || npm install
+   npm update
+   npm outdated
+   echo
+   }
 
 runStaticAnalyzer() {
    echo "*** Analyzing"
-   cd $projectFolder/src
+   cd $projectHome
+   npm test
+   cd $projectHome/src
    pwd
    find . -name "*.php" -exec php --syntax-check {} \;
    echo
@@ -21,13 +37,13 @@ runStaticAnalyzer() {
 
 zipUpRelease() {
    echo "*** Zipping"
-   cd $projectFolder/src
+   cd $projectHome/src
    echo "Making version ${version}..."
    find . -name ".DS_Store" -delete
-   zipFile=$projectFolder/releases/paradise-install-files.zip
+   zipFile=$projectHome/releases/paradise-install-files.zip
    rm -f $zipFile
    zip --recurse-paths --quiet $zipFile gallery/
-   cd $projectFolder/releases
+   cd $projectHome/releases
    pwd
    cp paradise-install-files.zip previous/paradise-${version}.zip
    ls -l paradise-install-files.zip previous/paradise-${version}.zip
@@ -36,7 +52,7 @@ zipUpRelease() {
 
 releaseInstructions() {
    echo "*** Instructions"
-   cd $projectFolder
+   cd $projectHome
    echo "Steps to publish this release"
    echo "   1) Check in release files (.zip) with the comment:"
    echo "      Release $version"
@@ -55,6 +71,7 @@ echo
 echo "Paradise ~ Build"
 echo "================"
 echo
+info
 runStaticAnalyzer
 zipUpRelease
 releaseInstructions
