@@ -19,7 +19,7 @@
 <link rel=stylesheet       href=css/style.css>
 <link rel=stylesheet       href=~data~/custom-style.css>
 <style>
-   @import url(http://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
+   @import url(https://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
    h1 {
       font-family: "<?= $settings->{"title-font"} ?>", sans-serif;
       font-size: <?= $settings->{"title-size"} ?>;

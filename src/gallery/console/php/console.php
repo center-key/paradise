@@ -39,7 +39,7 @@ function displayFontOptions() {
 function importFonts() {
    global $googleFonts;
    foreach ($googleFonts as $font)
-      echo "@import url(http://fonts.googleapis.com/css?family=" . urlencode($font) . ");";
+      echo "@import url(https://fonts.googleapis.com/css?family=" . urlencode($font) . ");";
    }
 
 function displayTitles() {
