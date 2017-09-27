@@ -24,12 +24,12 @@ library.rest = {
       },
    get: function(resourceType, options) {
       var url = library.rest.makeUrl(resourceType, options.action, options.params);
-      console.log('get:', url);
+      window.console.log('get:', url);
       function handleResponse(json) {
          if (json.code === 401)
             window.location = '.';
          else if (json.error)
-            console.error(url, json);
+            window.console.error(url, json);
          else if (options.callback)
             options.callback(json);
          }
@@ -37,10 +37,10 @@ library.rest = {
       },
    post: function(resourceType, data, options) {
       var url = library.rest.makeUrl(resourceType, options.action, options.params);
-      console.log('post:', url);
+      window.console.log('post:', url);
       function handleResponse(json) {
          if (json.error)
-            console.error(url, json);
+            window.console.error(url, json);
          else if (options.callback)
             options.callback(json);
          }

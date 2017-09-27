@@ -20,17 +20,15 @@
       "url": "http://centerkey.com"
    },
    "jshintConfig": {
-      "esversion": 6,
       "strict": "implied",
-      "jquery": true,
-      "node": true,
       "undef": true,
       "unused": true,
+      "browser": true,
+      "jquery": true,
       "globals": {
-         "window": false,
+         "app": true,
+         "library": true,
          "dna": false,
-         "app": false,
-         "library": false,
          "qq": false,
          "CryptoJS": false
       }
