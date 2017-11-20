@@ -39,7 +39,7 @@ app.login = {
          library.rest.post("security", credentials, { action: action, callback: handle });
       },
    setup: function(component) {
-      var params = dna.browser.getParams();
+      var params = dna.browser.getUrlParams();
       component.toggleClass('create', app.clientData['user-list-empty'] || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);
