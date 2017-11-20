@@ -3,6 +3,8 @@
    align=right width=200 alt=logo>
 *A simple and aesthetic image gallery to showcase your art portfolio*
 
+[![Known Vulnerabilities](https://snyk.io/test/github/center-key/paradise/badge.svg)](https://snyk.io/test/github/center-key/paradise)
+&nbsp;
 [![Build Status](https://travis-ci.org/center-key/paradise.svg)](https://travis-ci.org/center-key/paradise)
 
 Paradise is an open source software package for displaying a collection of photos on a website in
