@@ -3,6 +3,8 @@
    align=right width=200 alt=logo>
 *A simple and aesthetic image gallery to showcase your art portfolio*
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/center-key/paradise/blob/master/LICENSE.txt)
+&nbsp;
 [![Known Vulnerabilities](https://snyk.io/test/github/center-key/paradise/badge.svg)](https://snyk.io/test/github/center-key/paradise)
 &nbsp;
 [![Build Status](https://travis-ci.org/center-key/paradise.svg)](https://travis-ci.org/center-key/paradise)
