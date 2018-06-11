@@ -23,6 +23,7 @@
       "strict": "implied",
       "undef": true,
       "unused": true,
+      "node": true,
       "browser": true,
       "jquery": true,
       "globals": {
