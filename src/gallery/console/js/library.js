@@ -24,7 +24,7 @@ library.rest = {
       },
    get: function(resourceType, options) {
       var url = library.rest.makeUrl(resourceType, options.action, options.params);
-      window.console.log('get:', url);
+      console.log('get:', url);
       function handleResponse(json) {
          if (json.code === 401)
             window.location = '.';
@@ -37,7 +37,7 @@ library.rest = {
       },
    post: function(resourceType, data, options) {
       var url = library.rest.makeUrl(resourceType, options.action, options.params);
-      window.console.log('post:', url);
+      console.log('post:', url);
       function handleResponse(json) {
          if (json.error)
             window.console.error(url, json);
@@ -50,9 +50,8 @@ library.rest = {
 
 library.ui = {
    start: function() {
-      var iOS = /iPad|iPhone|iPod/.test(window.navigator.userAgent) && /Apple/.test(window.navigator.vendor);
       $('a img, a i[data-icon], footer a').parent().addClass('plain');
-      if (!iOS)
+      if (!dna.browser.iOS())
          $('.external-site a, a.external-site').attr({ target: '_blank' });
       }
    };

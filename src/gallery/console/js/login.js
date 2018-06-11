@@ -24,8 +24,8 @@ app.login = {
          invite:   inviteCode
          };
       function displayError(msg) {
-         component.find('button').prop({ disabled: false });
-         dna.ui.slidingFlasher(component.find('.error-message').text(msg));
+         component.find('button').enable();
+         dna.ui.pulse(component.find('.error-message').text(msg));
          }
       function handle(data) {
          if (data.authenticated)

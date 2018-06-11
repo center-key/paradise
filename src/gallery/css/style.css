@@ -180,7 +180,7 @@ body.caption-caps .image-caption {
    }
 
 /* Mobile */
-@media (max-width: 667px) {  /* selects iPhone 6/6s/7 landscape and anything narrower */
+@media (max-width: 667px) {  /* selects iPhone 6/6s/7/8 landscape and anything narrower */
    body {
       padding: 20px 10px;
       }
