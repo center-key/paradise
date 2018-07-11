@@ -16,7 +16,7 @@ organization.
 **[Download current release](https://github.com/center-key/paradise/raw/master/releases/paradise-install-files.zip)**
 
 ### Project:
-   * [Instructions](http://centerkey.com/paradise/)
+   * [Instructions](https://centerkey.com/paradise/)
    * [Releases](https://github.com/center-key/paradise/tree/master/releases)
    * [Issues](https://github.com/center-key/paradise/issues)
    * [FAQ](https://github.com/center-key/paradise/wiki/faq)

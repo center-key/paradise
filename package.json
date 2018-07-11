@@ -8,7 +8,7 @@
    "repository": "centerkey/paradise",
    "homepage": "https://github.com/center-key/paradise",
    "bugs": "https://github.com/center-key/paradise/issues",
-   "docs": "http://centerkey.com/paradise",
+   "docs": "https://centerkey.com/paradise",
    "keywords": [
       "php",
       "paradise",
@@ -17,7 +17,7 @@
    ],
    "author": {
       "name": "Center Key",
-      "url": "http://centerkey.com"
+      "url": "https://centerkey.com"
    },
    "jshintConfig": {
       "strict": "implied",

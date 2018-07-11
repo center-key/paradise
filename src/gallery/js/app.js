@@ -1,7 +1,7 @@
-///////////////////////////////////////////////////
-// Paradise ~ centerkey.com/paradise             //
-// GPLv3 ~ Copyright (c) individual contributors //
-///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
 
 // Application
 var app = {};
@@ -11,11 +11,11 @@ app.social = {
    // Usage:
    //    <div id=social-buttons></div>
    buttons: {
-      twitter:     { title: 'Twitter',     x: 580, y: 350, link: 'http://twitter.com/share?text=${title}&url=${url}' },
-      facebook:    { title: 'Facebook',    x: 580, y: 350, link: 'http://www.facebook.com/sharer.php?u=${url}' },
-      linkedin:    { title: 'LinkedIn',    x: 580, y: 350, link: 'http://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}' },
-      digg:        { title: 'Digg',        x: 985, y: 700, link: 'http://digg.com/submit?url=${url}' },
-      reddit:      { title: 'Reddit',      x: 600, y: 750, link: 'http://www.reddit.com/submit?url=${url}$title=${title}' }
+      twitter:  { title: 'Twitter',  x: 580, y: 350, link: 'https://twitter.com/share?text=${title}&url=${url}' },
+      facebook: { title: 'Facebook', x: 580, y: 350, link: 'https://www.facebook.com/sharer.php?u=${url}' },
+      linkedin: { title: 'LinkedIn', x: 580, y: 350, link: 'https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}' },
+      digg:     { title: 'Digg',     x: 985, y: 700, link: 'https://digg.com/submit?url=${url}' },
+      reddit:   { title: 'Reddit',   x: 600, y: 750, link: 'https://www.reddit.com/submit?url=${url}$title=${title}' }
       },
    popup: function(url, options) {
       var settings = { width: 500, height: 300 };
