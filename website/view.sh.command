@@ -2,7 +2,7 @@
 
 #################################################
 # Paradise ~ centerkey.com/paradise             #
-# GPLv3 ~ Copyright (c) individual contributors #
+# GPLv3 ~ Copyright (c) individual contributors to Paradise #
 #################################################
 
 # Update Web Files:
