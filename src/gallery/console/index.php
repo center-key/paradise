@@ -1,23 +1,23 @@
 <?php require "php/security.php"; ?>
 <?php require "php/console.php"; ?>
 <!doctype html>
-<!-- - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- Paradise ~ centerkey.com/paradise             -->
-<!-- GPLv3 - Copyright (c) individual contributors -->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Paradise ~ centerkey.com/paradise                         -->
+<!-- GPLv3 ~ Copyright (c) individual contributors to Paradise -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <html lang=en>
 <head>
 <meta charset=utf-8>
 <meta name=viewport                   content="width=device-width, initial-scale=1">
 <meta name=apple-mobile-web-app-title content="Console">
 <title>Paradise &bull; Administrator Console</title>
-<link rel=icon             href=http://centerkey.com/paradise/graphics/bookmark.png>
-<link rel=apple-touch-icon href=http://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/font-awesome@4.7/css/font-awesome.min.css>
+<link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
+<link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
+<link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=file-uploader/fileuploader.css>
-<link rel=stylesheet       href=http://centerkey.com/css/reset.css>
-<link rel=stylesheet       href=http://centerkey.com/css/layout-color-blocks.css>
+<link rel=stylesheet       href=https://centerkey.com/css/reset.css>
+<link rel=stylesheet       href=https://centerkey.com/css/layout-color-blocks.css>
 <link rel=stylesheet       href=css/style.css>
 </head>
 <body>

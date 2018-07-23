@@ -1,7 +1,7 @@
-/*************************************************/
-/* Paradise ~ centerkey.com/paradise             */
-/* GPLv3 ~ Copyright (c) individual contributors */
-/*************************************************/
+/*************************************************************/
+/* Paradise ~ centerkey.com/paradise                         */
+/* GPLv3 ~ Copyright (c) individual contributors to Paradise */
+/************++++++++++++*************************************/
 
 /* Gallery */
 /* Do not add customizations to this file -- edit the CSS in: gallery/~data~/custom-style.css */
@@ -119,7 +119,7 @@ body >footer #social-buttons {
    padding: 3px 5px;
    opacity: 0.6;
    }
-.gallery-images .image .image-caption a i[data-icon] {
+.gallery-images .image .image-caption a i.font-icon {
    position: absolute;
    bottom: 0px;
    right: 0px;
@@ -128,7 +128,7 @@ body >footer #social-buttons {
    opacity: 0;
    transition: all 0.4s;
    }
-.gallery-images .image .image-caption:hover a i[data-icon] {
+.gallery-images .image .image-caption:hover a i.font-icon {
    text-shadow: 0px 0px 0.3em black;
    opacity: 1;
    }
