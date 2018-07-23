@@ -1,8 +1,8 @@
 #!/bin/sh
-#################################################
-# Paradise ~ centerkey.com/paradise             #
-# GPLv3 ~ Copyright (c) individual contributors #
-#################################################
+#############################################################
+# Paradise ~ centerkey.com/paradise                         #
+# GPLv3 ~ Copyright (c) individual contributors to Paradise #
+#############################################################
 
 # Build:
 # Creates the release file (zip) with the version number in the file
@@ -38,7 +38,7 @@ runStaticAnalyzer() {
 zipUpRelease() {
    echo "*** Zipping"
    cd $projectHome/src
-   echo "Making version ${version}..."
+   echo "Making release ${version}..."
    find . -name ".DS_Store" -delete
    zipFile=$projectHome/releases/paradise-install-files.zip
    rm -f $zipFile
@@ -50,10 +50,17 @@ zipUpRelease() {
    echo
    }
 
+releasesReport() {
+   echo "*** Releases"
+   cd $projectHome
+   git tag | tail -10
+   echo
+   }
+
 releaseInstructions() {
    echo "*** Instructions"
    cd $projectHome
-   echo "Steps to publish this release"
+   echo "Steps to publish this release:"
    echo "   1) Check in release files (.zip) with the comment:"
    echo "      Release $version"
    echo "   2) Tag release:"
@@ -62,7 +69,7 @@ releaseInstructions() {
    echo "      git tag --annotate --force --message 'Current release' current"
    echo "      git remote --verbose"
    echo "      git push origin --tags --force"
-   echo "   3) Increment version in src/gallery/php/library.php and check file in with the comment:"
+   echo "   3) Increment version in src/gallery/php/library.php and check in file with the comment:"
    echo "      Next release"
    echo
    }
@@ -74,4 +81,5 @@ echo
 info
 runStaticAnalyzer
 zipUpRelease
+releasesReport
 releaseInstructions
