@@ -1,7 +1,7 @@
-///////////////////////////////////////////////////
-// Paradise ~ centerkey.com/paradise             //
-// GPLv3 ~ Copyright (c) individual contributors //
-///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
 
 // Login
 
@@ -36,14 +36,13 @@ app.login = {
       if (action === 'create' && password.length < minPaswordLength)
          displayError('Password must be at least ' + minPaswordLength + ' characters long.');
       else
-         library.rest.post("security", credentials, { action: action, callback: handle });
+         library.rest.post('security', credentials, { action: action, callback: handle });
       },
    setup: function(component) {
       var params = dna.browser.getUrlParams();
       component.toggleClass('create', app.clientData['user-list-empty'] || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);
-      function isEmpty(el) { return !$(el).val().length; }
-      component.find('input:visible').filter(isEmpty).first().focus();
+      component.find('input:invalid').filter(':visible').first().focus();
       }
    };
