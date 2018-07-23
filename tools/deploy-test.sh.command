@@ -1,8 +1,8 @@
 #!/bin/sh
-#################################################
-# Paradise ~ centerkey.com/paradise             #
-# GPLv3 ~ Copyright (c) individual contributors #
-#################################################
+#############################################################
+# Paradise ~ centerkey.com/paradise                         #
+# GPLv3 ~ Copyright (c) individual contributors to Paradise #
+#############################################################
 
 # Deploy:
 # Unzips current release into web server folder
@@ -28,7 +28,7 @@ unzipRelease() {
    echo "*** Unzip Release"
    cd $webServerFolder
    unzip -o $projectFolder/releases/paradise-install-files
-   chmod -R o+rwx gallery
+   # chmod -R o+rwx gallery
    pwd
    echo
    }
