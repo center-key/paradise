@@ -10,7 +10,7 @@
 // Updating Valum's AJAX File-Uploader
 // -----------------------------------
 // 1) Download install zip from:
-//      http://valums-file-uploader.github.io/file-uploader/
+//      https://valums-file-uploader.github.io/file-uploader/
 // 2) Unzip file
 // 3) Copy the following files:
 //       client/fileuploader.css

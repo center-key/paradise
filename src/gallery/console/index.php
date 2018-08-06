@@ -144,7 +144,7 @@
             </div>
             <div>
                Creative Commons:
-               <i data-icon=info-circle data-href=http://creativecommons.org/licenses/by-sa/4.0></i>
+               <i data-icon=info-circle data-href=https://creativecommons.org/licenses/by-sa/4.0></i>
                <label>
                   <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
                      data-change=app.ui.saveSettings>display

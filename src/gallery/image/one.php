@@ -45,7 +45,7 @@
 
 <footer>
    <div class=<?= showHideClass($settings->{"cc-license"}) ?>>
-      <a class=external-site rel=license href=http://creativecommons.org/licenses/by-sa/4.0>
+      <a class=external-site rel=license href=https://creativecommons.org/licenses/by-sa/4.0>
          <img src=https://i.creativecommons.org/l/by-sa/4.0/80x15.png alt=License>
       </a>
    </div>
