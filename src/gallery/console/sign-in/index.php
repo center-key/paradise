@@ -15,7 +15,7 @@
 <link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
-<link rel=stylesheet       href=https://centerkey.com/css/layout-color-blocks.css>
+<link rel=stylesheet       href=https://centerkey.com/css/layouts/color-blocks.css>
 <link rel=stylesheet       href=../css/style.css>
 </head>
 <body>

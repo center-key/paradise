@@ -28,7 +28,7 @@ unzipRelease() {
    echo "*** Unzip Release"
    cd $webServerFolder
    unzip -o $projectFolder/releases/paradise-install-files
-   # chmod -R o+rwx gallery
+   chmod -R o+rwx gallery
    pwd
    echo
    }

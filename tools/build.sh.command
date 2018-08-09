@@ -11,7 +11,7 @@
 projectHome=$(cd $(dirname $0)/..; pwd)
 version=$(awk -F\" '/version = / { print $2 }' $projectHome/src/gallery/console/php/library.php)
 
-info() {
+setupTools() {
    # Check for Node.js installation and download project dependencies
    cd $projectHome
    pwd
@@ -78,7 +78,7 @@ echo
 echo "Paradise ~ Build"
 echo "================"
 echo
-info
+setupTools
 runStaticAnalyzer
 zipUpRelease
 releasesReport

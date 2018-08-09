@@ -5,7 +5,7 @@
    "summary": "A simple and aesthetic image gallery to showcase your art portfolio",
    "license": "GPL-3.0",
    "main": "index.js",
-   "repository": "center-key/paradise",
+   "repository": "github:center-key/paradise",
    "homepage": "https://github.com/center-key/paradise",
    "bugs": "https://github.com/center-key/paradise/issues",
    "docs": "https://centerkey.com/paradise",
