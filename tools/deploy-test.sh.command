@@ -7,7 +7,17 @@
 # Deploy:
 # Unzips current release into web server folder
 
-projectFolder=$(cd $(dirname $0)/..; pwd)
+banner="Paradise ~ Deploy Test"
+projectHome=$(cd $(dirname $0)/..; pwd)
+
+displayIntro() {
+   cd $projectHome
+   echo
+   echo $banner
+   echo $(echo $banner | sed -e "s/./=/g")
+   pwd
+   echo
+   }
 
 webServerSetup() {
    echo "*** Apache HTTP Server"
@@ -27,7 +37,7 @@ webServerSetup() {
 unzipRelease() {
    echo "*** Unzip Release"
    cd $webServerFolder
-   unzip -o $projectFolder/releases/paradise-install-files
+   unzip -o $projectHome/releases/paradise-install-files
    chmod -R o+rwx gallery
    pwd
    echo
@@ -41,10 +51,7 @@ openConsole() {
    echo
    }
 
-echo
-echo "Paradise ~ Deploy Test"
-echo "======================"
-echo
+displayIntro
 webServerSetup
 unzipRelease
 openConsole

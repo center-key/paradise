@@ -8,12 +8,16 @@
 # Creates the release file (zip) with the version number in the file
 # name (extracted from paradise/src/gallery/console/php/library.php)
 
+banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)
 version=$(awk -F\" '/version = / { print $2 }' $projectHome/src/gallery/console/php/library.php)
 
 setupTools() {
    # Check for Node.js installation and download project dependencies
    cd $projectHome
+   echo
+   echo $banner
+   echo $(echo $banner | sed -e "s/./=/g")
    pwd
    echo
    echo "Node.js:"
@@ -74,10 +78,7 @@ releaseInstructions() {
    echo
    }
 
-echo
-echo "Paradise ~ Build"
-echo "================"
-echo
+displayIntro
 setupTools
 runStaticAnalyzer
 zipUpRelease

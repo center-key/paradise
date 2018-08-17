@@ -1,7 +1,7 @@
 # Paradise PHP Photo Gallery
-<img src=https://raw.githubusercontent.com/center-key/paradise/master/website/graphics/paradise-logo.png
-   align=right width=200 alt=logo>
-*A simple and aesthetic image gallery to showcase your art portfolio*
+<img src=https://centerkey.com/paradise/graphics/paradise-logo.svg align=right width=200 alt=logo>
+
+_A simple and aesthetic image gallery to showcase your art portfolio_
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/center-key/paradise/blob/master/LICENSE.txt)
 &nbsp;
