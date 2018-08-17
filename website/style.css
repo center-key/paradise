@@ -1,17 +1,13 @@
-/*************************************************/
-/* Paradise ~ centerkey.com/paradise             */
+/*************************************************************/
+/* Paradise ~ centerkey.com/paradise                         */
 /* GPLv3 ~ Copyright (c) individual contributors to Paradise */
-/*************************************************/
+/*************************************************************/
 
 /* Layout */
 body >header >h1 { font-size: 1.8rem; }
 body >header >h1+h2 { font-size: 1.1rem; }
-img.paradise-logo { float: left; width: 80px; margin: 0px 15px 10px 0px; }
+img.paradise-logo { float: left; width: 100px; margin: 0px 15px 10px 0px; }
 p code { font-size: 0.8rem; padding: 0px; }
-.video-container { margin-bottom: 20px; opacity: 0.8; transition: all 0.4s; }
-.video-container iframe { border-color: dimgray; pointer-events: none; transition: all 1s; }
-.video-container:hover { opacity: 1; }
-.video-container:hover iframe { opacity: 1; border-color: black; }
 
 /* Mobile screenshots */
 .mobile-screenshots {
@@ -30,8 +26,10 @@ p code { font-size: 0.8rem; padding: 0px; }
 
 /* Mobile devices */
 @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8 landscape and anything narrower */
-   body >header >h1 { font-size: 1.6rem; }
-   body >header >h1+h2 { font-size: 1.0rem; }
+   body >header { text-align: center; }
+   body >header > aside { float: left; margin: 0px 0px 10px 0px; }
+   body >header >h1 { clear: both; font-size: 1.6rem; }
+   body >header >h1+h2 { font-size: 1.0rem; padding: 0px 20%; }
    }
 
 /* Flat button color */
