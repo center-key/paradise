@@ -68,7 +68,7 @@
                <button type=submit>Send message</button>
             </p>
          </form>
-         <nav>Gallery powered by <a href=https://centerkey.com/paradise/>Paradise</a></nav>
+         <nav>Gallery powered by <a href=https://centerkey.com/paradise>Paradise</a></nav>
       </section>
       <section data-hash=thanks>
          <h3>Thanks!</h3>
@@ -84,13 +84,14 @@
             title="This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.">
       </a>
    </div>
-   <div id=social-buttons class=<?= showHideClass($settings->{"bookmarks"}) ?>></div>
+   <div class=<?= showHideClass($settings->{"bookmarks"}) ?>><div id=social-buttons></div></div>
    <div><?= $settings->{"footer"} ?></div>
 </footer>
 
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/jquery.magnific-popup.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
+<script src=js/library.js></script>
 <script src=js/app.js></script>
 </body>
 </html>
