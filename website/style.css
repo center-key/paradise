@@ -27,7 +27,7 @@ p code { font-size: 0.8rem; padding: 0px; }
 /* Mobile devices */
 @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8 landscape and anything narrower */
    body >header { text-align: center; }
-   body >header > aside { float: left; margin: 0px 0px 10px 0px; }
+   body >header > aside { float: left; margin: -10px 0px 10px 0px; }
    body >header >h1 { clear: both; font-size: 1.6rem; }
    body >header >h1+h2 { font-size: 1.0rem; padding: 0px 20%; }
    }

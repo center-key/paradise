@@ -24,13 +24,13 @@ function displayImage($image) {
    echo "
       <div class=image>
          {$badge}
-         <a href='~data~/portfolio/{$image->id}-large.jpg'
+         <a href=~data~/portfolio/{$image->id}-large.jpg
             data-title='<span class=image-caption>{$image->caption}</span><br>{$image->description}'>
-            <img src='~data~/portfolio/{$image->id}-small.png' alt='Thumbnail'>
+            <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail>
          </a>
          <p class=image-caption>
             {$image->caption}
-            <a href='image/{$image->id}/{$image->code}' class=plain><i class='fa fa-link'></i></a>
+            <a href=image/{$image->id}/{$image->code} class=plain><i data-icon=link></i></a>
          </p>
       </div>";
    }
