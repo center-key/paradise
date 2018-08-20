@@ -6,7 +6,7 @@
 
 // Console
 
-$googleFonts = array(  //see https://www.google.com/fonts
+$googleFonts = array(  //see https://fonts.google.com
    "Allan", "Allerta Stencil", "Amatic SC", "Anonymous Pro", "Arimo", "Arvo",
    "Bowlby One SC", "Bubblegum Sans",
    "Cherry Cream Soda", "Chewy", "Chango", "Coda", "Corben",

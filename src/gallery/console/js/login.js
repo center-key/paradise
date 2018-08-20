@@ -6,7 +6,7 @@
 // Login
 
 app.login = {
-   salt: window.location.hostname,
+   salt: window.location.hostname.replace(/^www[.]/, ''),
    submit: function(elem) {
       var minPaswordLength = 8;
       var component = elem.closest('.component-security');

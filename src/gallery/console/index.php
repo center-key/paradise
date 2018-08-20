@@ -105,7 +105,7 @@
                   placeholder="Enter website header">
             </label>
             <label>
-               <span>Title font: <i data-href=fonts.php data-icon=info-circle></i></span>
+               <span>Title font:<i data-icon=info-circle data-href=fonts.php class=external-site></i></span>
                <select name=title-font data-option=~~title-font~~ data-change=app.ui.saveSettings>
                   <?= displayFontOptions(); ?>
                </select>
@@ -144,7 +144,7 @@
             </div>
             <div>
                Creative Commons:
-               <i data-icon=info-circle data-href=https://creativecommons.org/licenses/by-sa/4.0></i>
+               <a href=https://creativecommons.org/licenses/by-sa/4.0 class=external-site><i data-icon=info-circle></i></a>
                <label>
                   <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
                      data-change=app.ui.saveSettings>display
@@ -162,7 +162,7 @@
                <input type=text name=footer value=~~footer~~ data-smart-update=app.ui.saveSettings>
             </label>
             <label>
-               <span>Email: <i data-icon=info-circle data-href=../#contact></i></span>
+               <span>Email:<i data-icon=info-circle data-href=../#contact></i></span>
                <input type=email name=contact-email value=~~contact-email~~
                   data-smart-update=app.ui.saveSettings placeholder="Address for messages">
             </label>
@@ -188,26 +188,24 @@
       <section class=admin-accounts>
          <h2>Administrators</h2>
          <fieldset>
-            <legend>Your profile</legend>
-            <div>Email:</div>
-            <div><b><?= $_SESSION["user"] ?></b></div>
-         </fieldset>
-         <fieldset>
             <legend>Accounts</legend>
             <div>
                <div id=user-account class=dna-template>~~[value]~~</div>
             </div>
          </fieldset>
          <fieldset>
-            <legend>Current invitations</legend>
+            <legend>Pending invitations</legend>
             <div>
                <div id=account-invite class=dna-template>
                   <small>~~date~~</small>: <b>~~to~~</b>
                </div>
             </div>
             <p data-placeholder=account-invite>No outstanding invitations.</p>
+         </fieldset>
+         <fieldset>
+            <legend>Create account</legend>
             <div class=send-invite>
-               <button data-click=app.invites.prompt>New account</button>
+               <button data-click=app.invites.prompt>Send invitation</button>
                <div>
                   <label>
                      <span>Email:</span>
@@ -224,23 +222,26 @@
 </main>
 
 <footer>
-   <div>
-      Paradise <?= $version ?><br>
-      FAQ: <a href=https://github.com/center-key/paradise/wiki/faq class=external-site>
-         github.com/center-key/paradise/wiki/faq</a>
+   <div class=external-site>
+      <a href=http://centerkey.com/paradise>Paradise website</a><br>
+      <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
       <b><?= $_SESSION["user"] ?></b><br>
       Logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
    </div>
+   <div>
+      Paradise <?= $version ?><br>
+      <a href=https://github.com/center-key/paradise/blob/master/src/gallery/license.txt>GPLv3</a>
+   </div>
 </footer>
 
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/crypto-js/3/rollups/sha256.js></script>
+<script src=https://cdn.jsdelivr.net/crypto-js/3.1/rollups/sha256.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=file-uploader/fileuploader.js></script>
 <script>var app = {}; app.clientData = <?= appClientData(true) ?>;</script>
-<script src=js/library.js></script>
+<script src=../js/library.js></script>
 <script src=js/console.js></script>
 </body>
 </html>

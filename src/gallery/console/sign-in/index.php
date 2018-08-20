@@ -32,7 +32,7 @@
    <div>
       <section class=component-security data-on-load=app.login.setup>
          <h2>
-            Sign in
+            Authentication
             <i data-icon=info-circle class=external-site
                data-href=https://github.com/center-key/paradise/wiki/faq#4-is-my-password-send-over-the-internet-in-clear-text></i>
          </h2>
@@ -48,18 +48,26 @@
             </label>
             <label>
                <span>Email:</span>
-               <input type=email data-enter-key=app.login.submit placeholder="Enter your email address" required>
+               <input type=email data-enter-key=app.login.submit
+                  placeholder="Enter your email address" required>
             </label>
             <label>
                <span>Password:</span>
-               <input type=password data-enter-key=app.login.submit placeholder="Enter your password" required>
+               <input type=password data-enter-key=app.login.submit
+                  placeholder="Enter your password" required>
             </label>
             <label class=for-create>
                <span>Confirm:</span>
-               <input type=password data-enter-key=app.login.submit placeholder="Re-enter your password">
+               <input type=password data-enter-key=app.login.submit
+                  placeholder="Re-enter your password">
             </label>
-            <p>
+            <nav>
                <button data-click=app.login.submit>Sign in</button>
+            </nav>
+            <p class=external-site>
+               <a href=https://github.com/center-key/paradise/wiki/faq#5-how-do-i-reset-my-password>
+                  <small>Forget your password?</small>
+               </a>
             </p>
          </form>
       </section>
@@ -68,11 +76,13 @@
 </main>
 
 <footer>
+   <div class=external-site>
+      <a href=http://centerkey.com/paradise>Paradise website</a><br>
+      <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
+   </div>
    <div>
-      FAQ:
-      <a href=https://github.com/center-key/paradise/wiki/faq class=external-site>
-         github.com/center-key/paradise/wiki/faq
-      </a>
+      Paradise <?= $version ?><br>
+      <a href=https://github.com/center-key/paradise/blob/master/src/gallery/license.txt>GPLv3</a>
    </div>
 </footer>
 
@@ -80,7 +90,7 @@
 <script src=https://cdn.jsdelivr.net/crypto-js/3.1/rollups/sha256.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script>var app = {}; app.clientData = <?= appClientData(false) ?>;</script>
-<script src=../js/library.js></script>
+<script src=../../js/library.js></script>
 <script src=../js/login.js></script>
 </body>
 </html>
