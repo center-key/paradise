@@ -7,7 +7,7 @@
 // Library
 // Constants and general utilities
 
-$version =    "v0.1.8";
+$version =    "v0.2.0";  //see package.json
 $dataFolder = str_replace("console/php", "~data~", __DIR__);
 
 date_default_timezone_set("UTC");
