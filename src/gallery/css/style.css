@@ -27,6 +27,15 @@ h3 {
    font-size: 1.2rem;
    margin-bottom: 15px;
    }
+table tbody tr {
+   border-color: silver;
+   }
+table tbody tr:first-child {
+   border-top: 1px solid silver;
+   }
+table tbody tr:hover {
+   background-color: silver;
+   }
 
 /* Page layout */
 body >header {
@@ -56,6 +65,9 @@ body >main #gallery-panels >section {
    min-height: 400px;
    border: 1px solid whitesmoke;
    padding: 20px 25px;
+   }
+body >main #gallery-panels >section form {
+   margin: 0px auto;
    }
 body >main #gallery-panels >section >nav {
    position: absolute;
@@ -92,12 +104,13 @@ body >footer #social-buttons {
    vertical-align: top;
    margin: 0px 10px 20px 10px;
    }
-.gallery-images .image img {
+.gallery-images .image a img {
    max-width: 100%;
    border: 5px solid black;
+   opacity: 1;
    transition: all 1s;
    }
-.gallery-images .image img:hover {
+.gallery-images .image a img:hover {
    border-color: white;
    box-shadow: silver 0px 0px 1.5em;
    }

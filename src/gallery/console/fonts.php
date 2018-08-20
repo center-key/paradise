@@ -16,13 +16,13 @@
 <link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
+<link rel=stylesheet       href=css/style.css>
 <link rel=stylesheet       href=../css/style.css>
 <link rel=stylesheet       href=../~data~/custom-style.css>
 <style>
    <?php importFonts(); ?>
-   .font-sampler tr { border-top: 1px solid silver; }
-   .font-sampler td { vertical-align: middle; padding: 10px; }
-   .font-sampler td:last-child { width: 100%; }
+   table.font-sampler tbody tr td { vertical-align: middle; text-align: left; padding: 10px; }
+   table.font-sampler tbody tr td:last-child { width: 100%; }
 </style>
 </head>
 <body>
@@ -41,11 +41,10 @@
 
 <footer>
    <span>Paradise PHP Photo Gallery</span>
-   <span data-href=https://www.google.com/fonts>www.google.com/fonts</span>
+   <a href=https://fonts.google.com class=external-site>fonts.google.com</a>
 </footer>
 
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
-
 </body>
 </html>
