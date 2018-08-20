@@ -4,7 +4,7 @@
 # GPLv3 ~ Copyright (c) individual contributors to Paradise #
 #############################################################
 
-banner="Paradise ~ Website"
+banner="Paradise ~ Publish Website"
 projectHome=$(cd $(dirname $0)/..; pwd)
 
 displayIntro() {

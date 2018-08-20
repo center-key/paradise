@@ -5,8 +5,8 @@
 #############################################################
 
 # Build:
-# Creates the release file (zip) with the version number in the file
-# name (extracted from paradise/src/gallery/console/php/library.php)
+#     Creates the release file (zip) with the version number in the file
+#     name (extracted from paradise/src/gallery/console/php/library.php)
 
 banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)
@@ -69,7 +69,7 @@ releaseInstructions() {
    echo "      Release $version"
    echo "   2) Tag release:"
    echo "      cd $(pwd)"
-   echo "      git tag --annotate --force --message 'Beta release' $version"
+   echo "      git tag --annotate --force --message 'Release' $version"
    echo "      git tag --annotate --force --message 'Current release' current"
    echo "      git remote --verbose"
    echo "      git push origin --tags --force"
@@ -78,9 +78,45 @@ releaseInstructions() {
    echo
    }
 
-displayIntro
+setupPhpServer() {
+   cd $projectHome
+   echo "*** Apache HTTP Server"
+   publishWebRoot=$(grep ^DocumentRoot /private/etc/apache2/httpd.conf | awk -F\" '{ print $2 }')
+   echo $publishWebRoot
+   grep php5 /private/etc/apache2/httpd.conf
+   apachectl configtest  #to start web server: sudo apachectl restart
+   deployFolder=$publishWebRoot/paradise-deploy
+   test -w $publishWebRoot && mkdir -p $deployFolder
+   echo
+   }
+
+unzipRelease() {
+   echo "*** Unzip Release"
+   cd $deployFolder
+   pwd
+   unzip -o $projectHome/releases/paradise-install-files
+   chmod o+rwx gallery
+   echo
+   }
+
+openConsole() {
+   echo "*** Administrator Console"
+   consoleUrl=http://localhost/paradise-deploy/gallery/console/
+   echo $consoleUrl
+   sleep 2
+   open $consoleUrl
+   echo
+   }
+
+deployRelease() {
+   unzipRelease
+   openConsole
+   }
+
 setupTools
 runStaticAnalyzer
 zipUpRelease
 releasesReport
 releaseInstructions
+setupPhpServer
+test -w $deployFolder && deployRelease
