@@ -40,7 +40,7 @@ app.login = {
       },
    setup: function(component) {
       var params = dna.browser.getUrlParams();
-      component.toggleClass('create', app.clientData['user-list-empty'] || !!params.invite);
+      component.toggleClass('create', app.clientData.userListEmpty || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);
       component.find('input:invalid').filter(':visible').first().focus();

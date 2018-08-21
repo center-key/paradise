@@ -237,7 +237,7 @@
 </footer>
 
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/crypto-js/3.1/rollups/sha256.js></script>
+<script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=file-uploader/fileuploader.js></script>
 <script>var app = {}; app.clientData = <?= appClientData(true) ?>;</script>

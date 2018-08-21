@@ -55,7 +55,8 @@
 
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/magnific-popup@1.1/dist/jquery.magnific-popup.min.js></script>
 <script src=../../js/library.js></script>
-<script src=../../js/app.js></script>
+<script src=../../js/gallery.js></script>
 </body>
 </html>

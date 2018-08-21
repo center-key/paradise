@@ -3,8 +3,8 @@
 // GPLv3 ~ Copyright (c) individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
-// Application
-var app = {
+// Gallery application
+var gallery = {
    start: function() {
       $('body >footer .hide-me').remove();
       $('form.send-message').attr({ method: 'post', action: 'send-message.php' });  //bots are lazy
@@ -18,4 +18,4 @@ var app = {
       }
    };
 
-$(app.start);
+$(gallery.start);

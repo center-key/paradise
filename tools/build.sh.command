@@ -83,7 +83,7 @@ setupPhpServer() {
    echo "*** Apache HTTP Server"
    publishWebRoot=$(grep ^DocumentRoot /private/etc/apache2/httpd.conf | awk -F\" '{ print $2 }')
    echo $publishWebRoot
-   grep php5 /private/etc/apache2/httpd.conf
+   grep php /private/etc/apache2/httpd.conf
    apachectl configtest  #to start web server: sudo apachectl restart
    deployFolder=$publishWebRoot/paradise-deploy
    test -w $publishWebRoot && mkdir -p $deployFolder

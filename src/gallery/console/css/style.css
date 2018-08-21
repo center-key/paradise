@@ -62,7 +62,7 @@ Structure:
 .portfolio-image:last-child  form .actions i.font-icon[data-move=down] { opacity: 0.2; pointer-events: none; }
 .portfolio-image form .actions i.icon-popup-anchor+div { bottom: 15px; left: 85px; }
 .portfolio-image figure { flex: 0 0 180px; text-align: center; margin-left: 10px; }
-.portfolio-image figure img { max-width: 100%; max-height: 210px; border: 2px solid dimgray; transition: all 0.4s; }
+.portfolio-image figure img { max-width: 100%; max-height: 210px; border: 2px solid darkgray; transition: all 0.4s; }
 .portfolio-image figure img:hover { border-color: black; }
 .portfolio-image figure figcaption { font-size: 0.7rem; }
 
