@@ -49,7 +49,7 @@ function loginUser($email) {
 
 function createUser($accountsDb, $email, $password) {
    logEvent("create-user", $email);
-   $user = array("created" => time(), "enabled" => true);
+   $user = ["created" => time(), "enabled" => true];
    $user["hash"] = calculateHash($user, $password);
    $accountsDb->users->{$email} = $user;
    saveAccountsDb($accountsDb);
@@ -58,19 +58,19 @@ function createUser($accountsDb, $email, $password) {
 
 function sendAccountInvite($email) {
    $daysValid = 3;
-   $invite = array(
+   $invite = [
       "from" =>     $_SESSION["user"],
       "to" =>       $email,
       "accepted" => false,
       "expires" =>  time() + $daysValid * (24 * 60 * 60)
-      );
+      ];
    $code = "Q" . mt_rand() . mt_rand();
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;
    saveAccountsDb($db);
    $inviteLink = getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
    $subjectLine = "Sign up invitation";
-   $messageLines = array(
+   $messageLines = [
       "You have been invited to create an account to administer the Paradise PHP Photo Gallery gallery at:",
       getGalleryUrl(),
       "",
@@ -78,7 +78,7 @@ function sendAccountInvite($email) {
       $inviteLink,
       "",
       "The above link expires in {$daysValid} days.",
-      );
+      ];
    $invite["message"] = sendEmail($invite["to"], $subjectLine, $messageLines) ?
       "Account invitation sent to: {$email}" : "Error emailing invitation!";
    logEvent("send-account-invite", $code, $invite["to"], $invite["expires"]);
@@ -98,7 +98,7 @@ function restRequestInvite($action, $email) {
    if ($action === "create")
       $resource = validEmailFormat($email) ? sendAccountInvite($email) : restError(404);
    elseif ($_SESSION["read-only-user"])
-      $resource = array(array("to" => "lee@example.com", "date" => date("Y-m-d")));
+      $resource = [["to" => "lee@example.com", "date" => date("Y-m-d")]];
    else
       $resource = array_values(array_map("displayDate",
          array_filter(array_values((array)readAccountsDb()->invites), "outstanding")));
@@ -132,14 +132,14 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCod
    }
 
 function restRequestSecurity($action, $email, $password, $confirm, $inviteCode) {
-   $securityMsgs  = array(
+   $securityMsgs = [
       "bad-invite-code" => "Invite code is missing, expired, or invalid.",
       "bad-credentials" => "The email address or password you entered is incorrect.",
       "invalid-email" =>   "Please enter a valid email address.",
       "mismatch" =>        "Passwords do not match.",
       "user-exists" =>     "That email address is already in use.",
       "create-fail" =>     "Cannot create user."
-      );
+      ];
    $email = strtolower(trim($email));
    $accountsDb = readAccountsDb();
    $user = array_key_exists($email, $accountsDb->users) ? $accountsDb->users->{$email} : null;
@@ -151,11 +151,11 @@ function restRequestSecurity($action, $email, $password, $confirm, $inviteCode) 
       $msg = "Invalid request.";
    $success = is_null($msg);
    logEvent("security-request", $action, $success, $email, $msg);
-   return array(
+   return [
       "authenticated" => $success,
       "email" =>         $email,
       "message" =>       $success ? "Success." : $msg
-      );
+      ];
    }
 
 $loggedIn = isset($_SESSION["user"]) && time() < $_SESSION["active"] + $sessionTimout && userEnabled();

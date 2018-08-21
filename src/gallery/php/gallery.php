@@ -51,7 +51,7 @@ function getImageInfo($uri, $gallery) {
       $imageDb = json_decode(file_get_contents($dbFilename));
    else
       $imageDb = json_decode('{ "caption": "That image does not appear to exist", "description": "" }');
-   return array($id, $imageDb->caption, $imageDb->description);
+   return [$id, $imageDb->caption, $imageDb->description];
    }
 
 $settings = getData(__DIR__ . "/../~data~/settings-db.json");

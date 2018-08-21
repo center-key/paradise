@@ -30,22 +30,22 @@ require "../php/security.php";
 require "../php/image-processing.php";
 
 function restError($code) {
-   $messages = array(
+   $messages = [
       400 => "Invalid parameters",
       401 => "Unauthorized access",
       404 => "Resource not found",
       500 => "Unknown error",
       501 => "Not implemented"
-      );
-   return array(
+      ];
+   return [
       "error"   => true,
       "code"    => $code,
       "message" => $messages[$code]
-      );
+      ];
    }
 
 function test() {  //url: http://localhost/paradise-test/gallery/console/rest?type=command&action=test
-   return array("test" => true);
+   return ["test" => true];
    }
 
 function runCommand($action) {
@@ -81,7 +81,7 @@ function updateItem($resource, $itemType) {
    }
 
 function updateSettings() {
-   $fields = array(
+   $fields = [
       "title" =>          "string",
       "title-font" =>     "string",
       "title-size" =>     "string",
@@ -92,7 +92,7 @@ function updateSettings() {
       "cc-license" =>     "boolean",
       "bookmarks" =>      "boolean",
       "contact-email" =>  "string"
-      );
+      ];
    $resource = readSettingsDb();
    if (isset($_GET["item"]))
       updateItem($resource, $_GET["item"]);
@@ -104,13 +104,13 @@ function updateSettings() {
    }
 
 function updatePortfolio($id) {
-   $fields = array(
+   $fields = [
       "sort" =>        "integer",
       "display" =>     "boolean",
       "caption" =>     "string",
       "description" => "string",
       "badge" =>       "string"
-      );
+      ];
    $resource = readPortfolioImageDb($id);
    if ($resource) {
       foreach ($fields as $field => $type)
@@ -143,13 +143,13 @@ function restRequestGallery() {
    }
 
 function restRequestPortfolio($action, $id) {
-   $actions = array(
+   $actions = [
       "create" => function($id) { return restError(400); },
       "get" =>    function($id) { return restError(501); },
       "update" => function($id) { return updatePortfolio($id); },
       "delete" => function($id) { return deletePortfolio($id); },
       "list" =>   function($id) { return readPortfolioDb(); }
-      );
+      ];
    return $actions[$action]($id);
    }
 
@@ -158,17 +158,17 @@ function restRequestAccount($action, $email) {
    }
 
 function resource($loggedIn) {
-   $routes = array(
+   $routes = [
       "settings" =>  function($action) { return restRequestSettings($action); },
       "gallery" =>   function($action) { return restRequestGallery(); },
       "portfolio" => function($action) { return restRequestPortfolio($action, $_GET["id"]); },
       "account" =>   function($action) { return restRequestAccount($action, $_GET["email"]); },
       "invite" =>    function($action) { return restRequestInvite($action, $_GET["email"]); },
-      );
+      ];
    $type =   $_GET["type"];
    $action = $_GET["action"] ?: "get";
    $_GET["email"] = strtolower($_GET["email"]);
-   $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
+   $standardAction = in_array($action, ["create", "get", "update", "delete", "list"]);
    if ($type === "security")
       $resource = restRequestSecurity($action,
          $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
