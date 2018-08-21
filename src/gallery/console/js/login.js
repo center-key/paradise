@@ -5,13 +5,13 @@
 
 // Login
 
-app.login = {
+admin.login = {
    salt: window.location.hostname.replace(/^www[.]/, ''),
    submit: function(elem) {
       var minPaswordLength = 8;
       var component = elem.closest('.component-security');
       component.find('button').prop({ disabled: true });
-      function calcHash(passwd) { return CryptoJS.SHA256(passwd + app.login.salt).toString(); }
+      function calcHash(passwd) { return CryptoJS.SHA256(passwd + admin.login.salt).toString(); }
       var action =     component.hasClass('create') ? 'create' : 'login';
       var email =      component.find('input[type=email]').val().trim().toLowerCase();
       var password =   component.find('input[type=password]').first().val().trim();
@@ -40,7 +40,7 @@ app.login = {
       },
    setup: function(component) {
       var params = dna.browser.getUrlParams();
-      component.toggleClass('create', app.clientData.userListEmpty || !!params.invite);
+      component.toggleClass('create', window.clientData.userListEmpty || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);
       component.find('input:invalid').filter(':visible').first().focus();

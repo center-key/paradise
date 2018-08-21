@@ -34,7 +34,7 @@ table tbody tr:first-child {
    border-top: 1px solid silver;
    }
 table tbody tr:hover {
-   background-color: silver;
+   background-color: gray;
    }
 
 /* Page layout */

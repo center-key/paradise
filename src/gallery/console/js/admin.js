@@ -3,9 +3,19 @@
 // GPLv3 ~ Copyright (c) individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
-// Application console
+// Administrator console
 
-app.ui = {
+var admin = {
+   setup: function() {
+      admin.ui.loadSettings();
+      admin.ui.loadPortfolio();
+      admin.ui.loadAccounts();
+      admin.invites.loadList();
+      admin.ui.createUploader();
+      }
+   };
+
+admin.ui = {
    statusMsg: function(message) {
       $('#status-msg').text(message).fadeOut(0).fadeIn();
       },
@@ -16,14 +26,14 @@ app.ui = {
    loadPortfolio: function() {
       function handle(data) {
          dna.clone('portfolio-image', data, { empty: true, fade: true });
-         app.ui.statusMsg('Portfolio images: ' + data.length);
+         admin.ui.statusMsg('Portfolio images: ' + data.length);
          }
       library.rest.get('portfolio', { action: 'list', callback: handle });
       },
    save: function(elem, type) {
       var field = elem.attr('name');
       var val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
-      app.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
+      admin.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
       var params = {};
       params[field] = val;
       var item = elem.closest('[data-item-id]').data();
@@ -34,13 +44,13 @@ app.ui = {
       library.rest.get(type, { action: 'update', params: params  });
       },
    savePortfolio: function(elem) {
-      app.ui.save(elem, 'portfolio');
+      admin.ui.save(elem, 'portfolio');
       },
    saveSettings: function(elem) {
       var item = elem.closest('[data-item-id]');  //workaround
       if (item.length)                            //workaround
          item.data().itemId = item.index() + 1;   //workaround
-      app.ui.save(elem, 'settings');
+      admin.ui.save(elem, 'settings');
       },
    move: function(elem) {
       var params = {
@@ -62,8 +72,8 @@ app.ui = {
    createUploader: function() {
       var spinner = $('#processing-files').hide();
       function handle(data) {
-         app.ui.statusMsg(data.message);
-         spinner.delay(2000).fadeOut(app.ui.loadPortfolio);
+         admin.ui.statusMsg(data.message);
+         spinner.delay(2000).fadeOut(admin.ui.loadPortfolio);
          }
       function start() { spinner.fadeIn(); }
       var lastTimeoutId = null;
@@ -89,7 +99,7 @@ app.ui = {
       }
    };
 
-app.invites = {
+admin.invites = {
    elem: {
       startButton: $('.admin-accounts .send-invite >button'),
       form:        $('.admin-accounts .send-invite >button+div'),
@@ -98,24 +108,24 @@ app.invites = {
       },
    component: $('.admin-accounts .send-invite'),
    prompt: function() {
-      dna.ui.slideFadeOut(app.invites.elem.startButton);
-      dna.ui.slideFadeIn(app.invites.elem.form);
-      app.invites.elem.email.focus();
+      dna.ui.slideFadeOut(admin.invites.elem.startButton);
+      dna.ui.slideFadeIn(admin.invites.elem.form);
+      admin.invites.elem.email.focus();
       },
    validate: function(elem) {
       var basicEmailPattern = /.+@.+[.].+/;
       var invalid = !elem.val().match(basicEmailPattern);
-      app.invites.component.find('div button').prop({ disabled: invalid });
+      admin.invites.component.find('div button').prop({ disabled: invalid });
       },
    send: function() {
-      app.invites.component.find('div button').prop({ disabled: true });
+      admin.invites.component.find('div button').prop({ disabled: true });
       function handle(data) {
-         app.ui.statusMsg(data.message);
-         dna.ui.slideFadeIn(app.invites.elem.startButton);
-         dna.ui.slideFadeOut(app.invites.elem.form);
-         app.invites.loadList();
+         admin.ui.statusMsg(data.message);
+         dna.ui.slideFadeIn(admin.invites.elem.startButton);
+         dna.ui.slideFadeOut(admin.invites.elem.form);
+         admin.invites.loadList();
          }
-      var email = app.invites.component.find('input[type=email]').val();
+      var email = admin.invites.component.find('input[type=email]').val();
       library.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
       },
    loadList: function() {
@@ -124,14 +134,4 @@ app.invites = {
       }
    };
 
-app.setup = {
-   go: function() {
-      app.ui.loadSettings();
-      app.ui.loadPortfolio();
-      app.ui.loadAccounts();
-      app.invites.loadList();
-      app.ui.createUploader();
-      }
-   };
-
-$(app.setup.go);
+$(admin.setup);

@@ -27,9 +27,10 @@
       "browser": true,
       "jquery": true,
       "globals": {
-         "app": true,
+         "admin": true,
          "library": true,
          "dna": false,
+         "gallery": true,
          "qq": false,
          "CryptoJS": false
       }

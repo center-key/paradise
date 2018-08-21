@@ -7,7 +7,7 @@
 // Library
 // Constants and general utilities
 
-$version =    "v0.2.0";  //see package.json
+$version =    "0.2.0";  //see package.json
 $dataFolder = str_replace("console/php", "~data~", __DIR__);
 
 date_default_timezone_set("UTC");
@@ -27,9 +27,9 @@ function emptyObj($object) {
    }
 
 function appClientData() {
+   global $version;
    $data = [
       "version" =>       $version,
-      "versionx" =>       "v0.2.0!",
       "userListEmpty" => emptyObj(readAccountsDb()->users)
       ];
    return json_encode($data);

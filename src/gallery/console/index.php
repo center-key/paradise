@@ -47,29 +47,29 @@
                   <label data-class=~~display,display-on,display-off~~>
                      <span>Display:</span>
                      <input name=display type=checkbox data-prop-checked=~~display~~
-                        data-change=app.ui.savePortfolio>
+                        data-change=admin.ui.savePortfolio>
                      (show in gallery)
                   </label>
                   <label>
                      <span>Caption:</span>
-                     <input name=caption value=~~caption~~ data-smart-update=app.ui.savePortfolio>
+                     <input name=caption value=~~caption~~ data-smart-update=admin.ui.savePortfolio>
                   </label>
                   <label>
                      <span>Description:</span>
                      <textarea name=description
-                        data-smart-update=app.ui.savePortfolio>~~description~~</textarea>
+                        data-smart-update=admin.ui.savePortfolio>~~description~~</textarea>
                   </label>
                   <label>
                      <span>Badge:</span>
-                     <input name=badge value=~~badge~~ data-smart-update=app.ui.savePortfolio>
+                     <input name=badge value=~~badge~~ data-smart-update=admin.ui.savePortfolio>
                   </label>
                   <div class=actions>
-                     <i data-icon=arrow-up   data-click=app.ui.move data-move=up></i>
-                     <i data-icon=arrow-down data-click=app.ui.move data-move=down></i>
+                     <i data-icon=arrow-up   data-click=admin.ui.move data-move=up></i>
+                     <i data-icon=arrow-down data-click=admin.ui.move data-move=down></i>
                      <i data-icon=times class=icon-popup-anchor></i>
                      <div>
                         <p>Permanently delete this image?</p>
-                        <button data-click=app.ui.delete>Delete image</button>
+                        <button data-click=admin.ui.delete>Delete image</button>
                      </div>
                   </div>
                </form>
@@ -101,18 +101,18 @@
             <legend>Website</legend>
             <label>
                <span>Title:</span>
-               <input name=title value=~~title~~ data-smart-update=app.ui.saveSettings
+               <input name=title value=~~title~~ data-smart-update=admin.ui.saveSettings
                   placeholder="Enter website header">
             </label>
             <label>
                <span>Title font:<i data-icon=info-circle data-href=fonts.php class=external-site></i></span>
-               <select name=title-font data-option=~~title-font~~ data-change=app.ui.saveSettings>
+               <select name=title-font data-option=~~title-font~~ data-change=admin.ui.saveSettings>
                   <?= displayFontOptions(); ?>
                </select>
             </label>
             <label>
                <span>Title size:</span>
-               <select name=title-size data-option=~~title-size~~ data-change=app.ui.saveSettings>
+               <select name=title-size data-option=~~title-size~~ data-change=admin.ui.saveSettings>
                   <option value=100%>100%</option>
                   <option value=200%>200%</option>
                   <option value=300%>300%</option>
@@ -126,7 +126,7 @@
             </label>
             <label>
                <span>Subtitle:</span>
-               <input name=subtitle value=~~subtitle~~ data-smart-update=app.ui.saveSettings
+               <input name=subtitle value=~~subtitle~~ data-smart-update=admin.ui.saveSettings
                   placeholder="Enter website subheader">
             </label>
             <div>
@@ -134,11 +134,11 @@
                <div>
                   <label>
                      <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
-                        data-change=app.ui.saveSettings><i>italic</i>
+                        data-change=admin.ui.saveSettings><i>italic</i>
                   </label>
                   <label>
                      <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~
-                        data-change=app.ui.saveSettings><span>all caps</span>
+                        data-change=admin.ui.saveSettings><span>all caps</span>
                   </label>
                </div>
             </div>
@@ -147,24 +147,24 @@
                <a href=https://creativecommons.org/licenses/by-sa/4.0 class=external-site><i data-icon=info-circle></i></a>
                <label>
                   <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
-                     data-change=app.ui.saveSettings>display
+                     data-change=admin.ui.saveSettings>display
                </label>
             </div>
             <div>
                <span>Social share icons:</span>
                <label>
                   <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~
-                     data-change=app.ui.saveSettings>display
+                     data-change=admin.ui.saveSettings>display
                </label>
             </div>
             <label>
                <span>Footer:</span>
-               <input type=text name=footer value=~~footer~~ data-smart-update=app.ui.saveSettings>
+               <input type=text name=footer value=~~footer~~ data-smart-update=admin.ui.saveSettings>
             </label>
             <label>
                <span>Email:<i data-icon=info-circle data-href=../#contact></i></span>
                <input type=email name=contact-email value=~~contact-email~~
-                  data-smart-update=app.ui.saveSettings placeholder="Address for messages">
+                  data-smart-update=admin.ui.saveSettings placeholder="Address for messages">
             </label>
          </fieldset>
          <fieldset class=settings-tabs>
@@ -173,12 +173,12 @@
                <div data-array=~~pages~~ data-item-id=~~[count]~~ data-item-type=page>
                   <label>
                      <span>#<span>~~[count]~~</span>:</span>
-                     <input name=title value=~~title~~ data-smart-update=app.ui.saveSettings
+                     <input name=title value=~~title~~ data-smart-update=admin.ui.saveSettings
                         placeholder="Title for menu tab">
                   </label>
                   <label>
                      <input name=show type=checkbox data-prop-checked=~~show~~
-                        data-change=app.ui.saveSettings>display
+                        data-change=admin.ui.saveSettings>display
                   </label>
                </div>
             </div>
@@ -205,14 +205,14 @@
          <fieldset>
             <legend>Create account</legend>
             <div class=send-invite>
-               <button data-click=app.invites.prompt>Send invitation</button>
+               <button data-click=admin.invites.prompt>Send invitation</button>
                <div>
                   <label>
                      <span>Email:</span>
-                     <input type=email data-key-up=app.invites.validate
+                     <input type=email data-key-up=admin.invites.validate
                         placeholder="New user's email address">
                   </label>
-                  <button data-click=app.invites.send disabled>Send invitation</button>
+                  <button data-click=admin.invites.send disabled>Send invitation</button>
                </div>
             </div>
          </fieldset>
@@ -231,7 +231,7 @@
       Logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
    </div>
    <div>
-      Paradise <?= $version ?><br>
+      Paradise v<?= $version ?><br>
       <a href=https://github.com/center-key/paradise/blob/master/src/gallery/license.txt>GPLv3</a>
    </div>
 </footer>
@@ -240,8 +240,8 @@
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=file-uploader/fileuploader.js></script>
-<script>var app = {}; app.clientData = <?= appClientData(true) ?>;</script>
 <script src=../js/library.js></script>
-<script src=js/console.js></script>
+<script src=js/admin.js></script>
+<script>window.clientData = <?= appClientData(true) ?>;</script>
 </body>
 </html>

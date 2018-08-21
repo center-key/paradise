@@ -42,15 +42,15 @@ runStaticAnalyzer() {
 zipUpRelease() {
    echo "*** Zipping"
    cd $projectHome/src
-   echo "Making release ${version}..."
+   echo "Making release v$version..."
    find . -name ".DS_Store" -delete
    zipFile=$projectHome/releases/paradise-install-files.zip
    rm -f $zipFile
    zip --recurse-paths --quiet $zipFile gallery/
    cd $projectHome/releases
    pwd
-   cp paradise-install-files.zip previous/paradise-${version}.zip
-   ls -l paradise-install-files.zip previous/paradise-${version}.zip
+   cp paradise-install-files.zip previous/paradise-v$version.zip
+   ls -l paradise-install-files.zip previous/paradise-v$version.zip
    echo
    }
 
@@ -66,10 +66,10 @@ releaseInstructions() {
    cd $projectHome
    echo "Steps to publish this release:"
    echo "   1) Check in release files (.zip) with the comment:"
-   echo "      Release $version"
+   echo "      Release v$version"
    echo "   2) Tag release:"
    echo "      cd $(pwd)"
-   echo "      git tag --annotate --force --message 'Release' $version"
+   echo "      git tag --annotate --force --message 'Release' v$version"
    echo "      git tag --annotate --force --message 'Current release' current"
    echo "      git remote --verbose"
    echo "      git push origin --tags --force"
@@ -82,11 +82,11 @@ setupPhpServer() {
    cd $projectHome
    echo "*** Apache HTTP Server"
    publishWebRoot=$(grep ^DocumentRoot /private/etc/apache2/httpd.conf | awk -F\" '{ print $2 }')
-   echo $publishWebRoot
    grep php /private/etc/apache2/httpd.conf
    apachectl configtest  #to start web server: sudo apachectl restart
    deployFolder=$publishWebRoot/paradise-deploy
    test -w $publishWebRoot && mkdir -p $deployFolder
+   echo $publishWebRoot
    echo
    }
 

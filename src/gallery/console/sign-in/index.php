@@ -30,7 +30,7 @@
 
 <main>
    <div>
-      <section class=component-security data-on-load=app.login.setup>
+      <section class=component-security data-on-load=admin.login.setup>
          <h2>
             Authentication
             <i data-icon=info-circle class=external-site
@@ -48,21 +48,21 @@
             </label>
             <label>
                <span>Email:</span>
-               <input type=email data-enter-key=app.login.submit
+               <input type=email data-enter-key=admin.login.submit
                   placeholder="Enter your email address" required>
             </label>
             <label>
                <span>Password:</span>
-               <input type=password data-enter-key=app.login.submit
+               <input type=password data-enter-key=admin.login.submit
                   placeholder="Enter your password" required>
             </label>
             <label class=for-create>
                <span>Confirm:</span>
-               <input type=password data-enter-key=app.login.submit
+               <input type=password data-enter-key=admin.login.submit
                   placeholder="Re-enter your password">
             </label>
             <nav>
-               <button data-click=app.login.submit>Sign in</button>
+               <button data-click=admin.login.submit>Sign in</button>
             </nav>
             <p class=external-site>
                <a href=https://github.com/center-key/paradise/wiki/faq#5-how-do-i-reset-my-password>
@@ -81,7 +81,7 @@
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
-      Paradise <?= $version ?><br>
+      Paradise v<?= $version ?><br>
       <a href=https://github.com/center-key/paradise/blob/master/src/gallery/license.txt>GPLv3</a>
    </div>
 </footer>
@@ -89,8 +89,8 @@
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
-<script>var app = {}; app.clientData = <?= appClientData(false) ?>;</script>
 <script src=../../js/library.js></script>
 <script src=../js/login.js></script>
+<script>window.clientData = <?= appClientData(false) ?>;</script>
 </body>
 </html>
