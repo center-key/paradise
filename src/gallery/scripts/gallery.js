@@ -8,7 +8,7 @@ var gallery = {
    start: function() {
       $('body >footer .hide-me').remove();
       $('form.send-message').attr({ method: 'post', action: 'send-message.php' });  //bots are lazy
-      var options = {
+      const options = {
          delegate: '>a',  //child items selector, click to open popup
          type:     'image',
          image:    { titleSrc: 'data-title' },

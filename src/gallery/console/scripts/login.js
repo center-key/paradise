@@ -8,16 +8,16 @@
 admin.login = {
    salt: window.location.hostname.replace(/^www[.]/, ''),
    submit: function(elem) {
-      var minPaswordLength = 8;
-      var component = elem.closest('.component-security');
+      const minPaswordLength = 8;
+      const component = elem.closest('.component-security');
       component.find('button').prop({ disabled: true });
       function calcHash(passwd) { return CryptoJS.SHA256(passwd + admin.login.salt).toString(); }
-      var action =     component.hasClass('create') ? 'create' : 'login';
-      var email =      component.find('input[type=email]').val().trim().toLowerCase();
-      var password =   component.find('input[type=password]').first().val().trim();
-      var confirm =    component.find('input[type=password]').last().val().trim();
-      var inviteCode = component.find('.invite-code input').val().trim();
-      var credentials = {
+      const action =     component.hasClass('create') ? 'create' : 'login';
+      const email =      component.find('input[type=email]').val().trim().toLowerCase();
+      const password =   component.find('input[type=password]').first().val().trim();
+      const confirm =    component.find('input[type=password]').last().val().trim();
+      const inviteCode = component.find('.invite-code input').val().trim();
+      const credentials = {
          email:    email,
          password: calcHash(password),
          confirm:  calcHash(confirm),
@@ -39,7 +39,7 @@ admin.login = {
          library.rest.post('security', credentials, { action: action, callback: handle });
       },
    setup: function(component) {
-      var params = dna.browser.getUrlParams();
+      const params = dna.browser.getUrlParams();
       component.toggleClass('create', window.clientData.userListEmpty || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);

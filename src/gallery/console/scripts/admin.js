@@ -31,12 +31,12 @@ admin.ui = {
       library.rest.get('portfolio', { action: 'list', callback: handle });
       },
    save: function(elem, type) {
-      var field = elem.attr('name');
-      var val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
+      const field = elem.attr('name');
+      const val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
       admin.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
-      var params = {};
+      const params = {};
       params[field] = val;
-      var item = elem.closest('[data-item-id]').data();
+      const item = elem.closest('[data-item-id]').data();
       if (item && item.itemId)
          params.id = item.itemId;
       if (item && item.itemType)
@@ -47,13 +47,13 @@ admin.ui = {
       admin.ui.save(elem, 'portfolio');
       },
    saveSettings: function(elem) {
-      var item = elem.closest('[data-item-id]');  //workaround
+      const item = elem.closest('[data-item-id]');  //workaround
       if (item.length)                            //workaround
          item.data().itemId = item.index() + 1;   //workaround
       admin.ui.save(elem, 'settings');
       },
    move: function(elem) {
-      var params = {
+      const params = {
          id:   dna.getModel(elem).id,
          move: elem.data().move
          };
@@ -61,7 +61,7 @@ admin.ui = {
       library.rest.get('portfolio', { action: 'update', params: params, callback: handle });
       },
    delete: function(elem) {
-      var params = { id: dna.getModel(elem).id };
+      const params = { id: dna.getModel(elem).id };
       function handle() { dna.bye(elem); }
       library.rest.get('portfolio', { action: 'delete', params: params, callback: handle });
       },
@@ -70,22 +70,22 @@ admin.ui = {
       library.rest.get('account', { action: 'list', callback: handle });
       },
    createUploader: function() {
-      var spinner = $('#processing-files').hide();
+      const spinner = $('#processing-files').hide();
       function handle(data) {
          admin.ui.statusMsg(data.message);
          spinner.delay(2000).fadeOut(admin.ui.loadPortfolio);
          }
       function start() { spinner.fadeIn(); }
-      var lastTimeoutId = null;
+      let lastTimeoutId = null;
       function done() {
          function processUploads() {
             if (timeoutId === lastTimeoutId)
                library.rest.get('command', { action: 'process-uploads', callback: handle });
             }
-         var timeoutId = window.setTimeout(processUploads, 3000);  //workaround to guess when last upload in done
+         const timeoutId = window.setTimeout(processUploads, 3000);  //workaround to guess when last upload in done
          lastTimeoutId = timeoutId;
          }
-      var options = {
+      const options = {
          debug: true,       //view any upload errors in the js console
          element:           $('#file-uploader')[0],
          uploadButtonText:  'Upload images',
@@ -113,8 +113,8 @@ admin.invites = {
       admin.invites.elem.email.focus();
       },
    validate: function(elem) {
-      var basicEmailPattern = /.+@.+[.].+/;
-      var invalid = !elem.val().match(basicEmailPattern);
+      const basicEmailPattern = /.+@.+[.].+/;
+      const invalid = !elem.val().match(basicEmailPattern);
       admin.invites.component.find('div button').prop({ disabled: invalid });
       },
    send: function() {
@@ -125,7 +125,7 @@ admin.invites = {
          dna.ui.slideFadeOut(admin.invites.elem.form);
          admin.invites.loadList();
          }
-      var email = admin.invites.component.find('input[type=email]').val();
+      const email = admin.invites.component.find('input[type=email]').val();
       library.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
       },
    loadList: function() {

@@ -19,8 +19,8 @@ var library = {
 library.ui = {
    id: function(value) {
       // Usage:
-      //    var userElem = $('.user').id('J777');
-      //    var userId = userElem.id();
+      //    const userElem = $('.user').id('J777');
+      //    const userId = userElem.id();
       return value === undefined ? $(this).attr('id') : $(this).attr({ id: value });
       },
    enable: function(value) {
@@ -47,8 +47,8 @@ library.ui = {
          holder.find('a.external-site, .external-site a').attr({ target: '_blank' });
       },
    popup: function(url, options) {
-      var settings = $.extend({ width: 600, height: 400 }, options);
-      var dimensions = 'left=200,top=100,width=' + settings.width + ',height=' + settings.height;
+      const settings = $.extend({ width: 600, height: 400 }, options);
+      const dimensions = 'left=200,top=100,width=' + settings.width + ',height=' + settings.height;
       window.open(url, '_blank', dimensions + ',scrollbars,resizable,status');
       }
    };
@@ -66,17 +66,17 @@ library.social = {
       { icon: 'reddit',      title: 'Reddit',   x: 600, y: 750, link: 'https://www.reddit.com/submit?url=${url}$title=${title}' }
       ],
    share: function(elem) {
-      var button = library.social.buttons[elem.data().icon];
+      const button = library.social.buttons[elem.data().icon];
       function insert(str, find, value) { return str.replace(find, encodeURIComponent(value)); }
-      var link = insert(button.link, '${url}', window.location.href);
+      let link = insert(button.link, '${url}', window.location.href);
       link = insert(link, '${title}', window.document.title);
       library.ui.popup(link, { width: button.x, height: button.y });
       },
    setup: function() {
       function initializeSocialButtons() {
-         var container = $('#social-buttons');
-         var html = '<span>';
-         var iconHtml = ['<i data-brand=', ' data-click=library.social.share></i>'];  //click by dna.js
+         const container = $('#social-buttons');
+         const iconHtml = ['<i data-brand=', ' data-click=library.social.share></i>'];  //click by dna.js
+         let html = '<span>';
          function addHtml(button) { html += iconHtml[0] + button.icon + iconHtml[1]; }
          if (container.length)
             library.social.buttons.forEach(addHtml);
@@ -91,7 +91,7 @@ library.rest = {
    // Example:
    //    library.rest.get('book', { id: 21, callback: handle });
    makeUrl: function(resourceType, action, params) {
-      var url = window.location.href.match(/^.*console/)[0] + '/rest/?type=' + resourceType;
+      let url = window.location.href.match(/^.*console/)[0] + '/rest/?type=' + resourceType;
       if (action)
          url = url + '&action=' + action;
       function appendParam(key) { url = url + '&' + key + '=' + encodeURIComponent(params[key]); }
@@ -100,7 +100,7 @@ library.rest = {
       return url;
       },
    get: function(resourceType, options) {
-      var url = library.rest.makeUrl(resourceType, options.action, options.params);
+      const url = library.rest.makeUrl(resourceType, options.action, options.params);
       console.log('get:', url);
       function handleResponse(json) {
          if (json.code === 401)
@@ -113,7 +113,7 @@ library.rest = {
       return $.getJSON(url, handleResponse);
       },
    post: function(resourceType, data, options) {
-      var url = library.rest.makeUrl(resourceType, options.action, options.params);
+      const url = library.rest.makeUrl(resourceType, options.action, options.params);
       console.log('post:', url);
       function handleResponse(json) {
          if (json.error)
