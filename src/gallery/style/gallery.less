@@ -145,11 +145,14 @@ body >footer #social-buttons {
    text-shadow: 0px 0px 0.3em black;
    opacity: 1;
    }
+body.caption-caps .image-caption {
+   text-transform: uppercase;
+   }
 body.caption-italic .image-caption {
    font-style: italic;
    }
-body.caption-caps .image-caption {
-   text-transform: uppercase;
+body:not(.caption-italic) .image-description {
+   font-style: italic;
    }
 
 /* One image */
@@ -173,17 +176,32 @@ body.caption-caps .image-caption {
    }
 
 /* Magnific Popup */
+.mfp-gallery button:hover {
+   background-color: transparent;
+   }
 .mfp-gallery .mfp-content img {
    transition: all 0.4s;
    }
 .mfp-gallery .mfp-content {
    background-color: white;
-   border: 10px solid white;
-   border-top: none;
+   border-left: 10px solid white;
+   border-right: 10px solid white;
    box-shadow: 0px 0px 1.0em silver;
+   }
+.mfp-gallery .mfp-content .mfp-figure {
+   background-color: white;
    }
 .mfp-gallery .mfp-content .mfp-figure:after {
    box-shadow: none;
+   }
+.mfp-gallery .mfp-content .mfp-figure figure img {
+   padding: 35px 0px 45px 0px;
+   }
+.mfp-gallery .mfp-content .mfp-figure figure figcaption {
+   padding: 0px;
+   }
+.mfp-gallery .mfp-content .mfp-figure figure figcaption .mfp-bottom-bar {
+   margin-top: -40px;
    }
 .mfp-gallery .mfp-content .mfp-close,
 .mfp-gallery .mfp-content .mfp-title,
@@ -191,6 +209,16 @@ body.caption-caps .image-caption {
    color: dimgray;
    font-weight: bold;
    }
+.mfp-gallery .mfp-content .mfp-title .image-caption {
+   display: block;
+   color: black;
+   }
+.mfp-gallery .mfp-content .mfp-title .image-description {
+   font-size: 0.8rem;
+   font-weight: normal;
+   color: dimgray;
+   }
+
 
 /* Mobile */
 @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8 landscape and anything narrower */

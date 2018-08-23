@@ -5,7 +5,7 @@
 
 // Administrator console
 
-var admin = {
+const admin = {
    setup: function() {
       admin.ui.loadSettings();
       admin.ui.loadPortfolio();
@@ -133,5 +133,3 @@ admin.invites = {
       library.rest.get('invite', { action: 'list', callback: handle });
       }
    };
-
-$(admin.setup);

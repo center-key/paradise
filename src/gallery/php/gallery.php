@@ -21,11 +21,14 @@ function styleClasses($settings) {
 
 function displayImage($image) {
    $badge = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
+   $imageTitle =
+      "<span class=image-caption>{$image->caption}</span>" .
+      "<span class=image-description>{$image->description}</span>";
    echo "
       <div class=image>
          {$badge}
          <a href=~data~/portfolio/{$image->id}-large.jpg
-            data-title='<span class=image-caption>{$image->caption}</span><br>{$image->description}'>
+            data-title='{$imageTitle}'>
             <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail>
          </a>
          <p class=image-caption>

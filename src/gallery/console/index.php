@@ -15,12 +15,11 @@
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
 <link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
-<link rel=stylesheet       href=file-uploader/fileuploader.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=https://centerkey.com/css/layouts/color-blocks.css>
-<link rel=stylesheet       href=css/style.css>
+<link rel=stylesheet       href=admin.css>
 </head>
-<body>
+<body data-on-load=admin.setup>
 
 <header>
    <aside>
@@ -31,8 +30,8 @@
    <h2>Administrator Console</h2>
 </header>
 
-<main>
-   <div class=external-site>
+<main class=external-site>
+   <div>
 
       <section>
          <h2>Status</h2>
@@ -89,7 +88,9 @@
       <section>
          <h2>
             Gallery Uploader
-            <i data-icon=info-circle data-href=https://github.com/center-key/paradise/wiki/faq></i>
+            <i data-icon=info-circle
+               data-href=https://github.com/center-key/paradise/wiki/faq#1-what-kind-of-images-should-i-upload>
+            </i>
          </h2>
          <i id=processing-files data-icon=spinner class=fa-spin></i>
          <div id=file-uploader></div>
@@ -105,7 +106,7 @@
                   placeholder="Enter website header">
             </label>
             <label>
-               <span>Title font:<i data-icon=info-circle data-href=fonts.php class=external-site></i></span>
+               <span>Title font:<i data-icon=info-circle data-href=fonts.php></i></span>
                <select name=title-font data-option=~~title-font~~ data-change=admin.ui.saveSettings>
                   <?= displayFontOptions(); ?>
                </select>
@@ -133,18 +134,18 @@
                Captions:
                <div>
                   <label>
-                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
-                        data-change=admin.ui.saveSettings><i>italic</i>
-                  </label>
-                  <label>
                      <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~
                         data-change=admin.ui.saveSettings><span>all caps</span>
+                  </label>
+                  <label>
+                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
+                        data-change=admin.ui.saveSettings><i>italic</i>
                   </label>
                </div>
             </div>
             <div>
                Creative Commons:
-               <a href=https://creativecommons.org/licenses/by-sa/4.0 class=external-site><i data-icon=info-circle></i></a>
+               <a href=https://creativecommons.org/licenses/by-sa/4.0><i data-icon=info-circle></i></a>
                <label>
                   <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
                      data-change=admin.ui.saveSettings>display
@@ -221,8 +222,8 @@
    </div>
 </main>
 
-<footer>
-   <div class=external-site>
+<footer class=external-site>
+   <div>
       <a href=http://centerkey.com/paradise>Paradise website</a><br>
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
@@ -239,9 +240,7 @@
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
-<script src=file-uploader/fileuploader.js></script>
-<script src=../js/library.js></script>
-<script src=js/admin.js></script>
+<script src=admin.js></script>
 <script>window.clientData = <?= appClientData(true) ?>;</script>
 </body>
 </html>

@@ -16,7 +16,7 @@
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=https://centerkey.com/css/layouts/color-blocks.css>
-<link rel=stylesheet       href=../css/style.css>
+<link rel=stylesheet       href=../admin.css>
 </head>
 <body>
 
@@ -89,8 +89,7 @@
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
-<script src=../../js/library.js></script>
-<script src=../js/login.js></script>
+<script src=../admin.js></script>
 <script>window.clientData = <?= appClientData(false) ?>;</script>
 </body>
 </html>

@@ -41,7 +41,7 @@ runStaticAnalyzer() {
 
 zipUpRelease() {
    echo "*** Zipping"
-   cd $projectHome/src
+   cd $projectHome/target
    echo "Making release v$version..."
    find . -name ".DS_Store" -delete
    zipFile=$projectHome/releases/paradise-install-files.zip
