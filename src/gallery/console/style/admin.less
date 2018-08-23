@@ -6,28 +6,81 @@
 /* Administrator Console */
 
 /* Page layout */
-body >header h1 { font-size: 1.7rem; }
-body >header h1+h2 { font-size: 1.3rem; }
+body {
+   >header {
+      h1 {
+         font-size: 1.7rem;
+         }
+      h1+h2 {
+         font-size: 1.3rem;
+         }
+      }
+   }
 
 /* Style */
-button { font-size: 0.9rem; }
-#status-msg { font-weight: bold; }
+body {
+   button {
+      font-size: 0.9rem;
+      }
+   #status-msg {
+      font-weight: bold;
+      }
+   }
 
 /* Utilities */
-i.icon-popup-anchor+div { position: absolute; visibility: hidden; opacity: 0; transition: all 0.4s; white-space: nowrap; font-weight: bold; text-align: right; color: firebrick; background-color: white; border: 3px solid steelblue; border-radius: 5px; padding: 15px 25px; }
-i.icon-popup-anchor:hover+div,
-i.icon-popup-anchor+div:hover { visibility: visible; opacity: 1; }
+i.icon-popup-anchor {
+   &+div {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.4s;
+      white-space: nowrap;
+      font-weight: bold;
+      text-align: right;
+      color: firebrick;
+      background-color: white;
+      border: 3px solid steelblue;
+      border-radius: 5px;
+      padding: 15px 25px;
+      }
+   &:hover+div,
+   &+div:hover {
+      visibility: visible;
+      opacity: 1;
+      }
+   }
 
 /* Component: Security */
-.component-security form                  { max-width: 25em; margin: 0px auto; }
-.component-security.create h3:first-child { display: none; }
-.component-security.invite p.for-create   { display: none; }
-.component-security .for-create           { display: none; }
-.component-security.create .for-create    { display: block; }
-.component-security .error-message        { color: firebrick; }
-.component-security .invite-code          { display: none; }
-.component-security.invite .invite-code   { display: block; }
-.component-security >p { color: firebrick; }
+.component-security {
+   form {
+      max-width: 25em;
+      margin: 0px auto;
+      }
+   &.create h3:first-child {
+      display: none;
+      }
+   &.invite p.for-create {
+      display: none;
+      }
+   .for-create {
+      display: none;
+      }
+   &.create .for-create {
+      display: block;
+      }
+   .error-message {
+      color: firebrick;
+      }
+   .invite-code {
+      display: none;
+      }
+   &.invite .invite-code {
+      display: block;
+      }
+   >p {
+      color: firebrick;
+      }
+   }
 
 /* Component: Image Portfolio
 Structure:
