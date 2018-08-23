@@ -39,6 +39,7 @@
 </header>
 
 <main>
+   <aside data-href=console>&nbsp;&nbsp;</aside>
    <nav id=gallery class=dna-menu>
       <span class=<?= showHideClass($pages[0]->show) ?>><?= $pages[0]->title ?></span>
       <span class=<?= showHideClass($pages[1]->show) ?>><?= $pages[1]->title ?></span>
@@ -85,7 +86,7 @@
 <footer>
    <div class=<?= showHideClass($settings->{"cc-license"}) ?>>
       <a class=external-site rel=license href=https://creativecommons.org/licenses/by-sa/4.0>
-         <img src=https://i.creativecommons.org/l/by-sa/4.0/80x15.png alt="Creative Commons License"
+         <img src=https://i.creativecommons.org/l/by-sa/4.0/80x15.png alt=license
             title="This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.">
       </a>
    </div>
