@@ -9,6 +9,11 @@
 <meta charset=utf-8>
 <meta name=viewport                   content="width=device-width, initial-scale=1">
 <meta name=apple-mobile-web-app-title content="Gallery">
+<meta property=og:title               content="<?= $settings->{"title"} ?>">
+<meta property=og:description         content="<?= $settings->{"subtitle"} ?>">
+<meta property=og:type                content="website">
+<meta property=og:image               content="https://centerkey.com/graphics/center-key-logo-card.png">
+<meta property=og:image:alt           content="Logo">
 <title><?= $settings->{"title"} ?> &bull; <?= $settings->{"subtitle"} ?></title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>

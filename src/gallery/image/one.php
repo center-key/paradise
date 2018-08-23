@@ -10,13 +10,18 @@
 <meta charset=utf-8>
 <meta name=viewport                   content="width=device-width, initial-scale=1">
 <meta name=apple-mobile-web-app-title content="<?= $caption ?>">
+<meta property=og:title               content="<?= $settings->{"title"} ?> - <?= $caption ?>">
+<meta property=og:description         content="<?= $settings->{"subtitle"} ?> - <?= $description ?>">
+<meta property=og:type                content="website">
+<meta property=og:image               content="https://centerkey.com/graphics/center-key-logo-card.png">
+<meta property=og:image:alt           content="Logo">
 <title><?= $caption ?> &bull; <?= $settings->{"title"} ?></title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=../../~data~/portfolio/<?= $id ?>-small.png>
 <link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
-<link rel=stylesheet       href=paradise.css>
+<link rel=stylesheet       href=../../paradise.css>
 <link rel=stylesheet       href=../../~data~/custom-style.css>
 <style>
    @import url(https://fonts.googleapis.com/css?family=<?= urlencode($settings->{"title-font"}) ?>);
