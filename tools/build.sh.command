@@ -39,21 +39,6 @@ runStaticAnalyzer() {
    echo
    }
 
-zipUpRelease() {
-   echo "*** Zipping"
-   cd $projectHome/target
-   echo "Making release v$version..."
-   find . -name ".DS_Store" -delete
-   zipFile=$projectHome/releases/paradise-install-files.zip
-   rm -f $zipFile
-   zip --recurse-paths --quiet $zipFile gallery/
-   cd $projectHome/releases
-   pwd
-   cp paradise-install-files.zip previous/paradise-v$version.zip
-   ls -l paradise-install-files.zip previous/paradise-v$version.zip
-   echo
-   }
-
 releasesReport() {
    echo "*** Releases"
    cd $projectHome
@@ -115,7 +100,6 @@ deployRelease() {
 
 setupTools
 runStaticAnalyzer
-zipUpRelease
 releasesReport
 releaseInstructions
 setupPhpServer

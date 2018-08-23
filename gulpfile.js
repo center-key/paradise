@@ -12,6 +12,9 @@ const mergeStream =      require('merge-stream');
 const postCss =          require('gulp-postcss');
 const postCssNano =      require('cssnano');
 const postCssPresetEnv = require('postcss-preset-env');
+const rename =           require('gulp-rename');
+const size =             require('gulp-size');
+const zip =              require('gulp-zip');
 
 // Setup values
 const pkg = require('./package.json');
@@ -70,9 +73,18 @@ const task = {
          buildAdminJs(),
          copyLicense()
          );
+      },
+   makeZip: function() {
+      return gulp.src('target/**/*')
+         .pipe(zip('paradise-install-files.zip'))
+         .pipe(gulp.dest('releases'))
+         .pipe(rename('paradise-v' + pkg.version + '.zip'))
+         .pipe(gulp.dest('releases/previous'))
+         .pipe(size({ showSize: true }));
       }
    };
 
 // Gulp
 gulp.task('clean', task.cleanTarget);
 gulp.task('build', task.buildWebApp);
+gulp.task('zip',   task.makeZip);

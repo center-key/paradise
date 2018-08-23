@@ -17,7 +17,7 @@ organization.
 
 ### Project:
    * [Instructions](https://centerkey.com/paradise/)
-   * [Releases](https://github.com/center-key/paradise/tree/master/releases)
+   * [Download](https://github.com/center-key/paradise/tree/master/releases)
    * [Issues](https://github.com/center-key/paradise/issues)
    * [FAQ](https://github.com/center-key/paradise/wiki/faq)
 
