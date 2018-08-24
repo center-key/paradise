@@ -10,7 +10,6 @@
 
 banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)
-version=$(awk -F\" '/version = / { print $2 }' $projectHome/src/gallery/console/php/library.php)
 
 setupTools() {
    # Check for Node.js installation and download project dependencies
@@ -36,30 +35,6 @@ runStaticAnalyzer() {
    cd $projectHome/src
    pwd
    find . -name "*.php" -exec php --syntax-check {} \;
-   echo
-   }
-
-releasesReport() {
-   echo "*** Releases"
-   cd $projectHome
-   git tag | tail -10
-   echo
-   }
-
-releaseInstructions() {
-   echo "*** Instructions"
-   cd $projectHome
-   echo "Steps to publish this release:"
-   echo "   1) Check in release files (.zip) with the comment:"
-   echo "      Release v$version"
-   echo "   2) Tag release:"
-   echo "      cd $(pwd)"
-   echo "      git tag --annotate --force --message 'Release' v$version"
-   echo "      git tag --annotate --force --message 'Current release' current"
-   echo "      git remote --verbose"
-   echo "      git push origin --tags --force"
-   echo "   3) Increment version in src/gallery/php/library.php and check in file with the comment:"
-   echo "      Next release"
    echo
    }
 
@@ -100,7 +75,5 @@ deployRelease() {
 
 setupTools
 runStaticAnalyzer
-releasesReport
-releaseInstructions
 setupPhpServer
 test -w $deployFolder && deployRelease

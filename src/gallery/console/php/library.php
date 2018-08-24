@@ -7,7 +7,7 @@
 // Library
 // Constants and general utilities
 
-$version =    "0.2.0";  //see package.json
+$version =    "[PARADISE-VERSION]";
 $dataFolder = str_replace("console/php", "~data~", __DIR__);
 
 date_default_timezone_set("UTC");

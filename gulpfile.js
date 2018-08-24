@@ -13,6 +13,7 @@ const postCss =          require('gulp-postcss');
 const postCssNano =      require('cssnano');
 const postCssPresetEnv = require('postcss-preset-env');
 const rename =           require('gulp-rename');
+const replace =          require('gulp-replace');
 const size =             require('gulp-size');
 const zip =              require('gulp-zip');
 
@@ -22,6 +23,16 @@ const banner = `${pkg.name} v${pkg.version} ~~ ${pkg.homepage} ~~ ${pkg.license}
 const postCssPlugins = [postCssPresetEnv(), postCssNano({ autoprefixer: false })];
 const targetFolder = 'target/gallery';
 
+// Relase help
+const releaseHelp = [
+   'To release this version, commit and push the two ".zip" files with the comment:',
+   '   Release v' + pkg.version,
+   'After the release is done, increment version in "package.json" and then commit and push:',
+   '   Next release'
+   ];
+function printHelpLine(line) { console.log(line); }
+function printHelp(helpLines) { helpLines.forEach(printHelpLine); }
+
 // Tasks
 const task = {
    cleanTarget: function() {
@@ -29,7 +40,9 @@ const task = {
       },
    buildWebApp: function() {
       function buildPhp() {
+         printHelp(releaseHelp);
          return gulp.src(['src/gallery/**/*.php', 'src/gallery/**/.htaccess'])
+            .pipe(replace('[PARADISE-VERSION]', pkg.version))
             .pipe(fileInclude({ basepath: '@root', indent: true }))
             .pipe(gulp.dest(targetFolder));
           }
@@ -80,7 +93,7 @@ const task = {
          .pipe(gulp.dest('releases'))
          .pipe(rename('paradise-v' + pkg.version + '.zip'))
          .pipe(gulp.dest('releases/previous'))
-         .pipe(size({ showSize: true }));
+         .pipe(size({ showFiles: true }));
       }
    };
 
