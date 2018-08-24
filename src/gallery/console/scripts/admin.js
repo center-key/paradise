@@ -95,7 +95,7 @@ admin.ui = {
          onSubmit:          start,
          onComplete:        done
          };
-      return new qq.FileUploader(options);
+      return new window.qq.FileUploader(options);
       }
    };
 

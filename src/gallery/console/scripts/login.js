@@ -11,7 +11,9 @@ admin.login = {
       const minPaswordLength = 8;
       const component = elem.closest('.component-security');
       component.find('button').prop({ disabled: true });
-      function calcHash(passwd) { return CryptoJS.SHA256(passwd + admin.login.salt).toString(); }
+      function calcHash(passwd) {
+         return window.CryptoJS.SHA256(passwd + admin.login.salt).toString();
+         }
       const action =     component.hasClass('create') ? 'create' : 'login';
       const email =      component.find('input[type=email]').val().trim().toLowerCase();
       const password =   component.find('input[type=password]').first().val().trim();
