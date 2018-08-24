@@ -28,13 +28,12 @@ setupTools() {
    echo
    }
 
-runStaticAnalyzer() {
-   echo "*** Analyzing"
+analyzeAndBuild() {
+   echo "*** Analyze and build"
    cd $projectHome
-   npm test
-   cd $projectHome/src
    pwd
-   find . -name "*.php" -exec php --syntax-check {} \;
+   find src -name "*.php" -exec php --syntax-check {} \;
+   npm test
    echo
    }
 
@@ -60,7 +59,7 @@ unzipRelease() {
    }
 
 openConsole() {
-   echo "*** Administrator Console"
+   echo "*** Open Console"
    consoleUrl=http://localhost/paradise-deploy/gallery/console/
    echo $consoleUrl
    sleep 2
@@ -74,6 +73,6 @@ deployRelease() {
    }
 
 setupTools
-runStaticAnalyzer
+analyzeAndBuild
 setupPhpServer
 test -w $deployFolder && deployRelease
