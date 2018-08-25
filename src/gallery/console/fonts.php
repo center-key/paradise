@@ -1,5 +1,5 @@
-<?php require "php/library.php"; ?>
-<?php require "php/console.php"; ?>
+<?php require "server/library.php"; ?>
+<?php require "server/console.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->

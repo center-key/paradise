@@ -4,7 +4,7 @@
 // GPLv3 ~ Copyright (c) individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
-require "php/gallery.php";
+require "server/gallery.php";
 
 // Initialize
 $subject =   "Paradise PHP Photo Gallery - Message";

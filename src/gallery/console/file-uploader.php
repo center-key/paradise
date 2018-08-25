@@ -21,7 +21,7 @@
 //       paradise/src/gallery/console/file-uploader/
 //////////////////////////////////////
 
-require "php/security.php";
+require "server/security.php";
 require "file-uploader/php.php";
 $uploadFolder = "../~data~/uploads/";
 

@@ -1,5 +1,5 @@
-<?php require "php/security.php"; ?>
-<?php require "php/console.php"; ?>
+<?php require "server/security.php"; ?>
+<?php require "server/console.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->

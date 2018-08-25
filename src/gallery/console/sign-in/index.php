@@ -1,4 +1,4 @@
-<?php $noAuth = true; $redirectAuth = ".."; require "../php/security.php"; ?>
+<?php $noAuth = true; $redirectAuth = ".."; require "../server/security.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->

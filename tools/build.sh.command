@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #############################################################
 # Paradise ~ centerkey.com/paradise                         #
 # GPLv3 ~ Copyright (c) individual contributors to Paradise #
@@ -6,7 +6,7 @@
 
 # Build:
 #     Creates the release file (zip) with the version number in the file
-#     name (extracted from paradise/src/gallery/console/php/library.php)
+#     name (extracted from paradise/src/gallery/console/server/library.php)
 
 banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)

@@ -1,4 +1,4 @@
-<?php require "../php/gallery.php"; ?>
+<?php require "../server/gallery.php"; ?>
 <?php list($id, $caption, $description) = getImageInfo($_SERVER["REQUEST_URI"], $gallery); ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

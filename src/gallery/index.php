@@ -1,4 +1,4 @@
-<?php require "php/gallery.php"; ?>
+<?php require "server/gallery.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->

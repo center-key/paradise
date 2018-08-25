@@ -8,7 +8,7 @@
 // Constants and general utilities
 
 $version =    "[PARADISE-VERSION]";
-$dataFolder = str_replace("console/php", "~data~", __DIR__);
+$dataFolder = str_replace("console/server", "~data~", __DIR__);
 
 date_default_timezone_set("UTC");
 
@@ -115,7 +115,7 @@ function saveAccountsDb($db) {
 
 function toUriCode($caption) {
    return $code = preg_replace("/\s+/", "-",
-       trim(preg_replace("/[^a-z]/", " ", strtolower($caption))));  //TODO: Figure out why "/[^\p{L}]/" bombs on Korean text
+       trim(preg_replace("/[^a-z]/", " ", strtolower($caption))));
    }
 
 function displayTrue($imageDb) {

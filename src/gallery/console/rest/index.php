@@ -26,8 +26,8 @@
 //    URL (.htaccess) configuration.
 
 $noAuth = true;
-require "../php/security.php";
-require "../php/image-processing.php";
+require "../server/security.php";
+require "../server/image-processing.php";
 
 function restError($code) {
    $messages = array(
