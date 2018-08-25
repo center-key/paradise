@@ -28,10 +28,10 @@ function emptyObj($object) {
 
 function appClientData() {
    global $version;
-   $data = [
+   $data = array(
       "version" =>       $version,
       "userListEmpty" => emptyObj(readAccountsDb()->users)
-      ];
+      );
    return json_encode($data);
    }
 
@@ -123,13 +123,13 @@ function displayTrue($imageDb) {
    }
 
 function convert($imageDb) {
-   return [
+   return array(
       "id" =>          $imageDb->id,
       "code" =>        toUriCode($imageDb->caption),
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
       "badge" =>       $imageDb->badge
-      ];
+      );
    }
 function generateGalleryDb() {
    return saveGalleryDb(array_map("convert", array_values(
@@ -167,7 +167,7 @@ function logEvent() {  //any number of parameters to log
    $logFilename =     "{$secureFolder}/events.log";
    $archiveFilename = "{$secureFolder}/events-archive.log";
    $milliseconds = substr(microtime(), 2, 3);
-   $event = [date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg($_SESSION["user"])];
+   $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg($_SESSION["user"]));
    foreach (func_get_args() as $msg) {
       $event[] = $delimiter;
       $event[] = formatMsg($msg);
@@ -205,7 +205,7 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
    $success = finishSendEmail($sendTo, $subjectLine, $messageLines);
    logEvent("send-email", $success, $sendTo, $subjectLine);
    $confirmationSubject = "Email confirmation";
-   $confirmationLines = [
+   $confirmationLines = array(
       "This is an automated message from the Paradise PHP Photo Gallery system.",
       "",
       "An email message was just sent on your behalf as follows:",
@@ -213,7 +213,7 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
       "\tTo: {$sendTo}",
       "",
       "This is an informational message only -- no action is required on your part.",
-      ];
+      );
    if ($success)
       finishSendEmail($_SESSION["user"], $confirmationSubject, $confirmationLines);
    return $success;

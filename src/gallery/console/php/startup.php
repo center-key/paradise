@@ -7,7 +7,7 @@
 // Startup
 // Initializes the data folder
 
-$defaultSettingsDb = [
+$defaultSettingsDb = array(
    "title" =>          "My Gallery",
    "title-font" =>     "Reenie Beanie",
    "title-size" =>     "400%",
@@ -18,16 +18,16 @@ $defaultSettingsDb = [
    "cc-license" =>     false,
    "bookmarks" =>      true,
    "contact-email" =>  "",
-   "pages" => [
-      ["name" => "gallery", "title" => "Gallery", "show" =>  true],
-      ["name" => "artist",  "title" => "Artist",  "show" =>  false],
-      ["name" => "contact", "title" => "Contact", "show" =>  false],
-      ]
-   ];
-$defaultAccountsDb = [
+   "pages" => array(
+      array("name" => "gallery", "title" => "Gallery", "show" =>  true),
+      array("name" => "artist",  "title" => "Artist",  "show" =>  false),
+      array("name" => "contact", "title" => "Contact", "show" =>  false),
+      )
+   );
+$defaultAccountsDb = array(
    "users" =>   json_decode("{}"),  //email -> created (epoch), hash, enabled (boolean)
    "invites" => json_decode("{}")   //inviteCode -> from, to, expires (epoch), accepted (epoch)
-   ];
+   );
 
 function workaroundToUpgradeToNewSecureFolder($dataFolder, $secureFolder) {
    $fileSearch = glob("{$dataFolder}/key-*.txt");
@@ -56,7 +56,7 @@ function setupDb($dbFilename, $defaultDb) {
    }
 
 function setupCustomCss($dataFolder) {
-   $defaultCss = [
+   $defaultCss = array(
       "/*  Paradise PHP Photo Gallery                                */",
       "/*  Edit this CSS file to customize the look of the gallery.  */",
       "/*  Put custom images in: gallery/~data~/graphics             */",
@@ -64,7 +64,7 @@ function setupCustomCss($dataFolder) {
       "body { color: whitesmoke; background-color: dimgray; }",
       "body >footer { background-color: gray; border-color: black; }",
       ".gallery-images .image img { border-color: black; }"
-      ];
+      );
    $filename = "{$dataFolder}/custom-style.css";
    initializeFile($filename, implode(PHP_EOL, $defaultCss));
    }

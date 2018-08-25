@@ -26,13 +26,13 @@ require "file-uploader/php.php";
 $uploadFolder = "../~data~/uploads/";
 
 function upload($uploadFolder) {
-   $allowedExtensions = ["jpg", "jpeg", "png"];
+   $allowedExtensions = array("jpg", "jpeg", "png");
    $sizeLimit =         2 * 1024 * 1024;  //2 MB
    $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
    return $uploader->handleUpload($uploadFolder);
    }
 
-function readOnlyResponse() { return ["success" => true, "type" => "simulated"]; }
+function readOnlyResponse() { return array("success" => true, "type" => "simulated"); }
 $result = $_SESSION["read-only-user"] ? readOnlyResponse() : upload($uploadFolder);
 logEvent("file-upload", $result["success"], $uploadFolder, $result);
 httpJsonResponse($result);

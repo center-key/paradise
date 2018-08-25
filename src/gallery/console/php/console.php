@@ -6,7 +6,7 @@
 
 // Console
 
-$googleFonts = [  //see https://fonts.google.com
+$googleFonts = array(  //see https://fonts.google.com
    "Allan", "Allerta Stencil", "Amatic SC", "Anonymous Pro", "Arimo", "Arvo",
    "Bowlby One SC", "Bubblegum Sans",
    "Cherry Cream Soda", "Chewy", "Chango", "Coda", "Corben",
@@ -28,7 +28,7 @@ $googleFonts = [  //see https://fonts.google.com
    "Tangerine",
    "UnifrakturMaguntia",
    "Vibur"
-   ];
+   );
 
 function displayFontOptions() {
    global $googleFonts;

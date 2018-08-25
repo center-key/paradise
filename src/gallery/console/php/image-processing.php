@@ -76,7 +76,7 @@ function processUploads() {
       rename("{$uploadsFolder}/{$filename}", $origFile);
       createImages($origFile, $id);
       $dbFilename = "{$portfolioFolder}/{$id}-db.json";
-      $imageDb = [
+      $imageDb = array(
          "id" =>          $id,
          "sort" =>        intval($id) * 10000,
          "original" =>    $filename,
@@ -85,11 +85,11 @@ function processUploads() {
          "caption" =>     "",
          "description" => "",
          "badge" =>       ""
-         ];
+         );
       saveDb($dbFilename, $imageDb);
       }
    $msg = "Images processed: " . count($files);
-   return ["count" => count($files), "files" => $files, "message" => $msg];
+   return array("count" => count($files), "files" => $files, "message" => $msg);
    }
 
 ?>
