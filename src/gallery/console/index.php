@@ -108,7 +108,7 @@
             <label>
                <span>Title font:<i data-icon=info-circle data-href=fonts.php></i></span>
                <select name=title-font data-option=~~title-font~~ data-change=admin.ui.saveSettings>
-                  <?= displayFontOptions(); ?>
+                  <?=displayFontOptions()?>
                </select>
             </label>
             <label>
@@ -228,11 +228,11 @@
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
-      <b><?= $_SESSION["user"] ?></b><br>
-      Logged into <b><?= $_SERVER["HTTP_HOST"] ?></b>
+      <b><?=$_SESSION["user"]?></b><br>
+      Logged into <b><?=$_SERVER["SERVER_NAME"]?></b>
    </div>
    <div>
-      Paradise v<?= $version ?><br>
+      Paradise v<?=$version?><br>
       <a href=https://github.com/center-key/paradise/blob/master/src/gallery/license.txt>GPLv3</a>
    </div>
 </footer>
@@ -241,6 +241,6 @@
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=admin.js></script>
-<script>window.clientData = <?= appClientData(true) ?>;</script>
+<script>window.clientData = <?=appClientData(true)?>;</script>
 </body>
 </html>

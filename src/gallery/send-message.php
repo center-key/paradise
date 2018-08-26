@@ -10,16 +10,18 @@ require "server/gallery.php";
 $subject =   "Paradise PHP Photo Gallery - Message";
 $from =      "From: Paradise <{$settings->email}>";
 $thanksUri = "./#thanks";
-$bar =       "-----------------------";
 
-// Create message
-$msg =  $_SERVER["HTTP_HOST"] . "\n$bar";
-$msg .= "\nName: " .    htmlspecialchars($_POST["name"]);
-$msg .= "\nEmail: " .   htmlspecialchars($_POST["email"]);
-$msg .= "\nMessage: " . htmlspecialchars($_POST["message"]);
-$msg .= "\n$bar\n";
+// Create message body
+$message = array(
+   getGalleryUrl(),
+   "-----------------------------------",
+   "Name: " .    $_POST["name"],
+   "Email: " .   $_POST["email"],
+   "Message: " . $_POST["message"],
+   "-----------------------------------");
+$body = htmlspecialchars(implode("\n", $message), ENT_NOQUOTES);
 
 // Send message
-mail($settings->email, $subject, $msg, $from);
+mail($settings->email, $subject, $body, $from);
 header("Location: $thanksUri");
 ?>

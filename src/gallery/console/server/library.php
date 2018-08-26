@@ -13,8 +13,9 @@ $dataFolder = str_replace("console/server", "~data~", __DIR__);
 date_default_timezone_set("UTC");
 
 function getGalleryUrl() {
-   return ($_SERVER["HTTPS"] === "on" ? "https://" : "http://") . $_SERVER["HTTP_HOST"] .
-      str_replace("/console/rest/index.php", "", $_SERVER["SCRIPT_NAME"]);
+   $protocol = $_SERVER["HTTPS"] === "on" ? "https://" : "http://";
+   $ignore = array("/console/rest/index.php");
+   return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
    }
 
 function getProperty($map, $key) {
