@@ -4,6 +4,12 @@
 // GPLv3 ~ Copyright (c) individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
+function getGalleryUrl() {
+   $protocol = $_SERVER["HTTPS"] === "on" ? "https://" : "http://";
+   $ignore = array("/index.php", "/image/one.php", "/send-message.php");
+   return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
+   }
+
 function getData($dbFilename) {
    if (!is_file($dbFilename))
       exit("Setup incomplete");
@@ -54,7 +60,12 @@ function getImageInfo($uri, $gallery) {
       $imageDb = json_decode(file_get_contents($dbFilename));
    else
       $imageDb = json_decode('{ "caption": "That image does not appear to exist", "description": "" }');
-   return array($id, $imageDb->caption, $imageDb->description);
+   $galleryUrl = getGalleryUrl();
+   $currentImage = (object)array(
+      "urlSmall" => "{$galleryUrl}/~data~/portfolio/{$id}-small.png",
+      "urlLarge" => "{$galleryUrl}/~data~/portfolio/{$id}-large.jpg",
+      );
+   return array($id, $imageDb->caption, $imageDb->description, $currentImage);
    }
 
 $settings = getData(__DIR__ . "/../~data~/settings-db.json");
