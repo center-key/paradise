@@ -1,5 +1,5 @@
 <?php require "../server/gallery.php"; ?>
-<?php list($id, $caption, $description, $currentImage) = getImageInfo($_SERVER["REQUEST_URI"], $gallery); ?>
+<?php $imageInfo = getImageInfo($_SERVER["REQUEST_URI"], $gallery); ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
@@ -9,15 +9,15 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport                   content="width=device-width, initial-scale=1">
-<meta name=apple-mobile-web-app-title content="<?=$caption?>">
-<meta property=og:title               content="<?=$settings->title?> - <?=$caption?>">
-<meta property=og:description         content="<?=$settings->subtitle?> - <?=$description?>">
+<meta name=apple-mobile-web-app-title content="<?=$imageInfo->caption?>">
+<meta property=og:title               content="<?=$settings->title?> - <?=$imageInfo->caption?>">
+<meta property=og:description         content="<?=$settings->subtitle?> - <?=$imageInfo->description?>">
 <meta property=og:type                content="website">
-<meta property=og:image               content="<?=$currentImage->urlLarge?>">
-<meta property=og:image:alt           content="<?=$caption?>">
-<title><?=$caption?> &bull; <?=$settings->title?></title>
+<meta property=og:image               content="<?=$imageInfo->urlLarge?>">
+<meta property=og:image:alt           content="<?=$imageInfo->caption?>">
+<title><?=$imageInfo->caption?> &bull; <?=$settings->title?></title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
-<link rel=apple-touch-icon href=<?=$currentImage->urlSmall?>>
+<link rel=apple-touch-icon href=<?=$imageInfo->urlSmall?>>
 <link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
@@ -31,7 +31,7 @@
       }
 </style>
 </head>
-<body class="<?=styleClasses($settings)?>">
+<body class="<?=$values->styleClasses?>">
 
 <header>
    <h1 data-href=../..><?=$settings->title?></h1>
@@ -41,10 +41,10 @@
 <main>
    <div class=one-image>
       <figure>
-         <figcaption><?=$caption?></figcaption>
-         <img src=<?=$currentImage->urlLarge?> data-href=../..  alt=image>
+         <figcaption><?=$imageInfo->caption?></figcaption>
+         <img src=<?=$imageInfo->urlLarge?> data-href=../.. alt=image>
       </figure>
-      <p><?=$description?></p>
+      <p><?=$imageInfo->description?></p>
    </div>
 </main>
 

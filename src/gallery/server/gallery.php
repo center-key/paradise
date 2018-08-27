@@ -25,50 +25,60 @@ function styleClasses($settings) {
    return getClass($settings, "caption-italic") . " " . getClass($settings, "caption-caps");
    }
 
-function displayImage($image) {
-   $badge = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
-   $imageTitle =
-      "<span class=image-caption>{$image->caption}</span>" .
-      "<span class=image-description>{$image->description}</span>";
-   echo "
-      <div class=image>
-         {$badge}
-         <a href=~data~/portfolio/{$image->id}-large.jpg
-            data-title='{$imageTitle}'>
-            <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail>
-         </a>
-         <p class=image-caption>
-            {$image->caption}
-            <a href=image/{$image->id}/{$image->code} class=plain><i data-icon=link></i></a>
-         </p>
-      </div>";
-   }
-
-function displayImages($gallery) {
-   if (empty($gallery))
-      echo "<h3>Gallery is empty</h3>";
-   else
-      foreach ($gallery as $image)
-         displayImage($image);
+function getImagesHtml($gallery) {
+   $toImageHtml = function($image) {
+      $badge = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
+      $imageTitle =
+         "<span class=image-caption>{$image->caption}</span>" .
+         "<span class=image-description>{$image->description}</span>";
+      return "
+         <figure>
+            {$badge}
+            <a href=~data~/portfolio/{$image->id}-large.jpg
+               data-title='{$imageTitle}'>
+               <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail>
+            </a>
+            <figcaption>
+               {$image->caption}
+               <a href=image/{$image->id}/{$image->code} class=plain><i data-icon=link></i></a>
+            </figcaption>
+         </figure>";
+      };
+   $imagesHtml = implode("\n", array_map($toImageHtml, $gallery));
+   return empty($gallery) ? "<h3>Gallery is empty</h3>" : $imagesHtml;
    }
 
 function getImageInfo($uri, $gallery) {
    preg_match("/\/image\/([0-9]+)/", $uri, $matches);
    $id = $matches[1];
    $dbFilename = __DIR__ . "/../~data~/portfolio/{$id}-db.json";
-   if (is_file($dbFilename))
-      $imageDb = json_decode(file_get_contents($dbFilename));
-   else
-      $imageDb = json_decode('{ "caption": "That image does not appear to exist", "description": "" }');
+   $missingImage = '{ "caption": "That image does not appear to exist", "description": "" }';
+   $imageDb = json_decode(is_file($dbFilename) ? file_get_contents($dbFilename) : $missingImage);
    $galleryUrl = getGalleryUrl();
-   $currentImage = (object)array(
-      "urlSmall" => "{$galleryUrl}/~data~/portfolio/{$id}-small.png",
-      "urlLarge" => "{$galleryUrl}/~data~/portfolio/{$id}-large.jpg",
+   return (object)array(
+      "caption" =>     $imageDb->caption,
+      "description" => $imageDb->description,
+      "urlSmall" =>    "{$galleryUrl}/~data~/portfolio/{$id}-small.png",
+      "urlLarge" =>    "{$galleryUrl}/~data~/portfolio/{$id}-large.jpg",
       );
-   return array($id, $imageDb->caption, $imageDb->description, $currentImage);
+   }
+
+function setValues($settings, $gallery) {
+   $titleFontParam = urlencode($settings->{"title-font"});
+   $artistPageFile = __DIR__ . "/../~data~/page-{$settings->pages[1]->name}.html";
+   $galleryUrl = getGalleryUrl();
+   $id = empty($gallery) ? "NA" : $gallery[0]->id;
+   return (object)array(
+      "cardImageUrl" =>   "{$galleryUrl}/~data~/portfolio/{$id}-large.jpg",
+      "thumbnailUrl" =>   "{$galleryUrl}/~data~/portfolio/{$id}-small.png",
+      "titleFontUrl" =>   "https://fonts.googleapis.com/css?family={$titleFontParam}",
+      "styleClasses" =>   styleClasses($settings),
+      "artistPageHtml" => $settings->pages[1]->show ? file_get_contents($artistPageFile) : "",
+      );
    }
 
 $settings = getData(__DIR__ . "/../~data~/settings-db.json");
 $gallery =  getData(__DIR__ . "/../~data~/gallery-db.json");
 $pages = $settings->pages;
+$values = setValues($settings, $gallery);
 ?>

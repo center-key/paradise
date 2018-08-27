@@ -14,7 +14,7 @@ var gallery = {
          image:    { titleSrc: 'data-title' },
          gallery:  { enabled: true }
          };
-      $('.gallery-images .image').magnificPopup(options);
+      $('.gallery-images figure').magnificPopup(options);
       }
    };
 

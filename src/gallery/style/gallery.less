@@ -105,7 +105,7 @@ body {
 /* Image gallery */
 .gallery-images {
    text-align: center;
-   .image {
+   figure {
       position: relative;
       display: inline-block;
       vertical-align: top;
@@ -120,11 +120,6 @@ body {
             box-shadow: silver 0px 0px 1.5em;
             }
          }
-      p {
-         text-align: center;
-         font-size: 0.8rem;
-         margin: 0px;
-         }
       .badge {
          position: absolute;
          top: 120px;
@@ -138,7 +133,10 @@ body {
          padding: 3px 5px;
          opacity: 0.6;
          }
-      .image-caption {
+      figcaption {
+         text-align: center;
+         font-size: 0.8rem;
+         margin: 0px;
          a i.font-icon {
             position: absolute;
             bottom: 0px;
@@ -155,11 +153,19 @@ body {
          }
       }
    }
-body.caption-caps .image-caption {
-   text-transform: uppercase;
+body.caption-caps {
+   .gallery-images figure figcaption,
+   .one-image figure figcaption,
+   .image-caption {
+      text-transform: uppercase;
+      }
    }
-body.caption-italic .image-caption {
-   font-style: italic;
+body.caption-italic {
+   .gallery-images figure figcaption,
+   .one-image figure figcaption,
+   .image-caption {
+      font-style: italic;
+      }
    }
 body:not(.caption-italic) .image-description {
    font-style: italic;
