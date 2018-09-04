@@ -19,7 +19,7 @@
 <link rel=stylesheet       href=../paradise.css>
 <link rel=stylesheet       href=../~data~/custom-style.css>
 <style>
-   <?php importFonts(); ?>
+   <?=importFonts()?>
    table.font-sampler tbody tr td { vertical-align: middle; text-align: left; padding: 10px; }
    table.font-sampler tbody tr td:last-child { width: 100%; }
 </style>
@@ -33,7 +33,7 @@
 <main>
    <table class=font-sampler>
       <tbody>
-         <?php displayTitles(); ?>
+         <?=displayTitles()?>
       </tbody>
    </table>
 </main>

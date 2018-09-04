@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #############################################################
 # Paradise ~ centerkey.com/paradise                         #
 # GPLv3 ~ Copyright (c) individual contributors to Paradise #
@@ -11,7 +11,7 @@ displayIntro() {
    cd $projectHome
    echo
    echo $banner
-   echo $(echo $banner | sed -e "s/./=/g")
+   echo $(echo $banner | sed s/./=/g)
    pwd
    echo
    }

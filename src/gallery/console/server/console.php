@@ -32,24 +32,31 @@ $googleFonts = array(  //see https://fonts.google.com
 
 function displayFontOptions() {
    global $googleFonts;
-   foreach ($googleFonts as $font)
-      echo "<option value='{$font}'>{$font}</option>\n";
+   $toHtml = function($font) {
+      return "<option value='{$font}'>{$font}</option>";
+      };
+   return implode("\n", array_map($toHtml, $googleFonts));
    }
 
 function importFonts() {
    global $googleFonts;
-   foreach ($googleFonts as $font)
-      echo "@import url(https://fonts.googleapis.com/css?family=" . urlencode($font) . ");";
+   $toHtml = function($font) {
+      $fontParam = urlencode($font);
+      return "@import url(https://fonts.googleapis.com/css?family={$fontParam});";
+      };
+   return implode("\n", array_map($toHtml, $googleFonts));
    }
 
 function displayTitles() {
    global $googleFonts, $dataFolder;
-   $settings = readDb("{$dataFolder}/settings-db.json");
-   $title =     $settings->{"title"};
+   $settings =  readDb("{$dataFolder}/settings-db.json");
+   $title =     $settings->title;
    $titleSize = $settings->{"title-size"};
-   foreach ($googleFonts as $font)
-      echo "<tr><td>{$font}</td><td>" .
-         "<h1 style=\"font-size: {$titleSize}; font-family: '{$font}'\">{$title}</h1></td></tr>";
+   $toHtml = function($font) use ($title, $titleSize) {
+      $style = "\"font-size: {$titleSize}; font-family: '{$font}'\"";
+      return "<tr><td>{$font}</td><td><h1 style={$style}>{$title}</h1></td></tr>";
+      };
+   return implode("\n", array_map($toHtml, $googleFonts));
    }
 
 ?>
