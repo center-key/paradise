@@ -7,11 +7,11 @@
 // REST Web Services
 //
 // Example read resource:
-//    GET/HTTP gallery/console/rest?type=gallery
+//    HTTP GET gallery/console/rest?resource=gallery
 // Update value:
-//    GET/HTTP gallery/console/rest?type=settings&action=update&caption-italic=true
+//    HTTP GET gallery/console/rest?resource=settings&action=update&caption-italic=true
 //
-// Type       Action
+// Resource   Action
 // ---------  ------
 // security   login, create
 // command    process-uploads, generate-gallery
@@ -44,8 +44,9 @@ function restError($code) {
       );
    }
 
-function test() {  //url: http://localhost/paradise-test/gallery/console/rest?type=command&action=test
-   return array("test" => true);
+function test() {
+   // URL: http://localhost/paradise-deploy/gallery/console/rest?resource=command&action=test
+   return array("test" => true, "timestamp" => date("c"));
    }
 
 function runCommand($action) {
@@ -165,22 +166,26 @@ function resource($loggedIn) {
       "account" =>   function($action) { return restRequestAccount($action, $_GET["email"]); },
       "invite" =>    function($action) { return restRequestInvite($action, $_GET["email"]); },
       );
-   $type =   $_GET["type"];
-   $action = $_GET["action"] ?: "get";
-   $_GET["email"] = strtolower($_GET["email"]);
+   $httpMethod = $_SERVER['REQUEST_METHOD'];
+   $name =       $_GET["resource"];
+   $action =     $_GET["action"] ?: "get";
+   $_GET["email"] = strtolower(trim($_GET["email"]));
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
-   if ($type === "security")
-      $resource = restRequestSecurity($action,
-         $_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["invite"]);
+   if ($httpMethod === "POST")
+      $httpBodyRaw = file_get_contents("php://input");
+   if ($httpMethod === "POST")
+      $httpBody = json_decode($httpBodyRaw);
+   if ($name === "security")
+      $resource = restRequestSecurity($action, $httpBody);
    elseif (!$loggedIn)
       $resource = restError(401);
-   elseif ($type === "command")
+   elseif ($name === "command")
       $resource = runCommand($action);
-   elseif (isset($routes[$type]) && $standardAction)
-      $resource = $routes[$type]($action);
+   elseif (isset($routes[$name]) && $standardAction)
+      $resource = $routes[$name]($action);
    else
       $resource = restError(400);
-   logEvent("get-resource", $type, $action, $_GET["id"], !getProperty($resource, "error"));
+   logEvent("rest-resource", $httpMethod, $httpMethod === "POST", $httpBodyRaw, $name, $action, $_GET["id"], !getProperty($resource, "error"));
    return $resource;
    }
 

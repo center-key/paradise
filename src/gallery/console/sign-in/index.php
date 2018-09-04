@@ -18,7 +18,7 @@
 <link rel=stylesheet       href=https://centerkey.com/css/layouts/color-blocks.css>
 <link rel=stylesheet       href=../admin.css>
 </head>
-<body>
+<body data-on-load=admin.login.setup>
 
 <header>
    <aside>
@@ -30,7 +30,7 @@
 
 <main>
    <div>
-      <section class=component-security data-on-load=admin.login.setup>
+      <section class=component-security>
          <h2>
             Authentication
             <i data-icon=info-circle class=external-site
@@ -81,15 +81,16 @@
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
-      Paradise v<?= $version ?><br>
+      Paradise v<?=$version?><br>
       <a href=https://github.com/center-key/paradise/blob/master/src/gallery/license.txt>GPLv3</a>
    </div>
 </footer>
 
+<script src=https://cdn.jsdelivr.net/npm/browser-fetch-json@0.2/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=../admin.js></script>
-<script>window.clientData = <?= appClientData(false) ?>;</script>
+<script>window.clientData = <?=appClientData(false)?>;</script>
 </body>
 </html>

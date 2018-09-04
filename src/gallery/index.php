@@ -55,7 +55,7 @@
          <h3 class=hide-me>The Artist</h3>
          <?=$values->artistPageHtml?>
       </section>
-      <section data-hash=contact>
+      <section data-hash=contact class=external-site>
          <h3>Contact the Artist</h3>
          <form class=send-message>
             <label>
@@ -94,6 +94,7 @@
    <div><?=$settings->footer?></div>
 </footer>
 
+<script src=https://cdn.jsdelivr.net/npm/browser-fetch-json@0.2/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/magnific-popup@1.1/dist/jquery.magnific-popup.min.js></script>

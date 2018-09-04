@@ -90,38 +90,33 @@ library.rest = {
    // Submits REST request and passes response data to the callback
    // Example:
    //    library.rest.get('book', { id: 21, callback: handle });
-   makeUrl: function(resourceType, action, params) {
-      let url = window.location.href.match(/^.*console/)[0] + '/rest/?type=' + resourceType;
+   makeUrl: function(resourceName, action) {
+      let url = window.location.href.match(/^.*console/)[0] + '/rest/?resource=' + resourceName;
       if (action)
          url = url + '&action=' + action;
-      function appendParam(key) { url = url + '&' + key + '=' + encodeURIComponent(params[key]); }
-      if (params)
-         Object.keys(params).forEach(appendParam);
       return url;
       },
-   get: function(resourceType, options) {
-      const url = library.rest.makeUrl(resourceType, options.action, options.params);
-      console.log('get:', url);
+   get: function(resourceName, options) {
+      const url = library.rest.makeUrl(resourceName, options.action);
       function handleResponse(json) {
          if (json.code === 401)
             window.location = '.';
          else if (json.error)
-            console.error(url, json);
+            console.error(json);
          else if (options.callback)
             options.callback(json);
          }
-      return $.getJSON(url, handleResponse);
+      return window.fetchJson.get(url, options.params).then(handleResponse);
       },
-   post: function(resourceType, data, options) {
-      const url = library.rest.makeUrl(resourceType, options.action, options.params);
-      console.log('post:', url);
+   post: function(resourceName, data, options) {
+      const url = library.rest.makeUrl(resourceName, options.action);
       function handleResponse(json) {
          if (json.error)
-            console.error(url, json);
+            console.error(json);
          else if (options.callback)
             options.callback(json);
          }
-      return $.post(url, data, handleResponse, 'json');
+      return window.fetchJson.post(url, data).then(handleResponse);
       }
    };
 

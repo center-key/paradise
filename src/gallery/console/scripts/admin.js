@@ -7,11 +7,12 @@
 
 const admin = {
    setup: function() {
+      window.fetchJson.enableLogger();
       admin.ui.loadSettings();
       admin.ui.loadPortfolio();
       admin.ui.loadAccounts();
-      admin.invites.loadList();
       admin.ui.createUploader();
+      admin.invites.loadList();
       }
    };
 
@@ -48,8 +49,8 @@ admin.ui = {
       },
    saveSettings: function(elem) {
       const item = elem.closest('[data-item-id]');  //workaround
-      if (item.length)                            //workaround
-         item.data().itemId = item.index() + 1;   //workaround
+      if (item.length)                              //workaround
+         item.data().itemId = item.index() + 1;     //workaround
       admin.ui.save(elem, 'settings');
       },
    move: function(elem) {

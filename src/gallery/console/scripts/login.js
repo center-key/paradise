@@ -41,6 +41,7 @@ admin.login = {
          library.rest.post('security', credentials, { action: action, callback: handle });
       },
    setup: function(component) {
+      window.fetchJson.enableLogger();
       const params = dna.browser.getUrlParams();
       component.toggleClass('create', window.clientData.userListEmpty || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
