@@ -206,15 +206,12 @@
          <fieldset>
             <legend>Create account</legend>
             <div class=send-invite>
-               <button data-click=admin.invites.prompt>Send invitation</button>
-               <div>
-                  <label>
-                     <span>Email:</span>
-                     <input type=email data-key-up=admin.invites.validate
-                        placeholder="New user's email address">
-                  </label>
-                  <button data-click=admin.invites.send disabled>Send invitation</button>
-               </div>
+               <label>
+                  <span>Email:</span>
+                  <input type=email data-key-up=admin.invites.validate
+                     placeholder="New user's email address">
+               </label>
+               <button data-click=admin.invites.send disabled>Send invitation</button>
             </div>
          </fieldset>
       </section>

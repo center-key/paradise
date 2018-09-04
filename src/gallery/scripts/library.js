@@ -53,6 +53,16 @@ library.ui = {
       }
    };
 
+library.util = {
+   cleanupEmail: function(email) {
+      // Usage:
+      //    library.util.cleanupEmail(' Lee@Example.Com ') === 'lee@exampe.com';
+      //    library.util.cleanupEmail('bogus@example') === false;
+      email = email && email.replace(/\s/g, '').toLowerCase();
+      return /.+@.+[.].+/.test(email) ? email : false;  //rudimentary format check
+      }
+   };
+
 // Social bookmarking
 library.social = {
    // Usage:

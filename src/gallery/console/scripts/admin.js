@@ -102,35 +102,26 @@ admin.ui = {
 
 admin.invites = {
    elem: {
-      startButton: $('.admin-accounts .send-invite >button'),
-      form:        $('.admin-accounts .send-invite >button+div'),
-      email:       $('.admin-accounts .send-invite >button+div input[type=email]'),
-      sendButton:  $('.admin-accounts .send-invite >button+div button'),
+      email:      $('.admin-accounts .send-invite input[type=email]'),
+      sendButton: $('.admin-accounts .send-invite button'),
       },
-   component: $('.admin-accounts .send-invite'),
-   prompt: function() {
-      dna.ui.slideFadeOut(admin.invites.elem.startButton);
-      dna.ui.slideFadeIn(admin.invites.elem.form);
-      admin.invites.elem.email.focus();
+   validate: function(input) {
+      admin.invites.elem.sendButton.enable(library.util.cleanupEmail(input.val()));
       },
-   validate: function(elem) {
-      const basicEmailPattern = /.+@.+[.].+/;
-      const invalid = !elem.val().match(basicEmailPattern);
-      admin.invites.component.find('div button').prop({ disabled: invalid });
-      },
-   send: function() {
-      admin.invites.component.find('div button').prop({ disabled: true });
+   send: function(button) {
+      button.disable();
+      const email = library.util.cleanupEmail(admin.invites.elem.email.val());
       function handle(data) {
          admin.ui.statusMsg(data.message);
-         dna.ui.slideFadeIn(admin.invites.elem.startButton);
-         dna.ui.slideFadeOut(admin.invites.elem.form);
          admin.invites.loadList();
+         admin.invites.elem.email.focus().val('');
          }
-      const email = admin.invites.component.find('input[type=email]').val();
       library.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
       },
    loadList: function() {
-      function handle(data) { dna.clone('account-invite', data, { empty: true, fade: true }); }
+      function handle(data) {
+         dna.clone('account-invite', data, { empty: true, fade: true });
+         }
       library.rest.get('invite', { action: 'list', callback: handle });
       }
    };
