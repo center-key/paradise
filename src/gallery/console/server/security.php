@@ -131,7 +131,7 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCod
    return $code ? $securityMsgs[$code] : null;
    }
 
-function restRequestSecurity($action, $email, $password, $confirm, $inviteCode) {
+function restRequestSecurity($action, $httpBody) {
    $securityMsgs = array(
       "bad-invite-code" => "Invite code is missing, expired, or invalid.",
       "bad-credentials" => "The email address or password you entered is incorrect.",
@@ -140,9 +140,12 @@ function restRequestSecurity($action, $email, $password, $confirm, $inviteCode) 
       "user-exists" =>     "That email address is already in use.",
       "create-fail" =>     "Cannot create user."
       );
-   $email = strtolower(trim($email));
+   $email =      strtolower(trim($httpBody->email));
+   $password =   $httpBody->password;
+   $confirm =    $httpBody->confirm;
+   $inviteCode = $httpBody->$inviteCode;
    $accountsDb = readAccountsDb();
-   $user = array_key_exists($email, $accountsDb->users) ? $accountsDb->users->{$email} : null;
+   $user =       array_key_exists($email, $accountsDb->users) ? $accountsDb->users->{$email} : null;
    if ($action === "login")
       $msg = verifyPassword($user, $password) ? loginUser($email) : $securityMsgs["bad-credentials"];
    elseif ($action === "create")
