@@ -187,7 +187,7 @@
       </section>
 
       <section class=admin-accounts>
-         <h2>Administrators</h2>
+         <h2>Gallery Administrators</h2>
          <fieldset>
             <legend>Accounts</legend>
             <div>
@@ -213,6 +213,23 @@
                </label>
                <button data-click=admin.invites.send disabled>Send invitation</button>
             </div>
+         </fieldset>
+      </section>
+
+      <section class=admin-accounts>
+         <h2>Gallery Backup</h2>
+         <fieldset>
+            <legend>Create backup</legend>
+            <div>
+               <button data-click=admin.backups.create>Do backup now</button>
+            </div>
+         </fieldset>
+         <fieldset>
+            <legend>Backups for download</legend>
+            <div class=external-site>
+               <div id=backup-file class=dna-template><a href=~~url~~>~~filename~~</a></div>
+            </div>
+            <div data-placeholder=backup-file>No backups have been created</div>
          </fieldset>
       </section>
 

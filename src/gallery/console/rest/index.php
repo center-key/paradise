@@ -20,6 +20,7 @@
 // portfolio  get, update, delete, list
 // account    list
 // invite     list, create
+// backup     list, create
 //
 // Note:
 //    Query parameters are used instead of path parameters to avoid the need for
@@ -33,6 +34,7 @@ function restError($code) {
    $messages = array(
       400 => "Invalid parameters",
       401 => "Unauthorized access",
+      402 => "Missing in action",
       404 => "Resource not found",
       500 => "Unknown error",
       501 => "Not implemented"
@@ -42,6 +44,10 @@ function restError($code) {
       "code"    => $code,
       "message" => $messages[$code]
       );
+   }
+
+function runRoute($routes, $action) {
+   return isset($routes[$action]) ? $routes[$action]() : restError(402);
    }
 
 function test() {
@@ -144,18 +150,64 @@ function restRequestGallery() {
    }
 
 function restRequestPortfolio($action, $id) {
-   $actions = array(
+   $routes = array(
       "create" => function($id) { return restError(400); },
       "get" =>    function($id) { return restError(501); },
       "update" => function($id) { return updatePortfolio($id); },
       "delete" => function($id) { return deletePortfolio($id); },
       "list" =>   function($id) { return readPortfolioDb(); }
       );
-   return $actions[$action]($id);
+   return $routes[$action]($id);
    }
 
 function restRequestAccount($action, $email) {
    return array_keys(get_object_vars(readAccountsDb()->users));
+   }
+
+function restRequestBackup($action) {
+   function actionCreate() {
+      global $backupsFolder;
+      $start = timeMillis();
+      $settings = readSettingsDb();
+      $accounts = readAccountsDb();
+      function getInvitee($invite) { return $invite->to . ($invite->accepted ? " [accepted]" : ""); }
+      $admins =   implode(PHP_EOL, array_keys(get_object_vars($accounts->users)));
+      $invitees = implode(PHP_EOL, array_map("getInvitee", get_object_vars($accounts->invites)));
+      $userList = date("c") . "\n\nAdministrators:\n" . $admins . "\n\nInvitations:\n" . $invitees;
+      $titleWord = strtolower(explode(" ", trim($settings->title))[0]);
+      $filename = $titleWord . "-" . date("Y-m-d-Hi") . ".zip";
+      logEvent("backup-start", $filename);
+      $url = "../~data~/" . basename($backupsFolder) . "/" . $filename;
+      $zip = new ZipArchive;
+      if ($zip->open("{$backupsFolder}/{$filename}", ZipArchive::CREATE) === TRUE) {
+         $zip->addGlob("../../~data~/*.css");
+         $zip->addGlob("../../~data~/*.json");
+         $zip->addGlob("../../~data~/*.html");
+         $zip->addGlob("../../~data~/portfolio/*.json");
+         $zip->addGlob("../../~data~/portfolio/*-small.png");
+         $zip->addGlob("../../~data~/portfolio/*-large.jpg");
+         $zip->deleteName("../../~data~/index.html");
+         $zip->addFromString("users.txt", $userList);
+         $count = $zip->numFiles;
+         $zip->close();
+         }
+      $milliseconds = timeMillis() - $start;
+      logEvent("backup-end", $filename, "files: " . $count, "milliseconds: " . $milliseconds);
+      return array("filename" => $filename, "url" => $url, "seconds" => $milliseconds / 1000);
+      }
+   function actionList() {
+      global $backupsFolder;
+      $toObj = function($file) {
+         $url = "../~data~/" . basename(dirname($file)) . "/" . basename($file);
+         return array("filename" => basename($file), "url" => $url);
+         };
+      return array_reverse(array_map($toObj, glob($backupsFolder . "/*.zip")));
+      }
+   $routes = array(
+      "create" => actionCreate,
+      "list" =>   actionList,
+      );
+   return runRoute($routes, $action);
    }
 
 function resource($loggedIn) {
@@ -165,6 +217,7 @@ function resource($loggedIn) {
       "portfolio" => function($action) { return restRequestPortfolio($action, $_GET["id"]); },
       "account" =>   function($action) { return restRequestAccount($action, $_GET["email"]); },
       "invite" =>    function($action) { return restRequestInvite($action, $_GET["email"]); },
+      "backup" =>    function($action) { return restRequestBackup($action); },
       );
    $httpMethod = $_SERVER['REQUEST_METHOD'];
    $name =       $_GET["resource"];

@@ -13,6 +13,7 @@ const admin = {
       admin.ui.loadAccounts();
       admin.ui.createUploader();
       admin.invites.loadList();
+      admin.backups.loadList();
       }
    };
 
@@ -123,5 +124,24 @@ admin.invites = {
          dna.clone('account-invite', data, { empty: true, fade: true });
          }
       library.rest.get('invite', { action: 'list', callback: handle });
+      }
+   };
+
+admin.backups = {
+   create: function(button) {
+      button.disable();
+      admin.ui.statusMsg('Creating backup...');
+      function handle(data) {
+         admin.ui.statusMsg('Backup "' + data.filename + '" created in ' + data.seconds + ' seconds');
+         dna.clone('backup-file', data, { top: true, fade: true });
+         button.enable();
+         }
+      library.rest.get('backup', { action: 'create', callback: handle });
+      },
+   loadList: function() {
+      function handle(data) {
+         dna.clone('backup-file', data);
+         }
+      library.rest.get('backup', { action: 'list', callback: handle });
       }
    };

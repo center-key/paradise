@@ -29,25 +29,14 @@ $defaultAccountsDb = array(
    "invites" => json_decode("{}")   //inviteCode -> from, to, expires (epoch), accepted (epoch)
    );
 
-function workaroundToUpgradeToNewSecureFolder($dataFolder, $secureFolder) {
-   $fileSearch = glob("{$dataFolder}/key-*.txt");
-   if (count($fileSearch) !== 0) {
-      preg_match("/key-(.*)[.]txt/", $fileSearch[0], $matches);
-      $installKey = $matches[1];
-      rename("{$dataFolder}/accounts-db-{$installKey}.json", "{$secureFolder}/accounts-db.json");
-      unlink("{$dataFolder}/key-{$installKey}.txt");
-      }
-   }
-
-function setupSecureFolder($dataFolder) {
-   $pattern = "{$dataFolder}/secure-*";
-   $fileSearch = glob($pattern);
+function setupHiddenFolder($parentFolder, $name) {
+   $root = "{$parentFolder}/{$name}-";
+   $fileSearch = glob($root . "*");
    if (count($fileSearch) === 0) {
-      if (!mkdir("{$dataFolder}/secure-" . mt_rand() . mt_rand() . mt_rand()))
-         exit("Unable to create secure data folder, check permissions in: {$dataFolder}");
+      if (!mkdir($root . mt_rand() . mt_rand() . mt_rand()))
+         exit("Unable to create {$name} folder, check permissions in: {$parentFolder}");
       $fileSearch = glob($pattern);
       }
-   workaroundToUpgradeToNewSecureFolder($dataFolder, $fileSearch[0]);
    return $fileSearch[0];
    }
 
@@ -81,7 +70,8 @@ function setupCustomPage($dataFolder, $pageName) {
 initializeFolder($dataFolder, true);
 $uploadsFolder =   initializeFolder("{$dataFolder}/uploads", false);
 $portfolioFolder = initializeFolder("{$dataFolder}/portfolio", true);
-$secureFolder =    setupSecureFolder($dataFolder);
+$secureFolder =    setupHiddenFolder($dataFolder, "secure");
+$backupsFolder =   setupHiddenFolder($dataFolder, "backups");
 $accountsDbFile =  "{$secureFolder}/accounts-db.json";
 $settingsDbFile =  "{$dataFolder}/settings-db.json";
 $galleryDbFile =   "{$dataFolder}/gallery-db.json";

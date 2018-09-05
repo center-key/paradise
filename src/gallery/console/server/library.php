@@ -12,6 +12,10 @@ $dataFolder = str_replace("console/server", "~data~", __DIR__);
 
 date_default_timezone_set("UTC");
 
+function timeMillis() {
+   return intval(microtime(TRUE) * 1000);
+   }
+
 function getGalleryUrl() {
    $protocol = $_SERVER["HTTPS"] === "on" ? "https://" : "http://";
    $ignore = array("/console/rest/index.php");
