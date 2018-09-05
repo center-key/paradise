@@ -197,11 +197,15 @@ function restRequestBackup($action) {
       }
    function actionList() {
       global $backupsFolder;
+      $maxNumBackups = 5;
+      $files = array_reverse(glob($backupsFolder . "/*.zip"));
+      if (count($files) > $maxNumBackups)
+         unlink(array_pop($files));
       $toObj = function($file) {
          $url = "../~data~/" . basename(dirname($file)) . "/" . basename($file);
          return array("filename" => basename($file), "url" => $url);
          };
-      return array_reverse(array_map($toObj, glob($backupsFolder . "/*.zip")));
+      return array_map($toObj, $files);
       }
    $routes = array(
       "create" => actionCreate,
