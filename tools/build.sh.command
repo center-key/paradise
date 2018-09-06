@@ -53,7 +53,7 @@ unzipRelease() {
    echo "*** Unzip Release"
    cd $deployFolder
    pwd
-   unzip -o $projectHome/releases/paradise-install-files
+   unzip -o $projectHome/releases/paradise-v*.zip
    chmod o+rwx gallery
    echo
    }

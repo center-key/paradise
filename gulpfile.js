@@ -1,6 +1,6 @@
-// Paradise
+// Paradise PHP Photo Gallery
 
-// Imported libraries
+// Imports
 const babel =            require('gulp-babel');
 const concat =           require('gulp-concat');
 const del =              require('del');
@@ -12,31 +12,29 @@ const mergeStream =      require('merge-stream');
 const postCss =          require('gulp-postcss');
 const postCssNano =      require('cssnano');
 const postCssPresetEnv = require('postcss-preset-env');
-const rename =           require('gulp-rename');
 const replace =          require('gulp-replace');
 const size =             require('gulp-size');
 const zip =              require('gulp-zip');
 
-// Setup values
+// Setup
 const pkg = require('./package.json');
 const banner = `${pkg.name} v${pkg.version} ~~ ${pkg.homepage} ~~ ${pkg.license} License`;
 const postCssPlugins = [postCssPresetEnv(), postCssNano({ autoprefixer: false })];
 const targetFolder = 'target/gallery';
 
-// Relase help
+// Help
 const releaseHelp = [
    'To release this version, commit and push the two ".zip" files with the comment:',
    '   Release v' + pkg.version,
    'After the release is done, increment version in "package.json" and then commit and push:',
    '   Next release'
    ];
-function printHelpLine(line) { console.log(line); }
-function printHelp(helpLines) { helpLines.forEach(printHelpLine); }
+function printHelp(helpLines) { console.log(helpLines.join('\n')); }
 
 // Tasks
 const task = {
    cleanTarget: function() {
-      return del(targetFolder);
+      return del([targetFolder, 'releases/paradise-*.zip']);
       },
    buildWebApp: function() {
       function buildPhp() {
@@ -87,11 +85,10 @@ const task = {
          copyLicense()
          );
       },
-   makeZip: function() {
+   makeInstallZip: function() {
       return gulp.src('target/**/*')
-         .pipe(zip('paradise-install-files.zip'))
+         .pipe(zip('paradise-v' + pkg.version + '.zip'))
          .pipe(gulp.dest('releases'))
-         .pipe(rename('paradise-v' + pkg.version + '.zip'))
          .pipe(gulp.dest('releases/previous'))
          .pipe(size({ showFiles: true }));
       }
@@ -100,4 +97,4 @@ const task = {
 // Gulp
 gulp.task('clean', task.cleanTarget);
 gulp.task('build', task.buildWebApp);
-gulp.task('zip',   task.makeZip);
+gulp.task('zip',   task.makeInstallZip);
