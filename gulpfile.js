@@ -17,10 +17,10 @@ const size =             require('gulp-size');
 const zip =              require('gulp-zip');
 
 // Setup
-const pkg = require('./package.json');
-const banner = `${pkg.name} v${pkg.version} ~~ ${pkg.homepage} ~~ ${pkg.license} License`;
+const pkg =            require('./package.json');
+const banner =         `${pkg.name} v${pkg.version} ~~ ${pkg.homepage} ~~ ${pkg.license} License`;
 const postCssPlugins = [postCssPresetEnv(), postCssNano({ autoprefixer: false })];
-const targetFolder = 'target/gallery';
+const targetFolder =   'target/gallery';
 
 // Help
 const releaseHelp = [

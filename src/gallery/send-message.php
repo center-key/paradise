@@ -19,7 +19,7 @@ $message = array(
    "Email: " .   $_POST["email"],
    "Message: " . $_POST["message"],
    "-----------------------------------");
-$body = htmlspecialchars(implode("\n", $message), ENT_NOQUOTES);
+$body = htmlspecialchars(implode(PHP_EOL, $message), ENT_NOQUOTES);
 
 // Send message
 mail($settings->email, $subject, $body, $from);

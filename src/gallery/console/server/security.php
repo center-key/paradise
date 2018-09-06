@@ -17,7 +17,7 @@ session_start();
 require "library.php";
 require "startup.php";
 $loginMsgFile = __DIR__ . "/../../~data~/login-message.html";
-$loginMsg = "<!--\n<section>\n<h3>Custom message</h3>\n<p>Text goes here.</p>\n</section>\n-->\n";
+$loginMsg = "<!--\n<section>\n   <h2>Custom message</h2>\n   <p>Text goes here.</p>\n</section>\n-->\n";
 
 function redirectToPage($page) {
    logEvent("page-redirect", $page, $_SERVER["REQUEST_URI"]);

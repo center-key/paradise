@@ -33,6 +33,9 @@ analyzeAndBuild() {
    cd $projectHome
    pwd
    find src -name "*.php" -exec php --syntax-check {} \;
+   echo
+   echo "Recent releases:"
+   git ls-files releases/previous/*.zip | tail -5
    npm test
    echo
    }
