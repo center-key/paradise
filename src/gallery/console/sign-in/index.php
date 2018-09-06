@@ -18,7 +18,7 @@
 <link rel=stylesheet       href=https://centerkey.com/css/layouts/color-blocks.css>
 <link rel=stylesheet       href=../admin.css>
 </head>
-<body data-on-load=admin.login.setup>
+<body>
 
 <header>
    <aside>
@@ -30,7 +30,7 @@
 
 <main>
    <div>
-      <section class=component-security>
+      <section class=component-security data-on-load=admin.login.setup>
          <h2>
             Authentication
             <i data-icon=info-circle class=external-site

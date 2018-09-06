@@ -143,12 +143,13 @@ function restRequestSecurity($action, $httpBody) {
    $email =      strtolower(trim($httpBody->email));
    $password =   $httpBody->password;
    $confirm =    $httpBody->confirm;
+   $inviteCode = $httpBody->invite;
    $accountsDb = readAccountsDb();
    $user =       array_key_exists($email, $accountsDb->users) ? $accountsDb->users->{$email} : null;
    if ($action === "login")
       $msg = verifyPassword($user, $password) ? loginUser($email) : $securityMsgs["bad-credentials"];
    elseif ($action === "create")
-      $msg = validateCreateUser($accountsDb, $email, $password, $confirm, $httpBody->$inviteCode, $securityMsgs);
+      $msg = validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode, $securityMsgs);
    else
       $msg = "Invalid request.";
    $success = is_null($msg);
