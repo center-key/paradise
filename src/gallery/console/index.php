@@ -247,7 +247,7 @@
    </div>
    <div>
       Paradise v<?=$version?><br>
-      <a href=https://github.com/center-key/paradise/blob/master/src/gallery/license.txt>GPLv3</a>
+      <a href=https://github.com/center-key/paradise/blob/master/LICENSE.txt>GPLv3</a>
    </div>
 </footer>
 
