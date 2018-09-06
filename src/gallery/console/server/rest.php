@@ -29,7 +29,7 @@ function runRoute($routes, $action) {
 
 function test() {
    // URL: http://localhost/paradise-deploy/gallery/console/rest?resource=command&action=test
-   $data = date("c");
+   $data = array("timestamp" => date("c"), "read-only" => readOnlyMode());
    return array("test" => true, "data" => $data);
    }
 
@@ -111,7 +111,7 @@ function updatePortfolio($id) {
 
 function deletePortfolio($id) {
    $resource = readPortfolioImageDb($id);
-   if (!$_SESSION["read-only-user"] && $resource) {
+   if (!readOnlyMode() && $resource) {
       deleteImages($id);
       generateGalleryDb();
       }
@@ -155,7 +155,12 @@ function restRequestBackup($action) {
       logEvent("backup-start", $filename);
       $url = "../~data~/" . basename($backupsFolder) . "/" . $filename;
       $zip = new ZipArchive;
-      if ($zip->open("{$backupsFolder}/{$filename}", ZipArchive::CREATE) === TRUE) {
+      if (readOnlyMode()) {
+         $url = ".";
+         $count = 10;
+         sleep(2);
+         }
+      elseif ($zip->open("{$backupsFolder}/{$filename}", ZipArchive::CREATE) === TRUE) {
          $zip->addGlob("../../~data~/*.css");
          $zip->addGlob("../../~data~/*.json");
          $zip->addGlob("../../~data~/*.html");
@@ -186,6 +191,8 @@ function restRequestBackup($action) {
          $url = "../~data~/" . basename(dirname($file)) . "/" . basename($file);
          return array("filename" => basename($file), "url" => $url);
          };
+      if (readOnlyMode())
+         $files = array();
       return array_map("toObjBackup", $files);
       }
    $routes = array(
