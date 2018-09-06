@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////
 
 // User logout
-$noAuth = true;
+$authRequired = false;
 require "../server/security.php";
 logEvent("user-logout", session_id());
 session_destroy();

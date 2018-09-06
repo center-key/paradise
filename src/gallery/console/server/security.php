@@ -8,11 +8,12 @@
 // Redriects browser to Sign In page if user is not authenticted.
 //
 // Put at first line of PHP file:
-//    <?php $noAuth = true; $redirectAuth = "."; require "server/security.php";
-// $noAuth (optional): If true, redirect will not happen but $loggedIn will be set to true or false.
+//    <?php $authRequired = false; $redirectAuth = "."; require "server/security.php";
+// $authRequired (optional): If false, redirect will not happen but $loggedIn will be set to true or false.
 // $redirectAuth (optional): If set and user is authorized, redirects to named page.
 
 $sessionTimout =  3600;  //60x60 seconds --> 1 hour
+$authRequired = isset($authRequired) ? $authRequired : true;
 session_start();
 require "library.php";
 require "startup.php";
@@ -166,7 +167,7 @@ if ($loggedIn)
    $_SESSION["active"] = time();
 if ($loggedIn && $redirectAuth)
    redirectToPage($redirectAuth);
-elseif (!$loggedIn && !$noAuth)
+elseif (!$loggedIn && $authRequired)
    redirectToPage("sign-in");
 initializeFile($loginMsgFile, $loginMsg);
 ?>

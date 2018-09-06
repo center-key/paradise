@@ -26,7 +26,7 @@
 //    Query parameters are used instead of path parameters to avoid the need for
 //    URL (.htaccess) configuration.
 
-$noAuth = true;
+$authRequired = false;
 require "../server/security.php";
 require "../server/image-processing.php";
 require "../server/rest.php";
