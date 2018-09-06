@@ -52,7 +52,8 @@ function runRoute($routes, $action) {
 
 function test() {
    // URL: http://localhost/paradise-deploy/gallery/console/rest?resource=command&action=test
-   return array("test" => true, "timestamp" => date("c"));
+   $data = date("c");
+   return array("test" => true, "data" => $data);
    }
 
 function runCommand($action) {
@@ -68,8 +69,7 @@ function runCommand($action) {
    }
 
 function fieldValue($value, $type) {
-   $value = iconv("UTF-8", "UTF-8//IGNORE", $value);
-   $value = str_replace("<", "&lt;", str_replace(">", "&gt;", $value));
+   $value = str_replace("<", "&lt;", str_replace(">", "&gt;", trim($value)));
    if ($type === "boolean")
       $value = $value === "true";
    elseif ($type === "integer")
@@ -174,8 +174,7 @@ function restRequestBackup($action) {
       $admins =   implode(PHP_EOL, array_keys(get_object_vars($accounts->users)));
       $invitees = implode(PHP_EOL, array_map("getInvitee", get_object_vars($accounts->invites)));
       $userList = date("c") . "\n\nAdministrators:\n" . $admins . "\n\nInvitations:\n" . $invitees;
-      $titleWord = strtolower(explode(" ", trim($settings->title))[0]);
-      $filename = $titleWord . "-" . date("Y-m-d-Hi") . ".zip";
+      $filename = fileSysFriendly($settings->title) . "-" . date("Y-m-d-Hi") . ".zip";
       logEvent("backup-start", $filename);
       $url = "../~data~/" . basename($backupsFolder) . "/" . $filename;
       $zip = new ZipArchive;
@@ -198,7 +197,12 @@ function restRequestBackup($action) {
    function actionList() {
       global $backupsFolder;
       $maxNumBackups = 5;
-      $files = array_reverse(glob($backupsFolder . "/*.zip"));
+      $files = glob($backupsFolder . "/*.zip");
+      function getTimestamp($filename) { return substr($filename, -19, 15); }  //test-2018-09-05-0758.zip
+      function newest($filenameA, $filenameB) {
+         return strcmp(getTimestamp($filenameB), getTimestamp($filenameA));
+         }
+      usort($files, "newest");
       if (count($files) > $maxNumBackups)
          unlink(array_pop($files));
       $toObj = function($file) {
@@ -229,9 +233,7 @@ function resource($loggedIn) {
    $_GET["email"] = strtolower(trim($_GET["email"]));
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($httpMethod === "POST")
-      $httpBodyRaw = file_get_contents("php://input");
-   if ($httpMethod === "POST")
-      $httpBody = json_decode($httpBodyRaw);
+      $httpBody = json_decode(file_get_contents("php://input"));
    if ($name === "security")
       $resource = restRequestSecurity($action, $httpBody);
    elseif (!$loggedIn)

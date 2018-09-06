@@ -12,14 +12,20 @@ $dataFolder = str_replace("console/server", "~data~", __DIR__);
 
 date_default_timezone_set("UTC");
 
-function timeMillis() {
-   return intval(microtime(TRUE) * 1000);
-   }
-
 function getGalleryUrl() {
    $protocol = $_SERVER["HTTPS"] === "on" ? "https://" : "http://";
    $ignore = array("/console/rest/index.php");
    return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
+   }
+
+function timeMillis() {
+   return intval(microtime(TRUE) * 1000);
+   }
+
+function fileSysFriendly($string) {
+   setlocale(LC_ALL, "en_US");
+   $asciiLowercase = strtolower(iconv("UTF-8", "ASCII//TRANSLIT", trim($string)));
+   return preg_replace("/\s.*|&.t;|[^a-z0-9_-]/", "", $asciiLowercase);
    }
 
 function getProperty($map, $key) {
