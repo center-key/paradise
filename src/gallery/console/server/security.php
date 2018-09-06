@@ -98,7 +98,7 @@ function displayDate($invite) {
 function restRequestInvite($action, $email) {
    if ($action === "create")
       $resource = validEmailFormat($email) ? sendAccountInvite($email) : restError(404);
-   elseif ($_SESSION["read-only-user"])
+   elseif (readOnlyMode())
       $resource = array(array("to" => "lee@example.com", "date" => date("Y-m-d")));
    else
       $resource = array_values(array_map("displayDate",
@@ -160,6 +160,10 @@ function restRequestSecurity($action, $httpBody) {
       "email" =>         $email,
       "message" =>       $success ? "Success." : $msg
       );
+   }
+
+function readOnlyMode() {
+   return isset($_SESSION["read-only-user"]) ? $_SESSION["read-only-user"] : true;
    }
 
 $loggedIn = isset($_SESSION["user"]) && time() < $_SESSION["active"] + $sessionTimout && userEnabled();

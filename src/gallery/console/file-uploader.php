@@ -33,7 +33,7 @@ function upload($uploadFolder) {
    }
 
 function readOnlyResponse() { return array("success" => true, "type" => "simulated"); }
-$result = $_SESSION["read-only-user"] ? readOnlyResponse() : upload($uploadFolder);
+$result = readOnlyMode() ? readOnlyResponse() : upload($uploadFolder);
 logEvent("file-upload", $result["success"], $uploadFolder, $result);
 httpJsonResponse($result);
 ?>

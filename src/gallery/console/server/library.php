@@ -68,7 +68,7 @@ function readDb($dbFilename) {
    }
 
 function saveDb($dbFilename, $db) {
-   if (!$_SESSION["read-only-user"] && !file_put_contents($dbFilename, json_encode($db)))
+   if (!readOnlyMode() && !file_put_contents($dbFilename, json_encode($db)))
       exit("Error saving database: {$dbFilename}");
    return $db;
    }
@@ -208,7 +208,7 @@ function finishSendEmail($sendTo, $subjectLine, $messageLines) {
    $messageLines[] = "";
    if (isReadOnlyExampleEmailAddress($sendTo))
       $sendTo = $sendFrom;
-   return $_SESSION["read-only-user"] ||
+   return readOnlyMode() ||
       mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
    }
 
