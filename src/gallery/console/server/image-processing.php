@@ -6,8 +6,8 @@
 
 // Image processing library
 
-$thumbHeight =    150;
-$fullWidthMax =  1600;
+$thumbHeight =    300;
+$fullWidthMax =  1800;
 $fullHeightMax = 1200;
 
 function getNextImageId() {
