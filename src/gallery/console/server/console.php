@@ -32,31 +32,32 @@ $googleFonts = array(  //see https://fonts.google.com
 
 function displayFontOptions() {
    global $googleFonts;
-   $toHtml = function($font) {
+   function toHtmlOption($font) {
       return "<option value='{$font}'>{$font}</option>";
       };
-   return implode("\n", array_map($toHtml, $googleFonts));
+   return implode(PHP_EOL, array_map("toHtmlOption", $googleFonts));
    }
 
 function importFonts() {
    global $googleFonts;
-   $toHtml = function($font) {
+   function toHtmlImport($font) {
       $fontParam = urlencode($font);
       return "@import url(https://fonts.googleapis.com/css?family={$fontParam});";
       };
-   return implode("\n", array_map($toHtml, $googleFonts));
+   return implode(PHP_EOL, array_map("toHtmlImport", $googleFonts));
    }
 
 function displayTitles() {
-   global $googleFonts, $dataFolder;
-   $settings =  readDb("{$dataFolder}/settings-db.json");
-   $title =     $settings->title;
-   $titleSize = $settings->{"title-size"};
-   $toHtml = function($font) use ($title, $titleSize) {
+   global $googleFonts, $dataFolder, $settings;
+   $settings = readDb("{$dataFolder}/settings-db.json");
+   function toHtmlRow($font) {
+      global $settings;
+      $title =     $settings->title;
+      $titleSize = $settings->{"title-size"};
       $style = "\"font-size: {$titleSize}; font-family: '{$font}'\"";
       return "<tr><td>{$font}</td><td><h1 style={$style}>{$title}</h1></td></tr>";
       };
-   return implode("\n", array_map($toHtml, $googleFonts));
+   return implode(PHP_EOL, array_map("toHtmlRow", $googleFonts));
    }
 
 ?>

@@ -26,7 +26,7 @@ function styleClasses($settings) {
    }
 
 function getImagesHtml($gallery) {
-   $toImageHtml = function($image) {
+   function toImageHtml($image) {
       $badge = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
       $imageTitle =
          "<span class=image-caption>{$image->caption}</span>" .
@@ -44,7 +44,7 @@ function getImagesHtml($gallery) {
             </figcaption>
          </figure>";
       };
-   $imagesHtml = implode("\n", array_map($toImageHtml, $gallery));
+   $imagesHtml = implode(PHP_EOL, array_map("toImageHtml", $gallery));
    return empty($gallery) ? "<h3>Gallery is empty</h3>" : $imagesHtml;
    }
 

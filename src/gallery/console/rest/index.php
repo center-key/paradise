@@ -205,11 +205,11 @@ function restRequestBackup($action) {
       usort($files, "newest");
       if (count($files) > $maxNumBackups)
          unlink(array_pop($files));
-      $toObj = function($file) {
+      function toObjBackup($file) {
          $url = "../~data~/" . basename(dirname($file)) . "/" . basename($file);
          return array("filename" => basename($file), "url" => $url);
          };
-      return array_map($toObj, $files);
+      return array_map("toObjBackup", $files);
       }
    $routes = array(
       "create" => actionCreate,
