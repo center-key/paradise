@@ -202,19 +202,22 @@ function restRequestBackup($action) {
    return runRoute($routes, $action);
    }
 
+function getEmailParam() {
+   return isset($_GET["email"]) ? strtolower(trim($_GET["email"])) : "";
+   }
+
 function resource($loggedIn) {
    $routes = array(
       "settings" =>  function($action) { return restRequestSettings($action); },
       "gallery" =>   function($action) { return restRequestGallery(); },
       "portfolio" => function($action) { return restRequestPortfolio($action, $_GET["id"]); },
-      "account" =>   function($action) { return restRequestAccount($action, $_GET["email"]); },
-      "invite" =>    function($action) { return restRequestInvite($action, $_GET["email"]); },
+      "account" =>   function($action) { return restRequestAccount($action, getEmailParam()); },
+      "invite" =>    function($action) { return restRequestInvite($action, getEmailParam()); },
       "backup" =>    function($action) { return restRequestBackup($action); },
       );
    $httpMethod = $_SERVER['REQUEST_METHOD'];
    $name =       $_GET["resource"];
    $action =     $_GET["action"] ?: "get";
-   $_GET["email"] = strtolower(trim($_GET["email"]));
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($httpMethod === "POST")
       $httpBody = json_decode(file_get_contents("php://input"));
