@@ -31,7 +31,8 @@ $defaultAccountsDb = array(
 
 function setupHiddenFolder($parentFolder, $name) {
    $root = "{$parentFolder}/{$name}-";
-   $fileSearch = glob($root . "*");
+   $pattern = $root . "*";
+   $fileSearch = glob($pattern);
    if (count($fileSearch) === 0) {
       if (!mkdir($root . mt_rand() . mt_rand() . mt_rand()))
          exit("Unable to create {$name} folder, check permissions in: {$parentFolder}");
