@@ -196,8 +196,8 @@ function restRequestBackup($action) {
       return array_map("toObjBackup", $files);
       }
    $routes = array(
-      "create" => actionCreate,
-      "list" =>   actionList,
+      "create" => function() { return actionCreate(); },
+      "list" =>   function() { return actionList(); },
       );
    return runRoute($routes, $action);
    }
