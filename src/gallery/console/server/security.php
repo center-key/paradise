@@ -14,6 +14,7 @@
 
 $sessionTimout =  3600;  //60x60 seconds --> 1 hour
 $authRequired = isset($authRequired) ? $authRequired : true;
+$redirectAuth = isset($redirectAuth) ? $redirectAuth : null;
 session_start();
 require "library.php";
 require "startup.php";
@@ -26,8 +27,13 @@ function redirectToPage($page) {
    exit();
    }
 
+function getCurrentUser() {
+   return isset($_SESSION["user"]) ? $_SESSION["user"] : null;
+   }
+
 function userEnabled() {
-   return readAccountsDb()->users->{$_SESSION["user"]}->enabled;  //TODO: optimize to prevent re-reading db later
+   $user = getCurrentUser();
+   return readAccountsDb()->users->$user->enabled;
    }
 
 function calculateHash($user, $password) {
@@ -60,7 +66,7 @@ function createUser($accountsDb, $email, $password) {
 function sendAccountInvite($email) {
    $daysValid = 3;
    $invite = array(
-      "from" =>     $_SESSION["user"],
+      "from" =>     getCurrentUser(),
       "to" =>       $email,
       "accepted" => false,
       "expires" =>  time() + $daysValid * (24 * 60 * 60)
@@ -166,7 +172,7 @@ function readOnlyMode() {
    return isset($_SESSION["read-only-user"]) ? $_SESSION["read-only-user"] : true;
    }
 
-$loggedIn = isset($_SESSION["user"]) && time() < $_SESSION["active"] + $sessionTimout && userEnabled();
+$loggedIn = getCurrentUser() && time() < $_SESSION["active"] + $sessionTimout && userEnabled();
 if ($loggedIn)
    $_SESSION["active"] = time();
 if ($loggedIn && $redirectAuth)

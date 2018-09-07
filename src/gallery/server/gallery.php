@@ -28,15 +28,15 @@ function styleClasses($settings) {
 
 function getImagesHtml($gallery) {
    function toImageHtml($image) {
-      $badge = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
-      $imageTitle =
+      $badgeHtml = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
+      $imageTitleHtml =
          "<span class=image-caption>{$image->caption}</span>" .
          "<span class=image-description>{$image->description}</span>";
       return "
          <figure>
-            {$badge}
+            {$badgeHtml}
             <a href=~data~/portfolio/{$image->id}-large.jpg
-               data-title='{$imageTitle}'>
+               data-title='{$imageTitleHtml}'>
                <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail>
             </a>
             <figcaption>

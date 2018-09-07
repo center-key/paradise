@@ -140,7 +140,7 @@ function convert($imageDb) {
       "code" =>        toUriCode($imageDb->caption),
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
-      "badge" =>       $imageDb->badge,
+      "badge" =>       isset($imageDb->badge) ? $imageDb->badge : "",
       );
    }
 function generateGalleryDb() {
@@ -179,7 +179,7 @@ function logEvent() {  //any number of parameters to log
    $logFilename =     "{$secureFolder}/events.log";
    $archiveFilename = "{$secureFolder}/events-archive.log";
    $milliseconds = substr(microtime(), 2, 3);
-   $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg($_SESSION["user"]));
+   $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg(getCurrentUser()));
    foreach (func_get_args() as $msg) {
       $event[] = $delimiter;
       $event[] = formatMsg($msg);
@@ -202,15 +202,14 @@ function isReadOnlyExampleEmailAddress($email) {
    }
 
 function finishSendEmail($sendTo, $subjectLine, $messageLines) {
-   $sendFrom = $_SESSION["user"];
    $subjectLine = "Paradise PHP Photo Gallery - {$subjectLine}";
    $messageLines[] = "";
    $messageLines[] = "- Paradise";
    $messageLines[] = "";
    if (isReadOnlyExampleEmailAddress($sendTo))
-      $sendTo = $sendFrom;
+      $sendTo = getCurrentUser();
    return readOnlyMode() ||
-      mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: $sendFrom");
+      mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: " . getCurrentUser());
    }
 
 function sendEmail($sendTo, $subjectLine, $messageLines) {
@@ -227,7 +226,7 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
       "This is an informational message only -- no action is required on your part.",
       );
    if ($success)
-      finishSendEmail($_SESSION["user"], $confirmationSubject, $confirmationLines);
+      finishSendEmail(getCurrentUser(), $confirmationSubject, $confirmationLines);
    return $success;
    }
 

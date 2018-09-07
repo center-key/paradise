@@ -56,7 +56,7 @@ function fieldValue($value, $type) {
 
 function updateItem($resource, $itemType) {
    if ($itemType === "page") {
-      $item = $resource->pages[fieldValue($_GET["id"], "integer") - 1];
+      $item = $resource->pages[fieldValue(getIdParam(), "integer") - 1];
       if (isset($_GET["title"]))
          $item->title = fieldValue($_GET["title"], "string");
       if (isset($_GET["show"]))
@@ -202,6 +202,10 @@ function restRequestBackup($action) {
    return runRoute($routes, $action);
    }
 
+function getIdParam() {
+   return isset($_GET["id"]) ? strtolower(trim($_GET["id"])) : "";
+   }
+
 function getEmailParam() {
    return isset($_GET["email"]) ? strtolower(trim($_GET["email"])) : "";
    }
@@ -210,14 +214,14 @@ function resource($loggedIn) {
    $routes = array(
       "settings" =>  function($action) { return restRequestSettings($action); },
       "gallery" =>   function($action) { return restRequestGallery(); },
-      "portfolio" => function($action) { return restRequestPortfolio($action, $_GET["id"]); },
+      "portfolio" => function($action) { return restRequestPortfolio($action, getIdParam()); },
       "account" =>   function($action) { return restRequestAccount($action, getEmailParam()); },
       "invite" =>    function($action) { return restRequestInvite($action, getEmailParam()); },
       "backup" =>    function($action) { return restRequestBackup($action); },
       );
    $httpMethod = $_SERVER['REQUEST_METHOD'];
    $name =       $_GET["resource"];
-   $action =     $_GET["action"] ?: "get";
+   $action =     isset($_GET["action"]) ? $_GET["action"] : "get";
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($httpMethod === "POST")
       $httpBody = json_decode(file_get_contents("php://input"));

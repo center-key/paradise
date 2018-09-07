@@ -242,7 +242,7 @@
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
-      <b><?=$_SESSION["user"]?></b><br>
+      <b><?=getCurrentUser()?></b><br>
       Logged into <b><?=$_SERVER["SERVER_NAME"]?></b>
    </div>
    <div>
