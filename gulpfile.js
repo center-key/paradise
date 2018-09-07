@@ -24,7 +24,7 @@ const targetFolder =   'target/gallery';
 
 // Help
 const releaseHelp = [
-   'To release this version, commit and push the two ".zip" files with the comment:',
+   'To release this version, commit and push the three ".zip" file changes with the comment:',
    '   Release v' + pkg.version,
    'After the release is done, increment version in "package.json" and then commit and push:',
    '   Next release'

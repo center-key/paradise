@@ -238,7 +238,7 @@
 
 <footer class=external-site>
    <div>
-      <a href=http://centerkey.com/paradise>Paradise website</a><br>
+      <a href=https://centerkey.com/paradise>Paradise website</a><br>
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
@@ -247,7 +247,7 @@
    </div>
    <div>
       Paradise v<?=$version?><br>
-      <a href=https://github.com/center-key/paradise/blob/master/LICENSE.txt>GPLv3</a>
+      PHP v<?=phpversion()?>
    </div>
 </footer>
 

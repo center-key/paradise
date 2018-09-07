@@ -231,7 +231,7 @@ function resource($loggedIn) {
       $resource = $routes[$name]($action);
    else
       $resource = restError(400);
-   logEvent("rest-resource", $httpMethod, $httpMethod === "POST", $httpBodyRaw, $name, $action, $_GET["id"], !getProperty($resource, "error"));
+   logEvent("rest-resource", $httpMethod, $name, $action, !getProperty($resource, "error"));
    return $resource;
    }
 
