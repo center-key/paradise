@@ -13,7 +13,8 @@ $dataFolder = str_replace("console/server", "~data~", __DIR__);
 date_default_timezone_set("UTC");
 
 function getGalleryUrl() {
-   $protocol = $_SERVER["HTTPS"] === "on" ? "https://" : "http://";
+   $tls = isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
+   $protocol = $tls ? "https://" : "http://";
    $ignore = array("/console/rest/index.php");
    return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
    }
@@ -139,7 +140,7 @@ function convert($imageDb) {
       "code" =>        toUriCode($imageDb->caption),
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
-      "badge" =>       $imageDb->badge
+      "badge" =>       $imageDb->badge,
       );
    }
 function generateGalleryDb() {
