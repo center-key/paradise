@@ -178,9 +178,9 @@ function restRequestBackup($action) {
       }
    function actionList() {
       global $backupsFolder;
-      $maxNumBackups = 5;
+      $maxNumBackups = 3;
       $files = glob($backupsFolder . "/*.zip");
-      function getTimestamp($filename) { return substr($filename, -19, 15); }  //test-2018-09-05-0758.zip
+      function getTimestamp($filename) { return substr($filename, -19, 15); }  //travel-2018-09-05-0758.zip
       function newest($filenameA, $filenameB) {
          return strcmp(getTimestamp($filenameB), getTimestamp($filenameA));
          }
@@ -235,7 +235,7 @@ function resource($loggedIn) {
       $resource = $routes[$name]($action);
    else
       $resource = restError(400);
-   logEvent("rest-resource", $httpMethod, $name, $action, !getProperty($resource, "error"));
+   logEvent("http-request", $httpMethod, $name, $action, !getProperty($resource, "error"));
    return $resource;
    }
 
