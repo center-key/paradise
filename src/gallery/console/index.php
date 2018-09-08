@@ -1,5 +1,4 @@
 <?php require "server/security.php"; ?>
-<?php require "server/console.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
@@ -108,7 +107,7 @@
             <label>
                <span>Title font:<i data-icon=info-circle data-href=fonts.php></i></span>
                <select name=title-font data-option=~~title-font~~ data-change=admin.ui.saveSettings>
-                  <?=displayFontOptions()?>
+                  <option data-array=fonts value=~~[value]~~>~~[value]~~</option>
                </select>
             </label>
             <label>
@@ -256,6 +255,6 @@
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=admin.js></script>
-<script>window.clientData = <?=appClientData(true)?>;</script>
+<script>window.clientData = <?=appClientData()?>;</script>
 </body>
 </html>

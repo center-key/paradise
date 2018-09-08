@@ -22,7 +22,10 @@ admin.ui = {
       $('#status-msg').text(message).fadeOut(0).fadeIn();
       },
    loadSettings: function() {
-      function handle(data) { dna.clone('gallery-settings', data); }
+      function handle(data) {
+         data.fonts = window.clientData.fonts;
+         dna.clone('gallery-settings', data);
+         }
       library.rest.get('settings', { callback: handle });
       },
    loadPortfolio: function() {

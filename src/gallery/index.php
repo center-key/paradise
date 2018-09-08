@@ -17,6 +17,7 @@
 <title><?=$settings->title?> &bull; <?=$settings->subtitle?></title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=<?=$values->thumbnailUrl?>>
+<link rel=stylesheet       href="<?=$values->titleFontUrl?>">
 <link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/magnific-popup.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
@@ -24,7 +25,6 @@
 <link rel=stylesheet       href=paradise.css>
 <link rel=stylesheet       href=~data~/custom-style.css>
 <style>
-   @import url(<?=$values->titleFontUrl?>);
    h1 {
       font-family: "<?=$settings->{"title-font"}?>", sans-serif;
       font-size: <?=$settings->{"title-size"}?>;
@@ -68,7 +68,7 @@
             </label>
             <label>
                <span>Email:</span>
-               <input name=email type=email placeholder="Enter your email address" required>
+               <input name=email type=email placeholder="Enter your email address">
             </label>
             <p>
                <button type=submit>Send message</button>

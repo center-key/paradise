@@ -36,6 +36,7 @@
             <i data-icon=info-circle class=external-site
                data-href=https://github.com/center-key/paradise/wiki/faq#4-is-my-password-send-over-the-internet-in-clear-text></i>
          </h2>
+         <h3 id=gallery-title class=dna-template>~~title~~</h3>
          <form>
             <h3 class=for-create>Create account</h3>
             <p class=for-create>
@@ -91,6 +92,6 @@
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=../admin.js></script>
-<script>window.clientData = <?=appClientData(false)?>;</script>
+<script>window.clientData = <?=appClientData()?>;</script>
 </body>
 </html>

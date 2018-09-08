@@ -18,13 +18,13 @@
 <title><?=$imageInfo->caption?> &bull; <?=$settings->title?></title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=<?=$imageInfo->urlSmall?>>
+<link rel=stylesheet       href="<?=$values->titleFontUrl?>">
 <link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=../../paradise.css>
 <link rel=stylesheet       href=../../~data~/custom-style.css>
 <style>
-   @import url(https://fonts.googleapis.com/css?family=<?=urlencode($settings->{"title-font"})?>);
    h1 {
       font-family: "<?=$settings->{"title-font"}?>", sans-serif;
       font-size: <?=$settings->{"title-size"}?>;

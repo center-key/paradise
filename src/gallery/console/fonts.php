@@ -1,5 +1,4 @@
-<?php require "server/library.php"; ?>
-<?php require "server/console.php"; ?>
+<?php require "server/security.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
@@ -19,7 +18,6 @@
 <link rel=stylesheet       href=../paradise.css>
 <link rel=stylesheet       href=../~data~/custom-style.css>
 <style>
-   <?=importFonts()?>
    table.font-sampler tbody tr td { vertical-align: middle; text-align: left; padding: 10px; }
    table.font-sampler tbody tr td:last-child { width: 100%; }
 </style>
@@ -32,8 +30,11 @@
 
 <main>
    <table class=font-sampler>
-      <tbody>
-         <?=displayTitles()?>
+      <tbody class=external-site>
+         <tr id=font-row class=dna-template>
+            <td><a href="https://fonts.google.com/specimen/~~[value]~~">~~[value]~~</a></td>
+            <td><h1 style="font-family: '~~[value]~~'"></h1></td>
+         </tr>
       </tbody>
    </table>
 </main>
@@ -43,7 +44,14 @@
    <a href=https://fonts.google.com class=external-site>fonts.google.com</a>
 </footer>
 
+<script src=https://ajax.googleapis.com/ajax/libs/webfont/1.6/webfont.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
+<script>window.clientData = <?=appClientData()?>;</script>
+<script>
+   WebFont.load({ google: { families: clientData.fonts } });
+   $('#font-row h1').css({ fontSize: clientData.titleSize }).text(clientData.title);
+   dna.clone('font-row', clientData.fonts);
+</script>
 </body>
 </html>

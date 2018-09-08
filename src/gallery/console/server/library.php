@@ -10,6 +10,30 @@
 $version =    "[PARADISE-VERSION]";
 $dataFolder = str_replace("console/server", "~data~", __DIR__);
 
+$googleFonts = array(  //see https://fonts.google.com
+   "Allan", "Allerta Stencil", "Amatic SC", "Anonymous Pro", "Arimo", "Arvo",
+   "Bowlby One SC", "Bubblegum Sans",
+   "Cherry Cream Soda", "Chewy", "Chango", "Coda", "Corben",
+   "Devonshire",
+   "Emilys Candy",
+   "Galindo", "Geo", "Graduate", "Gruppo",
+   "Homemade Apple",
+   "Irish Grover",
+   "Josefin Sans", "Jura", "Just Another Hand",
+   "Kenia", "Kristi",
+   "League Script", "Life Savers", "Lobster", "Londrina Outline", "Londrina Solid", "Love Ya Like A Sister",
+   "Mouse Memoirs",
+   "Neucha",
+   "Old Standard TT",
+   "Open Sans", "Orbitron",
+   "Pacifico", "Philosopher",
+   "Reenie Beanie", "Rock Salt",
+   "Sail", "Six Caps", "Slackey", "Sniglet", "Special Elite", "Syncopate",
+   "Tangerine",
+   "UnifrakturMaguntia",
+   "Vibur"
+   );
+
 date_default_timezone_set("UTC");
 
 function getGalleryUrl() {
@@ -39,39 +63,50 @@ function emptyObj($object) {
    }
 
 function appClientData() {
-   global $version;
+   global $version, $googleFonts;
+   $settings = readSettingsDb();
    $data = array(
       "version" =>       $version,
-      "userListEmpty" => emptyObj(readAccountsDb()->users)
+      "userListEmpty" => emptyObj(readAccountsDb()->users),
+      "title" =>         $settings->title,
+      "titleSize" =>     $settings->{"title-size"},
+      "fonts" =>         $googleFonts,
       );
    return json_encode($data);
    }
 
 function initializeFile($filename, $fileContents) {
    if (!is_file($filename) && !file_put_contents($filename, $fileContents))
-      exit("Error initializing file, check permissions for: {$filename}");
+      logAndExit("Error initializing file, check permissions for: {$filename}");
    return $filename;
    }
 
 function initializeFolder($folder, $blockDirIndex) {
    if (!is_dir($folder) && !mkdir($folder))
-      exit("Error initializing folder, check permissions for: {$folder}");
+      logAndExit("Error initializing folder, check permissions for: {$folder}");
    if ($blockDirIndex)
       initializeFile("{$folder}/index.html", "Nothing to see.");
    return $folder;
    }
 
+$dbCache = array();
 function readDb($dbFilename) {
-   $dbStr = file_get_contents($dbFilename);
-   if ($dbStr === false)
-      exit("Error reading database: {$dbFilename}");
-   return json_decode($dbStr);
+   global $dbCache;
+   if (!isset($dbCache[$dbFilename])) {
+      $dbStr = file_get_contents($dbFilename);
+      if ($dbStr === false)
+         logAndExit("Error reading database: {$dbFilename}");
+      $dbCache[$dbFilename] = json_decode($dbStr);
+      }
+   return $dbCache[$dbFilename];
    }
-
 function saveDb($dbFilename, $db) {
-   if (!readOnlyMode() && !file_put_contents($dbFilename, json_encode($db)))
-      exit("Error saving database: {$dbFilename}");
-   return $db;
+   if (readOnlyMode())
+      return $db;
+   if (!file_put_contents($dbFilename, json_encode($db)))
+      logAndExit("Error saving database: {$dbFilename}");
+   $dbCache[$dbFilename] = $db;
+   return $dbCache[$dbFilename];
    }
 
 function readGalleryDb() {
@@ -190,11 +225,16 @@ function logEvent() {  //any number of parameters to log
       rename($logFilename, $archiveFilename);
    }
 
+function logAndExit($message) {
+   logEvent("server-error", $message);
+   exit($message);
+   }
+
 function httpJsonResponse($data) {
    header("Cache-Control: no-cache");
    header("Content-Type:  application/json");
    echo json_encode($data);
-   logEvent("http-json-response", $data);
+   logEvent("http-response", $data);
    }
 
 function isReadOnlyExampleEmailAddress($email) {
