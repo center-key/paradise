@@ -4,12 +4,12 @@
 // GPLv3 ~ Copyright (c) individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
-require "server/gallery.php";
+require "gallery.php";
 
 // Initialize
 $subject =   "Paradise PHP Photo Gallery - Message";
 $from =      "From: Paradise <{$settings->email}>";
-$thanksUri = "./#thanks";
+$thanksUri = "../#thanks";
 
 // Create message body
 $message = array(

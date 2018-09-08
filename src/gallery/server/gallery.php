@@ -7,7 +7,7 @@
 function getGalleryUrl() {
    $tls = isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
    $protocol = $tls ? "https://" : "http://";
-   $ignore = array("/index.php", "/image/one.php", "/send-message.php");
+   $ignore = array("/index.php", "/image/one.php", "/server/send-message.php");
    return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
    }
 
