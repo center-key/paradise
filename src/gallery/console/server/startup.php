@@ -35,7 +35,7 @@ function setupHiddenFolder($parentFolder, $name) {
    $fileSearch = glob($pattern);
    if (count($fileSearch) === 0) {
       if (!mkdir($root . mt_rand() . mt_rand() . mt_rand()))
-         exit("Unable to create {$name} folder, check permissions in: {$parentFolder}");
+         logAndExit("Unable to create {$name} folder, check permissions in: {$parentFolder}");
       $fileSearch = glob($pattern);
       }
    return $fileSearch[0];

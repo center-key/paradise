@@ -51,7 +51,7 @@ function loginUser($email) {
    $_SESSION["user"] = $email;
    $_SESSION["active"] = time();
    $_SESSION["read-only-user"] = isReadOnlyExampleEmailAddress($email);
-   logEvent("user-login", session_id());
+   logEvent("user-login", session_id(), $_SESSION["read-only-user"] ? "read-only" : "regular");
    }
 
 function createUser($accountsDb, $email, $password) {
