@@ -14,6 +14,7 @@ const admin = {
       admin.ui.createUploader();
       admin.invites.loadList();
       admin.backups.loadList();
+      dna.insert('page-footer', window.clientData);
       }
    };
 

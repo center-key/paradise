@@ -43,7 +43,8 @@ admin.login = {
    setup: function(component) {
       window.fetchJson.enableLogger();
       const params = dna.browser.getUrlParams();
-      dna.insert('gallery-title', { title: window.clientData.title });
+      dna.insert('gallery-title', window.clientData);
+      dna.insert('page-footer',   window.clientData);
       component.toggleClass('create', window.clientData.userListEmpty || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);

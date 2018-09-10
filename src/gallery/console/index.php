@@ -235,18 +235,18 @@
    </div>
 </main>
 
-<footer class=external-site>
-   <div>
+<footer id=page-footer class=dna-template>
+   <div class=external-site>
       <a href=https://centerkey.com/paradise>Paradise website</a><br>
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
-      <b><?=getCurrentUser()?></b><br>
-      Logged into <b><?=$_SERVER["SERVER_NAME"]?></b>
+      <b>~~user~~</b><br>
+      Logged into <b>~~server~~</b>
    </div>
    <div>
-      Paradise v<?=$version?><br>
-      PHP v<?=phpversion()?>
+      Paradise v<span>~~version~~</span><br>
+      PHP v<span>~~php~~</span>
    </div>
 </footer>
 

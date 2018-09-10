@@ -67,10 +67,14 @@ function appClientData() {
    $settings = readSettingsDb();
    $data = array(
       "version" =>       $version,
+      "php" =>           phpversion(),
+      "user" =>          getCurrentUser(),
+      "server" =>        $_SERVER["SERVER_NAME"],
       "userListEmpty" => emptyObj(readAccountsDb()->users),
       "title" =>         $settings->title,
       "titleSize" =>     $settings->{"title-size"},
       "fonts" =>         $googleFonts,
+      "backupFiles" =>   getCurrentUser() ? array() : array();  //TBD
       );
    return json_encode($data);
    }

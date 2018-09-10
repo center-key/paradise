@@ -76,13 +76,13 @@
    </div>
 </main>
 
-<footer>
+<footer id=page-footer class=dna-template>
    <div class=external-site>
       <a href=https://centerkey.com/paradise>Paradise website</a><br>
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
-      Paradise v<?=$version?><br>
+      Paradise v<span>~~version~~</span><br>
       <a href=https://github.com/center-key/paradise/blob/master/LICENSE.txt>GPLv3</a>
    </div>
 </footer>
