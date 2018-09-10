@@ -12,9 +12,9 @@ const admin = {
       admin.ui.loadPortfolio();
       admin.ui.loadAccounts();
       admin.ui.createUploader();
-      admin.invites.loadList();
-      dna.clone('backup-file',  window.clientData.backupFiles);
-      dna.insert('page-footer', window.clientData);
+      dna.clone('account-invite', window.clientData.invites);
+      dna.clone('backup-file',    window.clientData.backupFiles);
+      dna.insert('page-footer',   window.clientData);
       }
    };
 

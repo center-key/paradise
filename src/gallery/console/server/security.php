@@ -72,6 +72,7 @@ function sendAccountInvite($email) {
       "accepted" => false,
       "expires" =>  time() + $daysValid * (24 * 60 * 60)
       );
+   $invite["date"] = date("Y-m-d", $invite["expires"]);
    $code = "Q" . mt_rand() . mt_rand();
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;
@@ -97,19 +98,11 @@ function outstanding($invite) {
    return $invite && !$invite->accepted && time() < $invite->expires;
    }
 
-function displayDate($invite) {
-   $invite->date = date("Y-m-d", $invite->expires);
-   return $invite;
-   }
-
 function restRequestInvite($action, $email) {
    if ($action === "create")
       $resource = validEmailFormat($email) ? sendAccountInvite($email) : restError(404);
-   elseif (readOnlyMode())
-      $resource = array(array("to" => "lee@example.com", "date" => date("Y-m-d")));
    else
-      $resource = array_values(array_map("displayDate",
-         array_filter(array_values((array)readAccountsDb()->invites), "outstanding")));
+      $resource = getOutstandingInvites();
    return $resource;
    }
 

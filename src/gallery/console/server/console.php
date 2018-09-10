@@ -7,6 +7,12 @@
 // Administrator Console
 // Business logic
 
+function getOutstandingInvites() {
+   if (readOnlyMode())
+      return $resource = array(array("to" => "lee@example.com", "date" => date("Y-m-d")));
+   return array_values(array_filter(array_values((array)readAccountsDb()->invites), "outstanding"));
+   }
+
 function getBackupFiles() {
    global $backupsFolder;
    $maxNumBackups = 3;
@@ -39,7 +45,8 @@ function appClientData() {
       "title" =>         $settings->title,
       "titleSize" =>     $settings->{"title-size"},
       "fonts" =>         $googleFonts,
-      "backupFiles" =>   getCurrentUser() ? getBackupFiles() : array()
+      "invites" =>       getCurrentUser() ? getOutstandingInvites() : array(),
+      "backupFiles" =>   getCurrentUser() ? getBackupFiles() : array(),
       );
    return json_encode($data);
    }
