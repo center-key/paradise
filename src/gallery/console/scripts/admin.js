@@ -13,7 +13,7 @@ const admin = {
       admin.ui.loadAccounts();
       admin.ui.createUploader();
       admin.invites.loadList();
-      admin.backups.loadList();
+      dna.clone('backup-file',  window.clientData.backupFiles);
       dna.insert('page-footer', window.clientData);
       }
    };

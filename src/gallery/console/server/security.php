@@ -18,6 +18,7 @@ $redirectAuth = isset($redirectAuth) ? $redirectAuth : null;
 session_start();
 require "library.php";
 require "startup.php";
+require "console.php";
 $loginMsgFile = __DIR__ . "/../../~data~/login-message.html";
 $loginMsg = "<!--\n<section>\n   <h2>Custom message</h2>\n   <p>Text goes here.</p>\n</section>\n-->\n";
 

@@ -62,23 +62,6 @@ function emptyObj($object) {
    return count(get_object_vars($object)) === 0;
    }
 
-function appClientData() {
-   global $version, $googleFonts;
-   $settings = readSettingsDb();
-   $data = array(
-      "version" =>       $version,
-      "php" =>           phpversion(),
-      "user" =>          getCurrentUser(),
-      "server" =>        $_SERVER["SERVER_NAME"],
-      "userListEmpty" => emptyObj(readAccountsDb()->users),
-      "title" =>         $settings->title,
-      "titleSize" =>     $settings->{"title-size"},
-      "fonts" =>         $googleFonts,
-      "backupFiles" =>   getCurrentUser() ? array() : array();  //TBD
-      );
-   return json_encode($data);
-   }
-
 function initializeFile($filename, $fileContents) {
    if (!is_file($filename) && !file_put_contents($filename, $fileContents))
       logAndExit("Error initializing file, check permissions for: {$filename}");

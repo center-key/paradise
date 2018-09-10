@@ -176,28 +176,9 @@ function restRequestBackup($action) {
       logEvent("backup-end", $filename, "files: " . $count, "milliseconds: " . $milliseconds);
       return array("filename" => $filename, "url" => $url, "seconds" => $milliseconds / 1000);
       }
-   function actionList() {
-      global $backupsFolder;
-      $maxNumBackups = 3;
-      $files = glob($backupsFolder . "/*.zip");
-      function getTimestamp($filename) { return substr($filename, -19, 15); }  //travel-2018-09-05-0758.zip
-      function newest($filenameA, $filenameB) {
-         return strcmp(getTimestamp($filenameB), getTimestamp($filenameA));
-         }
-      usort($files, "newest");
-      if (count($files) > $maxNumBackups)
-         unlink(array_pop($files));
-      function toObjBackup($file) {
-         $url = "../~data~/" . basename(dirname($file)) . "/" . basename($file);
-         return array("filename" => basename($file), "url" => $url);
-         };
-      if (readOnlyMode())
-         $files = array();
-      return array_map("toObjBackup", $files);
-      }
    $routes = array(
       "create" => function() { return actionCreate(); },
-      "list" =>   function() { return actionList(); },
+      "list" =>   function() { return getBackupFiles(); },
       );
    return runRoute($routes, $action);
    }
