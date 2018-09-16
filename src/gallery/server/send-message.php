@@ -15,11 +15,11 @@ $thanksUri = "../#thanks";
 // Create message body
 $message = array(
    getGalleryUrl(),
-   "-----------------------------------",
+   "-----------------------------",
    "Name: " .    $_POST["name"],
    "Email: " .   $_POST["email"],
    "Message: " . $_POST["message"],
-   "-----------------------------------");
+   "-----------------------------");
 $body = htmlspecialchars(implode(PHP_EOL, $message), ENT_NOQUOTES);
 
 // Send message

@@ -53,8 +53,9 @@ const task = {
             .pipe(gulp.dest(targetFolder));
          }
       function buildJs() {
+         const transpileES6 = ['env', { modules: false }];
          return gulp.src('src/gallery/scripts/*.js')
-            .pipe(babel({ presets: ['env'] }))
+            .pipe(babel({ presets: [transpileES6] }))
             .pipe(concat('paradise.js'))
             .pipe(gulp.dest(targetFolder));
          }
