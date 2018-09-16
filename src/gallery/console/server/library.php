@@ -90,7 +90,9 @@ function readDb($dbFilename) {
 function saveDb($dbFilename, $db) {
    if (readOnlyMode())
       return $db;
-   if (!file_put_contents($dbFilename, json_encode($db)))
+   $bytes = file_put_contents($dbFilename, json_encode($db));
+   logEvent("save-db", basename($dbFilename), $bytes);
+   if ($bytes === false)
       logAndExit("Error saving database: {$dbFilename}");
    $dbCache[$dbFilename] = $db;
    return $dbCache[$dbFilename];
@@ -148,8 +150,7 @@ function saveAccountsDb($db) {
    }
 
 function toUriCode($caption) {
-   return $code = preg_replace("/\s+/", "-",
-       trim(preg_replace("/[^a-z]/", " ", strtolower($caption))));
+   return preg_replace("/\s+/", "-", trim(preg_replace("/[^a-z]/", " ", strtolower($caption))));
    }
 
 function displayTrue($imageDb) {

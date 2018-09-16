@@ -76,7 +76,7 @@ library.social = {
       { icon: 'reddit',      title: 'Reddit',   x: 600, y: 750, link: 'https://www.reddit.com/submit?url=${url}$title=${title}' }
       ],
    share: function(elem) {
-      const button = library.social.buttons[elem.data().icon];
+      const button = library.social.buttons[elem.index()];
       function insert(str, find, value) { return str.replace(find, encodeURIComponent(value)); }
       let link = insert(button.link, '${url}', window.location.href);
       link = insert(link, '${title}', window.document.title);

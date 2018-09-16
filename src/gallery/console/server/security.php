@@ -53,6 +53,7 @@ function loginUser($email) {
    $_SESSION["active"] = time();
    $_SESSION["read-only-user"] = isReadOnlyExampleEmailAddress($email);
    logEvent("user-login", session_id(), $_SESSION["read-only-user"] ? "read-only" : "regular");
+   return true;
    }
 
 function createUser($accountsDb, $email, $password) {
@@ -66,8 +67,9 @@ function createUser($accountsDb, $email, $password) {
 
 function sendAccountInvite($email) {
    $daysValid = 3;
+   $user = getCurrentUser();
    $invite = array(
-      "from" =>     getCurrentUser(),
+      "from" =>     $user,
       "to" =>       $email,
       "accepted" => false,
       "expires" =>  time() + $daysValid * (24 * 60 * 60)
@@ -80,13 +82,14 @@ function sendAccountInvite($email) {
    $inviteLink = getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
    $subjectLine = "Sign up invitation";
    $messageLines = array(
-      "You have been invited to create an account to administer the Paradise PHP Photo Gallery gallery at:",
-      getGalleryUrl(),
+      "You have been invited by {$user} to create an account to administer a Paradise PHP Photo Gallery.",
       "",
       "To sign up and start uploading images, go to:",
       $inviteLink,
       "",
       "The above link expires in {$daysValid} days.",
+      "",
+      "The gallery can be viewed at: " . getGalleryUrl(),
       );
    $invite["message"] = sendEmail($invite["to"], $subjectLine, $messageLines) ?
       "Account invitation sent to: {$email}" : "Error emailing invitation!";
@@ -117,19 +120,20 @@ function useInvite($accountsDb, $code) {
    return $invite && $invite->accepted;
    }
 
-function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode, $securityMsgs) {
+function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode) {
+   $errorCode = null;
    if (!validEmailFormat($email))
-      $code = "invalid-email";
-   elseif ($accountsDb->users->{$email})
-      $code = "user-exists";
+      $errorCode = "invalid-email";
+   elseif (isset($accountsDb->users->{$email}))
+      $errorCode = "user-exists";
    elseif ($password !== $confirm)
-      $code = "mismatch";
+      $errorCode = "mismatch";
    elseif (emptyObj($accountsDb->users) || useInvite($accountsDb, $inviteCode))
       createUser($accountsDb, $email, $password);
    else
-      $code = "bad-invite-code";
-   logEvent("validate-create-user", is_null($code), $code, $email, $inviteCode);
-   return $code ? $securityMsgs[$code] : null;
+      $errorCode = "bad-invite-code";
+   logEvent("validate-create-user", $email, is_null($errorCode), $errorCode, $inviteCode);
+   return $errorCode;
    }
 
 function restRequestSecurity($action, $httpBody) {
@@ -139,7 +143,8 @@ function restRequestSecurity($action, $httpBody) {
       "invalid-email" =>   "Please enter a valid email address.",
       "mismatch" =>        "Passwords do not match.",
       "user-exists" =>     "That email address is already in use.",
-      "create-fail" =>     "Cannot create user."
+      "create-fail" =>     "Cannot create user.",
+      "invalid-action" =>  "Invalid action.",
       );
    $email =      strtolower(trim($httpBody->email));
    $password =   $httpBody->password;
@@ -147,28 +152,31 @@ function restRequestSecurity($action, $httpBody) {
    $inviteCode = $httpBody->invite;
    $accountsDb = readAccountsDb();
    $user =       array_key_exists($email, $accountsDb->users) ? $accountsDb->users->{$email} : null;
+   $errorCode = null;
    if ($action === "login")
-      $msg = verifyPassword($user, $password) ? loginUser($email) : $securityMsgs["bad-credentials"];
+      $errorCode = verifyPassword($user, $password) && loginUser($email) ? null : "bad-credentials";
    elseif ($action === "create")
-      $msg = validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode, $securityMsgs);
+      $errorCode = validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode);
    else
-      $msg = "Invalid request.";
-   $success = is_null($msg);
-   logEvent("security-request", $action, $success, $email, $msg);
+      $errorCode = "invalid-action";
+   $msg = $errorCode ? $securityMsgs[$errorCode] : "Success";
+   logEvent("security-request", $email, $action, $errorCode, $msg);
    return array(
-      "authenticated" => $success,
+      "authenticated" => $errorCode === null,
       "email" =>         $email,
-      "message" =>       $success ? "Success." : $msg
+      "message" =>       $msg,
       );
    }
 
 function readOnlyMode() {
-   return isset($_SESSION["read-only-user"]) ? $_SESSION["read-only-user"] : true;
+   return isset($_SESSION["read-only-user"]) ? $_SESSION["read-only-user"] : false;
    }
 
 $loggedIn = getCurrentUser() && time() < $_SESSION["active"] + $sessionTimout && userEnabled();
 if ($loggedIn)
    $_SESSION["active"] = time();
+else
+   session_unset();
 if ($loggedIn && $redirectAuth)
    redirectToPage($redirectAuth);
 elseif (!$loggedIn && $authRequired)
