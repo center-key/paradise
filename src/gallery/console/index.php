@@ -72,7 +72,7 @@
                   </div>
                </form>
                <figure>
-                  <img data-attr-src=../~data~/portfolio/~~id~~-large.jpg
+                  <img data-attr-src=../~data~/portfolio/~~id~~-small.png
                      data-href=../~data~/portfolio/~~id~~-large.jpg alt=thumbnail>
                   <figcaption>Uploaded: <b>~~uploaded~~</b></figcaption>
                </figure>

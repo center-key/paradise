@@ -7,8 +7,9 @@
 require "gallery.php";
 
 // Initialize
+$email =     $settings->{"contact-email"};
 $subject =   "Paradise PHP Photo Gallery - Message";
-$from =      "From: Paradise <{$settings->email}>";
+$from =      "From: Paradise <{$email}>";
 $thanksUri = "../#thanks";
 
 // Create message body
@@ -22,6 +23,6 @@ $message = array(
 $body = htmlspecialchars(implode(PHP_EOL, $message), ENT_NOQUOTES);
 
 // Send message
-mail($settings->email, $subject, $body, $from);
+mail($email, $subject, $body, $from);
 header("Location: $thanksUri");
 ?>
