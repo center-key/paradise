@@ -19,7 +19,7 @@
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=<?=$imageInfo->urlSmall?>>
 <link rel=stylesheet       href="<?=$values->titleFontUrl?>">
-<link rel=stylesheet       href=https://use.fontawesome.com/releases/v5.1.0/css/all.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.3/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=../../paradise.css>
