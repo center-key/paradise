@@ -20,6 +20,7 @@ const zip =              require('gulp-zip');
 const pkg =            require('./package.json');
 const banner =         `${pkg.name} v${pkg.version} ~~ ${pkg.homepage} ~~ ${pkg.license} License`;
 const postCssPlugins = [postCssPresetEnv(), postCssNano({ autoprefixer: false })];
+const transpileES6 =   ['@babel/env', { modules: false }];
 const targetFolder =   'target/gallery';
 
 // Help
@@ -53,7 +54,6 @@ const task = {
             .pipe(gulp.dest(targetFolder));
          }
       function buildJs() {
-         const transpileES6 = ['env', { modules: false }];
          return gulp.src('src/gallery/scripts/*.js')
             .pipe(babel({ presets: [transpileES6] }))
             .pipe(concat('paradise.js'))
@@ -62,15 +62,15 @@ const task = {
       function buildAdminCss() {
          return gulp.src(['src/gallery/console/**/*.css', 'src/gallery/console/**/*.less'])
             .pipe(less())
-            .pipe(concat('admin.css'))
+            .pipe(concat('bundle.css'))
             .pipe(postCss(postCssPlugins))
             .pipe(header('/*! ' + banner + ' */\n'))
             .pipe(gulp.dest(targetFolder + '/console'));
          }
       function buildAdminJs() {
          return gulp.src(['src/gallery/scripts/library.js', 'src/gallery/console/**/*.js'])
-            .pipe(babel({ presets: ['env'] }))
-            .pipe(concat('admin.js'))
+            .pipe(babel({ presets: [transpileES6] }))
+            .pipe(concat('bundle.js'))
             .pipe(gulp.dest(targetFolder + '/console'));
          }
       function copyLicense() {

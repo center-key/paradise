@@ -39,12 +39,12 @@
       "test": "gulp clean && gulp build && gulp zip"
    },
    "devDependencies": {
-      "babel-core": "~6.26",
-      "babel-preset-env": "~1.7",
+      "@babel/core": "~7.0",
+      "@babel/preset-env": "~7.0",
       "cssnano": "~4.1",
       "del": "~3.0",
       "gulp": "~3.9",
-      "gulp-babel": "~7.0",
+      "gulp-babel": "~8.0",
       "gulp-concat": "~2.6",
       "gulp-file-include": "~2.0",
       "gulp-header": "~2.0",

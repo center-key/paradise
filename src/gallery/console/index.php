@@ -16,7 +16,7 @@
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
 <link rel=stylesheet       href=https://centerkey.com/css/reset.css>
 <link rel=stylesheet       href=https://centerkey.com/css/layouts/color-blocks.css>
-<link rel=stylesheet       href=admin.css>
+<link rel=stylesheet       href=bundle.css>
 </head>
 <body data-on-load=admin.setup>
 
@@ -254,7 +254,7 @@
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
-<script src=admin.js></script>
+<script src=bundle.js></script>
 <script>window.clientData = <?=appClientData()?>;</script>
 </body>
 </html>

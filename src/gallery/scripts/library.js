@@ -6,7 +6,7 @@
 // Library
 // General purpose js functions
 
-var library = {
+const library = {
    initialize: function() {
       $.fn.id =      library.ui.id;
       $.fn.enable =  library.ui.enable;
