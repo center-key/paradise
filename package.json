@@ -39,8 +39,8 @@
       "test": "gulp clean && gulp build && gulp zip"
    },
    "devDependencies": {
-      "@babel/core": "~7.0",
-      "@babel/preset-env": "~7.0",
+      "@babel/core": "~7.1",
+      "@babel/preset-env": "~7.1",
       "cssnano": "~4.1",
       "del": "~3.0",
       "gulp": "~3.9",
@@ -55,6 +55,6 @@
       "gulp-zip": "~4.2",
       "jshint": "~2.9",
       "merge-stream": "~1.0",
-      "postcss-preset-env": "~5.3"
+      "postcss-preset-env": "~6.0"
    }
 }
