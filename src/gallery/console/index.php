@@ -250,7 +250,7 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/npm/fetch-json2@0.3/fetch-json.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/fetch-json@2.1/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>

@@ -43,7 +43,7 @@
       "@babel/preset-env": "~7.1",
       "cssnano": "~4.1",
       "del": "~3.0",
-      "gulp": "~3.9",
+      "gulp": "~4.0",
       "gulp-babel": "~8.0",
       "gulp-concat": "~2.6",
       "gulp-file-include": "~2.0",
@@ -55,6 +55,6 @@
       "gulp-zip": "~4.2",
       "jshint": "~2.9",
       "merge-stream": "~1.0",
-      "postcss-preset-env": "~6.0"
+      "postcss-preset-env": "~6.1"
    }
 }

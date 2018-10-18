@@ -58,7 +58,7 @@
    <div><?=$settings->footer?></div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/npm/fetch-json2@0.3/fetch-json.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/fetch-json@2.1/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/magnific-popup@1.1/dist/jquery.magnific-popup.min.js></script>
