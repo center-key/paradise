@@ -38,6 +38,12 @@
       "pretest": "jshint gulpfile.js src/gallery/scripts/*.js src/gallery/console/scripts/*.js",
       "test": "gulp clean && gulp build && gulp zip"
    },
+   "dependencies": {
+      "crypto-js": "~3.1",
+      "dna.js": "~1.4",
+      "fetch-json": "~2.1",
+      "jquery": "~3.3"
+   },
    "devDependencies": {
       "@babel/core": "~7.1",
       "@babel/preset-env": "~7.1",
