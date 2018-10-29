@@ -3,11 +3,11 @@
 
 _A simple and aesthetic image gallery to showcase your art portfolio_
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/center-key/paradise/blob/master/LICENSE.txt)
+[![License:GPLv3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/center-key/paradise/blob/master/LICENSE.txt)
 &nbsp;
-[![Known Vulnerabilities](https://snyk.io/test/github/center-key/paradise/badge.svg)](https://snyk.io/test/github/center-key/paradise)
+[![Vulnerabilities](https://snyk.io/test/github/center-key/paradise/badge.svg)](https://snyk.io/test/github/center-key/paradise)
 &nbsp;
-[![Build Status](https://travis-ci.org/center-key/paradise.svg)](https://travis-ci.org/center-key/paradise)
+[![Build](https://travis-ci.org/center-key/paradise.svg)](https://travis-ci.org/center-key/paradise)
 
 Paradise is an open source software package for displaying a collection of photos on a website in
 a clean, professional style.  Use Paradise to create an online exhibit for an artist or
@@ -16,7 +16,7 @@ organization.
 **[Download install files](https://github.com/center-key/paradise/tree/master/releases)**
 
 ### Project:
-   * [Instructions](https://centerkey.com/paradise/)
+   * [Documentation](https://centerkey.com/paradise/)
    * [Issues](https://github.com/center-key/paradise/issues)
    * [FAQ](https://github.com/center-key/paradise/wiki/faq)
 
