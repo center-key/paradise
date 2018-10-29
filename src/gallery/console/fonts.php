@@ -14,7 +14,7 @@
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.3/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
-<link rel=stylesheet       href=https://centerkey.com/css/reset.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@0.0/dist/reset.min.css>
 <link rel=stylesheet       href=../paradise.css>
 <link rel=stylesheet       href=../~data~/custom-style.css>
 <style>
