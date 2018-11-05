@@ -50,8 +50,8 @@
 
 <footer>
    <div class=<?=showHideClass($settings->{"cc-license"})?>>
-      <a class=external-site rel=license href=https://creativecommons.org/licenses/by-sa/4.0>
-         <img src=https://i.creativecommons.org/l/by-sa/4.0/80x15.png alt=license>
+      <a rel=license href=https://creativecommons.org/licenses/by-sa/4.0 class=external-site>
+         <img src=https://licensebuttons.net/i/l/by-sa/transparent/33/33/33/88x31.png alt=license>
       </a>
    </div>
    <div class=<?=showHideClass($settings->bookmarks)?>><div id=social-buttons></div></div>
