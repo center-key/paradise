@@ -12,10 +12,10 @@
 <title>Paradise &bull; Administrator Console</title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.3/css/all.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@0.0/dist/reset.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@0.0/dist/layouts/color-blocks.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.5/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/reset.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/layouts/color-blocks.css>
 <link rel=stylesheet       href=../bundle.css>
 </head>
 <body>
@@ -87,10 +87,11 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/npm/fetch-json@2.1/fetch-json.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/fetch-json@2.2/dist/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
-<script src=https://cdn.jsdelivr.net/npm/dna.js@1.4/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/library.min.js></script>
 <script src=../bundle.js></script>
 <script>window.clientData = <?=appClientData()?>;</script>
 </body>
