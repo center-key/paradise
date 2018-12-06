@@ -32,13 +32,13 @@
       "jquery": true,
       "globals": {
          "admin": true,
-         "library": true,
-         "dna": false,
-         "gallery": true
+         "gallery": true,
+         "library": false,
+         "dna": false
       }
    },
    "scripts": {
-      "pretest": "jshint gulpfile.js src/gallery/scripts/*.js src/gallery/console/scripts/*.js",
+      "pretest": "jshint *.js src/gallery/scripts src/gallery/console/scripts",
       "test": "gulp clean && gulp build && gulp zip"
    },
    "dependencies": {

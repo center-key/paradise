@@ -61,7 +61,7 @@ const task = {
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest(targetFolder));
       const buildJs = () =>
-         gulp.src('src/gallery/scripts/*.js')
+         gulp.src(['src/gallery/scripts/gallery.js', 'src/gallery/scripts/*.js'])
             .pipe(babel(babelMinifyJs))
             .pipe(concat('paradise.js'))
             .pipe(header(bannerJs))
@@ -78,7 +78,7 @@ const task = {
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest(targetFolder + '/console'));
       const buildAdminJs = () =>
-         gulp.src(['src/gallery/scripts/library.js', 'src/gallery/console/**/*.js'])
+         gulp.src(['src/gallery/console/scripts/admin.js', 'src/gallery/console/**/*.js'])
             .pipe(babel(babelMinifyJs))
             .pipe(concat('bundle.js'))
             .pipe(header(bannerJs))

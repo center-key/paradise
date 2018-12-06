@@ -36,7 +36,7 @@ admin.login = {
       if (action === 'create' && password.length < minPaswordLength)
          displayError('Password must be at least ' + minPaswordLength + ' characters long.');
       else
-         library.rest.post('security', credentials, { action: action, callback: handle });
+         admin.rest.post('security', credentials, { action: action, callback: handle });
       },
    setup: (component) => {
       window.fetchJson.enableLogger();

@@ -25,14 +25,14 @@ admin.ui = {
          data.fonts = window.clientData.fonts;
          dna.clone('gallery-settings', data);
          };
-      library.rest.get('settings', { callback: handle });
+      admin.rest.get('settings', { callback: handle });
       },
    loadPortfolio: () => {
       const handle = (data) => {
          dna.clone('portfolio-image', data, { empty: true, fade: true });
          admin.ui.statusMsg('Portfolio images: ' + data.length);
          };
-      library.rest.get('portfolio', { action: 'list', callback: handle });
+      admin.rest.get('portfolio', { action: 'list', callback: handle });
       },
    save: (elem, type) => {
       const field = elem.attr('name');
@@ -45,7 +45,7 @@ admin.ui = {
          params.id = item.itemId;
       if (item && item.itemType)
          params.item = item.itemType;
-      library.rest.get(type, { action: 'update', params: params  });
+      admin.rest.get(type, { action: 'update', params: params  });
       },
    savePortfolio: (elem) => admin.ui.save(elem, 'portfolio'),
    saveSettings: (elem) => {
@@ -60,16 +60,16 @@ admin.ui = {
          move: elem.data().move
          };
       const handle = () => params.move === 'up' ? dna.up(elem) : dna.down(elem);
-      library.rest.get('portfolio', { action: 'update', params: params, callback: handle });
+      admin.rest.get('portfolio', { action: 'update', params: params, callback: handle });
       },
    delete: (elem) => {
       const params = { id: dna.getModel(elem).id };
       const handle = () => dna.bye(elem);
-      library.rest.get('portfolio', { action: 'delete', params: params, callback: handle });
+      admin.rest.get('portfolio', { action: 'delete', params: params, callback: handle });
       },
    loadAccounts: () => {
       const handle = (data) => dna.clone('user-account', data);
-      library.rest.get('account', { action: 'list', callback: handle });
+      admin.rest.get('account', { action: 'list', callback: handle });
       },
    createUploader: () => {
       const spinner = $('#processing-files').hide();
@@ -82,7 +82,7 @@ admin.ui = {
       const done = () => {
          const processUploads = () => {
             if (timeoutId === lastTimeoutId)
-               library.rest.get('command', { action: 'process-uploads', callback: handle });
+               admin.rest.get('command', { action: 'process-uploads', callback: handle });
             };
          const timeoutId = window.setTimeout(processUploads, 3000);  //workaround to guess when last upload in done
          lastTimeoutId = timeoutId;
@@ -117,11 +117,11 @@ admin.invites = {
          admin.invites.loadList();
          admin.invites.elem.email.focus().val('');
          };
-      library.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
+      admin.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
       },
    loadList: () => {
       const handle = (data) => dna.clone('account-invite', data, { empty: true, fade: true });
-      library.rest.get('invite', { action: 'list', callback: handle });
+      admin.rest.get('invite', { action: 'list', callback: handle });
       }
    };
 
@@ -134,10 +134,10 @@ admin.backups = {
          dna.clone('backup-file', data, { top: true, fade: true });
          button.enable();
          };
-      library.rest.get('backup', { action: 'create', callback: handle });
+      admin.rest.get('backup', { action: 'create', callback: handle });
       },
    loadList: () => {
       const handle = (data) => dna.clone('backup-file', data);
-      library.rest.get('backup', { action: 'list', callback: handle });
+      admin.rest.get('backup', { action: 'list', callback: handle });
       }
    };
