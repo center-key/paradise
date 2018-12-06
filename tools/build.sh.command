@@ -36,6 +36,10 @@ analyzeAndBuild() {
    echo
    echo "Recent releases:"
    git ls-files releases/previous/*.zip | tail -5
+   echo
+   echo "Released version (GitHub):"
+   releasePage=https://github.com/center-key/paradise/tree/master/releases
+   curl --silent $releasePage | grep paradise-v | awk -F'"' '{ print $6 }'
    npm test
    echo
    }
@@ -43,7 +47,7 @@ analyzeAndBuild() {
 setupPhpServer() {
    cd $projectHome
    echo "*** Apache HTTP Server"
-   publishWebRoot=$(grep ^DocumentRoot /private/etc/apache2/httpd.conf | awk -F\" '{ print $2 }')
+   publishWebRoot=$(grep ^DocumentRoot /private/etc/apache2/httpd.conf | awk -F'"' '{ print $2 }')
    grep php /private/etc/apache2/httpd.conf
    apachectl configtest  #to start web server: sudo apachectl restart
    deployFolder=$publishWebRoot/paradise-deploy
