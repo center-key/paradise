@@ -11,9 +11,7 @@ admin.rest = {
    //    admin.rest.get('book', { id: 21, callback: handle });
    makeUrl: (resourceName, action) => {
       let url = window.location.href.match(/^.*console/)[0] + '/rest/?resource=' + resourceName;
-      if (action)
-         url = url + '&action=' + action;
-      return url;
+      return action ? url + '&action=' + action : url;
       },
    get: (resourceName, options) => {
       const url = admin.rest.makeUrl(resourceName, options.action);
