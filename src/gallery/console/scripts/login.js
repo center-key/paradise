@@ -7,13 +7,11 @@
 
 admin.login = {
    salt: window.location.hostname.replace(/^www[.]/, ''),
-   submit: function(elem) {
+   submit: (elem) => {
       const minPaswordLength = 8;
       const component = elem.closest('.component-security');
       component.find('button').prop({ disabled: true });
-      function calcHash(passwd) {
-         return window.CryptoJS.SHA256(passwd + admin.login.salt).toString();
-         }
+      const calcHash = (passwd) => window.CryptoJS.SHA256(passwd + admin.login.salt).toString();
       const action =     component.hasClass('create') ? 'create' : 'login';
       const email =      component.find('input[type=email]').val().trim().toLowerCase();
       const password =   component.find('input[type=password]').first().val().trim();
@@ -25,22 +23,22 @@ admin.login = {
          confirm:  calcHash(confirm),
          invite:   inviteCode
          };
-      function displayError(msg) {
+      const displayError = (msg) => {
          component.find('button').enable();
          dna.ui.pulse(component.find('.error-message').text(msg));
-         }
-      function handle(data) {
+         };
+      const handle = (data) => {
          if (data.authenticated)
             window.location.href = '.';
          else
             displayError(data.message);
-         }
+         };
       if (action === 'create' && password.length < minPaswordLength)
          displayError('Password must be at least ' + minPaswordLength + ' characters long.');
       else
          library.rest.post('security', credentials, { action: action, callback: handle });
       },
-   setup: function(component) {
+   setup: (component) => {
       window.fetchJson.enableLogger();
       const params = dna.browser.getUrlParams();
       dna.insert('gallery-title', window.clientData);

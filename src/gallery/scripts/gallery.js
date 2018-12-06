@@ -5,7 +5,7 @@
 
 // Gallery application
 const gallery = {
-   start: function() {
+   start: () => {
       $('body >footer .hide-me').remove();
       $('form.send-message').attr({ method: 'post', action: 'server/send-message.php' });  //bots are lazy
       const options = {
