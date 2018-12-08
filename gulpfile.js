@@ -63,7 +63,7 @@ const task = {
       const buildJs = () =>
          gulp.src(['src/gallery/scripts/gallery.js', 'src/gallery/scripts/*.js'])
             .pipe(babel(babelMinifyJs))
-            .pipe(concat('paradise.js'))
+            .pipe(concat('paradise.min.js'))
             .pipe(header(bannerJs))
             .pipe(gap.appendText('\n'))
             .pipe(size({ showFiles: true }))
@@ -80,7 +80,7 @@ const task = {
       const buildAdminJs = () =>
          gulp.src(['src/gallery/console/scripts/admin.js', 'src/gallery/console/**/*.js'])
             .pipe(babel(babelMinifyJs))
-            .pipe(concat('bundle.js'))
+            .pipe(concat('paradise-console.min.js'))
             .pipe(header(bannerJs))
             .pipe(gap.appendText('\n'))
             .pipe(size({ showFiles: true }))
