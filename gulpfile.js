@@ -67,6 +67,7 @@ const task = {
             .pipe(header(bannerJs))
             .pipe(gap.appendText('\n'))
             .pipe(size({ showFiles: true }))
+            .pipe(size({ showFiles: true, gzip: true }))
             .pipe(gulp.dest(targetFolder));
       const buildAdminCss = () =>
          gulp.src(['src/gallery/console/**/*.css', 'src/gallery/console/**/*.less'])

@@ -1,6 +1,6 @@
 {
    "name": "paradise",
-   "version": "0.3.3",
+   "version": "0.3.2",
    "description": "Paradise PHP Photo Gallery",
    "summary": "A simple and aesthetic image gallery to showcase your art portfolio",
    "license": "GPL-3.0",
@@ -51,7 +51,7 @@
    "devDependencies": {
       "@babel/core": "~7.2",
       "@babel/preset-env": "~7.2",
-      "babel-minify": "~0.5.0",
+      "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "cssnano": "~4.1",
       "del": "~3.0",
@@ -68,6 +68,6 @@
       "gulp-zip": "~4.2",
       "jshint": "~2.9",
       "merge-stream": "~1.0",
-      "postcss-preset-env": "~6.4"
+      "postcss-preset-env": "~6.5"
    }
 }

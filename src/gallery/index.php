@@ -40,7 +40,7 @@
 
 <main>
    <aside data-href=console>&nbsp; &nbsp;</aside>
-   <nav id=gallery class=dna-menu>
+   <nav id=gallery-menu class=dna-menu>
       <span class=<?=showHideClass($pages[0]->show)?>><?=$pages[0]->title?></span>
       <span class=<?=showHideClass($pages[1]->show)?>><?=$pages[1]->title?></span>
       <span class=<?=showHideClass($pages[2]->show)?>><?=$pages[2]->title?></span>
