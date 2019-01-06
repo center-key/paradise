@@ -22,7 +22,7 @@
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/magnific-popup.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/reset.min.css>
-<link rel=stylesheet       href=paradise.css>
+<link rel=stylesheet       href=paradise.min.css>
 <link rel=stylesheet       href=~data~/custom-style.css>
 <style>
    h1 {

@@ -16,6 +16,7 @@ const postCssNano =      require('cssnano');
 const postCssPresetEnv = require('postcss-preset-env');
 const replace =          require('gulp-replace');
 const size =             require('gulp-size');
+const sort =             require('gulp-sort');
 const zip =              require('gulp-zip');
 
 // Setup
@@ -53,8 +54,9 @@ const task = {
             .pipe(gulp.dest(targetFolder));
       const buildCss = () =>
          gulp.src('src/gallery/style/*.less')
+            .pipe(sort())
             .pipe(less())
-            .pipe(concat('paradise.css'))
+            .pipe(concat('paradise.min.css'))
             .pipe(postCss(postCssPlugins))
             .pipe(header(bannerCss))
             .pipe(gap.appendText('\n'))
@@ -67,12 +69,11 @@ const task = {
             .pipe(header(bannerJs))
             .pipe(gap.appendText('\n'))
             .pipe(size({ showFiles: true }))
-            .pipe(size({ showFiles: true, gzip: true }))
             .pipe(gulp.dest(targetFolder));
       const buildAdminCss = () =>
          gulp.src(['src/gallery/console/**/*.css', 'src/gallery/console/**/*.less'])
             .pipe(less())
-            .pipe(concat('bundle.css'))
+            .pipe(concat('paradise-console.min.css'))
             .pipe(postCss(postCssPlugins))
             .pipe(header(bannerCss))
             .pipe(gap.appendText('\n'))
@@ -100,15 +101,24 @@ const task = {
          );
       },
    makeInstallZip: () => {
-      return gulp.src('target/**/*')
-         .pipe(zip('paradise-v' + pkg.version + '.zip'))
-         .pipe(size({ showFiles: true }))
-         .pipe(gulp.dest('releases'))
-         .pipe(gulp.dest('releases/previous'));
+      const reportSizes = () =>
+         gulp.src(['target/**/*.css', 'target/**/*.js'])
+            .pipe(sort())
+            .pipe(size({ showFiles: true, gzip: true }));
+      const zipIt = () =>
+         gulp.src('target/**/*')
+            .pipe(zip('paradise-v' + pkg.version + '.zip'))
+            .pipe(size({ showFiles: true }))
+            .pipe(gulp.dest('releases'))
+            .pipe(gulp.dest('releases/previous'));
+      return mergeStream(
+         reportSizes(),
+         zipIt()
+         );
       }
    };
 
 // Gulp
-gulp.task('clean', task.cleanTarget);
-gulp.task('build', task.buildWebApp);
-gulp.task('zip',   task.makeInstallZip);
+gulp.task('clean-target', task.cleanTarget);
+gulp.task('build-app',    task.buildWebApp);
+gulp.task('make-zip',     task.makeInstallZip);

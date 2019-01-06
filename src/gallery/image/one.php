@@ -22,7 +22,7 @@
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/reset.min.css>
-<link rel=stylesheet       href=../../paradise.css>
+<link rel=stylesheet       href=../../paradise.min.css>
 <link rel=stylesheet       href=../../~data~/custom-style.css>
 <style>
    h1 {

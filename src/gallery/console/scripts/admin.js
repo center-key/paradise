@@ -11,7 +11,7 @@ const admin = {
       admin.ui.loadSettings();
       admin.ui.loadPortfolio();
       admin.ui.loadAccounts();
-      admin.ui.createUploader();
+      admin.ui.configureUploader();
       dna.clone('account-invite', window.clientData.invites);
       dna.clone('backup-file',    window.clientData.backupFiles);
       dna.insert('page-footer',   window.clientData);
@@ -71,33 +71,39 @@ admin.ui = {
       const handle = (data) => dna.clone('user-account', data);
       admin.rest.get('account', { action: 'list', callback: handle });
       },
-   createUploader: () => {
-      const spinner = $('#processing-files').hide();
-      const handle = (data) => {
-         admin.ui.statusMsg(data.message);
-         spinner.delay(2000).fadeOut(admin.ui.loadPortfolio);
-         };
-      const start = () => spinner.fadeIn();
-      let lastTimeoutId = null;
-      const done = () => {
-         const processUploads = () => {
-            if (timeoutId === lastTimeoutId)
-               admin.rest.get('command', { action: 'process-uploads', callback: handle });
-            };
-         const timeoutId = window.setTimeout(processUploads, 3000);  //workaround to guess when last upload in done
-         lastTimeoutId = timeoutId;
-         };
+   configureUploader: () => {
+      const maxFileMB = 2;
+      const maxNumFiles = 20;
       const options = {
-         debug: true,       //view any upload errors in the js console
-         element:           $('#file-uploader')[0],
-         uploadButtonText:  'Upload images',
-         action:            'file-uploader.php',
-         allowedExtensions: ['jpg', 'jpeg', 'png'],
-         sizeLimit:         2 * 1024 * 1024,  //2 MB
-         onSubmit:          start,
-         onComplete:        done
+         dictDefaultMessage:    'Click or drop photos here',
+         url:                   'upload.php',
+         acceptedFiles:         ['image/jpeg', 'image/png'].join(','),
+         maxFilesize:           maxFileMB,
+         maxFiles:              maxNumFiles,
+         parallelUploads:       maxNumFiles,
+         uploadMultiple:        true,
+         createImageThumbnails: false
          };
-      return new window.qq.FileUploader(options);
+      const uploaderElem = $('#gallery-uploader').addClass('dropzone');
+      const dropzone = new window.Dropzone(uploaderElem[0], options);
+      const start = () => {
+         admin.ui.statusMsg('Uploading photos...');
+         };
+      const done = () => {
+         const handle = () => {
+            admin.ui.loadPortfolio();
+            const resetDropzone = () => {
+               const uploadBoxes = uploaderElem.find('.dz-preview');
+               dna.ui.slideFadeOut(uploadBoxes, () => dropzone.removeAllFiles());
+               };
+            window.setTimeout(resetDropzone, 2000);
+            };
+         uploaderElem.addClass('pulse');
+         admin.ui.statusMsg('Processing photos...');
+         admin.rest.get('command', { action: 'process-uploads', callback: handle });
+         };
+      dropzone.on('sendingmultiple',  start);
+      dropzone.on('completemultiple', done);
       }
    };
 

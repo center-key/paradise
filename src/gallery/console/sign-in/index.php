@@ -16,7 +16,7 @@
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/reset.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/layouts/color-blocks.css>
-<link rel=stylesheet       href=../bundle.css>
+<link rel=stylesheet       href=../paradise-console.min.css>
 </head>
 <body>
 

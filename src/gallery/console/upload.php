@@ -1,0 +1,18 @@
+<?php
+require "server/security.php";
+$uploadFolder = "../~data~/uploads/";
+
+function upload($uploadFolder) {
+   foreach ($_FILES["file"]["tmp_name"] as $i => $tempFile) {
+      $filename = $_FILES["file"]["name"][$i];
+      move_uploaded_file($tempFile, $uploadFolder . $filename);
+      logEvent("file-upload-item", $i, $filename);
+      }
+   return array("success" => true, "images" => $i + 1);
+   }
+
+function readOnlyResponse() { return array("success" => true, "type" => "simulated"); }
+$result = readOnlyMode() ? readOnlyResponse() : upload($uploadFolder);
+logEvent("file-upload", $result["success"], $uploadFolder, $result);
+httpJsonResponse($result);
+?>

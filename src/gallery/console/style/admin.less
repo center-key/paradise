@@ -126,14 +126,6 @@ Structure:
 .portfolio-image figure img:hover { border-color: black; }
 .portfolio-image figure figcaption { font-size: 0.7rem; }
 
-/* Component: File Uploader */
-.qq-upload-button { display: inline-block; width: auto; font-size: 1.1rem; font-weight: bold;
-   background-color: cornflowerblue; border-radius: 0.4em; padding: 0.6em 1.2em;
-   margin-bottom: 10px; transition: background-color 0.4s; }
-.qq-upload-button:hover { background-color: royalblue; }
-.qq-upload-list li.qq-upload-success { text-indent: 0px; background-color: lightslategray; }
-#processing-files { float: right; font-size: 2.0rem; }
-
 /* Component: Gallery Settings */
 .gallery-settings fieldset.settings-website input[name=caption-caps]+span { font-size: 0.8em; text-transform: uppercase; }
 .gallery-settings fieldset.settings-tabs label { display: inline; }
@@ -144,3 +136,82 @@ Structure:
 
 /* Component: Administrator Accounts */
 .admin-accounts p { font-size: 0.9rem; font-style: italic; }
+
+/* Third party: DropzoneJS */
+#gallery-uploader.dropzone {
+   background: mintcream;
+   border: 2px dashed silver;
+   &.pulse {
+      .dz-preview {
+         animation: 1s infinite pulse;
+         @keyframes pulse {
+            0%   { background-color: limegreen; }
+            50%  { background-color: lime; }
+            100% { background-color: limegreen; }
+            }
+         }
+      }
+   .dz-default.dz-message {
+      font-size: 1.2rem;
+      }
+   .dz-preview {
+      display: block;
+      min-height: auto;
+      background-color: limegreen;
+      padding: 15px 0px 15px 10px;
+      margin: 0px 0px 10px 0px;
+      &:last-child {
+         margin-bottom: 0px;
+         }
+      .dz-image {
+         display: none;
+         }
+      .dz-details {
+         position: static;
+         text-align: left;
+         padding: 0px;
+         .dz-size,
+         .dz-filename {
+            display: inline-block;
+            line-height: initial;
+            margin: 0px;
+            &:hover span,
+            span {
+               background-color: transparent;
+               border: 1px solid transparent;
+               padding: 0px;
+               }
+            }
+         .dz-filename {
+            max-width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: top;
+            color: dimgray;
+            padding-left: 3px;
+            }
+         }
+      .dz-progress {
+         top: 20px;
+         .dz-upload {
+            }
+         }
+      .dz-error-message {
+         }
+      .dz-error-mark,
+      .dz-success-mark {
+         top: 0px;
+         left: 0px;
+         display: block;
+         width: 100%;
+         text-align: center;
+         margin-left: 0px;
+         margin-top: 0px;
+         animation: none;
+         svg {
+            display: inline-block;
+            width: 40px;
+            }
+         }
+      }
+   }
