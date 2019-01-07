@@ -46,6 +46,6 @@ admin.login = {
       component.toggleClass('create', window.clientData.userListEmpty || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);
-      component.find('input:invalid').filter(':visible').first().focus();
+      component.find('input:invalid').filter(':visible').first().trigger('focus');
       }
    };

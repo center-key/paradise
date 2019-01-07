@@ -121,7 +121,7 @@ admin.invites = {
       const handle = (data) => {
          admin.ui.statusMsg(data.message);
          admin.invites.loadList();
-         admin.invites.elem.email.focus().val('');
+         admin.invites.elem.email.trigger('focus').val('');
          };
       admin.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
       },
