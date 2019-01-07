@@ -40,13 +40,13 @@
 
 <main>
    <aside data-href=console>&nbsp; &nbsp;</aside>
-   <nav id=gallery-menu class=dna-menu>
+   <nav class=dna-menu data-nav=xxx data-nav=gallery>
       <span class=<?=showHideClass($pages[0]->show)?>><?=$pages[0]->title?></span>
       <span class=<?=showHideClass($pages[1]->show)?>><?=$pages[1]->title?></span>
       <span class=<?=showHideClass($pages[2]->show)?>><?=$pages[2]->title?></span>
       <span class=<?=showHideClass(false)?>>Thanks</span>
    </nav>
-   <div id=gallery-panels class=dna-panels>
+   <div class=dna-panels data-nav=xxx data-nav=gallery>
       <section data-hash=images class=gallery-images>
          <h3 class=hide-me>Gallery Images</h3>
          <?=getImagesHtml($gallery)?>
