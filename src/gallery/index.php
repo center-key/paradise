@@ -39,7 +39,7 @@
 </header>
 
 <main>
-   <aside data-href=console>&nbsp; &nbsp;</aside>
+   <aside><i data-icon=tachometer-alt data-href=console></i></aside>
    <nav class=dna-menu data-nav=gallery>
       <span class=<?=showHideClass($pages[0]->show)?>><?=$pages[0]->title?></span>
       <span class=<?=showHideClass($pages[1]->show)?>><?=$pages[1]->title?></span>
