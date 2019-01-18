@@ -20,6 +20,7 @@
 <link rel=apple-touch-icon href=<?=$imageInfo->urlSmall?>>
 <link rel=stylesheet       href="<?=$values->titleFontUrl?>">
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/magnific-popup.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/reset.min.css>
 <link rel=stylesheet       href=../../paradise.min.css>
@@ -61,6 +62,7 @@
 <script src=https://cdn.jsdelivr.net/npm/fetch-json@2.2/dist/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/library.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/magnific-popup@1.1/dist/jquery.magnific-popup.min.js></script>
 <script src=../../paradise.min.js></script>
 </body>
