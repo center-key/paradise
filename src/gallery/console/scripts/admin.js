@@ -75,7 +75,7 @@ admin.ui = {
       const maxFileMB = 2;
       const maxNumFiles = 20;
       const options = {
-         dictDefaultMessage:    'Click or drop photos here',
+         dictDefaultMessage:    '<p><button>Upload photos</button></p>(or just drag photos here)',
          url:                   'upload.php',
          acceptedFiles:         ['image/jpeg', 'image/png'].join(','),
          maxFilesize:           maxFileMB,
