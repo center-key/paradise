@@ -50,8 +50,7 @@ function getImagesHtml($gallery) {
    }
 
 function getImageInfo($uri, $gallery) {
-   preg_match("/\/image\/([0-9]+)/", $uri, $matches);
-   $id = $matches[1];
+   $id = preg_match("/\/image\/([0-9]+)/", $uri, $matches) ? $matches[1] : "missing";
    $dbFilename = __DIR__ . "/../~data~/portfolio/{$id}-db.json";
    $missingImage = '{ "caption": "That image does not appear to exist", "description": "" }';
    $imageDb = json_decode(is_file($dbFilename) ? file_get_contents($dbFilename) : $missingImage);

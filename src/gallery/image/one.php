@@ -10,6 +10,9 @@
 <meta charset=utf-8>
 <meta name=viewport                   content="width=device-width, initial-scale=1">
 <meta name=apple-mobile-web-app-title content="<?=$imageInfo->caption?>">
+<meta name=twitter:card               content="summary_large_image">
+<meta name=twitter:title              content="<?=$settings->title?> - <?=$imageInfo->caption?>">
+<meta name=twitter:description        content="<?=$imageInfo->description?>">
 <meta property=og:title               content="<?=$settings->title?> - <?=$imageInfo->caption?>">
 <meta property=og:description         content="<?=$settings->subtitle?> - <?=$imageInfo->description?>">
 <meta property=og:type                content="website">
@@ -19,14 +22,14 @@
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=<?=$imageInfo->urlSmall?>>
 <link rel=stylesheet       href="<?=$values->titleFontUrl?>">
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.7/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/magnific-popup.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/reset.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.1/dist/reset.min.css>
 <link rel=stylesheet       href=../../paradise.min.css>
 <link rel=stylesheet       href=../../~data~/custom-style.css>
 <style>
-   h1 {
+   body >header h1 {
       font-family: "<?=$settings->{"title-font"}?>", sans-serif;
       font-size: <?=$settings->{"title-size"}?>;
       }
@@ -36,6 +39,7 @@
 
 <header>
    <h1 data-href=../..><?=$settings->title?></h1>
+   <aside><a href=../..><i data-icon=images></i></a></aside>
    <h2><?=$settings->subtitle?></h2>
 </header>
 
@@ -62,7 +66,7 @@
 <script src=https://cdn.jsdelivr.net/npm/fetch-json@2.2/dist/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/library.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.1/dist/library.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/magnific-popup@1.1/dist/jquery.magnific-popup.min.js></script>
 <script src=../../paradise.min.js></script>
 </body>
