@@ -6,8 +6,12 @@
 /* Layout */
 body >header >h1 { font-size: 1.8rem; }
 body >header >h1+h2 { font-size: 1.3rem; }
-img.paradise-logo { float: left; width: 100px; margin: 0px 15px 10px 0px; }
-p code { font-size: 0.8rem; padding: 0px; }
+body >main img.paradise-logo { float: left; width: 100px; margin: 0px 15px 10px 0px; }
+body >main p code { font-size: 0.8rem; padding: 0px; }
+body >main figure.solid-background { background-color: silver; padding: 12px; margin: 3px 0px 0px 0px; }
+body >main figure.solid-background img { display: block; max-width: 100%; max-height: none; }
+body >main figure.solid-background .popup-image-layer { background-color: dimgray; }
+body >main figure.solid-background .popup-image-layer img { border-color: dimgray; }
 
 /* Mobile screenshots */
 .mobile-screenshots {
