@@ -6,17 +6,13 @@
 /* Gallery */
 /* Do not add customizations to this file -- edit the CSS in: gallery/~data~/custom-style.css */
 
-/* Foundation */
+/* Document */
 body {
    max-width: none;
    color: whitesmoke;
    background-color: dimgray;
    padding: 35px 50px;
    margin: 0px;
-   }
-
-/* Document */
-body {
    h1 {
       margin-bottom: 5px;
       text-shadow: silver 2px 1px 0.1em;
@@ -64,31 +60,40 @@ body {
 /* Page layout */
 body {
    >header {
-      text-align: left;
-      margin-bottom: 10px;
       i.font-icon {
          font-size: 2rem;
          margin-top: -10px;
          }
       }
    >main {
+      position: relative;
       >aside {
+         position: absolute;
+         top: 0px;
+         right: 0px;
          i.font-icon[data-href] {
             padding: 2px 5px;
             opacity: 0;
             }
          }
       >nav.dna-menu {
+         @navMenuDivider: 1px solid dimgray;
+         display: flex;
+         justify-content: center;
          background: linear-gradient(to bottom, silver, gray);
          padding: 0px;
          margin: 0px 0px 10px 0px;
          >span {
-            display: table-cell;
-            font-size: 0.9rem;
             background-color: rgba(150, 200, 255, 0.0);
             transition: background-color 0.4s;
-            border-right: 1px solid dimgray;
+            border-right: @navMenuDivider;
             padding: 4px 20px;
+            }
+         >span:first-child {
+            border-left: @navMenuDivider;
+            }
+         >span.selected {
+            cursor: auto;
             }
          >span.selected,
          >span:hover {
