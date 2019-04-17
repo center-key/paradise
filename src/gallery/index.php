@@ -21,7 +21,7 @@
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=<?=$values->thumbnailUrl?>>
 <link rel=stylesheet       href="<?=$values->titleFontUrl?>">
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.7/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.8/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/jquery.magnific-popup/1.0/magnific-popup.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.1/dist/reset.min.css>
@@ -51,15 +51,15 @@
    </nav>
    <div class=dna-panels data-nav=gallery>
       <section data-hash=images class=gallery-images>
-         <h3 class=hide-me>Gallery Images</h3>
+         <h2 class=hide-me>Gallery Images</h2>
          <?=getImagesHtml($gallery)?>
       </section>
       <section data-hash=artist>
-         <h3 class=hide-me>The Artist</h3>
+         <h2 class=hide-me>The Artist</h2>
          <?=$values->artistPageHtml?>
       </section>
       <section data-hash=contact class=external-site>
-         <h3>Contact the Artist</h3>
+         <h2>Contact the Artist</h2>
          <form class=send-message>
             <label>
                <span>Message:</span>
@@ -80,7 +80,7 @@
          <nav>Gallery powered by <a href=https://centerkey.com/paradise>Paradise</a></nav>
       </section>
       <section data-hash=thanks>
-         <h3>Thanks!</h3>
+         <h2>Thanks!</h2>
          <p>Your message has been sent.</p>
       </section>
    </div>
@@ -97,7 +97,7 @@
 </footer>
 
 <script src=https://cdn.jsdelivr.net/npm/fetch-json@2.2/dist/fetch-json.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/jquery@3.3/dist/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/web-ignition@1.1/dist/library.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/magnific-popup@1.1/dist/jquery.magnific-popup.min.js></script>

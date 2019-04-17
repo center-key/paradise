@@ -23,8 +23,9 @@
       "gallery"
    ],
    "jshintConfig": {
+      "esversion": 9,
       "strict": "implied",
-      "esversion": 6,
+      "eqeqeq": true,
       "undef": true,
       "unused": true,
       "node": true,
@@ -46,16 +47,16 @@
       "dna.js": "~1.5",
       "dropzone": "~5.5",
       "fetch-json": "~2.2",
-      "jquery": "~3.3",
+      "jquery": "~3.4",
       "web-ignition": "~1.1"
    },
    "devDependencies": {
-      "@babel/core": "~7.2",
-      "@babel/preset-env": "~7.3",
+      "@babel/core": "~7.4",
+      "@babel/preset-env": "~7.4",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "cssnano": "~4.1",
-      "del": "~3.0",
+      "del": "~4.1",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
       "gulp-babel": "~8.0",
@@ -70,6 +71,6 @@
       "gulp-zip": "~4.2",
       "jshint": "~2.10",
       "merge-stream": "~1.0",
-      "postcss-preset-env": "~6.5"
+      "postcss-preset-env": "~6.6"
    }
 }
