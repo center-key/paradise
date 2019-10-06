@@ -12,7 +12,7 @@
 <title>Paradise &bull; Administrator Console</title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.8/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.1/dist/reset.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.1/dist/layouts/color-blocks.css>
@@ -67,7 +67,7 @@
             </nav>
             <p class=external-site>
                <a href=https://github.com/center-key/paradise/wiki/faq#5-how-do-i-reset-my-password>
-                  <small>Forget your password?</small>
+                  <small>Forgot your password?</small>
                </a>
             </p>
          </form>
