@@ -42,7 +42,7 @@ const printHelp = (helpLines) => console.log(helpLines.join('\n'));
 // Tasks
 const task = {
    cleanTarget: () => {
-      return del([targetFolder, 'releases/paradise-*.zip']);
+      return del([targetFolder, 'releases/paradise-*.zip', '**/.DS_Store']);
       },
    buildWebApp: () => {
       printHelp(releaseHelp);
