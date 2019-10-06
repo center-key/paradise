@@ -46,7 +46,7 @@ function getImagesHtml($gallery) {
          </figure>";
       };
    $imagesHtml = implode(PHP_EOL, array_map("toImageHtml", $gallery));
-   return empty($gallery) ? "<h3>Gallery is empty</h3>" : $imagesHtml;
+   return empty($gallery) ? "<h2>Gallery is empty</h2>" : $imagesHtml;
    }
 
 function getImageInfo($uri, $gallery) {

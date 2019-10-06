@@ -62,7 +62,7 @@ function setupCustomCss($dataFolder) {
 function setupCustomPage($dataFolder, $pageName) {
    $filename = "{$dataFolder}/page-{$pageName}.html";
    if (!file_exists($filename)) {
-      $defaultHtml = "<h3>This page is under construction.</h3>\n<hr>\nEdit: ";
+      $defaultHtml = "<h2>This page is under construction.</h2>\n<hr>\nEdit: ";
       touch($filename);
       file_put_contents($filename, $defaultHtml . realpath($filename) . PHP_EOL);
       }
