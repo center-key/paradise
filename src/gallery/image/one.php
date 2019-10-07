@@ -38,8 +38,8 @@
 <body class="<?=$values->styleClasses?>">
 
 <header>
-   <h1 data-href=../..><?=$settings->title?></h1>
    <aside><a href=../..><i data-icon=images></i></a></aside>
+   <h1 data-href=../..><span><?=$settings->title?></span></h1>
    <h2><?=$settings->subtitle?></h2>
 </header>
 

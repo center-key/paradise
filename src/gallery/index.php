@@ -37,7 +37,7 @@
 <body class="<?=$values->styleClasses?>">
 
 <header>
-   <h1 data-href=.><?=$settings->title?></h1>
+   <h1 data-href=.><span><?=$settings->title?></span></h1>
    <h2><?=$settings->subtitle?></h2>
 </header>
 
