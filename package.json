@@ -44,16 +44,16 @@
    },
    "dependencies": {
       "crypto-js": "3.1.9-1",
-      "dna.js": "~1.5",
+      "dna.js": "~1.6",
       "dropzone": "~5.5",
       "fetch-json": "~2.2",
       "jquery": "~3.4",
-      "web-ignition": "~1.1"
+      "web-ignition": "~1.2"
    },
    "devDependencies": {
-      "@babel/core": "~7.6",
-      "@babel/preset-env": "~7.6",
-      "@fortawesome/fontawesome-free": "~5.11",
+      "@babel/core": "~7.7",
+      "@babel/preset-env": "~7.7",
+      "@fortawesome/fontawesome-free": "~5.12",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "cssnano": "~4.1",
