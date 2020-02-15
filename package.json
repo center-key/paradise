@@ -43,16 +43,15 @@
       "test": "gulp clean-target && gulp build-app && gulp make-zip"
    },
    "dependencies": {
-      "crypto-js": "3.1.9-1",
       "dna.js": "~1.6",
-      "dropzone": "~5.5",
+      "dropzone": "~5.7",
       "fetch-json": "~2.2",
       "jquery": "~3.4",
       "web-ignition": "~1.2"
    },
    "devDependencies": {
-      "@babel/core": "~7.7",
-      "@babel/preset-env": "~7.7",
+      "@babel/core": "~7.8",
+      "@babel/preset-env": "~7.8",
       "@fortawesome/fontawesome-free": "~5.12",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
@@ -70,7 +69,7 @@
       "gulp-size": "~3.0",
       "gulp-sort": "~2.0",
       "gulp-zip": "~5.0",
-      "jshint": "~2.10",
+      "jshint": "~2.11",
       "merge-stream": "~2.0",
       "postcss-preset-env": "~6.7"
    }

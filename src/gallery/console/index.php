@@ -14,7 +14,7 @@
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12/css/all.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dropzone@5.5/dist/dropzone.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dropzone@5.7/dist/dropzone.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.6/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.2/dist/reset.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.2/dist/layouts/color-blocks.css>
@@ -253,8 +253,7 @@
 
 <script src=https://cdn.jsdelivr.net/npm/fetch-json@2.2/dist/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/crypto-js@3.1/crypto-js.js></script>
-<script src=https://cdn.jsdelivr.net/npm/dropzone@5.5/dist/dropzone.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/dropzone@5.7/dist/dropzone.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.6/dist/dna.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/web-ignition@1.2/dist/library.min.js></script>
 <script src=paradise-console.min.js></script>
