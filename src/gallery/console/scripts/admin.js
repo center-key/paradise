@@ -6,7 +6,7 @@
 // Administrator console
 
 const admin = {
-   setup: () => {
+   setup() {
       window.fetchJson.enableLogger();
       admin.ui.loadSettings();
       admin.ui.loadPortfolio();
@@ -15,26 +15,28 @@ const admin = {
       dna.clone('account-invite', window.clientData.invites);
       dna.clone('backup-file',    window.clientData.backupFiles);
       dna.insert('page-footer',   window.clientData);
-      }
+      },
    };
 
 admin.ui = {
-   statusMsg: (message) => $('#status-msg').text(message).fadeOut(0).fadeIn(),
-   loadSettings: () => {
+   statusMsg(message) {
+      return $('#status-msg').text(message).fadeOut(0).fadeIn();
+      },
+   loadSettings() {
       const handle = (data) => {
          data.fonts = window.clientData.fonts;
          dna.clone('gallery-settings', data);
          };
       admin.rest.get('settings', { callback: handle });
       },
-   loadPortfolio: () => {
+   loadPortfolio() {
       const handle = (data) => {
          dna.clone('portfolio-image', data, { empty: true, fade: true });
          admin.ui.statusMsg('Portfolio images: ' + data.length);
          };
       admin.rest.get('portfolio', { action: 'list', callback: handle });
       },
-   save: (elem, type) => {
+   save(elem, type) {
       const field = elem.attr('name');
       const val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
       admin.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
@@ -47,31 +49,33 @@ admin.ui = {
          params.item = item.itemType;
       admin.rest.get(type, { action: 'update', params: params  });
       },
-   savePortfolio: (elem) => admin.ui.save(elem, 'portfolio'),
-   saveSettings: (elem) => {
+   savePortfolio(elem) {
+      return admin.ui.save(elem, 'portfolio');
+      },
+   saveSettings(elem) {
       const item = elem.closest('[data-item-id]');  //workaround
       if (item.length)                              //workaround
          item.data().itemId = item.index() + 1;     //workaround
       admin.ui.save(elem, 'settings');
       },
-   move: (elem) => {
+   move(elem) {
       const params = {
          id:   dna.getModel(elem).id,
-         move: elem.data().move
+         move: elem.data().move,
          };
       const handle = () => params.move === 'up' ? dna.up(elem) : dna.down(elem);
       admin.rest.get('portfolio', { action: 'update', params: params, callback: handle });
       },
-   delete: (elem) => {
+   delete(elem) {
       const params = { id: dna.getModel(elem).id };
       const handle = () => dna.bye(elem);
       admin.rest.get('portfolio', { action: 'delete', params: params, callback: handle });
       },
-   loadAccounts: () => {
+   loadAccounts() {
       const handle = (data) => dna.clone('user-account', data);
       admin.rest.get('account', { action: 'list', callback: handle });
       },
-   configureUploader: () => {
+   configureUploader() {
       const maxFileMB = 2;
       const maxNumFiles = 20;
       const options = {
@@ -82,7 +86,7 @@ admin.ui = {
          maxFiles:              maxNumFiles,
          parallelUploads:       maxNumFiles,
          uploadMultiple:        true,
-         createImageThumbnails: false
+         createImageThumbnails: false,
          };
       const uploaderElem = $('#gallery-uploader').addClass('dropzone');
       const dropzone = new window.Dropzone(uploaderElem[0], options);
@@ -112,10 +116,10 @@ admin.invites = {
       email:      $('.admin-accounts .send-invite input[type=email]'),
       sendButton: $('.admin-accounts .send-invite button'),
       },
-   validate: (input) => {
+   validate(input) {
       admin.invites.elem.sendButton.enable(library.util.cleanupEmail(input.val()));
       },
-   send: (button) => {
+   send(button) {
       button.disable();
       const email = library.util.cleanupEmail(admin.invites.elem.email.val());
       const handle = (data) => {
@@ -125,14 +129,14 @@ admin.invites = {
          };
       admin.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
       },
-   loadList: () => {
+   loadList() {
       const handle = (data) => dna.clone('account-invite', data, { empty: true, fade: true });
       admin.rest.get('invite', { action: 'list', callback: handle });
-      }
+      },
    };
 
 admin.backups = {
-   create: (button) => {
+   create(button) {
       button.disable();
       admin.ui.statusMsg('Creating backup...');
       const handle = (data) => {
@@ -142,8 +146,8 @@ admin.backups = {
          };
       admin.rest.get('backup', { action: 'create', callback: handle });
       },
-   loadList: () => {
+   loadList() {
       const handle = (data) => dna.clone('backup-file', data);
       admin.rest.get('backup', { action: 'list', callback: handle });
-      }
+      },
    };

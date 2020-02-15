@@ -7,10 +7,9 @@
 
 admin.login = {
    salt: window.location.hostname.replace(/^www[.]/, ''),
-   submit: (elem) => {
+   submit(elem) {
       const minPaswordLength = 8;
       const component = elem.closest('.component-security');
-      component.find('button').prop({ disabled: true });
       const calcHash = (passwd) => window.CryptoJS.SHA256(passwd + admin.login.salt).toString();
       const action =     component.hasClass('create') ? 'create' : 'login';
       const email =      component.find('input[type=email]').val().trim().toLowerCase();
@@ -21,7 +20,7 @@ admin.login = {
          email:    email,
          password: calcHash(password),
          confirm:  calcHash(confirm),
-         invite:   inviteCode
+         invite:   inviteCode,
          };
       const displayError = (msg) => {
          component.find('button').enable();
@@ -37,8 +36,9 @@ admin.login = {
          displayError('Password must be at least ' + minPaswordLength + ' characters long.');
       else
          admin.rest.post('security', credentials, { action: action, callback: handle });
+      component.find('button').disable();
       },
-   setup: (component) => {
+   setup(component) {
       window.fetchJson.enableLogger();
       const params = dna.browser.getUrlParams();
       dna.insert('gallery-title', window.clientData);
@@ -47,5 +47,5 @@ admin.login = {
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       component.find('input[type=email]').val(params.email);
       component.find('input:invalid').filter(':visible').first().trigger('focus');
-      }
+      };
    };
