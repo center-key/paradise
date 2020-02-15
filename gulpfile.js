@@ -35,16 +35,16 @@ const releaseHelp = [
    'To release this version, commit and push the three ".zip" file changes with the comment:',
    '   Release v' + pkg.version,
    'After the release is done, increment version in "package.json" and then commit and push:',
-   '   Next release'
+   '   Next release',
    ];
 const printHelp = (helpLines) => console.log(helpLines.join('\n'));
 
 // Tasks
 const task = {
-   cleanTarget: () => {
+   cleanTarget() {
       return del([targetFolder, 'releases/paradise-*.zip', '**/.DS_Store']);
       },
-   buildWebApp: () => {
+   buildWebApp() {
       printHelp(releaseHelp);
       const buildPhp = () =>
          gulp.src(['src/gallery/**/*.php', 'src/gallery/**/.htaccess'])
@@ -100,7 +100,7 @@ const task = {
          copyLicense()
          );
       },
-   makeInstallZip: () => {
+   makeInstallZip() {
       const reportSizes = () =>
          gulp.src(['target/**/*.css', 'target/**/*.js'])
             .pipe(sort())
@@ -113,9 +113,8 @@ const task = {
             .pipe(gulp.dest('releases/previous'));
       return mergeStream(
          reportSizes(),
-         zipIt()
-         );
-      }
+         zipIt());
+      },
    };
 
 // Gulp
