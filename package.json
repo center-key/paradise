@@ -46,7 +46,7 @@
       "dna.js": "~1.6",
       "dropzone": "~5.7",
       "fetch-json": "~2.2",
-      "jquery": "~3.4",
+      "jquery": "~3.5",
       "web-ignition": "~1.2"
    },
    "devDependencies": {
