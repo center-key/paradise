@@ -8,10 +8,10 @@
 admin.login = {
    salt: window.location.hostname.replace(/^www[.]/, ''),
    calcSha256(message) {
-      const binaryMessage = new TextEncoder().encode(message + admin.login.salt);
-      const toHex = (binary) => binary.toString(16).padStart(2, '0').slice(-2);
+      const byteArray = new TextEncoder().encode(message + admin.login.salt);
+      const toHex = (byte) => byte.toString(16).padStart(2, '0').slice(-2);
       const handleDigest = (digest) => Array.from(new Uint8Array(digest)).map(toHex).join('');
-      return window.crypto.subtle.digest('SHA-256', binaryMessage).then(handleDigest);
+      return window.crypto.subtle.digest('SHA-256', byteArray).then(handleDigest);
       },
    submit(elem) {
       const minPaswordLength = 8;
