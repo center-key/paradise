@@ -42,26 +42,35 @@
       "pretest": "jshint *.js src",
       "test": "gulp clean-target && gulp build-app && gulp make-zip"
    },
+   "cdnVersion": {
+      "dnajs": "1.6",
+      "dropzone": "5.7",
+      "fetchJson": "2.2",
+      "fontAwesome": "5.13",
+      "jQuery": "3.5",
+      "magnificPopup": "1.1",
+      "webIgnition": "1.2"
+   },
    "dependencies": {
       "dna.js": "~1.6",
-      "dropzone": "~5.7",
       "fetch-json": "~2.2",
       "jquery": "~3.5",
       "web-ignition": "~1.2"
    },
    "devDependencies": {
-      "@babel/core": "~7.8",
-      "@babel/preset-env": "~7.8",
-      "@fortawesome/fontawesome-free": "~5.12",
+      "@babel/core": "~7.10",
+      "@babel/preset-env": "~7.10",
+      "@fortawesome/fontawesome-free": "~5.13",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "cssnano": "~4.1",
       "del": "~5.1",
+      "dropzone": "~5.7",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
       "gulp-babel": "~8.0",
       "gulp-concat": "~2.6",
-      "gulp-file-include": "~2.1",
+      "gulp-file-include": "~2.2",
       "gulp-header": "~2.0",
       "gulp-less": "~4.0",
       "gulp-postcss": "~8.0",
@@ -70,6 +79,7 @@
       "gulp-sort": "~2.0",
       "gulp-zip": "~5.0",
       "jshint": "~2.11",
+      "magnific-popup": "~1.1",
       "merge-stream": "~2.0",
       "postcss-preset-env": "~6.7"
    }

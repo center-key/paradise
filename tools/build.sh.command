@@ -22,7 +22,7 @@ setupTools() {
    echo "Node.js:"
    which node || { echo "Need to install Node.js: https://nodejs.org"; exit; }
    node --version
-   npm install
+   npm install --no-fund
    npm update
    npm outdated
    echo
@@ -62,6 +62,7 @@ unzipRelease() {
    pwd
    unzip -o $projectHome/releases/paradise-v*.zip
    chmod o+rwx gallery
+   # find . -name "*.json" -o -name "*.log" | xargs chmod o+w
    echo
    }
 
