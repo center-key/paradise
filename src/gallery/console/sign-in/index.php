@@ -63,6 +63,9 @@
                <input type=password data-enter-key=admin.login.submit
                   placeholder="Re-enter your password">
             </label>
+            <label class=remember-me>
+               <input type=checkbox>Remember me
+            </label>
             <nav>
                <button data-click=admin.login.submit>Sign in</button>
             </nav>
