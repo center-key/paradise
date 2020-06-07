@@ -22,8 +22,9 @@ function showHideClass($show) {
    }
 
 function styleClasses($settings) {
-   function getClass($settings, $property) { return $settings->{$property} ? $property : ""; }
-   return getClass($settings, "caption-italic") . " " . getClass($settings, "caption-caps");
+   $options = array("image-border", "caption-caps", "caption-italic");
+   $enabled = function($property) use ($settings) { return $settings->{$property}; };
+   return implode(" ", array_filter($options, $enabled));
    }
 
 function getImagesHtml($gallery) {

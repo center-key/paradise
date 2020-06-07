@@ -13,6 +13,7 @@ $defaultSettingsDb = array(
    "title-size" =>     "400%",
    "subtitle" =>       "Photography &bull; Art Studio",
    "footer" =>         "Copyright &copy; " . gmdate("Y"),
+   "image-border" =>   true,
    "caption-caps" =>   false,
    "caption-italic" => true,
    "cc-license" =>     false,

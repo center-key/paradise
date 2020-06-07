@@ -156,7 +156,7 @@ body {
       a img {
          max-width: 100%;
          height: 160px;
-         border: 5px solid black;
+         border: 0px solid black;  //see border-width defined in body.image-border
          opacity: 1;
          transition: all 1s;
          &:hover {
@@ -194,6 +194,11 @@ body {
             opacity: 1;
             }
          }
+      }
+   }
+body.image-border {
+   .gallery-images >figure >a >img {
+      border-width: 5px;
       }
    }
 body.caption-caps {

@@ -131,6 +131,15 @@
                   placeholder="Enter website subheader">
             </label>
             <div>
+               Style:
+               <div>
+                  <label>
+                     <input type=checkbox name=image-border data-prop-checked=~~image-border~~
+                        data-change=admin.ui.saveSettings><span>show image border</span>
+                  </label>
+               </div>
+            </div>
+            <div>
                Captions:
                <div>
                   <label>

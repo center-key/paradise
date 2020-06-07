@@ -96,7 +96,7 @@ function readPortfolioImageDb($id) {
    global $portfolioFolder;
    $dbFilename = "{$portfolioFolder}/{$id}-db.json";
    logEvent("readPortfolioImageDb", $dbFilename);
-   return is_file($dbFilename) ? readDb($dbFilename, $db) : false;
+   return is_file($dbFilename) ? readDb($dbFilename, $db) : false;   //TODO: define $db
    }
 
 function savePortfolioImageDb($db) {
@@ -106,8 +106,8 @@ function savePortfolioImageDb($db) {
    }
 
 function readSettingsDb() {
-   global $settingsDbFile;
-   return readDb($settingsDbFile);
+   global $defaultSettingsDb, $settingsDbFile;
+   return (object)array_merge($defaultSettingsDb, (array)readDb($settingsDbFile));
    }
 
 function saveSettingsDb($db) {
