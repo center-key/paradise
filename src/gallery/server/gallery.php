@@ -78,8 +78,14 @@ function setValues($settings, $gallery) {
       );
    }
 
+function migrateSettings($settings) {  //see: console/server/startup.php:$defaultSettingsDb
+   if (!isset($settings->{"image-border"}))
+      $settings->{"image-border"} = true;
+   return $settings;
+   }
+
 $settings = getData(__DIR__ . "/../~data~/settings-db.json");
 $gallery =  getData(__DIR__ . "/../~data~/gallery-db.json");
 $pages = $settings->pages;
-$values = setValues($settings, $gallery);
+$values = setValues(migrateSettings($settings), $gallery);
 ?>

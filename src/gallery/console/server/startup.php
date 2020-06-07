@@ -7,7 +7,7 @@
 // Startup
 // Initializes the data folder
 
-$defaultSettingsDb = array(
+$defaultSettingsDb = array(  //see: server/gallery.php:migrateSettings($settings)
    "title" =>          "My Gallery",
    "title-font" =>     "Reenie Beanie",
    "title-size" =>     "400%",

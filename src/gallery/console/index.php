@@ -135,7 +135,7 @@
                <div>
                   <label>
                      <input type=checkbox name=image-border data-prop-checked=~~image-border~~
-                        data-change=admin.ui.saveSettings><span>show image border</span>
+                        data-change=admin.ui.saveSettings><span>Show image border</span>
                   </label>
                </div>
             </div>
@@ -148,7 +148,7 @@
                   </label>
                   <label>
                      <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
-                        data-change=admin.ui.saveSettings><i>italic</i>
+                        data-change=admin.ui.saveSettings><i>Italic</i>
                   </label>
                </div>
             </div>
@@ -157,14 +157,14 @@
                <a href=https://creativecommons.org/licenses/by-sa/4.0><i data-icon=info-circle></i></a>
                <label>
                   <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
-                     data-change=admin.ui.saveSettings>display
+                     data-change=admin.ui.saveSettings>Display
                </label>
             </div>
             <div>
                <span>Social share icons:</span>
                <label>
                   <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~
-                     data-change=admin.ui.saveSettings>display
+                     data-change=admin.ui.saveSettings>Display
                </label>
             </div>
             <label>
