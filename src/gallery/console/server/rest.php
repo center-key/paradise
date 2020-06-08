@@ -71,6 +71,7 @@ function updateSettings() {
       "title-size" =>     "string",
       "subtitle" =>       "string",
       "footer" =>         "string",
+      "dark-mode" =>      "boolean",
       "image-border" =>   "boolean",
       "caption-caps" =>   "boolean",
       "caption-italic" => "boolean",

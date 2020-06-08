@@ -22,7 +22,7 @@ function showHideClass($show) {
    }
 
 function styleClasses($settings) {
-   $options = array("image-border", "caption-caps", "caption-italic");
+   $options = array("dark-mode", "image-border", "caption-caps", "caption-italic");
    $enabled = function($property) use ($settings) { return $settings->{$property}; };
    return implode(" ", array_filter($options, $enabled));
    }
@@ -79,6 +79,8 @@ function setValues($settings, $gallery) {
    }
 
 function migrateSettings($settings) {  //see: console/server/startup.php:$defaultSettingsDb
+   if (!isset($settings->{"dark-mode"}))
+      $settings->{"dark-mode"} = true;
    if (!isset($settings->{"image-border"}))
       $settings->{"image-border"} = true;
    return $settings;

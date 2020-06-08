@@ -13,6 +13,7 @@ $defaultSettingsDb = array(  //see: server/gallery.php:migrateSettings($settings
    "title-size" =>     "400%",
    "subtitle" =>       "Photography &bull; Art Studio",
    "footer" =>         "Copyright &copy; " . gmdate("Y"),
+   "dark-mode" =>      true,
    "image-border" =>   true,
    "caption-caps" =>   false,
    "caption-italic" => true,
@@ -46,8 +47,8 @@ function setupDb($dbFilename, $defaultDb) {
    initializeFile($dbFilename, json_encode($defaultDb));
    }
 
-function setupCustomCss($dataFolder) {
-   $defaultCss = array(
+function resetCustomCssForMigration($filename) {
+   $oldDefaultCss = array(
       "/*  Paradise PHP Photo Gallery                                */",
       "/*  Edit this CSS file to customize the look of the gallery.  */",
       "/*  Put custom images in: gallery/~data~/graphics             */",
@@ -56,7 +57,20 @@ function setupCustomCss($dataFolder) {
       "body >footer { background-color: gray; border-color: black; }",
       ".gallery-images .image img { border-color: black; }"
       );
+   $old = implode(PHP_EOL, $oldDefaultCss);
+   if (file_get_contents($filename) == $old)
+      logEvent('reset-custom-css-for-migration', $filename, strlen($old), unlink($filename));
+   }
+
+function setupCustomCss($dataFolder) {
+   $defaultCss = array(
+      "/*  Paradise PHP Photo Gallery                                */",
+      "/*  Edit this CSS file to customize the look of the gallery.  */",
+      "/*  Put custom images in: gallery/~data~/graphics             */",
+      "",
+      );
    $filename = "{$dataFolder}/custom-style.css";
+   resetCustomCssForMigration($filename);
    initializeFile($filename, implode(PHP_EOL, $defaultCss));
    }
 

@@ -40,12 +40,16 @@ function emptyObj($object) {
    }
 
 function initializeFile($filename, $fileContents) {
+   if (!is_file($filename))
+      logEvent('initialize-file', $filename, strlen($fileContents));
    if (!is_file($filename) && !file_put_contents($filename, $fileContents))
       logAndExit("Error initializing file, check permissions for: {$filename}");
    return $filename;
    }
 
 function initializeFolder($folder, $blockDirIndex) {
+   if (!is_dir($folder))
+      logEvent('initialize-folder', $folder);
    if (!is_dir($folder) && !mkdir($folder))
       logAndExit("Error initializing folder, check permissions for: {$folder}");
    if ($blockDirIndex)
