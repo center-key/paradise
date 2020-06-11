@@ -204,7 +204,9 @@
          <fieldset>
             <legend>Accounts</legend>
             <div>
-               <div id=user-account class=dna-template>~~[value]~~</div>
+               <div id=user-account class=dna-template data-login=~~login~~ data-valid=~~valid~~>
+                  ~~email~~
+               </div>
             </div>
          </fieldset>
          <fieldset>

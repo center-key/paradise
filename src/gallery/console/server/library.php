@@ -126,7 +126,7 @@ function readAccountsDb() {
 
 function saveAccountsDb($db) {
    global $accountsDbFile;
-   logEvent("save-accounts-db", count($db->users), count($db->invites));
+   logEvent("save-accounts-db");
    return saveDb($accountsDbFile, $db);
    }
 

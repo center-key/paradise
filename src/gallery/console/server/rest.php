@@ -140,7 +140,14 @@ function restRequestPortfolio($action, $id) {
    }
 
 function restRequestAccount($action, $email) {
-   return array_keys(get_object_vars(readAccountsDb()->users));
+	$users = readAccountsDb()->users;
+   return array_map(function ($email) use ($users) {
+      return array(
+         "email" => $email,
+         "login" => $users->{$email}->login,
+         "valid" => $users->{$email}->valid ?: 0,
+         );
+      }, array_keys(get_object_vars($users)));
    }
 
 function restRequestBackup($action) {

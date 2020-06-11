@@ -52,6 +52,10 @@ function loginUser($email) {
    $_SESSION["user"] = $email;
    $_SESSION["active"] = time();
    $_SESSION["read-only-user"] = isReadOnlyExampleEmailAddress($email);
+   $accountsDb = readAccountsDb();
+   $accountsDb->users->{$email}->login = time();
+   $accountsDb->users->{$email}->valid = ($accountsDb->users->{$email}->valid ?: 0) + 1;
+   saveAccountsDb($accountsDb);
    logEvent("user-login", session_id(), $_SESSION["read-only-user"] ? "read-only" : "regular");
    return true;
    }
