@@ -56,7 +56,8 @@ function loginUser($email) {
    $accountsDb->users->{$email}->login = time();
    $accountsDb->users->{$email}->valid = ($accountsDb->users->{$email}->valid ?: 0) + 1;
    saveAccountsDb($accountsDb);
-   logEvent("user-login", session_id(), $_SESSION["read-only-user"] ? "read-only" : "regular");
+   $type = $_SESSION["read-only-user"] ? "read-only" : "regular";
+   logEvent("user-login", session_id(), $type, $accountsDb->users->{$email}->valid);
    return true;
    }
 

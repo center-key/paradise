@@ -99,8 +99,7 @@ function readPortfolioDb() {
 function readPortfolioImageDb($id) {
    global $portfolioFolder;
    $dbFilename = "{$portfolioFolder}/{$id}-db.json";
-   logEvent("readPortfolioImageDb", $dbFilename);
-   return is_file($dbFilename) ? readDb($dbFilename, $db) : false;   //TODO: define $db
+   return is_file($dbFilename) ? readDb($dbFilename) : false;
    }
 
 function savePortfolioImageDb($db) {
@@ -126,7 +125,7 @@ function readAccountsDb() {
 
 function saveAccountsDb($db) {
    global $accountsDbFile;
-   logEvent("save-accounts-db");
+   logEvent("save-accounts-db", count((array)$db->users), count((array)$db->invites));
    return saveDb($accountsDbFile, $db);
    }
 
