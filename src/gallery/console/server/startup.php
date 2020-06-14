@@ -55,7 +55,7 @@ function resetCustomCssForMigration($filename) {
       "",
       "body { color: whitesmoke; background-color: dimgray; }",
       "body >footer { background-color: gray; border-color: black; }",
-      ".gallery-images .image img { border-color: black; }"
+      ".gallery-images .image img { border-color: black; }",
       );
    $old = implode(PHP_EOL, $oldDefaultCss);
    if (file_get_contents($filename) == $old)

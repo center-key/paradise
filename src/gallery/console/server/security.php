@@ -77,7 +77,7 @@ function sendAccountInvite($email) {
       "from" =>     $user,
       "to" =>       $email,
       "accepted" => false,
-      "expires" =>  time() + $daysValid * (24 * 60 * 60)
+      "expires" =>  time() + $daysValid * (24 * 60 * 60),
       );
    $invite["date"] = date("Y-m-d", $invite["expires"]);
    $code = "Q" . mt_rand() . mt_rand();

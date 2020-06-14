@@ -14,12 +14,12 @@ function restError($code) {
       402 => "Missing in action",
       404 => "Resource not found",
       500 => "Unknown error",
-      501 => "Not implemented"
+      501 => "Not implemented",
       );
    return array(
       "error"   => true,
       "code"    => $code,
-      "message" => $messages[$code]
+      "message" => $messages[$code],
       );
    }
 
