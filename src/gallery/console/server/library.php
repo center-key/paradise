@@ -104,7 +104,7 @@ function readPortfolioImageDb($id) {
 
 function savePortfolioImageDb($db) {
    global $portfolioFolder;
-   logEvent("{$portfolioFolder}/{$db->id}-db.json", $db);
+   logEvent("save-portfolio-image-db", "{$portfolioFolder}/{$db->id}-db.json", $db);
    return saveDb("{$portfolioFolder}/{$db->id}-db.json", $db);
    }
 
@@ -115,6 +115,7 @@ function readSettingsDb() {
 
 function saveSettingsDb($db) {
    global $settingsDbFile;
+   logEvent("save-settings-db", array_values(get_object_vars($db)));
    return saveDb($settingsDbFile, $db);
    }
 
