@@ -30,9 +30,9 @@ function styleClasses($settings) {
 function getImagesHtml($gallery) {
    function toImageHtml($image) {
       $badgeHtml = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
-      $imageTitleHtml =
+      $imageTitleHtml = str_replace("'", "&apos;",
          "<span class=image-caption>{$image->caption}</span>" .
-         "<span class=image-description>{$image->description}</span>";
+         "<span class=image-description>{$image->description}</span>");
       return "
          <figure>
             {$badgeHtml}
