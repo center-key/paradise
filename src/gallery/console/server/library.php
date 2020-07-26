@@ -145,6 +145,7 @@ function convert($imageDb) {
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
       "badge" =>       isset($imageDb->badge) ? $imageDb->badge : "",
+      "stamp" =>       $imageDb->stamp,
       );
    }
 function generateGalleryDb() {

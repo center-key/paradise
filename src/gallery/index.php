@@ -52,7 +52,7 @@
    <div class=dna-panels data-nav=gallery>
       <section data-hash=images class=gallery-images>
          <h2 class=hide-me>Gallery Images</h2>
-         <?=getImagesHtml($gallery)?>
+         <?=getImagesHtml($gallery, $settings)?>
       </section>
       <section data-hash=artist>
          <h2 class=hide-me>The Artist</h2>

@@ -6,10 +6,10 @@
 // Administrator console
 
 const admin = {
+   settings: {},
    setup() {
       window.fetchJson.enableLogger();
-      admin.ui.loadSettings();
-      admin.ui.loadPortfolio();
+      admin.ui.loadSettings(admin.ui.loadPortfolio);
       admin.ui.loadAccounts();
       admin.ui.configureUploader();
       dna.clone('account-invite', window.clientData.invites);
@@ -22,16 +22,20 @@ admin.ui = {
    statusMsg(message) {
       return $('#status-msg').text(message).fadeOut(0).fadeIn();
       },
-   loadSettings() {
+   loadSettings(callback) {
       const handle = (data) => {
+         admin.settings = data;
+         if (callback)
+            callback();
          data.fonts = window.clientData.fonts;
          dna.clone('gallery-settings', data);
          };
       admin.rest.get('settings', { callback: handle });
       },
    loadPortfolio() {
+      const addStampIcon = (image) => image.stampIcon = admin.settings['stamp-icon'];
       const handle = (data) => {
-         dna.clone('portfolio-image', data, { empty: true, fade: true });
+         dna.clone('portfolio-image', data, { empty: true, fade: true, transform: addStampIcon });
          admin.ui.statusMsg('Portfolio images: ' + data.length);
          };
       admin.rest.get('portfolio', { action: 'list', callback: handle });

@@ -27,26 +27,37 @@ function styleClasses($settings) {
    return implode(" ", array_filter($options, $enabled));
    }
 
-function getImagesHtml($gallery) {
-   function toImageHtml($image) {
-      $badgeHtml = empty($image->badge) ? "" : "<div class=badge>{$image->badge}</div>";
+function getImagesHtml($gallery, $settings) {
+   $stampIcon = $settings->{"stamp-icon"};
+   $stampTooltip = empty($settings->{"stamp-title"}) ? "" :
+      "title='" . str_replace("'", "&apos;", $settings->{"stamp-title"}) . "'";
+   function toImageHtml($image, $stampIcon, $stampTooltip) {
+      $badgeHtml = empty($image->badge) ? "" : "<span class=badge>{$image->badge}</span>";
+      $stampHtml = $image->stamp && !empty($stampIcon) ?
+         "<i class=stamp data-icon={$stampIcon} {$stampTooltip}></i>" : "";
       $imageTitleHtml = str_replace("'", "&apos;",
          "<span class=image-caption>{$image->caption}</span>" .
          "<span class=image-description>{$image->description}</span>");
       return "
          <figure>
-            {$badgeHtml}
-            <a href=~data~/portfolio/{$image->id}-large.jpg
-               data-title='{$imageTitleHtml}'>
+            <a href=~data~/portfolio/{$image->id}-large.jpg data-title='{$imageTitleHtml}'>
                <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail>
             </a>
+            <aside>
+               {$badgeHtml}
+               {$stampHtml}
+            </aside>
             <figcaption>
                {$image->caption}
                <a href=image/{$image->id}/{$image->code} class=plain><i data-icon=link></i></a>
             </figcaption>
          </figure>";
       };
-   $imagesHtml = implode(PHP_EOL, array_map("toImageHtml", $gallery));
+   $imagesHtml = implode(PHP_EOL, array_map(
+      function ($image) use ($stampIcon, $stampTooltip) {
+         return toImageHtml($image, $stampIcon, $stampTooltip);
+         },
+      $gallery));
    return empty($gallery) ? "<h2>Gallery is empty</h2>" : $imagesHtml;
    }
 
@@ -83,6 +94,10 @@ function migrateSettings($settings) {  //see: console/server/startup.php:$defaul
       $settings->{"dark-mode"} = true;
    if (!isset($settings->{"image-border"}))
       $settings->{"image-border"} = true;
+   if (!isset($settings->{"stamp-icon"}))
+      $settings->{"stamp-icon"} = "star";
+   if (!isset($settings->{"stamp-title"}))
+      $settings->{"stamp-title"} = "";
    return $settings;
    }
 

@@ -59,10 +59,18 @@
                      <textarea name=description
                         data-smart-update=admin.ui.savePortfolio>~~description~~</textarea>
                   </label>
-                  <label>
-                     <span>Badge:</span>
-                     <input name=badge value=~~badge~~ data-smart-update=admin.ui.savePortfolio>
-                  </label>
+                  <p>
+                     <label>
+                        <span>Badge:</span>
+                        <input name=badge value=~~badge~~ data-smart-update=admin.ui.savePortfolio>
+                     </label>
+                     <label>
+                        <i data-attr-data-icon=~~stampIcon~~ title=~~stampIcon~~></i>
+                        <input name=stamp type=checkbox data-prop-checked=~~stamp~~
+                           data-change=admin.ui.savePortfolio>
+                        <span title="See Stamp icon in Gallery Settings">Show stamp</span>
+                     </label>
+                  </p>
                   <div class=actions>
                      <i data-icon=arrow-up   data-click=admin.ui.move data-move=up></i>
                      <i data-icon=arrow-down data-click=admin.ui.move data-move=down></i>
@@ -171,6 +179,19 @@
                      data-change=admin.ui.saveSettings>Display
                </label>
             </div>
+            <label>
+               <span>
+                  Stamp icon
+                  (<a href=https://fontawesome.com/cheatsheet>list of icon names</a>):
+               </span>
+               <input type=text name=stamp-icon value=~~stamp-icon~~
+                  data-smart-update=admin.ui.saveSettings placeholder="Enter Font Awesome name">
+            </label>
+            <label>
+               <span>Stamp title:</span>
+               <input type=text name=stamp-title value=~~stamp-title~~
+                  data-smart-update=admin.ui.saveSettings placeholder="Enter stamp tooltip help">
+            </label>
             <label>
                <span>Footer:</span>
                <input type=text name=footer value=~~footer~~ data-smart-update=admin.ui.saveSettings>

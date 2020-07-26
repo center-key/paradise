@@ -85,6 +85,7 @@ function processUploads() {
          "caption" =>     "",
          "description" => "",
          "badge" =>       "",
+         "stamp" =>       false,
          );
       saveDb($dbFilename, $imageDb);
       }

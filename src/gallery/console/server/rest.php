@@ -46,9 +46,13 @@ function runCommand($action) {
    }
 
 function fieldValue($value, $type) {
-   $value = str_replace("<", "&lt;", str_replace(">", "&gt;", trim($value)));
+   $find = array("<",    ">",    '"',      "'");
+   $use =  array("&lt;", "&gt;", "&quot;", "&apos;");
+   $value = str_replace($find, $use, trim($value));
    if ($type === "boolean")
       $value = $value === "true";
+   elseif ($type === "code")
+      $value = preg_replace("/[^a-z0-9-]/", "", strtolower($value));
    elseif ($type === "integer")
       $value = intval($value);
    return $value;
@@ -70,14 +74,16 @@ function updateSettings() {
       "title-font" =>     "string",
       "title-size" =>     "string",
       "subtitle" =>       "string",
-      "footer" =>         "string",
       "dark-mode" =>      "boolean",
       "image-border" =>   "boolean",
       "caption-caps" =>   "boolean",
       "caption-italic" => "boolean",
       "cc-license" =>     "boolean",
       "bookmarks" =>      "boolean",
-      "contact-email" =>  "string"
+      "stamp-icon" =>     "code",
+      "stamp-title" =>    "string",
+      "footer" =>         "string",
+      "contact-email" =>  "string",
       );
    $resource = readSettingsDb();
    if (isset($_GET["item"]))
@@ -95,7 +101,8 @@ function updatePortfolio($id) {
       "display" =>     "boolean",
       "caption" =>     "string",
       "description" => "string",
-      "badge" =>       "string"
+      "badge" =>       "string",
+      "stamp" =>       "boolean",
       );
    $resource = readPortfolioImageDb($id);
    if ($resource) {
@@ -134,7 +141,7 @@ function restRequestPortfolio($action, $id) {
       "get" =>    function($id) { return restError(501); },
       "update" => function($id) { return updatePortfolio($id); },
       "delete" => function($id) { return deletePortfolio($id); },
-      "list" =>   function($id) { return readPortfolioDb(); }
+      "list" =>   function($id) { return readPortfolioDb(); },
       );
    return $routes[$action]($id);
    }
