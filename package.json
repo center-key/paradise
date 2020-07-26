@@ -46,7 +46,7 @@
       "dnajs": "1.6",
       "dropzone": "5.7",
       "fetchJson": "2.2",
-      "fontAwesome": "5.13",
+      "fontAwesome": "5.14",
       "jQuery": "3.5",
       "magnificPopup": "1.1",
       "webIgnition": "1.2"
@@ -60,7 +60,7 @@
    "devDependencies": {
       "@babel/core": "~7.10",
       "@babel/preset-env": "~7.10",
-      "@fortawesome/fontawesome-free": "~5.13",
+      "@fortawesome/fontawesome-free": "~5.14",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "cssnano": "~4.1",

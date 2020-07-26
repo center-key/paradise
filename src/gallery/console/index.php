@@ -24,7 +24,7 @@
 
 <header>
    <aside>
-      <button data-href=.. class=external-site>Gallery</button>
+      <button data-href=.. data-target=gallery>Gallery</button>
       <button data-href=sign-out>Sign out</button>
    </aside>
    <h1>Paradise PHP Photo Gallery</h1>
