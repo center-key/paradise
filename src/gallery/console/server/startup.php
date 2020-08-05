@@ -61,7 +61,7 @@ function resetCustomCssForMigration($filename) {
       );
    $old = implode(PHP_EOL, $oldDefaultCss);
    if (file_get_contents($filename) == $old)
-      logEvent('reset-custom-css-for-migration', $filename, strlen($old), unlink($filename));
+      logEvent("reset-custom-css-for-migration", $filename, strlen($old), unlink($filename));
    }
 
 function setupCustomCss($dataFolder) {

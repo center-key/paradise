@@ -61,10 +61,10 @@ unzipRelease() {
    cd $deployFolder
    pwd
    unzip -o $projectHome/releases/paradise-v*.zip
-   chmod o+rwx gallery
-   chmod o+rwx gallery/~data~
-   chmod o+rwx gallery/~data~/secure*
-   # find . -name "*.json" -o -name "*.log" | xargs chmod o+w
+   chmod -v o+rwx gallery gallery/~data~
+   cd $deployFolder/gallery/~data~
+   chmod -v o+rwx backups* portfolio secure* uploads
+   chmod -Rv o+rw *.json
    echo
    }
 

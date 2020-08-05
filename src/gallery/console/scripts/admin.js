@@ -95,9 +95,7 @@ admin.ui = {
          };
       const uploaderElem = $('#gallery-uploader').addClass('dropzone');
       const dropzone = new window.Dropzone(uploaderElem[0], options);
-      const start = () => {
-         admin.ui.statusMsg('Uploading photos...');
-         };
+      const start = () => admin.ui.statusMsg('Uploading photos...');
       const done = () => {
          const handle = () => {
             admin.ui.loadPortfolio();
