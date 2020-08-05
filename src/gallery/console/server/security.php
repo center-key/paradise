@@ -53,7 +53,7 @@ function loginUser($email) {
    $_SESSION["active"] = time();
    $_SESSION["read-only-user"] = isReadOnlyExampleEmailAddress($email);
    $accountsDb = readAccountsDb();
-   $accountsDb->users->{$email}->login = time();
+   $accountsDb->users->{$email}->login = time() * 1000;
    $accountsDb->users->{$email}->valid = ($accountsDb->users->{$email}->valid ?: 0) + 1;
    saveAccountsDb($accountsDb);
    $type = $_SESSION["read-only-user"] ? "read-only" : "regular";

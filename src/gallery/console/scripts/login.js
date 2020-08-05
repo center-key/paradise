@@ -51,7 +51,7 @@ admin.login = {
             confirm:  hash,
             invite:   inviteCode,
             };
-         admin.rest.post('security', credentials, { action: action, callback: handleAuth });
+         admin.rest.post('security', credentials, { action: action }).then(handleAuth);
          };
       if (action === 'create' && password.length < minPaswordLength)
          displayError('Password must be at least ' + minPaswordLength + ' characters long.');

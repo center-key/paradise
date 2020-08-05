@@ -30,7 +30,7 @@ admin.ui = {
          data.fonts = window.clientData.fonts;
          dna.clone('gallery-settings', data);
          };
-      admin.rest.get('settings', { callback: handle });
+      admin.rest.get('settings').then(handle);
       },
    loadPortfolio() {
       const addStampIcon = (image) => image.stampIcon = admin.settings['stamp-icon'];
@@ -38,7 +38,7 @@ admin.ui = {
          dna.clone('portfolio-image', data, { empty: true, fade: true, transform: addStampIcon });
          admin.ui.statusMsg('Portfolio images: ' + data.length);
          };
-      admin.rest.get('portfolio', { action: 'list', callback: handle });
+      admin.rest.get('portfolio', { action: 'list' }).then(handle);
       },
    save(elem, type) {
       const field = elem.attr('name');
@@ -68,16 +68,17 @@ admin.ui = {
          move: elem.data().move,
          };
       const handle = () => params.move === 'up' ? dna.up(elem) : dna.down(elem);
-      admin.rest.get('portfolio', { action: 'update', params: params, callback: handle });
+      admin.rest.get('portfolio', { action: 'update', params: params }).then(handle);
       },
    delete(elem) {
       const params = { id: dna.getModel(elem).id };
       const handle = () => dna.bye(elem);
-      admin.rest.get('portfolio', { action: 'delete', params: params, callback: handle });
+      admin.rest.get('portfolio', { action: 'delete', params: params }).then(handle);
       },
    loadAccounts() {
-      const handle = (data) => dna.clone('user-account', data);
-      admin.rest.get('account', { action: 'list', callback: handle });
+      const addDate = (account) => account.lastLogin = new Date(account.login).toDateString();
+      const handle = (accounts) => dna.clone('user-account', accounts, { transform: addDate });
+      admin.rest.get('account', { action: 'list' }).then(handle);
       },
    configureUploader() {
       const maxFileMB = 2;
@@ -108,7 +109,7 @@ admin.ui = {
             };
          uploaderElem.addClass('pulse');
          admin.ui.statusMsg('Processing photos...');
-         admin.rest.get('command', { action: 'process-uploads', callback: handle });
+         admin.rest.get('command', { action: 'process-uploads' }).then(handle);
          };
       dropzone.on('sendingmultiple',  start);
       dropzone.on('completemultiple', done);
@@ -131,11 +132,11 @@ admin.invites = {
          admin.invites.loadList();
          admin.invites.elem.email.trigger('focus').val('');
          };
-      admin.rest.get('invite', { action: 'create', params: { email: email }, callback: handle  });
+      admin.rest.get('invite', { action: 'create', params: { email: email } }).then(handle);
       },
    loadList() {
       const handle = (data) => dna.clone('account-invite', data, { empty: true, fade: true });
-      admin.rest.get('invite', { action: 'list', callback: handle });
+      admin.rest.get('invite', { action: 'list' }).then(handle);
       },
    };
 
@@ -148,10 +149,10 @@ admin.backups = {
          dna.clone('backup-file', data, { top: true, fade: true });
          button.enable();
          };
-      admin.rest.get('backup', { action: 'create', callback: handle });
+      admin.rest.get('backup', { action: 'create' }).then(handle);
       },
    loadList() {
       const handle = (data) => dna.clone('backup-file', data);
-      admin.rest.get('backup', { action: 'list', callback: handle });
+      admin.rest.get('backup', { action: 'list' }).then(handle);
       },
    };
