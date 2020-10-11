@@ -13,11 +13,11 @@
 <title>Paradise &bull; Administrator Console</title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@cdnVersion.fontAwesome/css/all.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dropzone@@@cdnVersion.dropzone/dist/dropzone.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@@@cdnVersion.dnajs/dist/dna.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@cdnVersion.webIgnition/dist/reset.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@cdnVersion.webIgnition/dist/layouts/color-blocks.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@pkg.cdnVersion.fontAwesome/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dropzone@@@pkg.cdnVersion.dropzone/dist/dropzone.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/reset.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/layouts/color-blocks.css>
 <link rel=stylesheet       href=paradise-console.min.css>
 </head>
 <body data-on-load=admin.setup>
@@ -287,11 +287,11 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/npm/fetch-json@@@cdnVersion.fetchJson/dist/fetch-json.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/jquery@@@cdnVersion.jQuery/dist/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/dropzone@@@cdnVersion.dropzone/dist/dropzone.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/dna.js@@@cdnVersion.dnajs/dist/dna.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/web-ignition@@@cdnVersion.webIgnition/dist/library.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/fetch-json@@@pkg.cdnVersion.fetchJson/dist/fetch-json.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/jquery@@@pkg.cdnVersion.jQuery/dist/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/dropzone@@@pkg.cdnVersion.dropzone/dist/dropzone.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/library.min.js></script>
 <script src=paradise-console.min.js></script>
 <script>window.clientData = <?=appClientData()?>;</script>
 </body>

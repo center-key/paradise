@@ -49,22 +49,22 @@
       "fontAwesome": "5.14",
       "jQuery": "3.5",
       "magnificPopup": "1.1",
-      "webIgnition": "1.2"
+      "webIgnition": "1.3"
    },
    "dependencies": {
       "dna.js": "~1.6",
       "fetch-json": "~2.2",
       "jquery": "~3.5",
-      "web-ignition": "~1.2"
+      "web-ignition": "~1.3"
    },
    "devDependencies": {
-      "@babel/core": "~7.10",
-      "@babel/preset-env": "~7.10",
-      "@fortawesome/fontawesome-free": "~5.14",
+      "@babel/core": "~7.11",
+      "@babel/preset-env": "~7.11",
+      "@fortawesome/fontawesome-free": "~5.15",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "cssnano": "~4.1",
-      "del": "~5.1",
+      "del": "~6.0",
       "dropzone": "~5.7",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
@@ -73,14 +73,15 @@
       "gulp-file-include": "~2.2",
       "gulp-header": "~2.0",
       "gulp-less": "~4.0",
-      "gulp-postcss": "~8.0",
+      "gulp-postcss": "~9.0",
       "gulp-replace": "~1.0",
       "gulp-size": "~3.0",
       "gulp-sort": "~2.0",
       "gulp-zip": "~5.0",
-      "jshint": "~2.11",
+      "jshint": "~2.12",
       "magnific-popup": "~1.1",
       "merge-stream": "~2.0",
+      "postcss": "~8.1",
       "postcss-preset-env": "~6.7"
    }
 }

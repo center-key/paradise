@@ -49,7 +49,7 @@ const task = {
       const buildPhp = () =>
          gulp.src(['src/gallery/**/*.php', 'src/gallery/**/.htaccess'])
             .pipe(replace('[PARADISE-VERSION]', pkg.version))
-            .pipe(fileInclude({ basepath: '@root', indent: true, context: pkg }))
+            .pipe(fileInclude({ basepath: '@root', indent: true, context: { pkg } }))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest(targetFolder));
       const buildCss = () =>

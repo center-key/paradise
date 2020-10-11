@@ -13,9 +13,9 @@
 <title>Fonts Sampler &bull; Paradise</title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@cdnVersion.fontAwesome/css/all.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@@@cdnVersion.dnajs/dist/dna.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@cdnVersion.webIgnition/dist/reset.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@pkg.cdnVersion.fontAwesome/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/reset.min.css>
 <link rel=stylesheet       href=../paradise.min.css>
 <link rel=stylesheet       href=../~data~/custom-style.css>
 <style>
@@ -46,8 +46,8 @@
 </footer>
 
 <script src=https://ajax.googleapis.com/ajax/libs/webfont/1.6/webfont.js></script>
-<script src=https://cdn.jsdelivr.net/npm/jquery@@@cdnVersion.jQuery/dist/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/dna.js@@@cdnVersion.dnajs/dist/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/jquery@@@pkg.cdnVersion.jQuery/dist/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.min.js></script>
 <script>window.clientData = <?=appClientData()?>;</script>
 <script>
    WebFont.load({ google: { families: clientData.fonts } });
