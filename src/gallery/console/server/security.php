@@ -12,7 +12,7 @@
 // $authRequired (optional): If false, redirect will not happen but $loggedIn will be set to true or false.
 // $redirectAuth (optional): If set and user is authorized, redirects to named page.
 
-$sessionTimout =  3600;  //60x60 seconds --> 1 hour
+$sessionTimeout =  3600;  //60x60 seconds --> 1 hour
 $authRequired = isset($authRequired) ? $authRequired : true;
 $redirectAuth = isset($redirectAuth) ? $redirectAuth : null;
 session_start();
@@ -177,7 +177,7 @@ function readOnlyMode() {
    return isset($_SESSION["read-only-user"]) ? $_SESSION["read-only-user"] : false;
    }
 
-$loggedIn = getCurrentUser() && time() < $_SESSION["active"] + $sessionTimout && userEnabled();
+$loggedIn = getCurrentUser() && time() < $_SESSION["active"] + $sessionTimeout && userEnabled();
 if ($loggedIn)
    $_SESSION["active"] = time();
 else
