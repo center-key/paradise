@@ -8,7 +8,7 @@
 // JSON-only zone
 
 function restError($code) {
-   $messages = array(
+   $messages = (object)array(
       400 => "Invalid parameters",
       401 => "Unauthorized access",
       402 => "Missing in action",
@@ -16,10 +16,10 @@ function restError($code) {
       500 => "Unknown error",
       501 => "Not implemented",
       );
-   return array(
+   return (object)array(
       "error"   => true,
       "code"    => $code,
-      "message" => $messages[$code],
+      "message" => $messages->{$code},
       );
    }
 
@@ -29,8 +29,8 @@ function runRoute($routes, $action) {
 
 function test() {
    // URL: http://localhost/paradise-deploy/gallery/console/rest?resource=command&action=test
-   $data = array("timestamp" => date("c"), "read-only" => readOnlyMode());
-   return array("test" => true, "data" => $data);
+   $data = (object)array("timestamp" => date("c"), "read-only" => readOnlyMode());
+   return (object)array("test" => true, "data" => $data);
    }
 
 function runCommand($action) {
@@ -69,7 +69,7 @@ function updateItem($resource, $itemType) {
    }
 
 function updateSettings() {
-   $fields = array(
+   $fields = (object)array(
       "title" =>          "string",
       "title-font" =>     "string",
       "title-size" =>     "string",
@@ -96,7 +96,7 @@ function updateSettings() {
    }
 
 function updatePortfolio($id) {
-   $fields = array(
+   $fields = (object)array(
       "sort" =>        "integer",
       "display" =>     "boolean",
       "caption" =>     "string",
@@ -151,7 +151,7 @@ function restRequestAccount($action, $email) {
    $emails = array_keys(get_object_vars($users));
    sort($emails);
    return array_map(function ($email) use ($users) {
-      return array(
+      return (object)array(
          "email" => $email,
          "login" => $users->{$email}->login,
          "valid" => $users->{$email}->valid ?: 0,
@@ -192,7 +192,11 @@ function restRequestBackup($action) {
          }
       $milliseconds = timeMillis() - $start;
       logEvent("backup-end", $filename, "files: " . $count, "milliseconds: " . $milliseconds);
-      return array("filename" => $filename, "url" => $url, "seconds" => $milliseconds / 1000);
+      return (object)array(
+         "filename" => $filename,
+         "url" =>      $url,
+         "seconds" =>  $milliseconds / 1000,
+         );
       }
    $routes = array(
       "create" => function() { return actionCreate(); },
@@ -218,7 +222,7 @@ function resource($loggedIn) {
       "invite" =>    function($action) { return restRequestInvite($action, getEmailParam()); },
       "backup" =>    function($action) { return restRequestBackup($action); },
       );
-   $httpMethod = $_SERVER['REQUEST_METHOD'];
+   $httpMethod = $_SERVER["REQUEST_METHOD"];
    $name =       $_GET["resource"];
    $action =     isset($_GET["action"]) ? $_GET["action"] : "get";
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));

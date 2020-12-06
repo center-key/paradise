@@ -7,7 +7,7 @@
 // Startup
 // Initializes the data folder
 
-$defaultSettingsDb = array(  //see: server/gallery.php:migrateSettings($settings)
+$defaultSettingsDb = (object)array(  //see: server/gallery.php:migrateSettings($settings)
    "title" =>          "My Gallery",
    "title-font" =>     "Reenie Beanie",
    "title-size" =>     "400%",
@@ -23,14 +23,14 @@ $defaultSettingsDb = array(  //see: server/gallery.php:migrateSettings($settings
    "bookmarks" =>      true,
    "contact-email" =>  "",
    "pages" => array(
-      array("name" => "gallery", "title" => "Gallery", "show" =>  true),
-      array("name" => "artist",  "title" => "Artist",  "show" =>  false),
-      array("name" => "contact", "title" => "Contact", "show" =>  false),
-      )
+      (object)array("name" => "gallery", "title" => "Gallery", "show" =>  true),
+      (object)array("name" => "artist",  "title" => "Artist",  "show" =>  false),
+      (object)array("name" => "contact", "title" => "Contact", "show" =>  false),
+      ),
    );
-$defaultAccountsDb = array(
+$defaultAccountsDb = (object)array(
    "users" =>   json_decode("{}"),  //email -> created (epoch), hash, enabled (boolean)
-   "invites" => json_decode("{}")   //inviteCode -> from, to, expires (epoch), accepted (epoch)
+   "invites" => json_decode("{}"),  //inviteCode -> from, to, expires (epoch), accepted (epoch)
    );
 
 function setupHiddenFolder($parentFolder, $name) {
@@ -96,6 +96,6 @@ $galleryDbFile =   "{$dataFolder}/gallery-db.json";
 setupDb($settingsDbFile, $defaultSettingsDb);
 setupDb($accountsDbFile, $defaultAccountsDb);
 setupCustomCss($dataFolder);
-setupCustomPage($dataFolder, $defaultSettingsDb["pages"][1]["name"]);
+setupCustomPage($dataFolder, $defaultSettingsDb->pages[1]->name);
 generateGalleryDb();
 ?>

@@ -63,8 +63,8 @@ function loginUser($email) {
 
 function createUser($accountsDb, $email, $password) {
    logEvent("create-user", $email);
-   $user = array("created" => time(), "enabled" => true);
-   $user["hash"] = calculateHash($user, $password);
+   $user = (object)array("created" => time(), "enabled" => true);
+   $user->hash = calculateHash($user, $password);
    $accountsDb->users->{$email} = $user;
    saveAccountsDb($accountsDb);
    loginUser($email);
@@ -73,13 +73,13 @@ function createUser($accountsDb, $email, $password) {
 function sendAccountInvite($email) {
    $daysValid = 3;
    $user = getCurrentUser();
-   $invite = array(
+   $invite = (object)array(
       "from" =>     $user,
       "to" =>       $email,
       "accepted" => false,
       "expires" =>  time() + $daysValid * (24 * 60 * 60),
       );
-   $invite["date"] = date("Y-m-d", $invite["expires"]);
+   $invite->date = date("Y-m-d", $invite->expires);
    $code = "Q" . mt_rand() . mt_rand();
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;
@@ -96,9 +96,9 @@ function sendAccountInvite($email) {
       "",
       "The gallery can be viewed at: " . getGalleryUrl(),
       );
-   $invite["message"] = sendEmail($invite["to"], $subjectLine, $messageLines) ?
+   $invite->message = sendEmail($invite->to, $subjectLine, $messageLines) ?
       "Account invitation sent to: {$email}" : "Error emailing invitation!";
-   logEvent("send-account-invite", $code, $invite["to"], $invite["expires"]);
+   logEvent("send-account-invite", $code, $invite->to, $invite->expires);
    return $invite;
    }
 
@@ -142,7 +142,7 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCod
    }
 
 function restRequestSecurity($action, $httpBody) {
-   $securityMsgs = array(
+   $securityMsgs = (object)array(
       "bad-invite-code" => "Invite code is missing, expired, or invalid.",
       "bad-credentials" => "The email address or password you entered is incorrect.",
       "invalid-email" =>   "Please enter a valid email address.",
@@ -164,9 +164,9 @@ function restRequestSecurity($action, $httpBody) {
       $errorCode = validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode);
    else
       $errorCode = "invalid-action";
-   $msg = $errorCode ? $securityMsgs[$errorCode] : "Success";
+   $msg = $errorCode ? $securityMsgs->{$errorCode} : "Success";
    logEvent("security-request", $email, $action, $errorCode, $msg);
-   return array(
+   return (object)array(
       "authenticated" => $errorCode === null,
       "email" =>         $email,
       "message" =>       $msg,

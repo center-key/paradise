@@ -9,7 +9,7 @@
 
 function getOutstandingInvites() {
    if (readOnlyMode())
-      return $resource = array(array("to" => "lee@example.com", "date" => date("Y-m-d")));
+      return $resource = (object)array(array("to" => "lee@example.com", "date" => date("Y-m-d")));
    return array_values(array_filter(array_values((array)readAccountsDb()->invites), "outstanding"));
    }
 
@@ -26,7 +26,7 @@ function getBackupFiles() {
       unlink(array_pop($files));
    function toObjBackup($file) {
       $url = "../~data~/" . basename(dirname($file)) . "/" . basename($file);
-      return array("filename" => basename($file), "url" => $url);
+      return (object)array("filename" => basename($file), "url" => $url);
       };
    if (readOnlyMode())
       $files = array();
@@ -36,7 +36,7 @@ function getBackupFiles() {
 function appClientData() {
    global $version, $googleFonts;
    $settings = readSettingsDb();
-   $data = array(
+   $data = (object)array(
       "version" =>       $version,
       "php" =>           phpversion(),
       "user" =>          getCurrentUser(),

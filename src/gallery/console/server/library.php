@@ -9,8 +9,9 @@
 
 require "font-options.php";
 
-$version =    "[PARADISE-VERSION]";
-$dataFolder = str_replace("console/server", "~data~", __DIR__);
+$version =      "[PARADISE-VERSION]";
+$dbCacheStore = null;
+$dataFolder =   str_replace("console/server", "~data~", __DIR__);
 date_default_timezone_set("UTC");
 
 function getGalleryUrl() {
@@ -61,26 +62,34 @@ function initializeFolder($folder, $blockDirIndex) {
    return $folder;
    }
 
-$dbCache = array();
+function getDbCache() {
+   global $dbCacheStore;
+   if ($dbCacheStore == null)
+      $dbCacheStore = (object)array();
+   return $dbCacheStore;
+   }
+
 function readDb($dbFilename) {
-   global $dbCache;
-   if (!isset($dbCache[$dbFilename])) {
+   $dbCache = getDbCache();
+   if (!isset($dbCache->{$dbFilename})) {
       $dbStr = file_get_contents($dbFilename);
       if ($dbStr === false)
          logAndExit("Error reading database: {$dbFilename}");
-      $dbCache[$dbFilename] = json_decode($dbStr);
+      $dbCache->{$dbFilename} = json_decode($dbStr);
       }
-   return $dbCache[$dbFilename];
+   return $dbCache->{$dbFilename};
    }
+
 function saveDb($dbFilename, $db) {
+   $dbCache = getDbCache();
    if (readOnlyMode())
       return $db;
    $bytes = file_put_contents($dbFilename, json_encode($db));
    logEvent("save-db", basename($dbFilename), $bytes);
    if ($bytes === false)
       logAndExit("Error saving database: {$dbFilename}");
-   $dbCache[$dbFilename] = $db;
-   return $dbCache[$dbFilename];
+   $dbCache->{$dbFilename} = $db;
+   return $dbCache->{$dbFilename};
    }
 
 function readGalleryDb() {
@@ -114,7 +123,7 @@ function savePortfolioImageDb($db) {
 
 function readSettingsDb() {
    global $defaultSettingsDb, $settingsDbFile;
-   return (object)array_merge($defaultSettingsDb, (array)readDb($settingsDbFile));
+   return (object)array_merge((array)$defaultSettingsDb, (array)readDb($settingsDbFile));
    }
 
 function saveSettingsDb($db) {
@@ -143,7 +152,7 @@ function displayTrue($imageDb) {
    }
 
 function convert($imageDb) {
-   return array(
+   return (object)array(
       "id" =>          $imageDb->id,
       "code" =>        toUriCode($imageDb->caption),
       "caption" =>     $imageDb->caption,

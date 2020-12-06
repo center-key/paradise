@@ -8,11 +8,11 @@ function upload($uploadFolder) {
       move_uploaded_file($tempFile, $uploadFolder . $filename);
       logEvent("file-upload-item", $i, $filename);
       }
-   return array("success" => true, "images" => $i + 1);
+   return (object)array("success" => true, "images" => $i + 1);
    }
 
-function readOnlyResponse() { return array("success" => true, "type" => "simulated"); }
+function readOnlyResponse() { return (object)array("success" => true, "type" => "simulated"); }
 $result = readOnlyMode() ? readOnlyResponse() : upload($uploadFolder);
-logEvent("file-upload", $result["success"], $uploadFolder, $result);
+logEvent("file-upload", $result->success, $uploadFolder, $result);
 httpJsonResponse($result);
 ?>
