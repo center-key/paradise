@@ -12,10 +12,10 @@ $fullHeightMax = 1200;
 
 function getNextImageId() {
    global $portfolioFolder;
-   $numLen = 3;  //ex: "037"
+   $numLen = 3;  //example:  "017"
    $filter = "{$portfolioFolder}/*-db.json";
    $imageNum = intval(basename(end(glob($filter)) ?: "0", "-db.json")) + 1;
-   return str_pad($imageNum, $numLen, "0", STR_PAD_LEFT);  //38 --> "038"
+   return str_pad($imageNum, $numLen, "0", STR_PAD_LEFT);  //example: 17 --> "017"
    }
 
 function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight, $newFile) {
@@ -50,7 +50,10 @@ function createImages($origFile, $id) {
    global $portfolioFolder;
    list($origWidth, $origHeight, $origType) = getimagesize($origFile);
    ini_set("memory_limit", "128M");
-   $origImage = $origType == 2 ? imagecreatefromjpeg($origFile) : imagecreatefrompng($origFile);
+   if ($origType == IMAGETYPE_JPEG)
+      $origImage = imagecreatefromjpeg($origFile);
+   else
+      $origImage = imagecreatefrompng($origFile);
    $aspectRatio = $origWidth / $origHeight;
    createThumbnail($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-small.png");
    createFullImage($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-large.jpg");
@@ -65,32 +68,61 @@ function deleteImages($id) {
    logEvent("delete-images", $id);
    }
 
-function processUploads() {
+function fileInfo($filename) {
+   global $uploadsFolder;
+   $path = "{$uploadsFolder}/{$filename}";
+   $type = exif_imagetype($path);
+   return (object)array(
+      "name" =>      $filename,
+      "path" =>      $path,
+      "extension" => strtolower(pathinfo($filename)["extension"]),
+      "type" =>      $type,
+      "valid" =>     $type == IMAGETYPE_JPEG || $type == IMAGETYPE_PNG,
+      );
+   }
+
+function processUpload($file) {
    global $uploadsFolder, $portfolioFolder;
-   $files = array_values(preg_grep("/[.](jpg|jpeg|png)$/i", scandir($uploadsFolder)));
-   foreach ($files as $filename) {
-      $id = getNextImageId();
-      $pathInfo = pathinfo($filename);
-      $extension = strtolower($pathInfo["extension"]);
-      $origFile = "{$portfolioFolder}/{$id}-original.{$extension}";
-      rename("{$uploadsFolder}/{$filename}", $origFile);
-      createImages($origFile, $id);
-      $dbFilename = "{$portfolioFolder}/{$id}-db.json";
-      $imageDb = array(
-         "id" =>          $id,
-         "sort" =>        intval($id) * 10000,
-         "original" =>    $filename,
-         "uploaded" =>    gmdate("Y-m-d"),
-         "display" =>     false,
-         "caption" =>     "",
-         "description" => "",
-         "badge" =>       "",
-         "stamp" =>       false,
-         );
-      saveDb($dbFilename, $imageDb);
-      }
-   $msg = "Images processed: " . count($files);
-   return array("count" => count($files), "files" => $files, "message" => $msg);
+   $id = getNextImageId();
+   $origFile = "{$portfolioFolder}/{$id}-original.{$file->extension}";
+   rename($file->path, $origFile);
+   createImages($origFile, $id);
+   $dbFilename = "{$portfolioFolder}/{$id}-db.json";
+   $imageDb = (object)array(
+      "id" =>          $id,
+      "sort" =>        intval($id) * 10000,
+      "original" =>    $file->name,
+      "uploaded" =>    gmdate("Y-m-d"),
+      "display" =>     false,
+      "caption" =>     "",
+      "description" => "",
+      "badge" =>       "",
+      "stamp" =>       false,
+      );
+   saveDb($dbFilename, $imageDb);
+   logEvent("process-upload", $imageDb->id, $imageDb->sort, $imageDb->original);
+   }
+
+function processUploads() {
+   global $uploadsFolder;
+   $imagePattern = "/[.](jpg|jpeg|png)$/i";
+   $uploadedFilenames = array_values(preg_grep($imagePattern, scandir($uploadsFolder)));
+   $uploadedFiles = array_map('fileInfo', $uploadedFilenames);
+   $validFiles =   array_filter($uploadedFiles, function($file) { return $file->valid; });
+   $invalidFiles = array_filter($uploadedFiles, function($file) { return !$file->valid; });
+   foreach ($uploadedFiles as $file)
+      if ($file->valid)
+         processUpload($file);
+      else
+         logEvent("invalid-image-file-deleted", $file->name, $file, unlink($file->path));
+   $msg = "Images processed: " . count($validFiles) . ", Invalid: " . count($invalidFiles);
+   logEvent("process-uploads", $msg);
+   return (object)array(
+      "count" =>   count($validFiles),
+      "files" =>   array_column($validFiles, 'name'),
+      "fails" =>   array_column($invalidFiles, 'name'),
+      "message" => $msg,
+      );
    }
 
 ?>
