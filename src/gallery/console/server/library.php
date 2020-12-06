@@ -189,14 +189,14 @@ function logEvent() {  //any number of parameters to log
    $archiveFilename = "{$secureFolder}/events-archive.log";
    $milliseconds = substr(microtime(), 2, 3);
    $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg(getCurrentUser()));
+   if (filesize($logFilename) > 500000)  //approximate file size limit: 500 KB
+      rename($logFilename, $archiveFilename);
    foreach (func_get_args() as $msg) {
       $event[] = $delimiter;
       $event[] = formatMsg($msg);
       }
    $event[] = PHP_EOL;
    file_put_contents($logFilename, $event, FILE_APPEND);
-   if (filesize($logFilename) > 500000)  //approximate file size limit: 500 KB
-      rename($logFilename, $archiveFilename);
    }
 
 function logAndExit($message) {
