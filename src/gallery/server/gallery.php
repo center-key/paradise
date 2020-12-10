@@ -33,7 +33,7 @@ function getImagesHtml($gallery, $settings) {
       "title='" . str_replace("'", "&apos;", $settings->{"stamp-title"}) . "'";
    function toImageHtml($image, $stampIcon, $stampTooltip) {
       $badgeHtml = empty($image->badge) ? "" : "<span class=badge>{$image->badge}</span>";
-      $stampHtml = $image->stamp && !empty($stampIcon) ?
+      $stampHtml = isset($image->stamp) && $image->stamp && !empty($stampIcon) ?
          "<i class=stamp data-icon={$stampIcon} {$stampTooltip}></i>" : "";
       $imageTitleHtml = str_replace("'", "&apos;",
          "<span class=image-caption>{$image->caption}</span>" .

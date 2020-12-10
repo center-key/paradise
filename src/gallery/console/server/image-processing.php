@@ -70,12 +70,13 @@ function deleteImages($id) {
 
 function fileInfo($filename) {
    global $uploadsFolder;
-   $path = "{$uploadsFolder}/{$filename}";
-   $type = exif_imagetype($path);
+   $path =     "{$uploadsFolder}/{$filename}";
+   $pathInfo = pathinfo($filename);
+   $type =     exif_imagetype($path);
    return (object)array(
       "name" =>      $filename,
       "path" =>      $path,
-      "extension" => strtolower(pathinfo($filename)["extension"]),
+      "extension" => strtolower($pathInfo["extension"]),
       "type" =>      $type,
       "valid" =>     $type == IMAGETYPE_JPEG || $type == IMAGETYPE_PNG,
       );

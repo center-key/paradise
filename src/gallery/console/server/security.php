@@ -39,7 +39,7 @@ function userEnabled() {
 
 function calculateHash($user, $password) {
    $blowfish = "$2y$10$";
-   $salt = md5(getProperty($user, "created"));  //md5 (32 characters) used to meet 22 character minimum
+   $salt = md5($user->created);  //md5 (32 characters) used to meet 22 character minimum
    return crypt($password, $blowfish . $salt);
    }
 
@@ -115,12 +115,11 @@ function restRequestInvite($action, $email) {
    }
 
 function useInvite($accountsDb, $code) {
-   $invite = getProperty($accountsDb->invites, $code);
-   $now = time();
+   $invite = isset($accountsDb->invites->{$code}) ? $accountsDb->invites->{$code} : null;
    if (outstanding($invite)) {
       $invite->accepted = true;
       saveAccountsDb($accountsDb);
-      logEvent("use-invite", $invite);
+      logEvent("use-invite", $code, $invite);
       }
    return $invite && $invite->accepted;
    }

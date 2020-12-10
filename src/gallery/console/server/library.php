@@ -7,6 +7,7 @@
 // Library
 // Constants and general utilities
 
+require "polyfills.php";
 require "font-options.php";
 
 $version =      "[PARADISE-VERSION]";
@@ -29,11 +30,6 @@ function fileSysFriendly($string) {
    setlocale(LC_ALL, "en_US");
    $asciiLowercase = strtolower(iconv("UTF-8", "ASCII//TRANSLIT", trim($string)));
    return preg_replace("/\s.*|&.t;|[^a-z0-9_-]/", "", $asciiLowercase);
-   }
-
-function getProperty($map, $key) {
-   return is_array($map) && isset($map[$key]) ? $map[$key] :
-      (is_object($map) && isset($map->{$key}) ? $map->{$key} : null);
    }
 
 function emptyObj($object) {
@@ -158,7 +154,7 @@ function convert($imageDb) {
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
       "badge" =>       isset($imageDb->badge) ? $imageDb->badge : "",
-      "stamp" =>       $imageDb->stamp,
+      "stamp" =>       isset($imageDb->stamp) ? $imageDb->stamp : false,
       );
    }
 function generateGalleryDb() {
@@ -166,14 +162,10 @@ function generateGalleryDb() {
       array_filter(readPortfolioDb(), "displayTrue"))));
    }
 
-function extractSort($imageDb) {
-   return $imageDb->sort;
-   }
-
 function calcNewPortfolioSort($currentSort, $up) {
-   $sorts = array_map("extractSort", readPortfolioDb());
-   array_unshift($sorts, 0);                //in case move to the top
-   array_push($sorts, end($sorts) + 10000);  //in case move to the bottom
+   $sorts = array_column(readPortfolioDb(), 'sort');
+   array_unshift($sorts, 0);                 //allow space to move to the top
+   array_push($sorts, end($sorts) + 10000);  //allow space to move to the bottom
    $currentLoc = array_search($currentSort, $sorts);
    $nearLoc = min(max($currentLoc + ($up ? -1 : 1), 1), count($sorts) - 2);
    $farLoc =  min(max($currentLoc + ($up ? -2 : 2), 0), count($sorts) - 1);

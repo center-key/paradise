@@ -16,10 +16,11 @@ function restError($code) {
       500 => "Unknown error",
       501 => "Not implemented",
       );
+   $messagesPhp53 = (array)$messages;
    return (object)array(
-      "error"   => true,
-      "code"    => $code,
-      "message" => $messages->{$code},
+      "error" =>   true,
+      "code" =>    $code,
+      "message" => $messagesPhp53[$code],  //"message" => $messages->{$code},
       );
    }
 
@@ -109,9 +110,8 @@ function updatePortfolio($id) {
       foreach ($fields as $field => $type)
          if (isset($_GET[$field]))
             $resource->{$field} = fieldValue($_GET[$field], $type);
-      $move = $_GET["move"];
-      if ($move)
-         $resource->sort = calcNewPortfolioSort($resource->sort, $move === "up");
+      if (isset($_GET["move"]))
+         $resource->sort = calcNewPortfolioSort($resource->sort, $_GET["move"] === "up");
       savePortfolioImageDb($resource);
       generateGalleryDb();
       }
@@ -238,7 +238,7 @@ function resource($loggedIn) {
       $resource = $routes[$name]($action);
    else
       $resource = restError(400);
-   logEvent("http-request", $httpMethod, $name, $action, !getProperty($resource, "error"));
+   logEvent("http-request", $httpMethod, $name, $action, empty($resource->error) ? "ok" : "error");
    return $resource;
    }
 
