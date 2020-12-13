@@ -147,14 +147,14 @@ function restRequestPortfolio($action, $id) {
    }
 
 function restRequestAccount($action, $email) {
-	$users = readAccountsDb()->users;
+	$users =  readAccountsDb()->users;
    $emails = array_keys(get_object_vars($users));
    sort($emails);
    return array_map(function ($email) use ($users) {
       return (object)array(
          "email" => $email,
          "login" => $users->{$email}->login,
-         "valid" => $users->{$email}->valid ?: 0,
+         "valid" => $users->{$email}->valid,
          );
       }, $emails);
    }
@@ -162,10 +162,10 @@ function restRequestAccount($action, $email) {
 function restRequestBackup($action) {
    function actionCreate() {
       global $backupsFolder;
-      $start = timeMillis();
+      function getInvitee($invite) { return $invite->to . ($invite->accepted ? " [accepted]" : ""); }
+      $start =    timeMillis();
       $settings = readSettingsDb();
       $accounts = readAccountsDb();
-      function getInvitee($invite) { return $invite->to . ($invite->accepted ? " [accepted]" : ""); }
       $admins =   implode(PHP_EOL, array_keys(get_object_vars($accounts->users)));
       $invitees = implode(PHP_EOL, array_map("getInvitee", get_object_vars($accounts->invites)));
       $userList = date("c") . "\n\nAdministrators:\n" . $admins . "\n\nInvitations:\n" . $invitees;
@@ -178,7 +178,7 @@ function restRequestBackup($action) {
          $count = 10;
          sleep(2);
          }
-      elseif ($zip->open("{$backupsFolder}/{$filename}", ZipArchive::CREATE) === TRUE) {
+      elseif ($zip->open("{$backupsFolder}/{$filename}", ZipArchive::CREATE) === true) {
          $zip->addGlob("../../~data~/*.css");
          $zip->addGlob("../../~data~/*.json");
          $zip->addGlob("../../~data~/*.html");

@@ -53,7 +53,7 @@ function loginUser($email) {
    $_SESSION["active"] = time();
    $_SESSION["read-only-user"] = isReadOnlyExampleEmailAddress($email);
    $accountsDb = readAccountsDb();
-   $accountsDb->users->{$email}->login = time() * 1000;
+   $accountsDb->users->{$email}->login = timeMillis();
    $accountsDb->users->{$email}->valid = ($accountsDb->users->{$email}->valid ?: 0) + 1;
    saveAccountsDb($accountsDb);
    $type = $_SESSION["read-only-user"] ? "read-only" : "regular";
@@ -63,7 +63,13 @@ function loginUser($email) {
 
 function createUser($accountsDb, $email, $password) {
    logEvent("create-user", $email);
-   $user = (object)array("created" => time(), "enabled" => true);
+   $user = (object)array(
+      "email" =>   $email,
+      "created" => time(),
+      "enabled" => true,
+      "login" =>   timeMillis(),
+      "valid" =>   1,
+      );
    $user->hash = calculateHash($user, $password);
    $accountsDb->users->{$email} = $user;
    saveAccountsDb($accountsDb);

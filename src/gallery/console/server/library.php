@@ -128,9 +128,21 @@ function saveSettingsDb($db) {
    return saveDb($settingsDbFile, $db);
    }
 
+function migrateAccounts($accounts) {
+   foreach ($accounts->users as $email => $user) {
+      if (!isset($user->email))
+         $user->email = $email;
+      if (!isset($user->login))
+         $user->login = strtotime("1970-01-01");
+      if (!isset($user->valid))
+         $user->valid = 0;
+      }
+   return $accounts;
+   }
+
 function readAccountsDb() {
    global $accountsDbFile;
-   return readDb($accountsDbFile);
+   return migrateAccounts(readDb($accountsDbFile));
    }
 
 function saveAccountsDb($db) {
