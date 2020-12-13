@@ -1,6 +1,6 @@
 {
    "name": "paradise",
-   "version": "0.4.4",
+   "version": "0.5.0",
    "description": "Paradise PHP Photo Gallery",
    "summary": "A simple and aesthetic image gallery to showcase your art portfolio",
    "license": "GPL-3.0",
@@ -81,7 +81,7 @@
       "jshint": "~2.12",
       "magnific-popup": "~1.1",
       "merge-stream": "~2.0",
-      "postcss": "~8.1",
+      "postcss": "~8.2",
       "postcss-preset-env": "~6.7"
    }
 }
