@@ -22,7 +22,7 @@ function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight,
    $newImage = imagecreatetruecolor($newWidth, $newHeight);
    imagecopyresampled($newImage, $origImage, 0, 0, 0, 0,
       $newWidth, $newHeight, $origWidth, $origHeight);
-   $pathInfo = pathinfo($newfile);
+   $pathInfo = pathinfo($newFile);
    if ($pathInfo["extension"] === ".png")
       imagepng($newImage, $newFile);
    else
