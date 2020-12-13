@@ -76,7 +76,8 @@ admin.ui = {
       admin.rest.get('portfolio', { action: 'delete', params: params }).then(handle);
       },
    loadAccounts() {
-      const addDate = (account) => account.lastLogin = new Date(account.login).toDateString();
+      const addDate = (account) => account.lastLogin = new Date(account.login).toDateString() +
+         ' (' + account.valid + ')';
       const handle = (accounts) => dna.clone('user-account', accounts, { transform: addDate });
       admin.rest.get('account', { action: 'list' }).then(handle);
       },
@@ -143,7 +144,8 @@ admin.backups = {
       button.disable();
       admin.ui.statusMsg('Creating backup...');
       const handle = (data) => {
-         admin.ui.statusMsg('Backup "' + data.filename + '" created in ' + data.seconds + ' seconds');
+         admin.ui.statusMsg('Backup "' + data.filename +
+            '" created in ' + data.milliseconds/1000 + ' seconds');
          dna.clone('backup-file', data, { top: true, fade: true });
          button.enable();
          };

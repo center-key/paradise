@@ -12,7 +12,7 @@
 // $authRequired (optional): If false, redirect will not happen but $loggedIn will be set to true or false.
 // $redirectAuth (optional): If set and user is authorized, redirects to named page.
 
-$sessionTimeout =  3600;  //60x60 seconds --> 1 hour
+$sessionTimeout =  3600000;  //60x60x1000 milliseconds --> 1 hour
 $authRequired = isset($authRequired) ? $authRequired : true;
 $redirectAuth = isset($redirectAuth) ? $redirectAuth : null;
 session_start();
@@ -49,12 +49,12 @@ function verifyPassword($user, $password) {
    }
 
 function loginUser($email) {
-   $_SESSION["user"] = $email;
-   $_SESSION["active"] = time();
+   $_SESSION["user"] =           $email;
+   $_SESSION["active"] =         getTime();
    $_SESSION["read-only-user"] = isReadOnlyExampleEmailAddress($email);
    $accountsDb = readAccountsDb();
-   $accountsDb->users->{$email}->login = timeMillis();
-   $accountsDb->users->{$email}->valid = ($accountsDb->users->{$email}->valid ?: 0) + 1;
+   $accountsDb->users->{$email}->login = getTime();
+   $accountsDb->users->{$email}->valid++;
    saveAccountsDb($accountsDb);
    $type = $_SESSION["read-only-user"] ? "read-only" : "regular";
    logEvent("user-login", session_id(), $type, $accountsDb->users->{$email}->valid);
@@ -65,9 +65,9 @@ function createUser($accountsDb, $email, $password) {
    logEvent("create-user", $email);
    $user = (object)array(
       "email" =>   $email,
-      "created" => time(),
+      "created" => getTime(),
       "enabled" => true,
-      "login" =>   timeMillis(),
+      "login" =>   getTime(),
       "valid" =>   1,
       );
    $user->hash = calculateHash($user, $password);
@@ -83,7 +83,7 @@ function sendAccountInvite($email) {
       "from" =>     $user,
       "to" =>       $email,
       "accepted" => false,
-      "expires" =>  time() + $daysValid * (24 * 60 * 60),
+      "expires" =>  getTime() + daysToMilliseconds($daysValid),
       );
    $invite->date = date("Y-m-d", $invite->expires);
    $code = "Q" . mt_rand() . mt_rand();
@@ -109,7 +109,7 @@ function sendAccountInvite($email) {
    }
 
 function outstanding($invite) {
-   return $invite && !$invite->accepted && time() < $invite->expires;
+   return $invite && !$invite->accepted && getTime() < $invite->expires;
    }
 
 function restRequestInvite($action, $email) {
@@ -182,9 +182,9 @@ function readOnlyMode() {
    return isset($_SESSION["read-only-user"]) ? $_SESSION["read-only-user"] : false;
    }
 
-$loggedIn = getCurrentUser() && time() < $_SESSION["active"] + $sessionTimeout && userEnabled();
+$loggedIn = getCurrentUser() && getTime() < $_SESSION["active"] + $sessionTimeout && userEnabled();
 if ($loggedIn)
-   $_SESSION["active"] = time();
+   $_SESSION["active"] = getTime();
 else
    session_unset();
 if ($loggedIn && $redirectAuth)

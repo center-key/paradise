@@ -163,16 +163,17 @@ function restRequestBackup($action) {
    function actionCreate() {
       global $backupsFolder;
       function getInvitee($invite) { return $invite->to . ($invite->accepted ? " [accepted]" : ""); }
-      $start =    timeMillis();
+      $start =    getTime();
       $settings = readSettingsDb();
       $accounts = readAccountsDb();
       $admins =   implode(PHP_EOL, array_keys(get_object_vars($accounts->users)));
       $invitees = implode(PHP_EOL, array_map("getInvitee", get_object_vars($accounts->invites)));
       $userList = date("c") . "\n\nAdministrators:\n" . $admins . "\n\nInvitations:\n" . $invitees;
       $filename = fileSysFriendly($settings->title) . "-" . date("Y-m-d-Hi") . ".zip";
+      $count = 0;
       logEvent("backup-start", $filename);
       $url = "../~data~/" . basename($backupsFolder) . "/" . $filename;
-      $zip = new ZipArchive;
+      $zip = new ZipArchive();
       if (readOnlyMode()) {
          $url = ".";
          $count = 10;
@@ -190,12 +191,12 @@ function restRequestBackup($action) {
          $count = $zip->numFiles;
          $zip->close();
          }
-      $milliseconds = timeMillis() - $start;
+      $milliseconds = getTime() - $start;
       logEvent("backup-end", $filename, "files: " . $count, "milliseconds: " . $milliseconds);
       return (object)array(
-         "filename" => $filename,
-         "url" =>      $url,
-         "seconds" =>  $milliseconds / 1000,
+         "filename" =>     $filename,
+         "url" =>          $url,
+         "milliseconds" => $milliseconds,
          );
       }
    $routes = array(

@@ -22,9 +22,13 @@ function getGalleryUrl() {
    return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
    }
 
-function timeMillis() {
-   return intval(microtime(TRUE) * 1000);
+function getTime() {
+   return intval(microtime(true) * 1000);
    }
+
+function daysToMilliseconds($days) {
+   return $days * 24 * 60 * 60 * 1000;
+}
 
 function fileSysFriendly($string) {
    setlocale(LC_ALL, "en_US");
@@ -197,7 +201,7 @@ function formatMsg($msg) {
 
 function logEvent() {  //any number of parameters to log
    global $secureFolder;
-   $delimiter = " | ";
+   $delimiter =       " | ";
    $logFilename =     "{$secureFolder}/events.log";
    $archiveFilename = "{$secureFolder}/events-archive.log";
    $milliseconds = substr(microtime(), 2, 3);
