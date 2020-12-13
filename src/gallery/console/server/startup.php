@@ -29,8 +29,8 @@ $defaultSettingsDb = (object)array(  //see: server/gallery.php:migrateSettings($
       ),
    );
 $defaultAccountsDb = (object)array(
-   "users" =>   json_decode("{}"),  //email -> created (epoch), hash, enabled (boolean)
-   "invites" => json_decode("{}"),  //inviteCode -> from, to, expires (epoch), accepted (epoch)
+   "users" =>   (object)array(),  //key: email, fields: email, created, hash, enabled, login, valid
+   "invites" => (object)array(),  //key: inviteCode, fields: from, to, expires, accepted
    );
 
 function setupHiddenFolder($parentFolder, $name) {
