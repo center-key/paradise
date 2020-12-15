@@ -65,6 +65,7 @@ body {
          text-shadow: 0px 0px 0.1em silver;
          }
       >h2 {
+         font-size: 1.6rem;
          }
       }
    >main {
@@ -191,20 +192,31 @@ body {
             cursor: help;
             }
          }
-      figcaption {
-         font-size: 0.8rem;
+      >figcaption {
+         position: relative;
+         font-size: 1.1rem;
+         font-weight: normal;
          margin: 0px;
-         a i.font-icon {
+         &:hover >a >i.font-icon {
+            opacity: 1;
+            }
+         >a >i.font-icon {
             position: absolute;
-            bottom: 0px;
+            top: 3px;
             right: 0px;
             font-size: 1.0rem;
             color: black;
             opacity: 0;
             transition: all 400ms;
             }
-         &:hover a i.font-icon {
-            opacity: 1;
+         >p {
+            height: 0px;
+            font-size: 0.9rem;
+            font-weight: lighter;
+            font-style: normal;
+            text-transform: none;
+            margin: 0px;
+            overflow: hidden;
             }
          }
       }
@@ -273,6 +285,11 @@ body.image-border {
       border-width: 5px;
       }
    }
+body.show-description {
+   .gallery-images >figure >figcaption >p {
+      height: auto;
+      }
+   }
 body.caption-caps {
    .gallery-images figure figcaption,
    .one-image figure figcaption,
@@ -297,7 +314,7 @@ body:not(.caption-italic) .image-description {
    padding: 30px 0px;
    figure {
       figcaption {
-         font-size: 1.8rem;
+         font-size: 2.0rem;
          font-weight: bold;
          margin-bottom: 10px;
          }
@@ -307,7 +324,7 @@ body:not(.caption-italic) .image-description {
          }
       }
    p {
-      font-size: 1.0rem;
+      font-size: 1.1rem;
       padding: 0px 20%;
       }
    }
@@ -348,10 +365,11 @@ body:not(.caption-italic) .image-description {
    }
 .mfp-gallery .mfp-content .mfp-title .image-caption {
    display: block;
+   font-size: 1.2rem;
    color: black;
    }
 .mfp-gallery .mfp-content .mfp-title .image-description {
-   font-size: 0.8rem;
+   font-size: 1.0rem;
    font-weight: normal;
    color: dimgray;
    }

@@ -22,7 +22,13 @@ function showHideClass($show) {
    }
 
 function styleClasses($settings) {
-   $options = array("dark-mode", "image-border", "caption-caps", "caption-italic");
+   $options = array(
+      "dark-mode",
+      "image-border",
+      "show-description",
+      "caption-caps",
+      "caption-italic",
+      );
    $enabled = function($property) use ($settings) { return $settings->{$property}; };
    return implode(" ", array_filter($options, $enabled));
    }
@@ -50,6 +56,7 @@ function getImagesHtml($gallery, $settings) {
             <figcaption>
                {$image->caption}
                <a href=image/{$image->id}/{$image->code} class=plain><i data-icon=link></i></a>
+               <p>{$image->description}</p>
             </figcaption>
          </figure>";
       };
@@ -94,6 +101,8 @@ function migrateSettings($settings) {  //see: console/server/startup.php:$defaul
       $settings->{"dark-mode"} = true;
    if (!isset($settings->{"image-border"}))
       $settings->{"image-border"} = true;
+   if (!isset($settings->{"show-description"}))
+      $settings->{"show-description"} = false;
    if (!isset($settings->{"stamp-icon"}))
       $settings->{"stamp-icon"} = "star";
    if (!isset($settings->{"stamp-title"}))

@@ -149,6 +149,10 @@
                      <input type=checkbox name=image-border data-prop-checked=~~image-border~~
                         data-change=admin.ui.saveSettings><span>Show image border</span>
                   </label>
+                  <label>
+                     <input type=checkbox name=show-description data-prop-checked=~~show-description~~
+                        data-change=admin.ui.saveSettings><span>Show description</span>
+                  </label>
                </div>
             </div>
             <div>
