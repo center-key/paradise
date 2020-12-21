@@ -150,46 +150,26 @@
                         data-change=admin.ui.saveSettings><span>Show image border</span>
                   </label>
                   <label>
+                     <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~
+                        data-change=admin.ui.saveSettings><span>Caption in all caps</span>
+                  </label>
+                  <label>
+                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
+                        data-change=admin.ui.saveSettings><span>Caption in italics</span>
+                  </label>
+                  <label>
                      <input type=checkbox name=show-description data-prop-checked=~~show-description~~
                         data-change=admin.ui.saveSettings><span>Show description</span>
                   </label>
                </div>
             </div>
-            <div>
-               Captions:
-               <div>
-                  <label>
-                     <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~
-                        data-change=admin.ui.saveSettings><span>all caps</span>
-                  </label>
-                  <label>
-                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
-                        data-change=admin.ui.saveSettings><i>Italic</i>
-                  </label>
-               </div>
-            </div>
-            <div>
-               Creative Commons:
-               <a href=https://creativecommons.org/licenses/by-sa/4.0><i data-icon=info-circle></i></a>
-               <label>
-                  <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
-                     data-change=admin.ui.saveSettings>Display
-               </label>
-            </div>
-            <div>
-               <span>Social share icons:</span>
-               <label>
-                  <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~
-                     data-change=admin.ui.saveSettings>Display
-               </label>
-            </div>
             <label>
                <span>
                   Stamp icon
-                  (<a href=https://fontawesome.com/cheatsheet>list of icon names</a>):
+                  (<a href=https://fontawesome.com/cheatsheet>list of icons</a>):
                </span>
                <input type=text name=stamp-icon value=~~stamp-icon~~
-                  data-smart-update=admin.ui.saveSettings placeholder="Enter Font Awesome name">
+                  data-smart-update=admin.ui.saveSettings placeholder="Enter icon name">
             </label>
             <label>
                <span>Stamp title:</span>
@@ -197,9 +177,21 @@
                   data-smart-update=admin.ui.saveSettings placeholder="Enter stamp tooltip help">
             </label>
             <label>
-               <span>Footer:</span>
+               <span>Footer text:</span>
                <input type=text name=footer value=~~footer~~ data-smart-update=admin.ui.saveSettings>
             </label>
+            <div>
+               Footer icons:
+               <label>
+                  <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
+                     data-change=admin.ui.saveSettings>Creative Commons
+               <a href=https://creativecommons.org/licenses/by-sa/4.0><i data-icon=info-circle></i></a>
+               </label>
+               <label>
+                  <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~
+                     data-change=admin.ui.saveSettings>Social share
+               </label>
+            </div>
             <label>
                <span>Email:<i data-icon=info-circle data-href=../#contact></i></span>
                <input type=email name=contact-email value=~~contact-email~~
