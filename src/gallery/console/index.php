@@ -46,30 +46,29 @@
                <form>
                   <label data-class=~~display,display-on,display-off~~>
                      <span>Display:</span>
-                     <input name=display type=checkbox data-prop-checked=~~display~~
+                     <input type=checkbox data-prop-checked=~~display~~
                         data-change=admin.ui.savePortfolio>
                      (show in gallery)
                   </label>
                   <label>
                      <span>Caption:</span>
-                     <input name=caption value=~~caption~~ data-smart-update=admin.ui.savePortfolio>
+                     <input value=~~caption~~ data-smart-update=admin.ui.savePortfolio>
                   </label>
                   <label>
                      <span>Description:</span>
-                     <textarea name=description
-                        data-smart-update=admin.ui.savePortfolio>~~description~~</textarea>
+                     <textarea data-smart-update=admin.ui.savePortfolio>~~description~~</textarea>
                   </label>
                   <p>
                      <label>
                         <span title="Text to display over image">Badge:</span>
-                        <input name=badge value=~~badge~~ data-smart-update=admin.ui.savePortfolio>
+                        <input value=~~badge~~ data-smart-update=admin.ui.savePortfolio>
                      </label>
                      <span>
                         <span>Stamp:</span>
                         <i data-attr-data-icon=~~stampInfo.icon~~ title=~~stampInfo.title~~></i>
                         <code>~~stampInfo.icon~~</code>
                         <label>
-                           <input name=stamp type=checkbox data-prop-checked=~~stamp~~
+                           <input type=checkbox data-prop-checked=~~stamp~~
                               data-change=admin.ui.savePortfolio>
                            <span title="See Stamp icon in Gallery Settings">Show on image</span>
                         </label>
@@ -114,18 +113,18 @@
             <legend>Website</legend>
             <label>
                <span>Title:</span>
-               <input name=title value=~~title~~ data-smart-update=admin.ui.saveSettings
+               <input value=~~title~~ data-smart-update=admin.ui.saveSettings
                   placeholder="Enter website header">
             </label>
             <label>
                <span>Title font:<i data-icon=info-circle data-href=fonts.php></i></span>
-               <select name=title-font data-option=~~title-font~~ data-change=admin.ui.saveSettings>
+               <select data-option=~~title-font~~ data-change=admin.ui.saveSettings>
                   <option data-array=fonts value=~~[value]~~>~~[value]~~</option>
                </select>
             </label>
             <label>
                <span>Title size:</span>
-               <select name=title-size data-option=~~title-size~~ data-change=admin.ui.saveSettings>
+               <select data-option=~~title-size~~ data-change=admin.ui.saveSettings>
                   <option value=100%>100%</option>
                   <option value=200%>200%</option>
                   <option value=300%>300%</option>
@@ -139,30 +138,30 @@
             </label>
             <label>
                <span>Subtitle:</span>
-               <input name=subtitle value=~~subtitle~~ data-smart-update=admin.ui.saveSettings
+               <input value=~~subtitle~~ data-smart-update=admin.ui.saveSettings
                   placeholder="Enter website subheader">
             </label>
             <div>
                Style:
                <div>
                   <label>
-                     <input type=checkbox name=dark-mode data-prop-checked=~~dark-mode~~
+                     <input type=checkbox data-prop-checked=~~dark-mode~~
                         data-change=admin.ui.saveSettings><span>Dark mode</span>
                   </label>
                   <label>
-                     <input type=checkbox name=image-border data-prop-checked=~~image-border~~
+                     <input type=checkbox data-prop-checked=~~image-border~~
                         data-change=admin.ui.saveSettings><span>Show image border</span>
                   </label>
                   <label>
-                     <input type=checkbox name=caption-caps data-prop-checked=~~caption-caps~~
+                     <input type=checkbox data-prop-checked=~~caption-caps~~
                         data-change=admin.ui.saveSettings><span>Caption in all caps</span>
                   </label>
                   <label>
-                     <input type=checkbox name=caption-italic data-prop-checked=~~caption-italic~~
+                     <input type=checkbox data-prop-checked=~~caption-italic~~
                         data-change=admin.ui.saveSettings><span>Caption in italics</span>
                   </label>
                   <label>
-                     <input type=checkbox name=show-description data-prop-checked=~~show-description~~
+                     <input type=checkbox data-prop-checked=~~show-description~~
                         data-change=admin.ui.saveSettings><span>Show description</span>
                   </label>
                </div>
@@ -181,23 +180,23 @@
             </label>
             <label>
                <span>Footer text:</span>
-               <input type=text name=footer value=~~footer~~ data-smart-update=admin.ui.saveSettings>
+               <input type=text value=~~footer~~ data-smart-update=admin.ui.saveSettings>
             </label>
             <div>
                Footer icons:
                <label>
-                  <input type=checkbox name=cc-license data-prop-checked=~~cc-license~~
+                  <input type=checkbox data-prop-checked=~~cc-license~~
                      data-change=admin.ui.saveSettings>Creative Commons
                <a href=https://creativecommons.org/licenses/by-sa/4.0><i data-icon=info-circle></i></a>
                </label>
                <label>
-                  <input type=checkbox name=bookmarks data-prop-checked=~~bookmarks~~
+                  <input type=checkbox data-prop-checked=~~bookmarks~~
                      data-change=admin.ui.saveSettings>Social share
                </label>
             </div>
             <label>
                <span>Email:<i data-icon=info-circle data-href=../#contact></i></span>
-               <input type=email name=contact-email value=~~contact-email~~
+               <input type=email value=~~contact-email~~
                   data-smart-update=admin.ui.saveSettings placeholder="Address for messages">
             </label>
          </fieldset>
@@ -207,11 +206,11 @@
                <div data-array=~~pages~~ data-item-id=~~[count]~~ data-item-type=page>
                   <label>
                      <span>#<span>~~[count]~~</span>:</span>
-                     <input name=title value=~~title~~ data-smart-update=admin.ui.saveSettings
+                     <input value=~~title~~ data-smart-update=admin.ui.saveSettings
                         placeholder="Title for menu tab">
                   </label>
                   <label>
-                     <input name=show type=checkbox data-prop-checked=~~show~~
+                     <input type=checkbox data-prop-checked=~~show~~
                         data-change=admin.ui.saveSettings>display
                   </label>
                </div>
