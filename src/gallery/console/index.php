@@ -61,15 +61,19 @@
                   </label>
                   <p>
                      <label>
-                        <span>Badge:</span>
+                        <span title="Text to display over image">Badge:</span>
                         <input name=badge value=~~badge~~ data-smart-update=admin.ui.savePortfolio>
                      </label>
-                     <label>
-                        <i data-attr-data-icon=~~stampIcon~~ title=~~stampIcon~~></i>
-                        <input name=stamp type=checkbox data-prop-checked=~~stamp~~
-                           data-change=admin.ui.savePortfolio>
-                        <span title="See Stamp icon in Gallery Settings">Show stamp</span>
-                     </label>
+                     <span>
+                        <span>Stamp:</span>
+                        <i data-attr-data-icon=~~stampInfo.icon~~ title=~~stampInfo.title~~></i>
+                        <code>~~stampInfo.icon~~</code>
+                        <label>
+                           <input name=stamp type=checkbox data-prop-checked=~~stamp~~
+                              data-change=admin.ui.savePortfolio>
+                           <span title="See Stamp icon in Gallery Settings">Show on image</span>
+                        </label>
+                     </span>
                   </p>
                   <div class=actions>
                      <i data-icon=arrow-up   data-click=admin.ui.move data-move=up></i>

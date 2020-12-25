@@ -45,9 +45,13 @@ admin.ui = {
       admin.rest.get('settings').then(handle);
       },
    loadPortfolio() {
-      const addStampIcon = (image) => image.stampIcon = admin.settings['stamp-icon'];
+      const stampInfo = {
+         icon:  admin.settings['stamp-icon'],
+         title: admin.settings['stamp-title'],
+         };
+      const addStampInfo = (image) => image.stampInfo = stampInfo;
       const handle = (data) => {
-         dna.clone('portfolio-image', data, { empty: true, fade: true, transform: addStampIcon });
+         dna.clone('portfolio-image', data, { empty: true, fade: true, transform: addStampInfo });
          admin.ui.statusMsg('Portfolio images: ' + data.length);
          };
       admin.rest.get('portfolio', { action: 'list' }).then(handle);

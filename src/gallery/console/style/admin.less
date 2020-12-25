@@ -117,10 +117,13 @@ Structure:
 .portfolio-image form >label textarea { height: 3.2em; }
 .portfolio-image form >p { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
 .portfolio-image form >p label:last-child { white-space: nowrap; }
-.portfolio-image form >p label i.font-icon { font-size: 1.0rem; }
-.portfolio-image form >p label span { display: inline-block; }
+.portfolio-image form >p label >span { display: inline-block; }
 .portfolio-image form >p label input[type=text] { width: 4em; }
 .portfolio-image form >p label input[type=checkbox] { margin: 0px 3px; }
+.portfolio-image form >p >span >span { display: block; }
+.portfolio-image form >p >span >i.font-icon { font-size: 0.9rem; transition: color 400ms; cursor: help; }
+.portfolio-image form >p >span >i.font-icon:hover { color: black; }
+.portfolio-image form >p >span >label >input[type=checkbox] { margin: 0px; }
 .portfolio-image form .actions { position: absolute; left: 10px; bottom: 10px; }
 .portfolio-image form .actions i.font-icon { font-size: 1.8rem; margin-right: 2px; opacity: 1; transition: all 400ms; }
 .portfolio-image form .actions i.font-icon:hover { color: black; }
