@@ -283,6 +283,18 @@
    </div>
 </footer>
 
+<notice-box>
+   <header>
+      <nav><i data-icon=times data-click=admin.ui.hideNotice></i></nav>
+      <h2>Error</h2>
+   </header>
+   <div>
+      <p></p>
+      <b></b>
+      <ul></ul>
+   </div>
+</notice-box>
+
 <script src=https://cdn.jsdelivr.net/npm/fetch-json@@@pkg.cdnVersion.fetchJson/dist/fetch-json.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery@@@pkg.cdnVersion.jQuery/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dropzone@@@pkg.cdnVersion.dropzone/dist/dropzone.min.js></script>

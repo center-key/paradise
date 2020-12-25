@@ -22,6 +22,18 @@ admin.ui = {
    statusMsg(message) {
       return $('#status-msg').text(message).fadeOut(0).fadeIn();
       },
+   showNotice(options) {
+      const noticeBox = $('notice-box');
+      noticeBox.find('>div >p').text(options.message);
+      noticeBox.find('>div >b').text(options.listHeader || '');
+      noticeBox.find('>div >ul').empty();
+      if (options.list)
+         options.list.forEach(item => noticeBox.find('>div >ul').append($('<li>').text(item)));
+      noticeBox.addClass('show');
+      },
+   hideNotice() {
+      $('notice-box').removeClass('show');
+      },
    loadSettings(callback) {
       const handle = (data) => {
          admin.settings = data;
@@ -98,7 +110,10 @@ admin.ui = {
       const dropzone = new window.Dropzone(uploaderElem[0], options);
       const start = () => admin.ui.statusMsg('Uploading photos...');
       const done = () => {
-         const handle = () => {
+         const handle = (uploads) => {
+            if (uploads.fails.length)
+               admin.ui.showNotice(
+                  { message: uploads.message, listHeader: 'Invalid files:', list: uploads.fails });
             admin.ui.loadPortfolio();
             const resetDropzone = () => {
                const uploadBoxes = uploaderElem.find('.dz-preview');
