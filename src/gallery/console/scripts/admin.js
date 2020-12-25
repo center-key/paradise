@@ -46,8 +46,8 @@ admin.ui = {
       },
    loadPortfolio() {
       const stampInfo = {
-         icon:  admin.settings['stamp-icon'],
-         title: admin.settings['stamp-title'],
+         icon:  admin.settings.stampIcon,
+         title: admin.settings.stampTitle,
          };
       const addStampInfo = (image) => image.stampInfo = stampInfo;
       const handle = (data) => {
@@ -57,9 +57,9 @@ admin.ui = {
       admin.rest.get('portfolio', { action: 'list' }).then(handle);
       },
    save(elem, type) {
-      const field = elem.attr('name');
+      const field = elem.data().dnaField;
       const val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
-      admin.ui.statusMsg('Saving ' + field.replace('-', ' ') + '...');
+      admin.ui.statusMsg('Saving ' + dna.util.toKebab(field).replace('-', ' ') + '...');
       const params = {};
       params[field] = val;
       const item = elem.closest('[data-item-id]').data();

@@ -34,9 +34,9 @@ function styleClasses($settings) {
    }
 
 function getImagesHtml($gallery, $settings) {
-   $stampIcon = $settings->{"stamp-icon"};
-   $stampTooltip = empty($settings->{"stamp-title"}) ? "" :
-      "title='" . str_replace("'", "&apos;", $settings->{"stamp-title"}) . "'";
+   $stampIcon = $settings->stampIcon;
+   $stampTooltip = empty($settings->stampTitle) ? "" :
+      "title='" . str_replace("'", "&apos;", $settings->stampTitle) . "'";
    function toImageHtml($image, $stampIcon, $stampTooltip) {
       $badgeHtml = empty($image->badge) ? "" : "<span class=badge>{$image->badge}</span>";
       $stampHtml = isset($image->stamp) && $image->stamp && !empty($stampIcon) ?
@@ -103,10 +103,10 @@ function migrateSettings($settings) {  //see: console/server/startup.php:$defaul
       $settings->{"image-border"} = true;
    if (!isset($settings->{"show-description"}))
       $settings->{"show-description"} = false;
-   if (!isset($settings->{"stamp-icon"}))
-      $settings->{"stamp-icon"} = "star";
-   if (!isset($settings->{"stamp-title"}))
-      $settings->{"stamp-title"} = "";
+   if (!isset($settings->stampIcon))
+      $settings->stampIcon = "star";
+   if (!isset($settings->stampTitle))
+      $settings->stampTitle = "";
    return $settings;
    }
 

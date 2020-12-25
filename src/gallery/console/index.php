@@ -169,15 +169,14 @@
             </div>
             <label>
                <span>
-                  Stamp icon
-                  (<a href=https://fontawesome.com/cheatsheet>list of icons</a>):
+                  Stamp icon (<a href=https://fontawesome.com/cheatsheet>list of icons</a>):
                </span>
-               <input type=text name=stamp-icon value=~~stamp-icon~~
+               <input type=text value=~~stampIcon~~
                   data-smart-update=admin.ui.saveSettings placeholder="Enter icon name">
             </label>
             <label>
                <span>Stamp title:</span>
-               <input type=text name=stamp-title value=~~stamp-title~~
+               <input type=text value=~~stampTitle~~
                   data-smart-update=admin.ui.saveSettings placeholder="Enter stamp tooltip help">
             </label>
             <label>

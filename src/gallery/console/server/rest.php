@@ -82,8 +82,8 @@ function updateSettings() {
       "caption-italic" =>   "boolean",
       "cc-license" =>       "boolean",
       "bookmarks" =>        "boolean",
-      "stamp-icon" =>       "code",
-      "stamp-title" =>      "string",
+      "stampIcon" =>        "code",
+      "stampTitle" =>       "string",
       "footer" =>           "string",
       "contact-email" =>    "string",
       );
