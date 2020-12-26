@@ -118,13 +118,13 @@
             </label>
             <label>
                <span>Title font:<i data-icon=info-circle data-href=fonts.php></i></span>
-               <select data-option=~~title-font~~ data-change=admin.ui.saveSettings>
+               <select data-option=~~titleFont~~ data-change=admin.ui.saveSettings>
                   <option data-array=fonts value=~~[value]~~>~~[value]~~</option>
                </select>
             </label>
             <label>
                <span>Title size:</span>
-               <select data-option=~~title-size~~ data-change=admin.ui.saveSettings>
+               <select data-option=~~titleSize~~ data-change=admin.ui.saveSettings>
                   <option value=100%>100%</option>
                   <option value=200%>200%</option>
                   <option value=300%>300%</option>
@@ -145,23 +145,23 @@
                Style:
                <div>
                   <label>
-                     <input type=checkbox data-prop-checked=~~dark-mode~~
+                     <input type=checkbox data-prop-checked=~~darkMode~~
                         data-change=admin.ui.saveSettings><span>Dark mode</span>
                   </label>
                   <label>
-                     <input type=checkbox data-prop-checked=~~image-border~~
+                     <input type=checkbox data-prop-checked=~~imageBorder~~
                         data-change=admin.ui.saveSettings><span>Show image border</span>
                   </label>
                   <label>
-                     <input type=checkbox data-prop-checked=~~caption-caps~~
+                     <input type=checkbox data-prop-checked=~~captionCaps~~
                         data-change=admin.ui.saveSettings><span>Caption in all caps</span>
                   </label>
                   <label>
-                     <input type=checkbox data-prop-checked=~~caption-italic~~
+                     <input type=checkbox data-prop-checked=~~captionItalic~~
                         data-change=admin.ui.saveSettings><span>Caption in italics</span>
                   </label>
                   <label>
-                     <input type=checkbox data-prop-checked=~~show-description~~
+                     <input type=checkbox data-prop-checked=~~showDescription~~
                         data-change=admin.ui.saveSettings><span>Show description</span>
                   </label>
                </div>
@@ -185,7 +185,7 @@
             <div>
                Footer icons:
                <label>
-                  <input type=checkbox data-prop-checked=~~cc-license~~
+                  <input type=checkbox data-prop-checked=~~ccLicense~~
                      data-change=admin.ui.saveSettings>Creative Commons
                <a href=https://creativecommons.org/licenses/by-sa/4.0><i data-icon=info-circle></i></a>
                </label>
@@ -196,7 +196,7 @@
             </div>
             <label>
                <span>Email:<i data-icon=info-circle data-href=../#contact></i></span>
-               <input type=email value=~~contact-email~~
+               <input type=email value=~~contactEmail~~
                   data-smart-update=admin.ui.saveSettings placeholder="Address for messages">
             </label>
          </fieldset>

@@ -71,21 +71,21 @@ function updateItem($resource, $itemType) {
 
 function updateSettings() {
    $fields = (object)array(
-      "title" =>            "string",
-      "title-font" =>       "string",
-      "title-size" =>       "string",
-      "subtitle" =>         "string",
-      "dark-mode" =>        "boolean",
-      "image-border" =>     "boolean",
-      "show-description" => "boolean",
-      "caption-caps" =>     "boolean",
-      "caption-italic" =>   "boolean",
-      "cc-license" =>       "boolean",
-      "bookmarks" =>        "boolean",
-      "stampIcon" =>        "code",
-      "stampTitle" =>       "string",
-      "footer" =>           "string",
-      "contact-email" =>    "string",
+      "title" =>           "string",
+      "titleFont" =>       "string",
+      "titleSize" =>       "string",
+      "subtitle" =>        "string",
+      "darkMode" =>        "boolean",
+      "imageBorder" =>     "boolean",
+      "showDescription" => "boolean",
+      "captionCaps" =>     "boolean",
+      "captionItalic" =>   "boolean",
+      "ccLicense" =>       "boolean",
+      "bookmarks" =>       "boolean",
+      "stampIcon" =>       "code",
+      "stampTitle" =>      "string",
+      "footer" =>          "string",
+      "contactEmail" =>    "string",
       );
    $resource = readSettingsDb();
    if (isset($_GET["item"]))

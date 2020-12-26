@@ -7,7 +7,7 @@
 require "gallery.php";
 
 // Initialize
-$email =     $settings->{"contact-email"};
+$email =     $settings->contactEmail;
 $subject =   "Paradise PHP Photo Gallery - Message";
 $from =      "From: Paradise <{$email}>";
 $thanksUri = "../#thanks";

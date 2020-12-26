@@ -121,9 +121,26 @@ function savePortfolioImageDb($db) {
    return saveDb("{$portfolioFolder}/{$db->id}-db.json", $db);
    }
 
+function toCamelCase($kebabCase) {
+   $camelCase = str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
+   $camelCase[0] = strtolower($camelCase[0]);
+   return $camelCase;
+   }
+
+function migrateSettings($settings) {
+   foreach($settings as $key => $value) {
+      $newKey = toCamelCase($key);
+      if ($newKey !== $key && !isset($settings->$newKey) && isset($settings->$key)) {
+         $settings->$newKey = $value;
+         unset($settings->$key);
+         }
+      }
+   return $settings;
+   }
+
 function readSettingsDb() {
    global $defaultSettingsDb, $settingsDbFile;
-   return (object)array_merge((array)$defaultSettingsDb, (array)readDb($settingsDbFile));
+   return (object)array_merge((array)$defaultSettingsDb, (array)migrateSettings(readDb($settingsDbFile)));
    }
 
 function saveSettingsDb($db) {

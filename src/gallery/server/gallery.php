@@ -21,6 +21,12 @@ function showHideClass($show) {
    return $show ? "show-me" : "hide-me";
    }
 
+function toCamelCase($kebabCase) {
+   $camelCase = str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
+   $camelCase[0] = strtolower($camelCase[0]);
+   return $camelCase;
+   }
+
 function styleClasses($settings) {
    $options = array(
       "dark-mode",
@@ -29,7 +35,7 @@ function styleClasses($settings) {
       "caption-caps",
       "caption-italic",
       );
-   $enabled = function($property) use ($settings) { return $settings->{$property}; };
+   $enabled = function($property) use ($settings) { return $settings->{toCamelCase($property)}; };
    return implode(" ", array_filter($options, $enabled));
    }
 
@@ -83,7 +89,7 @@ function getImageInfo($uri, $gallery) {
    }
 
 function setValues($settings, $gallery) {
-   $titleFontParam = urlencode($settings->{"title-font"});
+   $titleFontParam = urlencode($settings->titleFont);
    $artistPageFile = __DIR__ . "/../~data~/page-{$settings->pages[1]->name}.html";
    $galleryUrl = getGalleryUrl();
    $id = empty($gallery) ? "NA" : $gallery[0]->id;
@@ -97,12 +103,18 @@ function setValues($settings, $gallery) {
    }
 
 function migrateSettings($settings) {  //see: console/server/startup.php:$defaultSettingsDb
-   if (!isset($settings->{"dark-mode"}))
-      $settings->{"dark-mode"} = true;
-   if (!isset($settings->{"image-border"}))
-      $settings->{"image-border"} = true;
-   if (!isset($settings->{"show-description"}))
-      $settings->{"show-description"} = false;
+   foreach($settings as $key => $value) {
+      $newKey = toCamelCase($key);
+      if ($newKey !== $key && !isset($settings->$newKey) && isset($settings->$key)) {
+         $settings->$newKey = $value;
+         }
+      }
+   if (!isset($settings->darkMode))
+      $settings->darkMode = true;
+   if (!isset($settings->imageBorder))
+      $settings->imageBorder = true;
+   if (!isset($settings->showDescription))
+      $settings->showDescription = false;
    if (!isset($settings->stampIcon))
       $settings->stampIcon = "star";
    if (!isset($settings->stampTitle))

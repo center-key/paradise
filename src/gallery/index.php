@@ -29,8 +29,8 @@
 <link rel=stylesheet       href=~data~/custom-style.css>
 <style>
    h1 {
-      font-family: "<?=$settings->{"title-font"}?>", sans-serif;
-      font-size: <?=$settings->{"title-size"}?>;
+      font-family: "<?=$settings->titleFont?>", system-ui, sans-serif;
+      font-size: <?=$settings->titleSize?>;
       }
 </style>
 </head>
@@ -87,7 +87,7 @@
 </main>
 
 <footer>
-   <div class=<?=showHideClass($settings->{"cc-license"})?>>
+   <div class=<?=showHideClass($settings->ccLicense)?>>
       <a rel=license href=https://creativecommons.org/licenses/by-sa/4.0 class=external-site>
          <i data-brand=creative-commons></i>
       </a>

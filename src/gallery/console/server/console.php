@@ -43,7 +43,7 @@ function appClientData() {
       "server" =>        $_SERVER["SERVER_NAME"],
       "userListEmpty" => emptyObj(readAccountsDb()->users),
       "title" =>         $settings->title,
-      "titleSize" =>     $settings->{"title-size"},
+      "titleSize" =>     $settings->titleSize,
       "fonts" =>         $googleFonts,
       "invites" =>       getCurrentUser() ? getOutstandingInvites() : array(),
       "backupFiles" =>   getCurrentUser() ? getBackupFiles() : array(),

@@ -9,7 +9,7 @@
 // Example read resource:
 //    HTTP GET gallery/console/rest?resource=gallery
 // Update value:
-//    HTTP GET gallery/console/rest?resource=settings&action=update&caption-italic=true
+//    HTTP GET gallery/console/rest?resource=settings&action=update&captionItalic=true
 //
 // Resource   Action
 // ---------  ------
