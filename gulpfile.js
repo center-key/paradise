@@ -2,25 +2,26 @@
 // Gulp configuration and tasks
 
 // Imports
-const babel =            require('gulp-babel');
-const concat =           require('gulp-concat');
-const del =              require('del');
-const fileInclude =      require('gulp-file-include');
-const gap =              require('gulp-append-prepend');
-const gulp =             require('gulp');
-const header =           require('gulp-header');
-const less =             require('gulp-less');
-const mergeStream =      require('merge-stream');
-const postCss =          require('gulp-postcss');
-const postCssNano =      require('cssnano');
-const postCssPresetEnv = require('postcss-preset-env');
-const replace =          require('gulp-replace');
-const size =             require('gulp-size');
-const sort =             require('gulp-sort');
-const zip =              require('gulp-zip');
+import babel from            'gulp-babel';
+import concat from           'gulp-concat';
+import del from              'del';
+import fileInclude from      'gulp-file-include';
+import gap from              'gulp-append-prepend';
+import gulp from             'gulp';
+import header from           'gulp-header';
+import less from             'gulp-less';
+import mergeStream from      'merge-stream';
+import postCss from          'gulp-postcss';
+import postCssNano from      'cssnano';
+import postCssPresetEnv from 'postcss-preset-env';
+import replace from          'gulp-replace';
+import size from             'gulp-size';
+import sort from             'gulp-sort';
+import zip from              'gulp-zip';
+import { readFileSync } from 'fs';
 
 // Setup
-const pkg =            require('./package.json');
+const pkg =            JSON.parse(readFileSync('./package.json'));
 const home =           pkg.homepage.replace('https://', '');
 const banner =         'Paradise PHP Photo Gallery v' + pkg.version + ' ~ ' + home + ' ~ GPLv3';
 const bannerCss =      '/*! ' + banner + ' */\n';
@@ -32,12 +33,13 @@ const targetFolder =   'target/gallery';
 
 // Help
 const releaseHelp = [
-   'To release this version, commit and push the three ".zip" file changes with the comment:',
-   '   Release v' + pkg.version,
-   'After the release is done, increment version in "package.json" and then commit and push:',
-   '   Next release',
+   'When ready to do the next release:',
+   '   Edit pacakge.json to bump ' + pkg.version + ' to next version number',
+   'Verify all tests pass and then finalize the release:',
+   '   Check in all changed files with the message (X.Y.Z is the version number):',
+   '   Release vX.Y.Z',
    ];
-const printHelp = (helpLines) => console.log(helpLines.join('\n'));
+const printHelp = (helpLines) => console.log('\n' + helpLines.join('\n') + '\n');
 
 // Tasks
 const task = {
