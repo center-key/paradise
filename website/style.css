@@ -34,4 +34,4 @@ body >main figure.solid-background .popup-image-layer img { border-color: dimgra
 
 /* Flat button color */
 button { background-color: cornflowerblue; }
-button:hover { background-color: royalblue; }
+button:hover:not(:disabled) { background-color: royalblue; }
