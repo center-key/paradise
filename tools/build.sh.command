@@ -11,6 +11,12 @@
 banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)
 
+npmUpdate() {
+   npm install --no-fund
+   npm update
+   npm outdated
+   }
+
 setupTools() {
    # Check for Node.js installation and download project dependencies
    cd $projectHome
@@ -23,9 +29,9 @@ setupTools() {
    echo "Node.js:"
    which node || { echo "Need to install Node.js: https://nodejs.org"; exit; }
    node --version
-   npm install --no-fund
-   npm update
-   npm outdated
+   test "$mode" == "fast" && echo "Mode: FAST --> to disable: unset mode"
+   test "$mode" != "fast" && echo "To enable FAST mode: export mode=fast"
+   test "$mode" != "fast" && test -d node_modules && npmUpdate
    echo
    }
 
