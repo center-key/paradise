@@ -301,7 +301,7 @@
 <script src=https://cdn.jsdelivr.net/npm/jquery@@@pkg.cdnVersion.jQuery/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dropzone@@@pkg.cdnVersion.dropzone/dist/dropzone.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/library.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/lib-x.min.js></script>
 <script src=paradise-console.min.js></script>
 <script>window.clientData = <?=appClientData()?>;</script>
 </body>
