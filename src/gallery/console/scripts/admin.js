@@ -140,11 +140,11 @@ admin.invites = {
       sendButton: $('.admin-accounts .send-invite button'),
       },
    validate(input) {
-      admin.invites.elem.sendButton.enable(library.util.cleanupEmail(input.val()));
+      admin.invites.elem.sendButton.enable(libX.util.cleanupEmail(input.val()));
       },
    send(button) {
       button.disable();
-      const email = library.util.cleanupEmail(admin.invites.elem.email.val());
+      const email = libX.util.cleanupEmail(admin.invites.elem.email.val());
       const handle = (data) => {
          admin.ui.statusMsg(data.message);
          admin.invites.loadList();
