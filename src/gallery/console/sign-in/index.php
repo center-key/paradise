@@ -87,7 +87,7 @@
    </div>
    <div>
       Paradise v<span>~~version~~</span><br>
-      <a href=https://github.com/center-key/paradise/blob/master/LICENSE.txt>GPLv3</a>
+      <a href=https://github.com/center-key/paradise/blob/main/LICENSE.txt>GPLv3</a>
    </div>
 </footer>
 

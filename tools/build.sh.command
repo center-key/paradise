@@ -45,7 +45,7 @@ analyzeAndBuild() {
    git ls-files releases/previous/*.zip | tail -5
    echo
    echo "Released version (GitHub folder: releases):"
-   releasePage=https://github.com/center-key/paradise/tree/master/releases
+   releasePage=https://github.com/center-key/paradise/tree/main/releases
    curl --silent $releasePage | grep paradise-v | awk -F'"' '{ print $6 }'
    npm test
    echo
