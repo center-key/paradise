@@ -42,6 +42,7 @@ analyzeAndBuild() {
    find src -name "*.php" -exec php --syntax-check {} \;
    echo
    echo "Recent releases:"
+   git restore releases/previous  #don't overwrite previous releases
    git ls-files releases/previous/*.zip | tail -5
    echo
    echo "Released version (GitHub folder: releases):"

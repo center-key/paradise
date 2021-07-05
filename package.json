@@ -1,6 +1,6 @@
 {
    "name": "paradise",
-   "version": "0.5.2",
+   "version": "0.5.3",
    "description": "Paradise PHP Photo Gallery",
    "license": "GPL-3.0",
    "type": "module",
@@ -43,7 +43,7 @@
       "test": "gulp clean-target && gulp build-app && gulp make-zip"
    },
    "cdnVersion": {
-      "dnajs": "1.7",
+      "dnajs": "1.8",
       "dropzone": "5.9",
       "fetchJson": "2.4",
       "fontAwesome": "5.15",
@@ -52,7 +52,7 @@
       "webIgnition": "1.4"
    },
    "dependencies": {
-      "dna.js": "~1.7",
+      "dna.js": "~1.8",
       "fetch-json": "~2.4",
       "jquery": "~3.6",
       "web-ignition": "~1.4"
@@ -72,7 +72,7 @@
       "gulp-concat": "~2.6",
       "gulp-file-include": "~2.3",
       "gulp-header": "~2.0",
-      "gulp-less": "~4.0",
+      "gulp-less": "~5.0",
       "gulp-postcss": "~9.0",
       "gulp-replace": "~1.1",
       "gulp-size": "~4.0",
