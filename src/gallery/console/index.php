@@ -13,6 +13,8 @@
 <title>Paradise &bull; Administrator Console</title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
+<link rel=preconnect       href=https://fonts.googleapis.com>
+<link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@pkg.cdnVersion.fontAwesome/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dropzone@@@pkg.cdnVersion.dropzone/dist/dropzone.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.css>

@@ -20,6 +20,8 @@
 <title><?=$settings->title?> &bull; <?=$settings->subtitle?></title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=<?=$values->thumbnailUrl?>>
+<link rel=preconnect       href=https://fonts.googleapis.com>
+<link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
 <link rel=stylesheet       href="<?=$values->titleFontUrl?>">
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@pkg.cdnVersion.fontAwesome/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/magnific-popup@@@pkg.cdnVersion.magnificPopup/dist/magnific-popup.css>
