@@ -1,1 +1,3 @@
+# Paradise ~ GPLv3
+# Redirect single image pages to one.php (ex: /gallery/image/021/boat --> /gallery/image/one.php)
 FallbackResource ../one.php

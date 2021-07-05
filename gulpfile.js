@@ -47,9 +47,9 @@ const task = {
       return del([targetFolder, 'releases/paradise-*.zip', '**/.DS_Store']);
       },
    buildWebApp() {
-      printHelp(releaseHelp);
       const buildPhp = () =>
          gulp.src(['src/gallery/**/*.php', 'src/gallery/**/.htaccess'])
+            .pipe(sort())
             .pipe(replace('[PARADISE-VERSION]', pkg.version))
             .pipe(fileInclude({ basepath: '@root', indent: true, context: { pkg } }))
             .pipe(size({ showFiles: true }))
@@ -66,6 +66,7 @@ const task = {
             .pipe(gulp.dest(targetFolder));
       const buildJs = () =>
          gulp.src(['src/gallery/scripts/gallery.js', 'src/gallery/scripts/*.js'])
+            .pipe(sort())
             .pipe(babel(babelMinifyJs))
             .pipe(concat('paradise.min.js'))
             .pipe(header(bannerJs))
@@ -74,6 +75,7 @@ const task = {
             .pipe(gulp.dest(targetFolder));
       const buildAdminCss = () =>
          gulp.src(['src/gallery/console/**/*.css', 'src/gallery/console/**/*.less'])
+            .pipe(sort())
             .pipe(less())
             .pipe(concat('paradise-console.min.css'))
             .pipe(postCss(postCssPlugins))
@@ -83,6 +85,7 @@ const task = {
             .pipe(gulp.dest(targetFolder + '/console'));
       const buildAdminJs = () =>
          gulp.src(['src/gallery/console/scripts/admin.js', 'src/gallery/console/**/*.js'])
+            .pipe(sort())
             .pipe(babel(babelMinifyJs))
             .pipe(concat('paradise-console.min.js'))
             .pipe(header(bannerJs))
@@ -102,19 +105,14 @@ const task = {
          copyLicense());
       },
    makeInstallZip() {
-      const reportSizes = () =>
-         gulp.src(['target/**/*.css', 'target/**/*.js'])
-            .pipe(sort())
-            .pipe(size({ showFiles: true, gzip: true }));
-      const zipIt = () =>
-         gulp.src('target/**/*')
-            .pipe(zip('paradise-v' + pkg.version + '.zip'))
-            .pipe(size({ showFiles: true }))
-            .pipe(gulp.dest('releases'))
-            .pipe(gulp.dest('releases/previous'));
-      return mergeStream(
-         reportSizes(),
-         zipIt());
+      printHelp(releaseHelp);
+      return gulp.src('target/**/*', { dot: true })
+         .pipe(sort())
+         .pipe(size({ showFiles: true, gzip: true }))
+         .pipe(zip('paradise-v' + pkg.version + '.zip'))
+         .pipe(size({ showFiles: true }))
+         .pipe(gulp.dest('releases'))
+         .pipe(gulp.dest('releases/previous'));
       },
    };
 
