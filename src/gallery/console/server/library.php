@@ -26,7 +26,7 @@ function getTime() {
    return intval(microtime(true) * 1000);
    }
 
-function daysToMilliseconds($days) {
+function daysToMsec($days) {
    return $days * 24 * 60 * 60 * 1000;
 }
 

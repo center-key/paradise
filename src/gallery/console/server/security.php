@@ -78,15 +78,18 @@ function createUser($accountsDb, $email, $password) {
 
 function sendAccountInvite($email) {
    $daysValid = 3;
+   $expires = getTime() + daysToMsec($daysValid);
+   $code = "Q" . mt_rand() . mt_rand();
    $user = getCurrentUser();
    $invite = (object)array(
+      "code" =>     $code,
       "from" =>     $user,
       "to" =>       $email,
       "accepted" => false,
-      "expires" =>  getTime() + daysToMilliseconds($daysValid),
+      "sent" =>     getTime(),
+      "expires" =>  $expires,
+      "date" =>     date("Y-m-d", $expires / 1000),
       );
-   $invite->date = date("Y-m-d", $invite->expires);
-   $code = "Q" . mt_rand() . mt_rand();
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;
    saveAccountsDb($db);

@@ -234,7 +234,7 @@
             <legend>Pending invitations</legend>
             <div>
                <div id=account-invite class=dna-template>
-                  <small>~~date~~</small>: <b>~~to~~</b>
+                  <small data-format-date=date>~~expires~~</small>: <b>~~to~~</b>
                </div>
             </div>
             <p data-placeholder=account-invite>No outstanding invitations.</p>
