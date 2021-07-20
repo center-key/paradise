@@ -39,13 +39,13 @@
       }
    },
    "scripts": {
-      "pretest": "jshint *.js src",
+      "pretest": "jshint . --exclude node_modules,target",
       "test": "gulp clean-target && gulp build-app && gulp make-zip"
    },
    "cdnVersion": {
       "dnajs": "1.8",
       "dropzone": "5.9",
-      "fetchJson": "2.4",
+      "fetchJson": "2.5",
       "fontAwesome": "5.15",
       "jQuery": "3.6",
       "magnificPopup": "1.1",
@@ -53,7 +53,7 @@
    },
    "dependencies": {
       "dna.js": "~1.8",
-      "fetch-json": "~2.4",
+      "fetch-json": "~2.5",
       "jquery": "~3.6",
       "web-ignition": "~1.4"
    },
