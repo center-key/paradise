@@ -43,23 +43,23 @@
       "test": "gulp clean-target && gulp build-app && gulp make-zip"
    },
    "cdnVersion": {
-      "dnajs": "1.8",
+      "dnajs": "1.9",
       "dropzone": "5.9",
-      "fetchJson": "2.5",
+      "fetchJson": "2.6",
       "fontAwesome": "5.15",
       "jQuery": "3.6",
       "magnificPopup": "1.1",
       "webIgnition": "1.4"
    },
    "dependencies": {
-      "dna.js": "~1.8",
-      "fetch-json": "~2.5",
+      "dna.js": "~1.9",
+      "fetch-json": "~2.6",
       "jquery": "~3.6",
       "web-ignition": "~1.4"
    },
    "devDependencies": {
-      "@babel/core": "~7.14",
-      "@babel/preset-env": "~7.14",
+      "@babel/core": "~7.15",
+      "@babel/preset-env": "~7.15",
       "@fortawesome/fontawesome-free": "~5.15",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",

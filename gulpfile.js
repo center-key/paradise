@@ -2,22 +2,22 @@
 // Gulp configuration and tasks
 
 // Imports
-import babel from            'gulp-babel';
-import concat from           'gulp-concat';
-import del from              'del';
-import fileInclude from      'gulp-file-include';
-import gap from              'gulp-append-prepend';
-import gulp from             'gulp';
-import header from           'gulp-header';
-import less from             'gulp-less';
-import mergeStream from      'merge-stream';
-import postCss from          'gulp-postcss';
-import postCssNano from      'cssnano';
+import babel            from 'gulp-babel';
+import concat           from 'gulp-concat';
+import del              from 'del';
+import fileInclude      from 'gulp-file-include';
+import gap              from 'gulp-append-prepend';
+import gulp             from 'gulp';
+import header           from 'gulp-header';
+import less             from 'gulp-less';
+import mergeStream      from 'merge-stream';
+import postCss          from 'gulp-postcss';
+import postCssNano      from 'cssnano';
 import postCssPresetEnv from 'postcss-preset-env';
-import replace from          'gulp-replace';
-import size from             'gulp-size';
-import sort from             'gulp-sort';
-import zip from              'gulp-zip';
+import replace          from 'gulp-replace';
+import size             from 'gulp-size';
+import sort             from 'gulp-sort';
+import zip              from 'gulp-zip';
 import { readFileSync } from 'fs';
 
 // Setup
