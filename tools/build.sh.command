@@ -39,6 +39,7 @@ analyzeAndBuild() {
    echo "*** Analyze and build"
    cd $projectHome
    pwd
+   npx browserslist@latest --update-db
    find src -name "*.php" -exec php --syntax-check {} \;
    echo
    echo "Recent releases:"
