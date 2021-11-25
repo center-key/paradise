@@ -10,6 +10,8 @@
 
 banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)
+apacheCfg=/usr/local/etc/httpd
+apacheLog=/usr/local/var/log/httpd/error_log
 
 npmUpdate() {
    npm install --no-fund
@@ -56,9 +58,9 @@ analyzeAndBuild() {
 setupPhpServer() {
    cd $projectHome
    echo "*** Apache HTTP Server"
-   publishWebRoot=$(grep ^DocumentRoot /private/etc/apache2/httpd.conf | awk -F'"' '{ print $2 }')
-   grep php /private/etc/apache2/httpd.conf
-   apachectl configtest  #to start web server: sudo apachectl restart
+   publishWebRoot=$(grep ^DocumentRoot $apacheCfg/httpd.conf | awk -F'"' '{ print $2 }')
+   grep php $apacheCfg/httpd.conf
+   apachectl configtest  #to start web server: brew services restart httpd
    deployFolder=$publishWebRoot/paradise-deploy
    test -w $publishWebRoot && mkdir -p $deployFolder
    echo $publishWebRoot
