@@ -12,6 +12,7 @@ banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)
 apacheCfg=/usr/local/etc/httpd
 apacheLog=/usr/local/var/log/httpd/error_log
+webDocRoot=$(grep ^DocumentRoot $apacheCfg/httpd.conf | awk -F'"' '{ print $2 }')
 
 npmUpdate() {
    npm install --no-fund
@@ -37,11 +38,10 @@ setupTools() {
    echo
    }
 
-analyzeAndBuild() {
-   echo "*** Analyze and build"
+analyzePhp() {
+   echo "*** Analyze PHP"
    cd $projectHome
    pwd
-   npx browserslist@latest --update-db
    find src -name "*.php" -exec php --syntax-check {} \;
    echo
    echo "Recent releases:"
@@ -51,6 +51,14 @@ analyzeAndBuild() {
    echo "Released version (GitHub folder: releases):"
    releasePage=https://github.com/center-key/paradise/tree/main/releases
    curl --silent $releasePage | grep paradise-v | awk -F'"' '{ print $6 }'
+   echo
+   }
+
+buildZip() {
+   echo "*** Build zip"
+   cd $projectHome
+   pwd
+   npx browserslist@latest --update-db
    npm test
    echo
    }
@@ -58,12 +66,11 @@ analyzeAndBuild() {
 setupPhpServer() {
    cd $projectHome
    echo "*** Apache HTTP Server"
-   publishWebRoot=$(grep ^DocumentRoot $apacheCfg/httpd.conf | awk -F'"' '{ print $2 }')
    grep php $apacheCfg/httpd.conf
    apachectl configtest  #to start web server: brew services restart httpd
-   deployFolder=$publishWebRoot/paradise-deploy
-   test -w $publishWebRoot && mkdir -p $deployFolder
-   echo $publishWebRoot
+   deployFolder=$webDocRoot/paradise-deploy
+   test -w $webDocRoot && mkdir -p $deployFolder
+   echo $webDocRoot
    echo
    }
 
@@ -72,10 +79,14 @@ unzipRelease() {
    cd $deployFolder
    pwd
    unzip -o $projectHome/releases/paradise-v*.zip
-   chmod -v o+rwx gallery gallery/~data~
-   cd $deployFolder/gallery/~data~
-   chmod -v o+rwx backups* portfolio secure* uploads
-   chmod -Rv o+rw *.json
+   chmod -v uo+rwx gallery
+   accessData() {  #avoid problems if web server runs as a different user
+      chmod -v uo+rwx gallery/~data~
+      cd gallery/~data~
+      chmod -v uo+rwx backups* portfolio secure* uploads
+      chmod -Rv uo+rw *.json
+      }
+   test -d gallery/~data~ && accessData
    echo
    }
 
@@ -85,7 +96,6 @@ openConsole() {
    echo $consoleUrl
    sleep 2
    open $consoleUrl
-   echo
    }
 
 deployRelease() {
@@ -94,6 +104,7 @@ deployRelease() {
    }
 
 setupTools
-analyzeAndBuild
+analyzePhp
+buildZip
 setupPhpServer
 test -w $deployFolder && deployRelease

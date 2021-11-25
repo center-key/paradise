@@ -8,6 +8,7 @@ banner="Paradise ~ Publish Website"
 projectHome=$(cd $(dirname $0)/..; pwd)
 apacheCfg=/usr/local/etc/httpd
 apacheLog=/usr/local/var/log/httpd/error_log
+webDocRoot=$(grep ^DocumentRoot $apacheCfg/httpd.conf | awk -F'"' '{ print $2 }')
 
 displayIntro() {
    cd $projectHome
@@ -20,8 +21,7 @@ displayIntro() {
 
 publishWebFiles() {
    cd $projectHome
-   publishWebRoot=$(grep ^DocumentRoot $apacheCfg/httpd.conf | awk -F'"' '{ print $2 }')
-   publishSite=$publishWebRoot/centerkey.com
+   publishSite=$webDocRoot/centerkey.com
    publishFolder=$publishSite/paradise
    publish() {
       echo "Publishing:"
