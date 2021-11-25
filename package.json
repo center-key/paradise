@@ -39,8 +39,11 @@
       }
    },
    "scripts": {
-      "pretest": "jshint . --exclude node_modules,target",
-      "test": "gulp clean-target && gulp build-app && gulp make-zip"
+      "step:01": "rimraf target releases/paradise-v*.zip **/.DS_Store",
+      "step:02": "jshint . --exclude node_modules",
+      "step:03": "gulp build-app",
+      "step:04": "gulp make-zip",
+      "test": "npm-run-all step:*"
    },
    "cdnVersion": {
       "dnajs": "1.9",
@@ -58,13 +61,12 @@
       "web-ignition": "~1.4"
    },
    "devDependencies": {
-      "@babel/core": "~7.15",
-      "@babel/preset-env": "~7.15",
+      "@babel/core": "~7.16",
+      "@babel/preset-env": "~7.16",
       "@fortawesome/fontawesome-free": "~5.15",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "cssnano": "~5.0",
-      "del": "~6.0",
       "dropzone": "~5.9",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
@@ -81,7 +83,9 @@
       "jshint": "~2.13",
       "magnific-popup": "~1.1",
       "merge-stream": "~2.0",
-      "postcss": "~8.3",
-      "postcss-preset-env": "~6.7"
+      "npm-run-all2": "~5.0",
+      "postcss": "~8.4",
+      "postcss-preset-env": "~7.0",
+      "rimraf": "~3.0"
    }
 }

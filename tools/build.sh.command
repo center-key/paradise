@@ -96,6 +96,7 @@ openConsole() {
    echo $consoleUrl
    sleep 2
    open $consoleUrl
+   echo
    }
 
 deployRelease() {

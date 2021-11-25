@@ -4,7 +4,6 @@
 // Imports
 import babel            from 'gulp-babel';
 import concat           from 'gulp-concat';
-import del              from 'del';
 import fileInclude      from 'gulp-file-include';
 import gap              from 'gulp-append-prepend';
 import gulp             from 'gulp';
@@ -43,9 +42,7 @@ const printHelp = (helpLines) => console.log('\n' + helpLines.join('\n') + '\n')
 
 // Tasks
 const task = {
-   cleanTarget() {
-      return del([targetFolder, 'releases/paradise-*.zip', '**/.DS_Store']);
-      },
+
    buildWebApp() {
       const buildPhp = () =>
          gulp.src(['src/gallery/**/*.php', 'src/gallery/**/.htaccess'])
@@ -104,6 +101,7 @@ const task = {
          buildAdminJs(),
          copyLicense());
       },
+
    makeInstallZip() {
       printHelp(releaseHelp);
       return gulp.src('target/**/*', { dot: true })
@@ -114,9 +112,9 @@ const task = {
          .pipe(gulp.dest('releases'))
          .pipe(gulp.dest('releases/previous'));
       },
+
    };
 
 // Gulp
-gulp.task('clean-target', task.cleanTarget);
-gulp.task('build-app',    task.buildWebApp);
-gulp.task('make-zip',     task.makeInstallZip);
+gulp.task('build-app', task.buildWebApp);
+gulp.task('make-zip',  task.makeInstallZip);
