@@ -164,7 +164,7 @@ function restRequestSecurity($action, $httpBody) {
    $confirm =    $httpBody->confirm;
    $inviteCode = $httpBody->invite;
    $accountsDb = readAccountsDb();
-   $user =       array_key_exists($email, $accountsDb->users) ? $accountsDb->users->{$email} : null;
+   $user =       isset($accountsDb->users->{$email}) ? $accountsDb->users->{$email} : null;
    $errorCode = null;
    if ($action === "login")
       $errorCode = verifyPassword($user, $password) && loginUser($email) ? null : "bad-credentials";
