@@ -12,9 +12,10 @@ $fullHeightMax = 1200;
 
 function getNextImageId() {
    global $portfolioFolder;
-   $numLen = 3;  //example:  "017"
-   $filter = "{$portfolioFolder}/*-db.json";
-   $imageNum = intval(basename(end(glob($filter)) ?: "0", "-db.json")) + 1;
+   $numLen =   3;  //example:  "017"
+   $filter =   "{$portfolioFolder}/*-db.json";
+   $dbFiles =  glob($filter);  //end() expects variable pass by reference
+   $imageNum = intval(basename(end($dbFiles) ?: "0", "-db.json")) + 1;
    return str_pad($imageNum, $numLen, "0", STR_PAD_LEFT);  //example: 17 --> "017"
    }
 
