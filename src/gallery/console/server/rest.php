@@ -230,7 +230,7 @@ function resource($loggedIn) {
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($httpMethod === "POST")
       $httpBody = json_decode(file_get_contents("php://input"));
-   if ($name === "security")
+   if ($name === "security" && isset($httpBody))
       $resource = restRequestSecurity($action, $httpBody);
    elseif (!$loggedIn)
       $resource = restError(401);
