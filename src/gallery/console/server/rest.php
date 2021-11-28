@@ -225,7 +225,7 @@ function resource($loggedIn) {
       "backup" =>    function($action) { return restRequestBackup($action); },
       );
    $httpMethod = $_SERVER["REQUEST_METHOD"];
-   $name =       $_GET["resource"];
+   $name =       isset($_GET["resource"]) ? $_GET["resource"] : null;
    $action =     isset($_GET["action"]) ? $_GET["action"] : "get";
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($httpMethod === "POST")
