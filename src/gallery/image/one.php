@@ -37,21 +37,21 @@
       }
 </style>
 </head>
-<body class="<?=$values->styleClasses?>">
+<body class="<?=$values->styleClasses?>" itemscope itemtype=https://schema.org/ImageObject>
 
 <header>
    <aside><a href=../..><i data-icon=images></i></a></aside>
-   <h1 data-href=../..><span><?=$settings->title?></span></h1>
+   <h1 data-href=../..><span itemprop=name><?=$settings->title?></span></h1>
    <h2><?=$settings->subtitle?></h2>
 </header>
 
 <main>
    <div class=one-image>
       <figure>
-         <figcaption><?=$imageInfo->caption?></figcaption>
-         <img src=<?=$imageInfo->urlLarge?> data-href=../.. alt=image>
+         <figcaption itemprop=caption><?=$imageInfo->caption?></figcaption>
+         <img src=<?=$imageInfo->urlLarge?> data-href=../.. alt=image itemprop=contentUrl>
       </figure>
-      <p><?=$imageInfo->description?></p>
+      <p itemprop=description><?=$imageInfo->description?></p>
    </div>
 </main>
 
