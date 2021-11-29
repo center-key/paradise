@@ -36,11 +36,11 @@
       }
 </style>
 </head>
-<body class="<?=$values->styleClasses?>">
+<body class="<?=$values->styleClasses?>" itemscope itemtype=http://schema.org/ImageGallery>
 
 <header>
-   <h1 data-href=.><span><?=$settings->title?></span></h1>
-   <h2><?=$settings->subtitle?></h2>
+   <h1 data-href=.><span itemprop=name><?=$settings->title?></span></h1>
+   <h2 itemprop=description><?=$settings->subtitle?></h2>
 </header>
 
 <main>

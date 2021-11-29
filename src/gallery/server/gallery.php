@@ -40,6 +40,7 @@ function styleClasses($settings) {
    }
 
 function getImagesHtml($gallery, $settings) {
+   // Returns a string of "<figure>...</figure>" tags representing the content of the gallery.
    $stampIcon = $settings->stampIcon;
    $stampTooltip = empty($settings->stampTitle) ? "" :
       "title='" . str_replace("'", "&apos;", $settings->stampTitle) . "'";
@@ -51,18 +52,18 @@ function getImagesHtml($gallery, $settings) {
          "<span class=image-caption>{$image->caption}</span>" .
          "<span class=image-description>{$image->description}</span>");
       return "
-         <figure>
-            <a href=~data~/portfolio/{$image->id}-large.jpg data-title='{$imageTitleHtml}'>
-               <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail>
+         <figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
+            <a href=~data~/portfolio/{$image->id}-large.jpg data-title='{$imageTitleHtml}' itemprop=contentUrl>
+               <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail itemprop=thumbnail>
             </a>
             <aside>
                {$badgeHtml}
                {$stampHtml}
             </aside>
             <figcaption>
-               {$image->caption}
-               <a href=image/{$image->id}/{$image->code} class=plain><i data-icon=link></i></a>
-               <p>{$image->description}</p>
+               <span itemprop=caption>{$image->caption}</span>
+               <a href=image/{$image->id}/{$image->code} class=plain itemprop=url><i data-icon=link></i></a>
+               <p itemprop=description>{$image->description}</p>
             </figcaption>
          </figure>";
       };
