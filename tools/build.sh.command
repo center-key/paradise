@@ -58,7 +58,7 @@ buildZip() {
    echo "*** Build zip"
    cd $projectHome
    pwd
-   npx browserslist@latest --update-db
+   test "$mode" != "fast" && npx browserslist@latest --update-db
    npm test
    echo
    }
