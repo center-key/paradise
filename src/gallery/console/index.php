@@ -181,7 +181,10 @@
                   data-smart-update=admin.ui.saveSettings placeholder="Enter stamp tooltip help">
             </label>
             <label>
-               <span>Footer text:</span>
+               <span>
+                  Footer text (supports <a href=https://dev.w3.org/html5/html-author/charref
+                  class=external-site>HTML entities</a>):
+               </span>
                <input type=text value=~~footer~~ data-smart-update=admin.ui.saveSettings>
             </label>
             <div>
