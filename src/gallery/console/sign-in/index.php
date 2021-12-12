@@ -7,8 +7,9 @@
 <html lang=en>
 <head>
 <meta charset=utf-8>
-<meta name=robots                     content="noindex">
 <meta name=viewport                   content="width=device-width, initial-scale=1">
+<meta name=robots                     content="noindex, nofollow">
+<meta name=description                content="Paradise PHP Photo Gallery sign in">
 <meta name=apple-mobile-web-app-title content="Console">
 <title>Paradise &bull; Administrator Console</title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>

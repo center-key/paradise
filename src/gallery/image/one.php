@@ -9,6 +9,8 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport                   content="width=device-width, initial-scale=1">
+<meta name=robots                     content="index, follow">
+<meta name=description                content="<?=$imageInfo->description?> - <?=$settings->title?> - <?=$settings->subtitle?>">
 <meta name=apple-mobile-web-app-title content="<?=$imageInfo->caption?>">
 <meta name=twitter:card               content="summary_large_image">
 <meta name=twitter:title              content="<?=$imageInfo->caption?>">
