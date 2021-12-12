@@ -36,7 +36,7 @@
       }
 </style>
 </head>
-<body class="<?=$values->styleClasses?>" itemscope itemtype=http://schema.org/ImageGallery>
+<body class="<?=$values->styleClasses?>" itemscope itemtype=https://schema.org/ImageGallery>
 
 <header>
    <h1 data-href=.><span itemprop=name><?=$settings->title?></span></h1>

@@ -52,7 +52,7 @@ function getImagesHtml($gallery, $settings) {
          "<span class=image-caption>{$image->caption}</span>" .
          "<span class=image-description>{$image->description}</span>");
       return "
-         <figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
+         <figure itemprop=associatedMedia itemscope itemtype=https://schema.org/ImageObject>
             <a href=~data~/portfolio/{$image->id}-large.jpg data-title='{$imageTitleHtml}' itemprop=contentUrl>
                <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail itemprop=thumbnail>
             </a>
