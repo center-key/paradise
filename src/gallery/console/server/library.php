@@ -218,12 +218,14 @@ function formatMsg($msg) {
 
 function logEvent() {  //any number of parameters to log
    global $secureFolder;
+   $maxLogFileSize =  500000;  //500 KB
    $delimiter =       " | ";
    $logFilename =     "{$secureFolder}/events.log";
    $archiveFilename = "{$secureFolder}/events-archive.log";
    $milliseconds = substr(microtime(), 2, 3);
-   $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, formatMsg(getCurrentUser()));
-   if (filesize($logFilename) > 500000)  //approximate file size limit: 500 KB
+   $user = getCurrentUser();
+   $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, $user ? $user : '[anonymous]');
+   if (filesize($logFilename) > $maxLogFileSize)
       rename($logFilename, $archiveFilename);
    foreach (func_get_args() as $msg) {
       $event[] = $delimiter;
