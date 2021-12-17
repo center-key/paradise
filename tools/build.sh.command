@@ -41,6 +41,7 @@ setupTools() {
 analyzePhp() {
    echo "*** Analyze PHP"
    cd $projectHome
+   php -v
    pwd
    find src -name "*.php" -exec php --syntax-check {} \;
    echo
