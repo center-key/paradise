@@ -103,7 +103,7 @@ function setValues($settings, $gallery) {
       );
    }
 
-function migrateSettings($settings) {  //see: console/server/startup.php:$defaultSettingsDb
+function migrateSettings($settings) {  //see: console/admin-server/startup.php:$defaultSettingsDb
    foreach($settings as $key => $value) {
       $newKey = toCamelCase($key);
       if ($newKey !== $key && !isset($settings->$newKey) && isset($settings->$key)) {

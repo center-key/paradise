@@ -12,7 +12,7 @@ require "font-options.php";
 
 $version =      "[PARADISE-VERSION]";
 $dbCacheStore = null;
-$galleryFolder = str_replace("/console/server", "", __DIR__);
+$galleryFolder = str_replace("/console/admin-server", "", __DIR__);
 $dataFolder =    "{$galleryFolder}/~data~";
 $siteMapFile =   "{$galleryFolder}/sitemap.xml";
 date_default_timezone_set("UTC");

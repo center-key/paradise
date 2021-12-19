@@ -6,7 +6,7 @@
 
 // User logout
 $authRequired = false;
-require "../server/security.php";
+require "../admin-server/security.php";
 logEvent("user-logout", session_id());
 session_destroy();
 header("Location: ../sign-in");

@@ -8,7 +8,7 @@
 // Redriects browser to Sign In page if user is not authenticted.
 //
 // Put at first line of PHP file:
-//    <?php $authRequired = false; $redirectAuth = "."; require "server/security.php";
+//    <?php $authRequired = false; $redirectAuth = "."; require "admin-server/security.php";
 // $authRequired (optional): If false, redirect will not happen but $loggedIn will be set to true or false.
 // $redirectAuth (optional): If set and user is authorized, redirects to named page.
 

@@ -1,5 +1,5 @@
 <?php
-require "server/security.php";
+require "admin-server/security.php";
 $uploadFolder = "../~data~/uploads/";
 
 function upload($uploadFolder) {

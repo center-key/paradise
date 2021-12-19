@@ -1,4 +1,4 @@
-<?php $authRequired = false; $redirectAuth = ".."; require "../server/security.php"; ?>
+<?php $authRequired = false; $redirectAuth = ".."; require "../admin-server/security.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->

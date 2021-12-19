@@ -93,6 +93,7 @@ function migrateFiles() {
       ".htaccess",
       "sitemap.php",
       "server",
+      "console/server",
       );
    function renameDeprecatedFile($filename) {
       if (file_exists($filename))

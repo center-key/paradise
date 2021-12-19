@@ -1,4 +1,4 @@
-<?php require "server/security.php"; ?>
+<?php require "admin-server/security.php"; ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->

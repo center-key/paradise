@@ -27,9 +27,9 @@
 //    URL (.htaccess) configuration.
 
 $authRequired = false;
-require "../server/security.php";
-require "../server/image-processing.php";
-require "../server/rest.php";
+require "../admin-server/security.php";
+require "../admin-server/image-processing.php";
+require "../admin-server/rest.php";
 
 httpJsonResponse(resource($loggedIn));
 ?>

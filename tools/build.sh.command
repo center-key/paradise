@@ -6,7 +6,7 @@
 
 # Build:
 #     Creates the release file (zip) with the version number in the file
-#     name (extracted from paradise/src/gallery/console/server/library.php)
+#     name (extracted from paradise/src/gallery/console/admin-server/library.php)
 
 banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)
