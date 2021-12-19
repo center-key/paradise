@@ -86,6 +86,21 @@ function setupCustomPage($dataFolder, $pageName) {
       }
    }
 
+function migrateFiles() {
+   // Performs one-time upgrades to work with the latest release.
+   global $galleryFolder;
+   $deprecatedList = array(
+      ".htaccess",
+      "sitemap.php",
+      );
+   function renameDeprecatedFile($filename) {
+      if (file_exists($filename))
+         logEvent("rename-deprecated-file", $filename, rename($filename, $filename . "-DEPRECATED"));
+      }
+   foreach ($deprecatedList as $deprecated)
+      renameDeprecatedFile("{$galleryFolder}/{$deprecated}");
+   }
+
 initializeFolder($dataFolder, true);
 $uploadsFolder =   initializeFolder("{$dataFolder}/uploads", false);
 $portfolioFolder = initializeFolder("{$dataFolder}/portfolio", true);
@@ -94,6 +109,7 @@ $backupsFolder =   setupHiddenFolder($dataFolder, "backups");
 $accountsDbFile =  "{$secureFolder}/accounts-db.json";
 $settingsDbFile =  "{$dataFolder}/settings-db.json";
 $galleryDbFile =   "{$dataFolder}/gallery-db.json";
+migrateFiles();
 setupDb($settingsDbFile, $defaultSettingsDb);
 setupDb($accountsDbFile, $defaultAccountsDb);
 setupCustomCss($dataFolder);

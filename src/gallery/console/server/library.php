@@ -12,8 +12,9 @@ require "font-options.php";
 
 $version =      "[PARADISE-VERSION]";
 $dbCacheStore = null;
-$dataFolder =   str_replace("console/server", "~data~", __DIR__);
-$siteMapFile =  str_replace("console/server", "sitemap.xml", __DIR__);
+$galleryFolder = str_replace("/console/server", "", __DIR__);
+$dataFolder =    "{$galleryFolder}/~data~";
+$siteMapFile =   "{$galleryFolder}/sitemap.xml";
 date_default_timezone_set("UTC");
 
 function getGalleryUrl() {
@@ -293,7 +294,7 @@ function refreshSiteMap($gallery) {
       '   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">',
       );
    $base = getGalleryUrl();
-   foreach ($gallery as &$image)
+   foreach ($gallery as $image)
       $xml[] = "   <url><loc>{$base}/image/{$image->id}/{$image->code}</loc></url>";
    $xml[] = '</urlset>';
    if (!file_put_contents($siteMapFile, implode(PHP_EOL, $xml) . PHP_EOL))
