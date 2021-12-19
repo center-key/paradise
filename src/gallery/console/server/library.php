@@ -13,6 +13,7 @@ require "font-options.php";
 $version =      "[PARADISE-VERSION]";
 $dbCacheStore = null;
 $dataFolder =   str_replace("console/server", "~data~", __DIR__);
+$siteMapFile =  str_replace("console/server", "sitemap.xml", __DIR__);
 date_default_timezone_set("UTC");
 
 function getGalleryUrl() {
@@ -99,6 +100,7 @@ function readGalleryDb() {
 
 function saveGalleryDb($db) {
    global $galleryDbFile;
+   refreshSiteMap($db);
    return saveDb($galleryDbFile, $db);
    }
 
@@ -278,6 +280,25 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
    if ($success)
       finishSendEmail(getCurrentUser(), $confirmationSubject, $confirmationLines);
    return $success;
+   }
+
+function refreshSiteMap($gallery) {
+   // Update the sitemap.xml file based on the latest gallery data.
+   global $siteMapFile;
+   $xml = array(
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      '<urlset',
+      '   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+      '   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
+      '   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">',
+      );
+   $base = getGalleryUrl();
+   foreach ($gallery as &$image)
+      $xml[] = "   <url><loc>{$base}/image/{$image->id}/{$image->code}</loc></url>";
+   $xml[] = '</urlset>';
+   if (!file_put_contents($siteMapFile, implode(PHP_EOL, $xml) . PHP_EOL))
+      logEvent("site-map-refresh", "*** ERROR ***", "File not saved", $siteMapFile, count($gallery));
+   return $gallery;
    }
 
 ?>

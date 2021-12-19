@@ -1,4 +1,0 @@
-# Paradise ~ GPLv3
-# Redirect sitemap.xml to sitemap.php
-RewriteEngine on
-RewriteRule sitemap\.xml$ sitemap.php [last]
