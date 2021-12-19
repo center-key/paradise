@@ -62,7 +62,7 @@ const task = {
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest(targetFolder));
       const buildJs = () =>
-         gulp.src(['src/gallery/scripts/gallery.js', 'src/gallery/scripts/*.js'])
+         gulp.src(['src/gallery/js/gallery.js', 'src/gallery/js/*.js'])
             .pipe(sort())
             .pipe(babel(babelMinifyJs))
             .pipe(concat('paradise.min.js'))
@@ -81,7 +81,7 @@ const task = {
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest(targetFolder + '/console'));
       const buildAdminJs = () =>
-         gulp.src(['src/gallery/console/scripts/admin.js', 'src/gallery/console/**/*.js'])
+         gulp.src(['src/gallery/console/js/admin.js', 'src/gallery/console/**/*.js'])
             .pipe(sort())
             .pipe(babel(babelMinifyJs))
             .pipe(concat('paradise-console.min.js'))
