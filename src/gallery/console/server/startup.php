@@ -7,7 +7,7 @@
 // Startup
 // Initializes the data folder
 
-$defaultSettingsDb = (object)array(  //see: server/gallery.php:migrateSettings($settings)
+$defaultSettingsDb = (object)array(  //see: frontend-server/gallery.php:migrateSettings($settings)
    "title" =>           "My Gallery",
    "titleFont" =>       "Reenie Beanie",
    "titleSize" =>       "400%",
@@ -92,6 +92,7 @@ function migrateFiles() {
    $deprecatedList = array(
       ".htaccess",
       "sitemap.php",
+      "server",
       );
    function renameDeprecatedFile($filename) {
       if (file_exists($filename))
