@@ -8,12 +8,9 @@
 
 /* Document */
 body {
-   max-width: none;
    text-align: center;
    color: black;
    background-color: white;
-   padding: 35px 50px;
-   margin: 0px;
    a {
       color: dimgray;
       &:visited {
@@ -46,6 +43,11 @@ body {
 
 /* Page layout */
 body {
+   display: flex;
+   flex-direction: column;
+   max-width: none;
+   padding: 0px;
+   margin: 0px;
    >header {
       >aside {
          position: absolute;
@@ -58,6 +60,7 @@ body {
             }
          }
       >h1 {
+         padding-top: 30px;
          line-height: 1.8em;
          overflow: hidden;
          text-overflow: ellipsis;
@@ -66,9 +69,11 @@ body {
          }
       >h2 {
          font-size: 1.6rem;
+         margin: 0px;
          }
       }
    >main {
+      flex: 1;
       position: relative;
       h2 {
          margin-bottom: 30px;
@@ -91,7 +96,7 @@ body {
          color: white;
          background-color: black;
          padding: 0px;
-         margin: 0px 0px 10px 0px;
+         margin: 0px 0px 30px 0px;
          >span {
             background-color: black;
             transition: background-color 400ms;
@@ -110,10 +115,10 @@ body {
             }
          }
       >.dna-panels {
+         padding: 0px 20px;
          >section {
             position: relative;
             min-height: 400px;
-            padding: 20px 25px;
             form {
                text-align: left;
                margin: 0px auto;
@@ -134,8 +139,7 @@ body {
       align-items: center;
       background-color: black;
       font-size: 0.8rem;
-      padding: 10px 10px;
-      margin-top: 15px;
+      padding: 10px 30px;
       a[rel=license] i.font-icon {
          font-size: 1.5rem;
          }
@@ -230,7 +234,7 @@ body {
 
 body.dark-mode {
    color: whitesmoke;
-   background-color: dimgray;
+   background-color: #333333;
    a {
       color: gainsboro;
       &:hover {
@@ -244,18 +248,17 @@ body.dark-mode {
             }
          }
       >nav.dna-menu {
-         background: linear-gradient(to bottom, silver, gray);
+         background: dimgray;
          >span {
-            background-color: rgba(150, 200, 255, 0.0);
+            background-color: dimgray;
             }
          >span.selected,
          >span:hover {
-            background-color: rgba(150, 200, 255, 0.3);
+            background-color: gray;
             }
          }
       >.dna-panels {
          >section {
-            border: 1px solid whitesmoke;
             &.gallery-images {
                figure {
                   a img {
@@ -281,8 +284,7 @@ body.dark-mode {
          }
       }
    >footer {
-      background-color: gray;
-      border: 1px dotted black;
+      background-color: dimgray;
       }
    }
 body.image-border {
@@ -382,9 +384,6 @@ body:not(.caption-italic) .image-description {
 
 /* Mobile */
 @media (max-width: 667px) {  //selects iPhone 6/6s/7/8/SE(2020) landscape and anything narrower
-   body {
-      padding: 20px 10px;
-      }
    body >header {
       font-size: 0.8rem;
       }
@@ -394,8 +393,5 @@ body:not(.caption-italic) .image-description {
       }
    body >header h1+h2 {
       font-size: 1.0rem;
-      }
-   body >footer >div:first-child {
-      padding-right: 0px;
       }
    }
