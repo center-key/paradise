@@ -228,7 +228,7 @@ function logEvent() {  //any number of parameters to log
    $milliseconds = substr(microtime(), 2, 3);
    $user = getCurrentUser();
    $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, $user ? $user : '[anonymous]');
-   if (filesize($logFilename) > $maxLogFileSize)
+   if (is_file($logFilename) && filesize($logFilename) > $maxLogFileSize)
       rename($logFilename, $archiveFilename);
    foreach (func_get_args() as $msg) {
       $event[] = $delimiter;
