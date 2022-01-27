@@ -33,8 +33,9 @@ function getCurrentUser() {
    }
 
 function userEnabled() {
-   $user = getCurrentUser();
-   return readAccountsDb()->users->$user->enabled;
+   $user =  getCurrentUser();
+   $users = readAccountsDb()->users;
+   return isset($users->$user) && $users->$user->enabled;
    }
 
 function calculateHash($user, $password) {
