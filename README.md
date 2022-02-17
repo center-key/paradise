@@ -7,7 +7,7 @@ _A simple and aesthetic image gallery to showcase your art portfolio_
 &nbsp;
 [![Vulnerabilities](https://snyk.io/test/github/center-key/paradise/badge.svg)](https://snyk.io/test/github/center-key/paradise)
 &nbsp;
-[![Build](https://github.com/center-key/paradise/workflows/build/badge.svg)](https://github.com/center-key/paradise/actions?query=workflow%3Abuild)
+[![Build](https://github.com/center-key/paradise/workflows/build/badge.svg)](https://github.com/center-key/paradise/actions/workflows/run-spec-on-push.yaml)
 
 Paradise is an open source software package for displaying a collection of photos on a website in
 a clean, professional style.  Use Paradise to create an online exhibit for an artist or
