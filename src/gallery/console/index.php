@@ -205,6 +205,14 @@
                <input type=email value=~~contactEmail~~
                   data-smart-update=admin.ui.saveSettings placeholder="Address for messages">
             </label>
+            <label>
+               <span>
+                  Google Site Verification:
+                  <i data-icon=info-circle data-href=https://support.google.com/webmasters/answer/9008080></i>
+               </span>
+               <input type=text value=~~googleVerification~~ spellcheck=false
+                  data-smart-update=admin.ui.saveSettings placeholder="Enter 44 character code">
+            </label>
          </fieldset>
          <fieldset class=settings-tabs>
             <legend>Tabs</legend>

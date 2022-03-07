@@ -19,6 +19,9 @@
 <meta property=og:type                content="website">
 <meta property=og:image               content="<?=$values->cardImageUrl?>">
 <meta property=og:image:alt           content="<?=$settings->title?>">
+<?php if (!empty($settings->googleVerification)) { ?>
+<meta name=google-site-verification   content="<?=$settings->googleVerification?>">
+<?php } ?>
 <title><?=$settings->title?> &bull; <?=$settings->subtitle?></title>
 <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
 <link rel=apple-touch-icon href=<?=$values->thumbnailUrl?>>
