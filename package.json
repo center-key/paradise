@@ -1,6 +1,6 @@
 {
    "name": "paradise",
-   "version": "0.5.7",
+   "version": "0.5.8",
    "description": "Paradise PHP Photo Gallery",
    "license": "GPL-3.0",
    "type": "module",
@@ -52,13 +52,13 @@
       "fontAwesome": "6.0",
       "jQuery": "3.6",
       "magnificPopup": "1.1",
-      "webIgnition": "1.4"
+      "webIgnition": "1.5"
    },
    "dependencies": {
       "dna.js": "~1.9",
       "fetch-json": "~2.6",
       "jquery": "~3.6",
-      "web-ignition": "~1.4"
+      "web-ignition": "~1.5"
    },
    "devDependencies": {
       "@babel/core": "~7.17",
@@ -66,7 +66,7 @@
       "@fortawesome/fontawesome-free": "~6.0",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
-      "cssnano": "~5.0",
+      "cssnano": "~5.1",
       "dropzone": "~5.9",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
