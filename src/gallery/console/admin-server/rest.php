@@ -149,7 +149,7 @@ function restRequestPortfolio($action, $id) {
    }
 
 function restRequestAccount($action, $email) {
-	$users =  readAccountsDb()->users;
+   $users =  readAccountsDb()->users;
    $emails = array_keys(get_object_vars($users));
    sort($emails);
    return array_map(function ($email) use ($users) {
