@@ -46,24 +46,24 @@
       "test": "npm-run-all step:*"
    },
    "cdnVersion": {
-      "dnajs": "1.9",
+      "dnajs": "2.0",
       "dropzone": "5.9",
       "fetchJson": "2.6",
-      "fontAwesome": "6.0",
+      "fontAwesome": "6.1",
       "jQuery": "3.6",
       "magnificPopup": "1.1",
       "webIgnition": "1.5"
    },
    "dependencies": {
-      "dna.js": "~1.9",
+      "dna.js": "~2.0",
       "fetch-json": "~2.6",
       "jquery": "~3.6",
       "web-ignition": "~1.5"
    },
    "devDependencies": {
-      "@babel/core": "~7.17",
-      "@babel/preset-env": "~7.16",
-      "@fortawesome/fontawesome-free": "~6.0",
+      "@babel/core": "~7.18",
+      "@babel/preset-env": "~7.18",
+      "@fortawesome/fontawesome-free": "~6.1",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "cssnano": "~5.1",
@@ -85,7 +85,7 @@
       "merge-stream": "~2.0",
       "npm-run-all2": "~5.0",
       "postcss": "~8.4",
-      "postcss-preset-env": "~7.4",
+      "postcss-preset-env": "~7.7",
       "rimraf": "~3.0"
    }
 }
