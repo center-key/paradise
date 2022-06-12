@@ -104,7 +104,7 @@
          <h2>
             Gallery Uploader
             <i data-icon=info-circle
-               data-href=https://github.com/center-key/paradise/wiki/faq#1-what-kind-of-images-should-i-upload>
+               data-href=https://github.com/center-key/paradise/wiki/faq#2-what-kind-of-images-should-i-upload>
             </i>
          </h2>
          <div id=gallery-uploader></div>

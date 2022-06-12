@@ -38,7 +38,7 @@
          <h2>
             Authentication
             <i data-icon=info-circle class=external-site
-               data-href=https://github.com/center-key/paradise/wiki/faq#4-is-my-password-send-over-the-internet-in-clear-text></i>
+               data-href=https://github.com/center-key/paradise/wiki/faq#6-is-my-password-send-over-the-internet-in-clear-text></i>
          </h2>
          <h3 id=gallery-title class=dna-template>Gallery: <span>~~title~~</span></h3>
          <form>
