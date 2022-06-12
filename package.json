@@ -1,6 +1,6 @@
 {
    "name": "paradise",
-   "version": "0.5.8",
+   "version": "0.5.9",
    "description": "Paradise PHP Photo Gallery",
    "license": "GPL-3.0",
    "type": "module",
@@ -83,7 +83,7 @@
       "jshint": "~2.13",
       "magnific-popup": "~1.1",
       "merge-stream": "~2.0",
-      "npm-run-all2": "~5.0",
+      "npm-run-all2": "~6.0",
       "postcss": "~8.4",
       "postcss-preset-env": "~7.7",
       "rimraf": "~3.0"
