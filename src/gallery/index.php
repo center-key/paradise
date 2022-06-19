@@ -6,40 +6,46 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <html lang=en>
 <head>
-<meta charset=utf-8>
-<meta name=viewport                   content="width=device-width, initial-scale=1">
-<meta name=robots                     content="index, follow">
-<meta name=description                content="<?=$settings->title?> - <?=$settings->subtitle?>">
-<meta name=apple-mobile-web-app-title content="<?=$settings->title?>">
-<meta name=twitter:card               content="summary_large_image">
-<meta name=twitter:title              content="<?=$settings->title?>">
-<meta name=twitter:description        content="<?=$settings->subtitle?>">
-<meta property=og:title               content="<?=$settings->title?>">
-<meta property=og:description         content="<?=$settings->subtitle?>">
-<meta property=og:type                content="website">
-<meta property=og:image               content="<?=$values->cardImageUrl?>">
-<meta property=og:image:alt           content="<?=$settings->title?>">
-<?php if (!empty($settings->googleVerification)) { ?>
-<meta name=google-site-verification   content="<?=$settings->googleVerification?>">
-<?php } ?>
-<title><?=$settings->title?> &bull; <?=$settings->subtitle?></title>
-<link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
-<link rel=apple-touch-icon href=<?=$values->thumbnailUrl?>>
-<link rel=preconnect       href=https://fonts.googleapis.com>
-<link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
-<link rel=stylesheet       href="<?=$values->titleFontUrl?>">
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@pkg.cdnVersion.fontAwesome/css/all.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/magnific-popup@@@pkg.cdnVersion.magnificPopup/dist/magnific-popup.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/reset.min.css>
-<link rel=stylesheet       href=paradise.min.css>
-<link rel=stylesheet       href=~data~/custom-style.css>
-<style>
-   h1 {
-      font-family: "<?=$settings->titleFont?>", system-ui, sans-serif;
-      font-size: <?=$settings->titleSize?>;
-      }
-</style>
+   <meta charset=utf-8>
+   <meta name=viewport                   content="width=device-width, initial-scale=1">
+   <meta name=robots                     content="index, follow">
+   <meta name=description                content="<?=$settings->title?> - <?=$settings->subtitle?>">
+   <meta name=apple-mobile-web-app-title content="<?=$settings->title?>">
+   <meta name=twitter:card               content="summary_large_image">
+   <meta name=twitter:title              content="<?=$settings->title?>">
+   <meta name=twitter:description        content="<?=$settings->subtitle?>">
+   <meta property=og:title               content="<?=$settings->title?>">
+   <meta property=og:description         content="<?=$settings->subtitle?>">
+   <meta property=og:type                content="website">
+   <meta property=og:image               content="<?=$values->cardImageUrl?>">
+   <meta property=og:image:alt           content="<?=$settings->title?>">
+   <?php if (!empty($settings->googleVerification)) { ?>
+   <meta name=google-site-verification   content="<?=$settings->googleVerification?>">
+   <?php } ?>
+   <title><?=$settings->title?> &bull; <?=$settings->subtitle?></title>
+   <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
+   <link rel=apple-touch-icon href=<?=$values->thumbnailUrl?>>
+   <link rel=preconnect       href=https://fonts.googleapis.com>
+   <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
+   <link rel=stylesheet       href="<?=$values->titleFontUrl?>">
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@pkg.cdnVersion.fontAwesome/css/all.min.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/magnific-popup@@@pkg.cdnVersion.magnificPopup/dist/magnific-popup.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/reset.min.css>
+   <link rel=stylesheet       href=paradise.min.css>
+   <link rel=stylesheet       href=~data~/custom-style.css>
+   <style>
+      h1 {
+         font-family: "<?=$settings->titleFont?>", system-ui, sans-serif;
+         font-size: <?=$settings->titleSize?>;
+         }
+   </style>
+   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@@@pkg.cdnVersion.fetchJson/dist/fetch-json.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/jquery@@@pkg.cdnVersion.jQuery/dist/jquery.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/lib-x.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/magnific-popup@@@pkg.cdnVersion.magnificPopup/dist/jquery.magnific-popup.min.js></script>
+   <script defer src=paradise.min.js></script>
 </head>
 <body class="<?=$values->styleClasses?>" itemscope itemtype=https://schema.org/ImageGallery>
 
@@ -103,11 +109,5 @@
    <div><?=$settings->footer?></div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/npm/fetch-json@@@pkg.cdnVersion.fetchJson/dist/fetch-json.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/jquery@@@pkg.cdnVersion.jQuery/dist/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/lib-x.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/magnific-popup@@@pkg.cdnVersion.magnificPopup/dist/jquery.magnific-popup.min.js></script>
-<script src=paradise.min.js></script>
 </body>
 </html>
