@@ -20,7 +20,7 @@ import zip              from 'gulp-zip';
 import { readFileSync } from 'fs';
 
 // Setup
-const pkg =            JSON.parse(readFileSync('./package.json'));
+const pkg =            JSON.parse(readFileSync('./package.json', 'utf8'));
 const home =           pkg.homepage.replace('https://', '');
 const banner =         'Paradise PHP Photo Gallery v' + pkg.version + ' ~ ' + home + ' ~ GPLv3';
 const bannerCss =      '/*! ' + banner + ' */\n';
