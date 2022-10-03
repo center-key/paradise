@@ -6,24 +6,24 @@
 // Login
 
 admin.login = {
-   salt: window.location.hostname.replace(/^www[.]/, ''),
+   salt: globalThis.location.hostname.replace(/^www[.]/, ''),
    getRemmeberMe() {
-      const rememberMe = window.localStorage.getItem('remember-me');
+      const rememberMe = globalThis.localStorage.getItem('remember-me');
       if (rememberMe)
          admin.login.elem.email.val(rememberMe);
       admin.login.elem.rememberMe.prop('checked', !!rememberMe);
       },
    saveRemmeberMe(email) {
       if (admin.login.elem.rememberMe.is(':checked'))
-         window.localStorage.setItem('remember-me', email);
+         globalThis.localStorage.setItem('remember-me', email);
       else
-         window.localStorage.removeItem('remember-me');
+         globalThis.localStorage.removeItem('remember-me');
       },
    calcSha256(message) {
       const byteArray = new TextEncoder().encode(message + admin.login.salt);
       const toHex = (byte) => byte.toString(16).padStart(2, '0').slice(-2);
       const handleDigest = (digest) => Array.from(new Uint8Array(digest)).map(toHex).join('');
-      return window.crypto.subtle.digest('SHA-256', byteArray).then(handleDigest);
+      return globalThis.crypto.subtle.digest('SHA-256', byteArray).then(handleDigest);
       },
    submit() {
       const elem = admin.login.elem;
@@ -40,7 +40,7 @@ admin.login = {
       const handleAuth = (data) => {
          const redirect = () => {
             admin.login.saveRemmeberMe(email);
-            window.location.href = '.';
+            globalThis.location.href = '.';
             };
          return data.authenticated ? redirect() : displayError(data.message);
          };
@@ -72,12 +72,12 @@ admin.login = {
          rememberMe:   component.find('>form >label.remember-me input'),
          submitButton: component.find('>form >nav button'),
          };
-      window.fetchJson.enableLogger();
+      globalThis.fetchJson.enableLogger();
       const params = dna.browser.getUrlParams();
-      dna.insert('gallery-title', window.clientData);
-      dna.insert('page-footer',   window.clientData);
+      dna.insert('gallery-title', globalThis.clientData);
+      dna.insert('page-footer',   globalThis.clientData);
       admin.login.getRemmeberMe();
-      component.toggleClass('create', window.clientData.userListEmpty || !!params.invite);
+      component.toggleClass('create', globalThis.clientData.userListEmpty || !!params.invite);
       component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
       if (params.email)
          admin.login.elem.email.val(params.email);

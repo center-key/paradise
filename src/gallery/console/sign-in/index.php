@@ -26,7 +26,7 @@
    <script defer src=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/lib-x.min.js></script>
    <script defer src=../paradise-console.min.js></script>
-   <script>window.clientData = <?=appClientData()?>;</script>
+   <script>globalThis.clientData = <?=appClientData()?>;</script>
 </head>
 <body>
 

@@ -10,22 +10,22 @@ admin.rest = {
    // Example:
    //    admin.rest.get('book', { id: 21 }).then(handle);
    makeUrl(resourceName, action) {
-      const url = window.location.href.match(/^.*console/)[0] + '/rest/?resource=' + resourceName;
+      const url = globalThis.location.href.match(/^.*console/)[0] + '/rest/?resource=' + resourceName;
       return action ? url + '&action=' + action : url;
       },
    handleResponse(resource) {
       if (resource.code === 401)
-         window.location = '.';
+         globalThis.location = '.';
       else if (resource.error)
-         window.console.error(resource);
+         globalThis.console.error(resource);
       return resource;
       },
    get(resourceName, options) {
       const url = admin.rest.makeUrl(resourceName, options && options.action);
-      return window.fetchJson.get(url, options && options.params).then(admin.rest.handleResponse);
+      return globalThis.fetchJson.get(url, options && options.params).then(admin.rest.handleResponse);
       },
    post(resourceName, data, options) {
       const url = admin.rest.makeUrl(resourceName, options && options.action);
-      return window.fetchJson.post(url, data).then(admin.rest.handleResponse);
+      return globalThis.fetchJson.post(url, data).then(admin.rest.handleResponse);
       },
    };

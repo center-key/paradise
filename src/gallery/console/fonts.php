@@ -28,7 +28,7 @@
    <script defer src=https://ajax.googleapis.com/ajax/libs/webfont/1.6/webfont.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@@@pkg.cdnVersion.jQuery/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.min.js></script>
-   <script>window.clientData = <?=appClientData()?>;</script>
+   <script>globalThis.clientData = <?=appClientData()?>;</script>
    <script data-on-load=startup>
       const startup = () => {
          WebFont.load({ google: { families: clientData.fonts } });

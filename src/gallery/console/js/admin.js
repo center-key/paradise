@@ -8,13 +8,13 @@
 const admin = {
    settings: {},
    setup() {
-      window.fetchJson.enableLogger();
+      globalThis.fetchJson.enableLogger();
       admin.ui.loadSettings(admin.ui.loadPortfolio);
       admin.ui.loadAccounts();
       admin.ui.configureUploader();
-      dna.clone('account-invite', window.clientData.invites);
-      dna.clone('backup-file',    window.clientData.backupFiles);
-      dna.insert('page-footer',   window.clientData);
+      dna.clone('account-invite', globalThis.clientData.invites);
+      dna.clone('backup-file',    globalThis.clientData.backupFiles);
+      dna.insert('page-footer',   globalThis.clientData);
       },
    };
 
@@ -39,7 +39,7 @@ admin.ui = {
          admin.settings = data;
          if (callback)
             callback();
-         data.fonts = window.clientData.fonts;
+         data.fonts = globalThis.clientData.fonts;
          dna.clone('gallery-settings', data);
          };
       admin.rest.get('settings').then(handle);
@@ -111,7 +111,7 @@ admin.ui = {
          createImageThumbnails: false,
          };
       const uploaderElem = $('#gallery-uploader').addClass('dropzone');
-      const dropzone = new window.Dropzone(uploaderElem[0], options);
+      const dropzone = new globalThis.Dropzone(uploaderElem[0], options);
       const start = () => admin.ui.statusMsg('Uploading photos...');
       const done = () => {
          const handle = (uploads) => {
@@ -123,7 +123,7 @@ admin.ui = {
                const uploadBoxes = uploaderElem.find('.dz-preview');
                dna.ui.slideFadeOut(uploadBoxes, () => dropzone.removeAllFiles());
                };
-            window.setTimeout(resetDropzone, 2000);
+            globalThis.setTimeout(resetDropzone, 2000);
             };
          uploaderElem.addClass('pulse');
          admin.ui.statusMsg('Processing photos...');

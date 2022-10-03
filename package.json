@@ -34,6 +34,7 @@
       "globals": {
          "admin": true,
          "gallery": true,
+         "globalThis": true,
          "libX": false,
          "dna": false
       }
