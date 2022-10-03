@@ -5,6 +5,7 @@
 import babel            from 'gulp-babel';
 import concat           from 'gulp-concat';
 import fileInclude      from 'gulp-file-include';
+import fs               from 'fs';
 import gap              from 'gulp-append-prepend';
 import gulp             from 'gulp';
 import header           from 'gulp-header';
@@ -17,10 +18,9 @@ import replace          from 'gulp-replace';
 import size             from 'gulp-size';
 import sort             from 'gulp-sort';
 import zip              from 'gulp-zip';
-import { readFileSync } from 'fs';
 
 // Setup
-const pkg =            JSON.parse(readFileSync('./package.json', 'utf8'));
+const pkg =            JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 const home =           pkg.homepage.replace('https://', '');
 const banner =         'Paradise PHP Photo Gallery v' + pkg.version + ' ~ ' + home + ' ~ GPLv3';
 const bannerCss =      '/*! ' + banner + ' */\n';
