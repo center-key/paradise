@@ -1,4 +1,4 @@
-<?php require "../frontend-server/gallery.php"; ?>
+<?php require "../../frontend-server/gallery.php"; ?>
 <?php $imageInfo = getImageInfo($_SERVER["REQUEST_URI"], $gallery); ?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
