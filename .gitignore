@@ -3,7 +3,7 @@
 # Downloaded and generated files
 /node_modules/
 /package-lock.json
-/target/
+/build/
 
 # Extraneous system files
 .DS_Store
