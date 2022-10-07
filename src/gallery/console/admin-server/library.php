@@ -10,17 +10,17 @@
 require "polyfills.php";
 require "font-options.php";
 
-$version =      "[PARADISE-VERSION]";
-$dbCacheStore = null;
+$version =       "{{pkg.version}}";
+$dbCacheStore =  null;
 $galleryFolder = str_replace("/console/admin-server", "", __DIR__);
 $dataFolder =    "{$galleryFolder}/~data~";
 $siteMapFile =   "{$galleryFolder}/sitemap.xml";
 date_default_timezone_set("UTC");
 
 function getGalleryUrl() {
-   $tls = isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
+   $tls =      isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
    $protocol = $tls ? "https://" : "http://";
-   $ignore = array("/console/rest/index.php");
+   $ignore =   array("/console/rest/index.php");
    return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
    }
 
@@ -203,8 +203,8 @@ function calcNewPortfolioSort($currentSort, $up) {
    array_unshift($sorts, 0);                 //allow space to move to the top
    array_push($sorts, end($sorts) + 10000);  //allow space to move to the bottom
    $currentLoc = array_search($currentSort, $sorts);
-   $nearLoc = min(max($currentLoc + ($up ? -1 : 1), 1), count($sorts) - 2);
-   $farLoc =  min(max($currentLoc + ($up ? -2 : 2), 0), count($sorts) - 1);
+   $nearLoc =    min(max($currentLoc + ($up ? -1 : 1), 1), count($sorts) - 2);
+   $farLoc =     min(max($currentLoc + ($up ? -2 : 2), 0), count($sorts) - 1);
    logEvent("move-image", $currentLoc - 1, $currentSort);
    return floor(($sorts[$nearLoc] + $sorts[$farLoc]) / 2);
    }
@@ -225,8 +225,8 @@ function logEvent() {  //any number of parameters to log
    $delimiter =       " | ";
    $logFilename =     "{$secureFolder}/events.log";
    $archiveFilename = "{$secureFolder}/events-archive.log";
-   $milliseconds = substr(microtime(), 2, 3);
-   $user = getCurrentUser();
+   $milliseconds =    substr(microtime(), 2, 3);
+   $user =            getCurrentUser();
    $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, $user ? $user : '[anonymous]');
    if (is_file($logFilename) && filesize($logFilename) > $maxLogFileSize)
       rename($logFilename, $archiveFilename);
@@ -255,7 +255,7 @@ function isReadOnlyExampleEmailAddress($email) {
    }
 
 function finishSendEmail($sendTo, $subjectLine, $messageLines) {
-   $subjectLine = "Paradise PHP Photo Gallery - {$subjectLine}";
+   $subjectLine =    "Paradise PHP Photo Gallery - {$subjectLine}";
    $messageLines[] = "";
    $messageLines[] = "- Paradise";
    $messageLines[] = "";

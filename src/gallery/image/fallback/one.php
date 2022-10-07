@@ -26,10 +26,10 @@
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
    <link rel=stylesheet       href="<?=$values->titleFontUrl?>">
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@@@pkg.cdnVersion.fontAwesome/css/all.min.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/magnific-popup@@@pkg.cdnVersion.magnificPopup/dist/magnific-popup.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/reset.min.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{pkg.cdnVersion.fontAwesome}}/css/all.min.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/magnific-popup@{{pkg.devDependencies.magnific-popup|version}}/dist/magnific-popup.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@{{pkg.cdnVersion.dnajs|version}}/dist/dna.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@{{pkg.devDependencies.web-ignition|version}}/dist/reset.min.css>
    <link rel=stylesheet       href=../../paradise.min.css>
    <link rel=stylesheet       href=../../~data~/custom-style.css>
    <style>
@@ -38,11 +38,11 @@
          font-size: <?=$settings->titleSize?>;
          }
    </style>
-   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@@@pkg.cdnVersion.fetchJson/dist/fetch-json.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/jquery@@@pkg.cdnVersion.jQuery/dist/jquery.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/dna.js@@@pkg.cdnVersion.dnajs/dist/dna.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@@@pkg.cdnVersion.webIgnition/dist/lib-x.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/magnific-popup@@@pkg.cdnVersion.magnificPopup/dist/jquery.magnific-popup.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@{{pkg.devDependencies.fetch-json|version}}/dist/fetch-json.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/jquery@{{pkg.devDependencies.jquery|version}}/dist/jquery.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna.js@{{pkg.cdnVersion.dnajs|version}}/dist/dna.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@{{pkg.devDependencies.web-ignition|version}}/dist/lib-x.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/magnific-popup@{{pkg.devDependencies.magnific-popup|version}}/dist/jquery.magnific-popup.min.js></script>
    <script defer src=../../paradise.min.js></script>
 </head>
 <body class="<?=$values->styleClasses?>" itemscope itemtype=https://schema.org/ImageObject>

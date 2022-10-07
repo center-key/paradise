@@ -40,6 +40,40 @@ setupTools() {
    echo
    }
 
+releaseInstructions() {
+   cd $projectHome
+   repository=$(grep repository package.json | awk -F'"' '{print $4}' | sed s/github://)
+   package=https://raw.githubusercontent.com/$repository/main/package.json
+   version=v$(grep '"version"' package.json | awk -F'"' '{print $4}')
+   pushed=v$(curl --silent $package | grep '"version":' | awk -F'"' '{print $4}')
+   minorVersion=$(echo ${pushed:1} | awk -F"." '{ print $1 "." $2 }')
+   echo "Local changes:"
+   git status --short
+   echo
+   echo "Release progress:"
+   echo "   $version (local) --> $pushed (pushed)"
+   echo
+   test "$version" ">" "$pushed" && mode="NOT released" || mode="RELEASED"
+   echo "Current version is: $mode"
+   echo
+   nextActionBump() {
+      echo "When ready to do the next release:"
+      echo
+      echo "   === Increment version ==="
+      echo "   Edit pacakge.json to bump $version to next version number"
+      echo "   $projectHome/package.json"
+      }
+   nextActionPush() {
+      echo "Verify all tests pass and then finalize the release:"
+      echo
+      echo "   === Commit and push ==="
+      echo "   Check in all changed files with the message:"
+      echo "   Release $version"
+      }
+   test "$version" ">" "$pushed" && nextActionPush || nextActionBump
+   echo
+   }
+
 analyzePhp() {
    echo "*** Analyze PHP"
    cd $projectHome
@@ -67,8 +101,8 @@ buildZip() {
    }
 
 setupPhpServer() {
-   cd $projectHome
    echo "*** Apache HTTP Server"
+   cd $projectHome
    grep php $apacheCfg/httpd.conf
    apachectl configtest  #to start web server: brew services restart httpd
    deployFolder=$webDocRoot/paradise-deploy
@@ -108,6 +142,7 @@ deployRelease() {
    }
 
 setupTools
+releaseInstructions
 analyzePhp
 buildZip
 setupPhpServer

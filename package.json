@@ -49,7 +49,7 @@
       "step:22": "csso build/1-dev/gallery/console/paradise-console.css --output build/2-min/gallery/console/paradise-console.min.css",
       "step:23": "uglifyjs src/gallery/js/*.js         --output build/2-min/gallery/paradise.min.js",
       "step:24": "uglifyjs src/gallery/console/js/*.js --output build/2-min/gallery/console/paradise-console.min.js",
-      "step:30": "gulp build-php",
+      "step:30": "files-replace src/gallery --ext=.php build/3-tst/gallery --pkg",
       "step:31": "add-dist-header build/2-min/gallery build/3-tst/gallery",
       "step:32": "add-dist-header build/2-min/gallery/console build/3-tst/gallery/console",
       "step:33": "copy-file src/gallery/image/.htaccess --folder build/3-tst/gallery/image",
@@ -62,18 +62,7 @@
    },
    "cdnVersion": {
       "dnajs": "2.0",
-      "dropzone": "5.9",
-      "fetchJson": "2.6",
-      "fontAwesome": "6.2",
-      "jQuery": "3.6",
-      "magnificPopup": "1.1",
-      "webIgnition": "1.5"
-   },
-   "dependencies": {
-      "dna.js": "~2.0",
-      "fetch-json": "~2.6",
-      "jquery": "~3.6",
-      "web-ignition": "~1.5"
+      "fontAwesome": "6.2"
    },
    "devDependencies": {
       "@fortawesome/fontawesome-free": "~6.2",
@@ -83,12 +72,11 @@
       "copy-folder-cli": "~0.1",
       "cssnano": "~5.1",
       "csso-cli": "~4.0",
+      "dna.js": "~2.0",
       "dropzone": "~5.9",
-      "gulp": "~4.0",
-      "gulp-file-include": "~2.3",
-      "gulp-replace": "~1.1",
-      "gulp-size": "~4.0",
-      "gulp-sort": "~2.0",
+      "fetch-json": "~2.6",
+      "files-replace": "~0.0",
+      "jquery": "~3.6",
       "jshint": "~2.13",
       "less": "~4.1",
       "magnific-popup": "~1.1",
@@ -97,6 +85,7 @@
       "npm-run-all2": "~6.0",
       "rev-web-assets": "~0.1",
       "rimraf": "~3.0",
-      "uglify-js": "~3.17"
+      "uglify-js": "~3.17",
+      "web-ignition": "~1.5"
    }
 }
