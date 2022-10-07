@@ -56,8 +56,9 @@
       "step:40": "rev-web-assets build/3-tst/gallery build/4-rev/gallery",
       "step:41": "copy-file LICENSE.txt --folder build/4-rev/gallery",
       "step:42": "cd build/4-rev && bestzip paradise.zip gallery/*",
-      "step:90": "copy-file build/4-rev/paradise.zip releases/previous/paradise-v{{{pkg.version}}}.zip",
-      "step:91": "copy-file build/4-rev/paradise.zip releases/paradise-v{{{pkg.version}}}.zip",
+      "step:50": "copy-file build/4-rev/paradise.zip releases/previous/paradise-v{{{pkg.version}}}.zip",
+      "step:51": "copy-file build/4-rev/paradise.zip releases/paradise-v{{{pkg.version}}}.zip",
+      "step:60": "html-validator website",
       "test": "npm-run-all step:*"
    },
    "cdnVersion": {
@@ -86,6 +87,7 @@
       "rev-web-assets": "~0.1",
       "rimraf": "~3.0",
       "uglify-js": "~3.17",
+      "w3c-html-validator": "~1.1",
       "web-ignition": "~1.5"
    }
 }
