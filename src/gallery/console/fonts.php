@@ -17,7 +17,7 @@
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{pkg.cdnVersion.fontAwesome}}/css/all.min.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@{{pkg.cdnVersion.dnajs|version}}/dist/dna.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@{{pkg.devDependencies.dna-engine|version}}/dist/dna-engine.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@{{pkg.devDependencies.web-ignition|version}}/dist/reset.min.css>
    <link rel=stylesheet       href=../paradise.min.css>
    <link rel=stylesheet       href=../~data~/custom-style.css>
@@ -27,7 +27,7 @@
    </style>
    <script defer src=https://ajax.googleapis.com/ajax/libs/webfont/1.6/webfont.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@{{pkg.devDependencies.jquery|version}}/dist/jquery.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/dna.js@{{pkg.cdnVersion.dnajs|version}}/dist/dna.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@{{pkg.devDependencies.dna-engine|version}}/dist/dna-engine.min.js></script>
    <script>globalThis.clientData = <?=appClientData()?>;</script>
    <script data-on-load=startup>
       const startup = () => {

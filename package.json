@@ -49,7 +49,7 @@
       "step:22": "csso build/1-dev/gallery/console/paradise-console.css --output build/2-min/gallery/console/paradise-console.min.css",
       "step:23": "uglifyjs src/gallery/js/*.js         --output build/2-min/gallery/paradise.min.js",
       "step:24": "uglifyjs src/gallery/console/js/*.js --output build/2-min/gallery/console/paradise-console.min.js",
-      "step:30": "files-replace src/gallery --ext=.php build/3-tst/gallery --pkg",
+      "step:30": "replacer src/gallery --ext=.php build/3-tst/gallery --pkg",
       "step:31": "add-dist-header build/2-min/gallery build/3-tst/gallery",
       "step:32": "add-dist-header build/2-min/gallery/console build/3-tst/gallery/console",
       "step:33": "copy-file src/gallery/image/.htaccess --folder build/3-tst/gallery/image",
@@ -62,7 +62,6 @@
       "test": "npm-run-all step:*"
    },
    "cdnVersion": {
-      "dnajs": "2.0",
       "fontAwesome": "6.2"
    },
    "devDependencies": {
@@ -70,13 +69,13 @@
       "add-dist-header": "~0.3",
       "bestzip": "~2.2",
       "copy-file-util": "~0.1",
-      "copy-folder-cli": "~0.1",
+      "copy-folder-util": "~0.2",
       "cssnano": "~5.1",
       "csso-cli": "~4.0",
-      "dna.js": "~2.0",
+      "dna-engine": "~2.2",
       "dropzone": "~5.9",
-      "fetch-json": "~2.6",
-      "files-replace": "~0.0",
+      "fetch-json": "~2.7",
+      "replacer-util": "~0.2",
       "jquery": "~3.6",
       "jshint": "~2.13",
       "less": "~4.1",
