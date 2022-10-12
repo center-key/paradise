@@ -13,6 +13,8 @@ projectHome=$(cd $(dirname $0)/..; pwd)
 apacheCfg=/usr/local/etc/httpd
 apacheLog=/usr/local/var/log/httpd/error_log
 webDocRoot=$(grep ^DocumentRoot $apacheCfg/httpd.conf | awk -F'"' '{ print $2 }')
+cliFlagMsg="Use the '--fast' flag to skip npm update"
+cliFlag=$1
 
 npmUpdate() {
    npm install --no-fund
@@ -34,9 +36,8 @@ setupTools() {
    echo "Node.js:"
    which node || { echo "Need to install Node.js: https://nodejs.org"; exit; }
    node --version
-   test "$mode" == "fast" && echo "Mode: FAST --> to disable: unset mode"
-   test "$mode" != "fast" && echo "To enable FAST mode: export mode=fast"
-   test "$mode" != "fast" && test -d node_modules && npmUpdate
+   test "$cliFlag" = "--fast" && echo "Fast mode (--fast) enabled." || echo $cliFlagMsg
+   test "$cliFlag" != "--fast" && npmUpdate
    echo
    }
 
@@ -95,7 +96,6 @@ buildZip() {
    echo "*** Build zip"
    cd $projectHome
    pwd
-   test "$mode" != "fast" && npx browserslist@latest --update-db
    npm test
    echo
    }
