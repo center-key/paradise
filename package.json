@@ -23,7 +23,7 @@
       "gallery"
    ],
    "jshintConfig": {
-      "esversion": 9,
+      "esversion": 11,
       "strict": "implied",
       "eqeqeq": true,
       "undef": true,
@@ -34,7 +34,6 @@
       "globals": {
          "admin": true,
          "gallery": true,
-         "globalThis": true,
          "libX": false,
          "dna": false
       }
@@ -70,7 +69,6 @@
       "bestzip": "~2.2",
       "copy-file-util": "~0.1",
       "copy-folder-util": "~0.2",
-      "cssnano": "~5.1",
       "csso-cli": "~4.0",
       "dna-engine": "~2.2",
       "dropzone": "~5.9",
@@ -81,12 +79,11 @@
       "less": "~4.1",
       "magnific-popup": "~1.1",
       "make-dir-cli": "~3.0",
-      "merge-stream": "~2.0",
       "npm-run-all2": "~6.0",
       "rev-web-assets": "~0.1",
       "rimraf": "~3.0",
       "uglify-js": "~3.17",
-      "w3c-html-validator": "~1.1",
+      "w3c-html-validator": "~1.2",
       "web-ignition": "~1.5"
    }
 }
