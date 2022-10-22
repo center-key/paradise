@@ -38,27 +38,31 @@
          "dna": false
       }
    },
+   "runScriptsConfig": {
+      "build": [
+         "rimraf build releases/paradise-v*.zip **/.DS_Store",
+         "jshint . --exclude-path .gitignore",
+         "lessc src/gallery/style/gallery.less       build/1-dev/gallery/paradise.css",
+         "lessc src/gallery/console/style/admin.less build/1-dev/gallery/console/paradise-console.css",
+         "make-dir build/2-min/gallery/console",
+         "csso build/1-dev/gallery/paradise.css                 --output build/2-min/gallery/paradise.min.css",
+         "csso build/1-dev/gallery/console/paradise-console.css --output build/2-min/gallery/console/paradise-console.min.css",
+         "uglifyjs src/gallery/js/*.js         --output build/2-min/gallery/paradise.min.js",
+         "uglifyjs src/gallery/console/js/*.js --output build/2-min/gallery/console/paradise-console.min.js",
+         "replacer src/gallery --ext=.php build/3-tst/gallery --pkg",
+         "add-dist-header build/2-min/gallery build/3-tst/gallery",
+         "add-dist-header build/2-min/gallery/console build/3-tst/gallery/console",
+         "copy-file src/gallery/image/.htaccess --folder build/3-tst/gallery/image",
+         "rev-web-assets build/3-tst/gallery build/4-rev/gallery",
+         "copy-file LICENSE.txt --folder build/4-rev/gallery",
+         "cd build/4-rev && bestzip paradise.zip gallery/*",
+         "copy-file build/4-rev/paradise.zip releases/previous/paradise-v{{pkg.version}}.zip",
+         "copy-file build/4-rev/paradise.zip releases/paradise-v{{pkg.version}}.zip"
+      ]
+   },
    "scripts": {
-      "step:01": "rimraf build releases/paradise-v*.zip **/.DS_Store",
-      "step:02": "jshint . --exclude-path .gitignore",
-      "step:10": "lessc src/gallery/style/gallery.less       build/1-dev/gallery/paradise.css",
-      "step:11": "lessc src/gallery/console/style/admin.less build/1-dev/gallery/console/paradise-console.css",
-      "step:20": "make-dir build/2-min/gallery/console",
-      "step:21": "csso build/1-dev/gallery/paradise.css                 --output build/2-min/gallery/paradise.min.css",
-      "step:22": "csso build/1-dev/gallery/console/paradise-console.css --output build/2-min/gallery/console/paradise-console.min.css",
-      "step:23": "uglifyjs src/gallery/js/*.js         --output build/2-min/gallery/paradise.min.js",
-      "step:24": "uglifyjs src/gallery/console/js/*.js --output build/2-min/gallery/console/paradise-console.min.js",
-      "step:30": "replacer src/gallery --ext=.php build/3-tst/gallery --pkg",
-      "step:31": "add-dist-header build/2-min/gallery build/3-tst/gallery",
-      "step:32": "add-dist-header build/2-min/gallery/console build/3-tst/gallery/console",
-      "step:33": "copy-file src/gallery/image/.htaccess --folder build/3-tst/gallery/image",
-      "step:40": "rev-web-assets build/3-tst/gallery build/4-rev/gallery",
-      "step:41": "copy-file LICENSE.txt --folder build/4-rev/gallery",
-      "step:42": "cd build/4-rev && bestzip paradise.zip gallery/*",
-      "step:50": "copy-file build/4-rev/paradise.zip releases/previous/paradise-v{{pkg.version}}.zip",
-      "step:51": "copy-file build/4-rev/paradise.zip releases/paradise-v{{pkg.version}}.zip",
-      "step:60": "html-validator website",
-      "test": "npm-run-all step:*"
+      "pretest": "run-scripts build",
+      "test": "html-validator website"
    },
    "cdnVersion": {
       "fontAwesome": "6.2"
@@ -73,15 +77,15 @@
       "dna-engine": "~2.2",
       "dropzone": "~5.9",
       "fetch-json": "~2.7",
-      "replacer-util": "~0.2",
       "jquery": "~3.6",
       "jshint": "~2.13",
       "less": "~4.1",
       "magnific-popup": "~1.1",
       "make-dir-cli": "~3.0",
-      "npm-run-all2": "~6.0",
+      "replacer-util": "~0.2",
       "rev-web-assets": "~0.1",
       "rimraf": "~3.0",
+      "run-scripts-util": "~0.1",
       "uglify-js": "~3.17",
       "w3c-html-validator": "~1.2",
       "web-ignition": "~1.5"
