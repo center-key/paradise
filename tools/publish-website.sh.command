@@ -28,7 +28,7 @@ publishWebFiles() {
       mkdir -p $publishFolder/graphics
       cp -v website/*.css website/*.html $publishFolder
       cp -v website/graphics/*           $publishFolder/graphics
-      echo
+      test -x "$(which tree)" && tree $publishFolder
       }
    test -w $publishSite && publish
    }

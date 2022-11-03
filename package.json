@@ -4,7 +4,7 @@
    "description": "Paradise PHP Photo Gallery",
    "license": "GPL-3.0",
    "type": "module",
-   "main": "gulpfile.js",
+   "main": "website/index.html",
    "repository": "github:center-key/paradise",
    "homepage": "https://github.com/center-key/paradise",
    "bugs": "https://github.com/center-key/paradise/issues",
@@ -82,12 +82,12 @@
       "less": "~4.1",
       "magnific-popup": "~1.1",
       "make-dir-cli": "~3.0",
-      "replacer-util": "~0.2",
+      "replacer-util": "~0.3",
       "rev-web-assets": "~0.1",
       "rimraf": "~3.0",
       "run-scripts-util": "~0.1",
       "uglify-js": "~3.17",
       "w3c-html-validator": "~1.2",
-      "web-ignition": "~1.5"
+      "web-ignition": "~1.6"
    }
 }
