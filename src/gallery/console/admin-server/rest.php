@@ -9,7 +9,7 @@
 
 function restError($code) {
    $messages = (object)array(
-      400 => "Invalid parameters",
+      400 => "Bad request",
       401 => "Unauthorized access",
       402 => "Missing in action",
       404 => "Resource not found",
@@ -42,13 +42,13 @@ function runCommand($action) {
    elseif ($action === "generate-gallery")
       $resource = generateGalleryDb();
    else
-      $resource = restError(400);
+      $resource = restError(400);  //invalid parameters
    return $resource;
    }
 
 function fieldValue($value, $type) {
-   $find = array("<",    ">",    '"',      "'");
-   $use =  array("&lt;", "&gt;", "&quot;", "&apos;");
+   $find =  array("<",    ">",    '"',      "'");
+   $use =   array("&lt;", "&gt;", "&quot;", "&apos;");
    $value = str_replace($find, $use, trim($value));
    if ($type === "boolean")
       $value = $value === "true";
@@ -127,6 +127,19 @@ function deletePortfolio($id) {
       generateGalleryDb();
       }
    return $resource ?: restError(404);
+   }
+
+function restPostLog($data) {
+   // { message: "I'm afraid I can't do that, Dave." }
+   if (readOnlyMode())
+      $resource = restError(401);
+   elseif (isset($data->message)) {
+      logEvent("client-msg", $data->message, strlen($data->message));
+      $resource = (object)array("message" => $data->message, "timestamp" => date("c"));
+      }
+   else
+      $resource = restError(400);  //missing message field
+   return $resource;
    }
 
 function restRequestSettings($action) {
@@ -217,6 +230,9 @@ function getEmailParam() {
    }
 
 function resource($loggedIn) {
+   $postRoutes = array(
+      "log" => function($resource) { return restPostLog($resource); },
+      );
    $routes = array(
       "settings" =>  function($action) { return restRequestSettings($action); },
       "gallery" =>   function($action) { return restRequestGallery(); },
@@ -231,10 +247,13 @@ function resource($loggedIn) {
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($httpMethod === "POST")
       $httpBody = json_decode(file_get_contents("php://input"));
-   if ($name === "security" && isset($httpBody))
+   $hasBody = isset($httpBody);
+   if ($name === "security" && $hasBody)
       $resource = restRequestSecurity($action, $httpBody);
    elseif (!$loggedIn)
       $resource = restError(401);
+   elseif ($hasBody && isset($postRoutes[$name]))
+      $resource = $postRoutes[$name]($httpBody);
    elseif ($name === "command")
       $resource = runCommand($action);
    elseif (isset($routes[$name]) && $standardAction)

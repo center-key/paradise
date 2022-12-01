@@ -15,7 +15,14 @@ if (!function_exists("array_column")) {
 if (!function_exists("str_contains")) {
    function str_contains($haystack, $needle) {
       return strpos($haystack, $needle) !== false;
+      }
    }
-}
+
+// PHP 8.0.0: str_ends_with()
+if (!function_exists("str_ends_with")) {
+   function str_ends_with($haystack, $needle) {
+      return substr($haystack, -strlen($needle)) === $needle;
+      }
+   }
 
 ?>

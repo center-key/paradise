@@ -13,7 +13,7 @@ function getGalleryUrl() {
 
 function getData($dbFilename) {
    if (!is_file($dbFilename))
-      exit("Setup incomplete");
+      exit("Setup incomplete");  //displayed to all users until initial admin account is created
    return json_decode(file_get_contents($dbFilename));
    }
 

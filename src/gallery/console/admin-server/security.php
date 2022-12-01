@@ -89,7 +89,7 @@ function sendAccountInvite($email) {
       "accepted" => false,
       "sent" =>     getTime(),
       "expires" =>  $expires,
-      "date" =>     date("Y-m-d", $expires / 1000),
+      "date" =>     date("Y-m-d", intval($expires / 1000)),
       );
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;

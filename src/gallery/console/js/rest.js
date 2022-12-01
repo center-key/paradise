@@ -21,11 +21,11 @@ admin.rest = {
       return resource;
       },
    get(resourceName, options) {
-      const url = admin.rest.makeUrl(resourceName, options && options.action);
-      return globalThis.fetchJson.get(url, options && options.params).then(admin.rest.handleResponse);
+      const url = admin.rest.makeUrl(resourceName, options?.action);
+      return globalThis.fetchJson.get(url, options?.params).then(admin.rest.handleResponse);
       },
    post(resourceName, data, options) {
-      const url = admin.rest.makeUrl(resourceName, options && options.action);
+      const url = admin.rest.makeUrl(resourceName, options?.action);
       return globalThis.fetchJson.post(url, data).then(admin.rest.handleResponse);
       },
    };

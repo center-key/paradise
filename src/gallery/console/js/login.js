@@ -20,19 +20,19 @@ admin.login = {
          globalThis.localStorage.removeItem('remember-me');
       },
    calcSha256(message) {
-      const byteArray = new TextEncoder().encode(message + admin.login.salt);
-      const toHex = (byte) => byte.toString(16).padStart(2, '0').slice(-2);
+      const byteArray =    new TextEncoder().encode(message + admin.login.salt);
+      const toHex =        (byte) => byte.toString(16).padStart(2, '0').slice(-2);
       const handleDigest = (digest) => Array.from(new Uint8Array(digest)).map(toHex).join('');
       return globalThis.crypto.subtle.digest('SHA-256', byteArray).then(handleDigest);
       },
    submit() {
-      const elem = admin.login.elem;
-      const minPaswordLength = 8;
-      const action =     elem.component.hasClass('create') ? 'create' : 'login';
-      const inviteCode = elem.inviteCode.val().trim();
-      const email =      elem.email.val().trim().toLowerCase();
-      const password =   elem.password.val().trim();
-      const confirm =    elem.confirm.val().trim();
+      const elem =           admin.login.elem;
+      const minPasswordLen = 8;
+      const action =         elem.component.hasClass('create') ? 'create' : 'login';
+      const inviteCode =     elem.inviteCode.val().trim();
+      const email =          elem.email.val().trim().toLowerCase();
+      const password =       elem.password.val().trim();
+      const confirm =        elem.confirm.val().trim();
       const displayError = (msg) => {
          elem.submitButton.enable();
          dna.ui.pulse(elem.errorMessage.text(msg));
@@ -53,8 +53,8 @@ admin.login = {
             };
          admin.rest.post('security', credentials, { action: action }).then(handleAuth);
          };
-      if (action === 'create' && password.length < minPaswordLength)
-         displayError('Password must be at least ' + minPaswordLength + ' characters long.');
+      if (action === 'create' && password.length < minPasswordLen)
+         displayError('Password must be at least ' + minPasswordLen + ' characters long.');
       else if (action === 'create' && password !== confirm)
          displayError('Passwords do not match.');
       else

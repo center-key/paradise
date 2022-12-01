@@ -22,6 +22,11 @@ admin.ui = {
    statusMsg(message) {
       return $('#status-msg').text(message).fadeOut(0).fadeIn();
       },
+   abort(message) {
+      $('#status-msg').text('ERROR: ' + message).fadeOut(0).fadeIn();
+      admin.rest.post('log', { message });
+      throw Error(message);
+      },
    showNotice(options) {
       const noticeBox = $('notice-box');
       noticeBox.find('>div >p').text(options.message);
@@ -98,12 +103,14 @@ admin.ui = {
       admin.rest.get('account', { action: 'list' }).then(handle);
       },
    configureUploader() {
-      const maxFileMB = 2;
-      const maxNumFiles = 20;
+      const maxFileMB =     2;
+      const maxNumFiles =   20;
+      const uploadHelp =    'Or just drag photos here<br>(2 MB limit per file)';
+      const acceptedTypes = ['image/jpeg', 'image/png'];
       const options = {
-         dictDefaultMessage:    '<p><button>Upload photos</button></p>(or just drag photos here)',
+         dictDefaultMessage:    '<p><button>Upload photos</button></p>' + uploadHelp,
          url:                   'upload.php',
-         acceptedFiles:         ['image/jpeg', 'image/png'].join(','),
+         acceptedFiles:         acceptedTypes.join(','),
          maxFilesize:           maxFileMB,
          maxFiles:              maxNumFiles,
          parallelUploads:       maxNumFiles,
@@ -111,10 +118,12 @@ admin.ui = {
          createImageThumbnails: false,
          };
       const uploaderElem = $('#gallery-uploader').addClass('dropzone');
-      const dropzone = new globalThis.Dropzone(uploaderElem[0], options);
-      const start = () => admin.ui.statusMsg('Uploading photos...');
+      const dropzone =     new globalThis.Dropzone(uploaderElem[0], options);
+      const start =        () => admin.ui.statusMsg('Uploading photos...');
       const done = () => {
          const handle = (uploads) => {
+            if (!uploads.fails)
+               admin.ui.abort(uploads.bodyText);
             if (uploads.fails.length)
                admin.ui.showNotice(
                   { message: uploads.message, listHeader: 'Invalid files:', list: uploads.fails });
@@ -163,8 +172,8 @@ admin.backups = {
       button.disable();
       admin.ui.statusMsg('Creating backup...');
       const handle = (data) => {
-         admin.ui.statusMsg('Backup "' + data.filename +
-            '" created in ' + data.milliseconds/1000 + ' seconds');
+         const seconds = data.milliseconds / 1000;
+         admin.ui.statusMsg(`Backup "${data.filename}" created in ${seconds} seconds`);
          dna.clone('backup-file', data, { top: true, fade: true });
          button.enable();
          };

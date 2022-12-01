@@ -33,16 +33,16 @@ function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight,
 
 function createThumbnail($origImage, $origWidth, $origHeight, $file) {
    global $thumbHeight;
-   $newWidth = $thumbHeight * $origWidth / $origHeight;
+   $newWidth = intval($thumbHeight * $origWidth / $origHeight);
    imageToFile($origImage, $origWidth, $origHeight, $newWidth, $thumbHeight, $file);
    logEvent("create-thumbnail", $origImage, $file, $newWidth);
    }
 
 function createFullImage($origImage, $origWidth, $origHeight, $file) {
    global $fullWidthMax, $fullHeightMax;
-   $scale = min($fullWidthMax / $origWidth, $fullHeightMax / $origHeight, 1);
-   $newWidth = $origWidth * $scale;
-   $newHeight = $origHeight * $scale;
+   $scale =     min($fullWidthMax / $origWidth, $fullHeightMax / $origHeight, 1);
+   $newWidth =  intval($origWidth * $scale);
+   $newHeight = intval($origHeight * $scale);
    imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight, $file);
    logEvent("create-full-image", $origImage, $file, $scale);
    }
