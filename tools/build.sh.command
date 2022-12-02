@@ -18,7 +18,7 @@ cliFlag=$1
 
 npmUpdate() {
    npm install --no-fund
-   npm update
+   npm update --no-fund
    npm outdated
    }
 

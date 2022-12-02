@@ -1,6 +1,6 @@
 {
    "name": "paradise",
-   "version": "0.6.0",
+   "version": "0.6.1",
    "description": "Paradise PHP Photo Gallery",
    "license": "GPL-3.0",
    "type": "module",
@@ -76,7 +76,7 @@
       "csso-cli": "~4.0",
       "dna-engine": "~2.2",
       "dropzone": "~5.9",
-      "fetch-json": "~2.7",
+      "fetch-json": "~3.0",
       "jquery": "~3.6",
       "jshint": "~2.13",
       "less": "~4.1",
