@@ -22,8 +22,11 @@
    <link rel=stylesheet       href=../paradise.min.css>
    <link rel=stylesheet       href=../~data~/custom-style.css>
    <style>
+      body >header { color: white; background-color: steelblue; padding-bottom: 20px; margin-bottom: 0px; }
+      table.font-sampler { margin-bottom: 0px; }
       table.font-sampler tbody tr td { vertical-align: middle; text-align: left; padding: 10px; }
       table.font-sampler tbody tr td:last-child { width: 100%; }
+      table.font-sampler tbody tr td h1 { margin-bottom: 0px; }
    </style>
    <script defer src=https://ajax.googleapis.com/ajax/libs/webfont/1.6/webfont.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@{{pkg.devDependencies.jquery|version}}/dist/jquery.min.js></script>
