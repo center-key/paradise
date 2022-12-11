@@ -96,8 +96,8 @@
                </form>
                <figure>
                   <img data-attr-src=../~data~/portfolio/~~id~~-small.png
-                     data-href=../~data~/portfolio/~~id~~-large.jpg alt=thumbnail>
-                  <figcaption>Uploaded: <b>~~uploaded~~</b></figcaption>
+                     data-popup-image=../~data~/portfolio/~~id~~-large.jpg alt=thumbnail>
+                  <figcaption>Uploaded: <b>~~uploaded~~</b><br>Image #<b>~~id~~</b></figcaption>
                </figure>
             </div>
          </div>
