@@ -188,13 +188,6 @@
                <input type=text value=~~stampTitle~~
                   data-smart-update=admin.ui.saveSettings placeholder="Enter stamp tooltip help">
             </label>
-            <label>
-               <span>
-                  Footer text (supports <a href=https://dev.w3.org/html5/html-author/charref
-                  class=external-site>HTML entities</a>):
-               </span>
-               <input type=text value=~~footer~~ data-smart-update=admin.ui.saveSettings>
-            </label>
             <div>
                Footer icons:
                <label>
@@ -208,9 +201,11 @@
                </label>
             </div>
             <label>
-               <span>Email:<i data-icon=info-circle data-href=../#contact></i></span>
-               <input type=email value=~~contactEmail~~
-                  data-smart-update=admin.ui.saveSettings placeholder="Address for messages">
+               <span>
+                  Footer text (supports <a href=https://dev.w3.org/html5/html-author/charref
+                  class=external-site>HTML entities</a>):
+               </span>
+               <input type=text value=~~footer~~ data-smart-update=admin.ui.saveSettings>
             </label>
             <label>
                <span>
@@ -236,6 +231,11 @@
                   </label>
                </div>
             </div>
+            <label>
+               <span>Email for contact (Tab #3):<i data-icon=info-circle data-href=../#contact></i></span>
+               <input type=email value=~~contactEmail~~
+                  data-smart-update=admin.ui.saveSettings placeholder="Address for messages">
+            </label>
          </fieldset>
       </section>
 
