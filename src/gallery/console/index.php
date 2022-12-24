@@ -201,6 +201,10 @@
                </label>
             </div>
             <label>
+               <span>Footer link URL:</span>
+               <input type=text value=~~linkUrl~~ data-smart-update=admin.ui.saveSettings>
+            </label>
+            <label>
                <span>
                   Footer text (supports <a href=https://dev.w3.org/html5/html-author/charref
                   class=external-site>HTML entities</a>):

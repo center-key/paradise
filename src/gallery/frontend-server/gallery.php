@@ -5,10 +5,17 @@
 ///////////////////////////////////////////////////////////////
 
 function getGalleryUrl() {
-   $tls = isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
+   // Example: https://example.com/travel/gallery
+   $tls =      isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
    $protocol = $tls ? "https://" : "http://";
-   $ignore = array("/index.php", "/image/fallback/one.php", "/frontend-server/send-message.php");
+   $ignore =   array("/index.php", "/image/fallback/one.php", "/frontend-server/send-message.php");
    return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
+   }
+
+function getRootUrl() {
+   // Example: https://example.com/travel
+   $url = dirname(getGalleryUrl());
+   return str_ends_with($url, ":") ? getGalleryUrl() : $url;
    }
 
 function getData($dbFilename) {
@@ -21,8 +28,15 @@ function showHideClass($show) {
    return $show ? "show-me" : "hide-me";
    }
 
+function linkText($url) {
+   // Returns the clean displayable version of the link.
+   // Example: "https://example.com/gallery" --> "example.com/gallery"
+   $parts = explode("//", $url);
+   return end($parts);
+   }
+
 function toCamelCase($kebabCase) {
-   $camelCase = str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
+   $camelCase =    str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
    $camelCase[0] = strtolower($camelCase[0]);
    return $camelCase;
    }
@@ -76,11 +90,11 @@ function getImagesHtml($gallery, $settings) {
    }
 
 function getImageInfo($uri, $gallery) {
-   $id = preg_match("/\/image\/([0-9]+)/", $uri, $matches) ? $matches[1] : "missing";
-   $dbFilename = __DIR__ . "/../~data~/portfolio/{$id}-db.json";
+   $id =           preg_match("/\/image\/([0-9]+)/", $uri, $matches) ? $matches[1] : "missing";
+   $dbFilename =   __DIR__ . "/../~data~/portfolio/{$id}-db.json";
    $missingImage = '{ "caption": "That image does not appear to exist", "description": "" }';
-   $imageDb = json_decode(is_file($dbFilename) ? file_get_contents($dbFilename) : $missingImage);
-   $galleryUrl = getGalleryUrl();
+   $imageDb =      json_decode(is_file($dbFilename) ? file_get_contents($dbFilename) : $missingImage);
+   $galleryUrl =   getGalleryUrl();
    return (object)array(
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
@@ -92,8 +106,8 @@ function getImageInfo($uri, $gallery) {
 function setValues($settings, $gallery) {
    $titleFontParam = urlencode($settings->titleFont);
    $artistPageFile = __DIR__ . "/../~data~/page-{$settings->pages[1]->name}.html";
-   $galleryUrl = getGalleryUrl();
-   $id = empty($gallery) ? "NA" : $gallery[0]->id;
+   $galleryUrl =     getGalleryUrl();
+   $id =             empty($gallery) ? "NA" : $gallery[0]->id;
    return (object)array(
       "cardImageUrl" =>   "{$galleryUrl}/~data~/portfolio/{$id}-large.jpg",
       "thumbnailUrl" =>   "{$galleryUrl}/~data~/portfolio/{$id}-small.png",
@@ -120,11 +134,13 @@ function migrateSettings($settings) {  //see: console/admin-server/startup.php:$
       $settings->stampIcon = "star";
    if (!isset($settings->stampTitle))
       $settings->stampTitle = "";
+   if (!isset($settings->linkUrl))
+      $settings->linkUrl = getRootUrl();
    return $settings;
    }
 
 $settings = getData(__DIR__ . "/../~data~/settings-db.json");
 $gallery =  getData(__DIR__ . "/../~data~/gallery-db.json");
-$pages = $settings->pages;
-$values = setValues(migrateSettings($settings), $gallery);
+$pages =    $settings->pages;
+$values =   setValues(migrateSettings($settings), $gallery);
 ?>

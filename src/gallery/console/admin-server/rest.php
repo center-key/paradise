@@ -80,13 +80,14 @@ function updateSettings() {
       "showDescription" =>    "boolean",
       "captionCaps" =>        "boolean",
       "captionItalic" =>      "boolean",
-      "ccLicense" =>          "boolean",
-      "bookmarks" =>          "boolean",
       "stampIcon" =>          "code",
       "stampTitle" =>         "string",
+      "ccLicense" =>          "boolean",
+      "bookmarks" =>          "boolean",
+      "linkUrl" =>            "string",
       "footer" =>             "string",
-      "contactEmail" =>       "string",
       "googleVerification" => "string",
+      "contactEmail" =>       "string",
       );
    $resource = readSettingsDb();
    if (isset($_GET["item"]))

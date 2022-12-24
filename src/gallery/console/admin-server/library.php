@@ -18,10 +18,17 @@ $siteMapFile =   "{$galleryFolder}/sitemap.xml";
 date_default_timezone_set("UTC");
 
 function getGalleryUrl() {
+   // Example: https://example.com/travel/gallery
    $tls =      isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
    $protocol = $tls ? "https://" : "http://";
    $ignore =   array("/console/rest/index.php");
    return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
+   }
+
+function getRootUrl() {
+   // Example: https://example.com/travel
+   $url = dirname(getGalleryUrl());
+   return str_ends_with($url, ":") ? getGalleryUrl() : $url;
    }
 
 function getTime() {

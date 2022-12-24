@@ -64,6 +64,9 @@
 </main>
 
 <footer>
+   <div class=<?=showHideClass($settings->linkUrl)?>>
+      <a href="<?=$settings->linkUrl?>"><?=linkText($settings->linkUrl)?></a>
+   </div>
    <div class=<?=showHideClass($settings->ccLicense)?>>
       <a rel=license href=https://creativecommons.org/licenses/by-sa/4.0 class=external-site>
          <i data-brand=creative-commons></i>

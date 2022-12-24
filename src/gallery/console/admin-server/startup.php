@@ -12,18 +12,19 @@ $defaultSettingsDb = (object)array(  //see: frontend-server/gallery.php:migrateS
    "titleFont" =>          "Reenie Beanie",
    "titleSize" =>          "400%",
    "subtitle" =>           "Photography &bull; Art Studio",
-   "footer" =>             "&copy; " . gmdate("Y") . " The Artist",
    "darkMode" =>           true,
    "imageBorder" =>        true,
    "showDescription" =>    false,
    "captionCaps" =>        false,
    "captionItalic" =>      true,
-   "ccLicense" =>          false,
    "stampIcon" =>          "star",
    "stampTitle" =>         "",
+   "ccLicense" =>          false,
    "bookmarks" =>          true,
-   "contactEmail" =>       "",
+   "linkUrl" =>            getRootUrl(),
+   "footer" =>             "&copy; " . gmdate("Y") . " The Artist",
    "googleVerification" => "",
+   "contactEmail" =>       "",
    "pages" => array(
       (object)array("name" => "gallery", "title" => "Gallery", "show" =>  true),
       (object)array("name" => "artist",  "title" => "Artist",  "show" =>  false),
@@ -36,8 +37,8 @@ $defaultAccountsDb = (object)array(
    );
 
 function setupHiddenFolder($parentFolder, $name) {
-   $root = "{$parentFolder}/{$name}-";
-   $pattern = $root . "*";
+   $root =       "{$parentFolder}/{$name}-";
+   $pattern =    $root . "*";
    $fileSearch = glob($pattern);
    if (count($fileSearch) === 0) {
       if (!mkdir($root . mt_rand() . mt_rand() . mt_rand()))
