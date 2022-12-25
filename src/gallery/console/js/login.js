@@ -7,17 +7,20 @@
 
 admin.login = {
    salt: globalThis.location.hostname.replace(/^www[.]/, ''),
+   rememberMeKey: 'remember-me',  //localStorage key to save email address
    getRemmeberMe() {
-      const rememberMe = globalThis.localStorage.getItem('remember-me');
+      // Automatically fill in email address field on sign in screen
+      const rememberMe = globalThis.localStorage.getItem(admin.login.rememberMeKey);
       if (rememberMe)
          admin.login.elem.email.val(rememberMe);
       admin.login.elem.rememberMe.prop('checked', !!rememberMe);
       },
    saveRemmeberMe(email) {
+      // Store or clear email address based on user checked "Remember me" option
       if (admin.login.elem.rememberMe.is(':checked'))
-         globalThis.localStorage.setItem('remember-me', email);
+         globalThis.localStorage.setItem(admin.login.rememberMeKey, email);
       else
-         globalThis.localStorage.removeItem('remember-me');
+         globalThis.localStorage.removeItem(admin.login.rememberMeKey);
       },
    calcSha256(message) {
       const byteArray =    new TextEncoder().encode(message + admin.login.salt);

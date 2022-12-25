@@ -37,9 +37,9 @@ function showHideClass($show) {
 
 function linkText($url) {
    // Returns the clean displayable version of the link.
-   // Example: "https://example.com/gallery" --> "example.com/gallery"
+   // Example: "https://example.com/gallery/" --> "example.com/gallery"
    $parts = explode("//", $url);
-   return end($parts);
+   return rtrim(end($parts), "/");
    }
 
 function toCamelCase($kebabCase) {

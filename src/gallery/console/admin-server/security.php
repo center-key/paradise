@@ -79,9 +79,9 @@ function createUser($accountsDb, $email, $password) {
 
 function sendAccountInvite($email) {
    $daysValid = 3;
-   $expires = getTime() + daysToMsec($daysValid);
-   $code = "Q" . mt_rand() . mt_rand();
-   $user = getCurrentUser();
+   $expires =   getTime() + daysToMsec($daysValid);
+   $code =      "Q" . mt_rand() . mt_rand();
+   $user =      getCurrentUser();
    $invite = (object)array(
       "code" =>     $code,
       "from" =>     $user,
