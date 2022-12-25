@@ -4,6 +4,13 @@
 // GPLv3 ~ Copyright (c) individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
+// PHP 8.0.0: str_ends_with()
+if (!function_exists("str_ends_with")) {
+   function str_ends_with($haystack, $needle) {
+      return substr($haystack, -strlen($needle)) === $needle;
+      }
+   }
+
 function getGalleryUrl() {
    // Example: https://example.com/travel/gallery
    $tls =      isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
