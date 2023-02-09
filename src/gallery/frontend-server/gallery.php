@@ -1,7 +1,7 @@
 <?php
 ///////////////////////////////////////////////////////////////
 // Paradise ~ centerkey.com/paradise                         //
-// GPLv3 ~ Copyright (c) individual contributors to Paradise //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
 // PHP 8.0.0: str_ends_with()
