@@ -12,7 +12,7 @@ require "font-options.php";
 
 $version =       "{{pkg.version}}";
 $dbCacheStore =  null;
-$galleryFolder = str_replace("/console/admin-server", "", __DIR__);
+$galleryFolder = realpath(__DIR__ . "/../..");
 $dataFolder =    "{$galleryFolder}/~data~";
 $siteMapFile =   "{$galleryFolder}/sitemap.xml";
 date_default_timezone_set("UTC");
@@ -234,7 +234,8 @@ function logEvent() {  //any number of parameters to log
    $archiveFilename = "{$secureFolder}/events-archive.log";
    $milliseconds =    substr(microtime(), 2, 3);
    $user =            getCurrentUser();
-   $event = array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, $user ? $user : '[anonymous]');
+   $userStr =         $user ? $user : '[anonymous]';
+   $event =           array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, $userStr);
    if (is_file($logFilename) && filesize($logFilename) > $maxLogFileSize)
       rename($logFilename, $archiveFilename);
    foreach (func_get_args() as $msg) {
