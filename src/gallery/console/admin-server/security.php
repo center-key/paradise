@@ -1,7 +1,7 @@
 <?php
 ///////////////////////////////////////////////////////////////
 // Paradise ~ centerkey.com/paradise                         //
-// GPLv3 ~ Copyright (c) individual contributors to Paradise //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
 // Security
@@ -12,15 +12,16 @@
 // $authRequired (optional): If false, redirect will not happen but $loggedIn will be set to true or false.
 // $redirectAuth (optional): If set and user is authorized, redirects to named page.
 
-$sessionTimeout =  3600000;  //60x60x1000 milliseconds --> 1 hour
-$authRequired = isset($authRequired) ? $authRequired : true;
-$redirectAuth = isset($redirectAuth) ? $redirectAuth : null;
+$sessionTimeout =  3600000;  //one hour: 60 x 60 x 1000 = 3,600,000 milliseconds
+$authRequired =    isset($authRequired) ? $authRequired : true;
+$redirectAuth =    isset($redirectAuth) ? $redirectAuth : null;
 session_start();
 require "library.php";
 require "startup.php";
 require "console.php";
-$loginMsgFile = __DIR__ . "/../../~data~/login-message.html";
-$loginMsg = "<!--\n<section>\n   <h2>Custom message</h2>\n   <p>Text goes here.</p>\n</section>\n-->\n";
+$dataFolder =   realpath(__DIR__ . "/../../~data~");
+$loginMsgFile = "{$dataFolder}/login-message.html";
+$loginMsg =     "<!--\n<section>\n   <h2>Custom message</h2>\n   <p>Text goes here.</p>\n</section>\n-->\n";
 
 function redirectToPage($page) {
    logEvent("page-redirect", $page, $_SERVER["REQUEST_URI"]);
@@ -40,7 +41,7 @@ function userEnabled() {
 
 function calculateHash($user, $password) {
    $blowfish = "$2y$10$";
-   $salt = md5($user->created);  //md5 (32 characters) used to meet 22 character minimum
+   $salt =     md5($user->created);  //md5 (32 characters) used to meet 22 character minimum
    return crypt($password, $blowfish . $salt);
    }
 
@@ -166,7 +167,7 @@ function restRequestSecurity($action, $httpBody) {
    $inviteCode = $httpBody->invite;
    $accountsDb = readAccountsDb();
    $user =       isset($accountsDb->users->{$email}) ? $accountsDb->users->{$email} : null;
-   $errorCode = null;
+   $errorCode =  null;
    if ($action === "login")
       $errorCode = verifyPassword($user, $password) && loginUser($email) ? null : "bad-credentials";
    elseif ($action === "create")
