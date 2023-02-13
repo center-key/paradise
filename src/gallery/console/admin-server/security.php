@@ -42,12 +42,12 @@ function userEnabled() {
 function calculateHash($user, $password) {
    $blowfish = "$2y$10$";
    $salt =     md5($user->created);  //md5 (32 characters) used to meet 22 character minimum
-   return crypt($password, $blowfish . $salt);
+   return crypt($password, $blowfish . $salt);  //expect to take about 100 ms
    }
 
 function verifyPassword($user, $password) {
-   $hash = calculateHash($user, $password);  //always calculate hash to counter timing attacks
-   return $user && $user->enabled && $user->hash === $hash;
+   usleep(rand(0, 500000));  //randomly wait up to half a second to counter timing attacks
+   return $user && $user->enabled && $user->hash === calculateHash($user, $password);
    }
 
 function loginUser($email) {
@@ -196,5 +196,6 @@ if ($loggedIn && $redirectAuth)
    redirectToPage($redirectAuth);
 elseif (!$loggedIn && $authRequired)
    redirectToPage("sign-in");
+initializeFolder($dataFolder, true);
 initializeFile($loginMsgFile, $loginMsg);
 ?>
