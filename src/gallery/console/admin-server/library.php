@@ -222,8 +222,15 @@ function validEmailFormat($email) {
    }
 
 function formatMsg($msg) {
-   return is_null($msg) ? "[null]" : ($msg === true ? "[true]" : ($msg === false ? "[false]" :
-      ($msg === "" ? "[empty]" : (is_object($msg) || is_array($msg) ? json_encode($msg) : $msg))));
+   $maxLen = 250;
+   $output = is_null($msg) ? "[null]" :
+      ($msg === true ?       "[true]" :
+      ($msg === false ?      "[false]" :
+      ($msg === "" ?         "[empty]" :
+      (is_object($msg) ?     json_encode($msg) :
+      (is_array($msg) ?      json_encode($msg) :
+      strval($msg))))));
+   return strlen($output) > $maxLen ? (substr($output, 0, $maxLen - 3) . '...') : $output;
    }
 
 function logEvent() {  //any number of parameters to log
@@ -232,10 +239,10 @@ function logEvent() {  //any number of parameters to log
    $delimiter =       " | ";
    $logFilename =     "{$secureFolder}/events.log";
    $archiveFilename = "{$secureFolder}/events-archive.log";
-   $milliseconds =    substr(microtime(), 2, 3);
+   $msecs =           substr(microtime(), 2, 3);
    $user =            getCurrentUser();
    $userStr =         $user ? $user : '[anonymous]';
-   $event =           array(date("Y-m-d H:i:s."), $milliseconds, $delimiter, $userStr);
+   $event =           array(date("Y-m-d H:i:s."), $msecs, $delimiter, $userStr);
    if (is_file($logFilename) && filesize($logFilename) > $maxLogFileSize)
       rename($logFilename, $archiveFilename);
    foreach (func_get_args() as $msg) {
