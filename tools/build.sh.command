@@ -130,7 +130,8 @@ unzipRelease() {
 openConsole() {
    echo "*** Open Console"
    consoleUrl=http://localhost/paradise-deploy/gallery/console/
-   echo $consoleUrl
+   echo "Folder: $webDocRoot/paradise-deploy/gallery/~data~/"
+   echo "URL:    $consoleUrl"
    sleep 2
    open $consoleUrl
    echo

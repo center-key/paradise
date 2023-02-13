@@ -207,12 +207,12 @@ function restRequestBackup($action) {
          $count = $zip->numFiles;
          $zip->close();
          }
-      $milliseconds = getTime() - $start;
-      logEvent("backup-end", $filename, "files: " . $count, "milliseconds: " . $milliseconds);
+      $msecs = getTime() - $start;
+      logEvent("backup-end", $filename, "files: " . $count, "milliseconds: " . $msecs);
       return (object)array(
          "filename" =>     $filename,
          "url" =>          $url,
-         "milliseconds" => $milliseconds,
+         "milliseconds" => $msecs,
          );
       }
    $routes = array(
