@@ -1,6 +1,6 @@
 {
    "name": "paradise",
-   "version": "0.6.3",
+   "version": "0.6.4",
    "description": "Paradise PHP Photo Gallery",
    "license": "GPL-3.0",
    "type": "module",
@@ -65,10 +65,10 @@
       "test": "html-validator website"
    },
    "cdnVersion": {
-      "fontAwesome": "6.3"
+      "fontAwesome": "6.4"
    },
    "devDependencies": {
-      "@fortawesome/fontawesome-free": "~6.3",
+      "@fortawesome/fontawesome-free": "~6.4",
       "add-dist-header": "~1.0",
       "bestzip": "~2.2",
       "copy-file-util": "~1.0",
@@ -85,7 +85,7 @@
       "replacer-util": "~1.0",
       "rev-web-assets": "~1.0",
       "rimraf": "~4.4",
-      "run-scripts-util": "~1.0",
+      "run-scripts-util": "~1.1",
       "uglify-js": "~3.17",
       "w3c-html-validator": "~1.3",
       "web-ignition": "~1.7"
