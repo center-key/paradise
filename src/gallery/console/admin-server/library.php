@@ -37,7 +37,11 @@ function getTime() {
 
 function daysToMsec($days) {
    return $days * 24 * 60 * 60 * 1000;
-}
+   }
+
+function toMb($bytes) {
+   return number_format($bytes / 1000000, 2) . " MB";
+   }
 
 function fileSysFriendly($string) {
    setlocale(LC_ALL, "en_US");

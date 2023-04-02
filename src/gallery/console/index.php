@@ -286,7 +286,9 @@
          <fieldset>
             <legend>Backups for download</legend>
             <div class=external-site>
-               <div id=backup-file class=dna-template><a href=~~url~~>~~filename~~</a></div>
+               <div id=backup-file class=dna-template>
+                  <a href=~~url~~ title=~~size~~>~~filename~~</a>
+               </div>
             </div>
             <div data-placeholder=backup-file>No backups have been created</div>
          </fieldset>

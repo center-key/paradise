@@ -30,8 +30,14 @@ function runRoute($routes, $action) {
 
 function test() {
    // URL: http://localhost/paradise-deploy/gallery/console/rest?resource=command&action=test
-   $data = (object)array("timestamp" => date("c"), "read-only" => readOnlyMode());
-   return (object)array("test" => true, "data" => $data);
+   return (object)array(
+      "test" => true,
+      "data" => array(
+         "method" =>    $httpMethod = $_SERVER["REQUEST_METHOD"],
+         "timestamp" => date("c"),
+         "read-only" => readOnlyMode(),
+         ),
+      );
    }
 
 function runCommand($action) {
@@ -136,7 +142,10 @@ function restPostLog($data) {
       $resource = restError(401);
    elseif (isset($data->message)) {
       logEvent("client-msg", $data->message, strlen($data->message));
-      $resource = (object)array("message" => $data->message, "timestamp" => date("c"));
+      $resource = (object)array(
+         "message" =>   $data->message,
+         "timestamp" => date("c"),
+         );
       }
    else
       $resource = restError(400);  //missing message field
@@ -178,7 +187,9 @@ function restRequestAccount($action, $email) {
 function restRequestBackup($action) {
    function actionCreate() {
       global $backupsFolder;
-      function getInvitee($invite) { return $invite->to . ($invite->accepted ? " [accepted]" : ""); }
+      function getInvitee($invite) {
+         return $invite->to . ($invite->accepted ? " [accepted]" : "");
+         }
       $start =    getTime();
       $settings = readSettingsDb();
       $accounts = readAccountsDb();
@@ -186,32 +197,37 @@ function restRequestBackup($action) {
       $invitees = implode(PHP_EOL, array_map("getInvitee", get_object_vars($accounts->invites)));
       $userList = date("c") . "\n\nAdministrators:\n" . $admins . "\n\nInvitations:\n" . $invitees;
       $filename = fileSysFriendly($settings->title) . "-" . date("Y-m-d-Hi") . ".zip";
-      $count = 0;
+      $path =     $backupsFolder . "/" . $filename;
+      $url =      "../~data~/" . basename($backupsFolder) . "/" . $filename;
+      $count =    0;
+      $bytes =    0;
+      $zip =      new ZipArchive();
       logEvent("backup-start", $filename);
-      $url = "../~data~/" . basename($backupsFolder) . "/" . $filename;
-      $zip = new ZipArchive();
       if (readOnlyMode()) {
-         $url = ".";
+         $url =   ".";
          $count = 10;
          sleep(2);
          }
-      elseif ($zip->open("{$backupsFolder}/{$filename}", ZipArchive::CREATE) === true) {
-         $zip->addGlob("../../~data~/*.css");
-         $zip->addGlob("../../~data~/*.json");
-         $zip->addGlob("../../~data~/*.html");
-         $zip->addGlob("../../~data~/portfolio/*.json");
-         $zip->addGlob("../../~data~/portfolio/*-small.png");
-         $zip->addGlob("../../~data~/portfolio/*-large.jpg");
-         $zip->deleteName("../../~data~/index.html");
+      elseif ($zip->open($path, ZipArchive::CREATE) === true) {
+         $options = array("remove_path" => "../../~data~/");
+         $zip->addGlob("../../~data~/*.{css,json,html}",     GLOB_BRACE, $options);
+         $zip->addGlob("../../~data~/portfolio/*.json",      GLOB_BRACE, $options);
+         $zip->addGlob("../../~data~/portfolio/*-small.png", GLOB_BRACE, $options);
+         $zip->addGlob("../../~data~/portfolio/*-large.jpg", GLOB_BRACE, $options);
+         $zip->deleteName("index.html");
          $zip->addFromString("users.txt", $userList);
          $count = $zip->numFiles;
          $zip->close();
+         $bytes = filesize($path);
          }
       $msecs = getTime() - $start;
-      logEvent("backup-end", $filename, "files: " . $count, "milliseconds: " . $msecs);
+      logEvent("backup-end", $filename, "files: " . $count, "bytes: " . $bytes, "milliseconds: " . $msecs);
       return (object)array(
          "filename" =>     $filename,
          "url" =>          $url,
+         "files" =>        $count,
+         "bytes" =>        $bytes,
+         "size" =>         toMb($bytes),
          "milliseconds" => $msecs,
          );
       }
