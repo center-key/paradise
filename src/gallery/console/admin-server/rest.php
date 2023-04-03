@@ -196,7 +196,7 @@ function restRequestBackup($action) {
       $admins =   implode(PHP_EOL, array_keys(get_object_vars($accounts->users)));
       $invitees = implode(PHP_EOL, array_map("getInvitee", get_object_vars($accounts->invites)));
       $userList = date("c") . "\n\nAdministrators:\n" . $admins . "\n\nInvitations:\n" . $invitees;
-      $filename = fileSysFriendly($settings->title) . "-" . date("Y-m-d-Hi") . ".zip";
+      $filename = fileSysFriendly($settings->title, 10) . "-" . date("Y-m-d-Hi") . ".zip";
       $path =     $backupsFolder . "/" . $filename;
       $url =      "../~data~/" . basename($backupsFolder) . "/" . $filename;
       $count =    0;

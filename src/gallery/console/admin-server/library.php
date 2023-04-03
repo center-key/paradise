@@ -40,13 +40,20 @@ function daysToMsec($days) {
    }
 
 function toMb($bytes) {
+   // Example:
+   //    toMb(3577000) --> "3.58 MB"
    return number_format($bytes / 1000000, 2) . " MB";
    }
 
-function fileSysFriendly($string) {
+function fileSysFriendly($string, $max) {
+   // Example:
+   //    fileSysFriendly("Die Känguru-Chroniken", 12) --> "die-kanguru"
    setlocale(LC_ALL, "en_US");
-   $asciiLowercase = strtolower(iconv("UTF-8", "ASCII//TRANSLIT", trim($string)));
-   return preg_replace("/\s.*|&.t;|[^a-z0-9_-]/", "", $asciiLowercase);
+   $lower = strtolower(iconv("UTF-8", "ASCII//TRANSLIT", $string));
+   $clean = trim(preg_replace("/[^a-z0-9]/", " ", $lower));
+   $short = substr(preg_replace("/[ ]+/", "-", $clean), 0, $max + 1);
+   $dash  = strrpos($short, "-") ?: $max;
+   return strlen($short) > $max ? substr($short, 0, $dash) : $short;
    }
 
 function emptyObj($object) {
