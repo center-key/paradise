@@ -12,12 +12,12 @@ admin.login = {
       // Automatically fill in email address field on sign in screen
       const rememberMe = globalThis.localStorage.getItem(admin.login.rememberMeKey);
       if (rememberMe)
-         admin.login.elem.email.val(rememberMe);
-      admin.login.elem.rememberMe.prop('checked', !!rememberMe);
+         admin.login.elem.email.value = rememberMe;
+      admin.login.elem.rememberMe.checked = rememberMe;
       },
    saveRemmeberMe(email) {
       // Store or clear email address based on user checked "Remember me" option
-      if (admin.login.elem.rememberMe.is(':checked'))
+      if (admin.login.elem.rememberMe.checked)
          globalThis.localStorage.setItem(admin.login.rememberMeKey, email);
       else
          globalThis.localStorage.removeItem(admin.login.rememberMeKey);
@@ -31,14 +31,15 @@ admin.login = {
    submit() {
       const elem =           admin.login.elem;
       const minPasswordLen = 8;
-      const action =         elem.component.hasClass('create') ? 'create' : 'login';
-      const inviteCode =     elem.inviteCode.val().trim();
-      const email =          elem.email.val().trim().toLowerCase();
-      const password =       elem.password.val().trim();
-      const confirm =        elem.confirm.val().trim();
+      const action =         elem.component.classList.contains('create') ? 'create' : 'login';
+      const inviteCode =     elem.inviteCode.value.trim();
+      const email =          elem.email.value.trim().toLowerCase();
+      const password =       elem.password.value.trim();
+      const confirm =        elem.confirm.value.trim();
       const displayError = (msg) => {
-         elem.submitButton.enable();
-         dna.ui.pulse(elem.errorMessage.text(msg));
+         elem.submitButton.disabled = false;
+         elem.errorMessage.textContent = msg;
+         dna.ui.slideFadeIn(elem.errorMessage);
          };
       const handleAuth = (data) => {
          const redirect = () => {
@@ -62,28 +63,30 @@ admin.login = {
          displayError('Passwords do not match.');
       else
          admin.login.calcSha256(password).then(handleHash);
-      elem.submitButton.disable();
+      elem.submitButton.disabled = true;
       },
    setup(component) {
       admin.login.elem = {
          component:    component,
-         errorMessage: component.find('>form .error-message'),
-         inviteCode:   component.find('>form .invite-code input'),
-         email:        component.find('>form input[type=email]'),
-         password:     component.find('>form input[type=password]').first(),
-         confirm:      component.find('>form input[type=password]').last(),
-         rememberMe:   component.find('>form >label.remember-me input'),
-         submitButton: component.find('>form >nav button'),
+         errorMessage: component.querySelector('form .error-message'),
+         inviteCode:   component.querySelector('form .invite-code input'),
+         email:        component.querySelector('form input[type=email]'),
+         password:     component.querySelectorAll('form input[type=password]')[0],
+         confirm:      component.querySelectorAll('form input[type=password]')[1],
+         rememberMe:   component.querySelector('form >label.remember-me input'),
+         submitButton: component.querySelector('form >nav button'),
          };
       globalThis.fetchJson.enableLogger();
       const params = dna.browser.getUrlParams();
       dna.insert('gallery-title', globalThis.clientData);
       dna.insert('page-footer',   globalThis.clientData);
       admin.login.getRemmeberMe();
-      component.toggleClass('create', globalThis.clientData.userListEmpty || !!params.invite);
-      component.toggleClass('invite', !!params.invite).find('.invite-code input').val(params.invite);
+      dna.dom.toggleClass(component, 'create', globalThis.clientData.userListEmpty || !!params.invite);
+      dna.dom.toggleClass(component, 'invite', !!params.invite);
+      component.querySelector('.invite-code input').value = params.invite;
       if (params.email)
-         admin.login.elem.email.val(params.email);
-      component.find('>form input:invalid').filter(':visible').first().trigger('focus');
+         admin.login.elem.email.value = params.email;
+      const errors = component.querySelectorAll('form input:invalid');
+      dna.dom.find(errors, elem => dna.ui.isVisible(elem.closest('label')))?.focus();
       },
    };

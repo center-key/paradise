@@ -39,10 +39,8 @@
          }
    </style>
    <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@{{pkg.devDependencies.fetch-json|version}}/dist/fetch-json.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/jquery@{{pkg.devDependencies.jquery|version}}/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@{{pkg.devDependencies.dna-engine|version}}/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@{{pkg.devDependencies.web-ignition|version}}/dist/lib-x.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/magnific-popup@{{pkg.devDependencies.magnific-popup|version}}/dist/jquery.magnific-popup.min.js></script>
    <script defer src=../../paradise.min.js></script>
 </head>
 <body class="<?=$values->styleClasses?>" itemscope itemtype=https://schema.org/ImageObject>

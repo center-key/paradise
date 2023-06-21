@@ -41,9 +41,9 @@
          }
    </style>
    <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@{{pkg.devDependencies.fetch-json|version}}/dist/fetch-json.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/jquery@{{pkg.devDependencies.jquery|version}}/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@{{pkg.devDependencies.dna-engine|version}}/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@{{pkg.devDependencies.web-ignition|version}}/dist/lib-x.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.slim.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/magnific-popup@{{pkg.devDependencies.magnific-popup|version}}/dist/jquery.magnific-popup.min.js></script>
    <script defer src=paradise.min.js></script>
 </head>
@@ -56,13 +56,13 @@
 
 <main>
    <aside><i data-icon=tachometer-alt data-href=console></i></aside>
-   <nav class=dna-menu data-nav=gallery>
+   <nav class=dna-menu data-menu-nav=gallery>
       <span class=<?=showHideClass($pages[0]->show)?>><?=$pages[0]->title?></span>
       <span class=<?=showHideClass($pages[1]->show)?>><?=$pages[1]->title?></span>
       <span class=<?=showHideClass($pages[2]->show)?>><?=$pages[2]->title?></span>
       <span class=<?=showHideClass(false)?>>Thanks</span>
    </nav>
-   <div class=dna-panels data-nav=gallery>
+   <div class=dna-panels data-menu-nav=gallery>
       <section data-hash=images class=gallery-images>
          <h2 class=hide-me>Gallery Images</h2>
          <?=getImagesHtml($gallery, $settings)?>
@@ -76,7 +76,8 @@
          <form class=send-message>
             <label>
                <span>Message:</span>
-               <textarea name=message placeholder="Enter your message" required></textarea>
+               <textarea name=message data-on-click=gallery.configureForm
+                  placeholder="Enter your message" required></textarea>
             </label>
             <label>
                <span>Name:</span>

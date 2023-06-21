@@ -29,14 +29,18 @@
       table.font-sampler tbody tr td h1 { margin-bottom: 0px; }
    </style>
    <script defer src=https://ajax.googleapis.com/ajax/libs/webfont/1.6/webfont.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/jquery@{{pkg.devDependencies.jquery|version}}/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@{{pkg.devDependencies.dna-engine|version}}/dist/dna-engine.min.js></script>
    <script>globalThis.clientData = <?=appClientData()?>;</script>
    <script data-on-load=startup>
       const startup = () => {
          WebFont.load({ google: { families: clientData.fonts } });
-         $('#font-row h1').css({ fontSize: clientData.titleSize }).text(clientData.title);
-         dna.clone('font-row', clientData.fonts);
+         const data = clientData.fonts.map(font => ({
+            font:  font,
+            href:  'https://fonts.google.com/specimen/' + font,
+            style: `font-family: "${font}"; font-size: ${clientData.titleSize};`,
+            title: clientData.title,
+            }));
+         dna.clone('font-row', data);
          };
    </script>
 </head>
@@ -50,8 +54,8 @@
    <table class=font-sampler>
       <tbody class=external-site>
          <tr id=font-row class=dna-template>
-            <td><a href="https://fonts.google.com/specimen/~~[value]~~">~~[value]~~</a></td>
-            <td><h1 style="font-family: '~~[value]~~'"></h1></td>
+            <td><a href=~~href~~>~~font~~</a></td>
+            <td><h1 style=~~style~~>~~title~~</h1></td>
          </tr>
       </tbody>
    </table>

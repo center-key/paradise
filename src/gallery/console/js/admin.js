@@ -20,24 +20,38 @@ const admin = {
 
 admin.ui = {
    statusMsg(message) {
-      return $('#status-msg').text(message).fadeOut(0).fadeIn();
+      const elem = globalThis.document.getElementById('status-msg');
+      dna.ui.pulse(elem, { noFadeOut: true, text: message, textContent: message });
       },
    abort(message) {
-      $('#status-msg').text('ERROR: ' + message).fadeOut(0).fadeIn();
+      admin.ui.statusMsg('ERROR: ' + message);
       admin.rest.post('log', { message });
       throw Error(message);
       },
    showNotice(options) {
-      const noticeBox = $('notice-box');
-      noticeBox.find('>div >p').text(options.message);
-      noticeBox.find('>div >b').text(options.listHeader || '');
-      noticeBox.find('>div >ul').empty();
+      // <notice-box>
+      //    <header>
+      //       <nav><i data-icon=times data-on-click=admin.ui.hideNotice></i></nav>
+      //       <h2>Error</h2>
+      //    </header>
+      //    <div>
+      //       <p></p>
+      //       <b></b>
+      //       <ul></ul>
+      //    </div>
+      // </notice-box>
+      const noticeBox = globalThis.document.querySelector('notice-box');
+      noticeBox.querySelector('div >p').textContent = options.message;
+      noticeBox.querySelector('div >b').textContent = options.listHeader ?? '';
+      const listContainer = noticeBox.querySelector('div >ul');
+      while (listContainer.firstChild)
+         parent.removeChild(listContainer.firstChild);
       if (options.list)
-         options.list.forEach(item => noticeBox.find('>div >ul').append($('<li>').text(item)));
-      noticeBox.addClass('show');
+         options.list.forEach(item => listContainer.appendChild(dna.dom.create('li', { text: item })));
+      noticeBox.classList.add('show');
       },
    hideNotice() {
-      $('notice-box').removeClass('show');
+      globalThis.document.querySelector('notice-box').classList.remove('show');
       },
    loadSettings(callback) {
       const handle = (data) => {
@@ -62,31 +76,29 @@ admin.ui = {
       admin.rest.get('portfolio', { action: 'list' }).then(handle);
       },
    save(elem, type) {
-      const field = elem.data().dnaField;
-      const val = elem.is('input[type=checkbox]') ? elem.is(':checked') : elem.val();
+      const field = dna.dom.state(elem).dnaField;
+      const value =   elem.matches('input[type=checkbox]') ? elem.checked : elem.value;
       admin.ui.statusMsg('Saving ' + dna.util.toKebab(field).replace('-', ' ') + '...');
       const params = {};
-      params[field] = val;
-      const item = elem.closest('[data-item-id]').data();
-      if (item && item.itemId)
-         params.id = item.itemId;
-      if (item && item.itemType)
-         params.item = item.itemType;
+      params[field] = value;
+      const itemData = elem.closest('[data-item-id]')?.dataset;
+      if (itemData?.itemId)
+         params.id = itemData.itemId;
+      if (itemData?.itemType)
+         params.item = itemData.itemType;
       admin.rest.get(type, { action: 'update', params: params  });
       },
    savePortfolio(elem) {
       return admin.ui.save(elem, 'portfolio');
       },
    saveSettings(elem) {
-      const item = elem.closest('[data-item-id]');  //workaround
-      if (item.length)                              //workaround
-         item.data().itemId = item.index() + 1;     //workaround
       admin.ui.save(elem, 'settings');
       },
    move(elem) {
+      // <i data-icon=arrow-up data-on-click=admin.ui.move data-move=up></i>
       const params = {
          id:   dna.getModel(elem).id,
-         move: elem.data().move,
+         move: elem.dataset.move,
          };
       const handle = () => params.move === 'up' ? dna.up(elem) : dna.down(elem);
       admin.rest.get('portfolio', { action: 'update', params: params }).then(handle);
@@ -97,8 +109,8 @@ admin.ui = {
       admin.rest.get('portfolio', { action: 'delete', params: params }).then(handle);
       },
    loadAccounts() {
-      const addDate = (account) => account.lastLogin = new Date(account.login).toDateString() +
-         ' (' + account.valid + ')';
+      const addDate = (account) =>
+         account.lastLogin = new Date(account.login).toDateString() + ' (' + account.valid + ')';
       const handle = (accounts) => dna.clone('user-account', accounts, { transform: addDate });
       admin.rest.get('account', { action: 'list' }).then(handle);
       },
@@ -117,9 +129,10 @@ admin.ui = {
          uploadMultiple:        true,
          createImageThumbnails: false,
          };
-      const uploaderElem = $('#gallery-uploader').addClass('dropzone');
-      const dropzone =     new globalThis.Dropzone(uploaderElem[0], options);
-      const start =        () => admin.ui.statusMsg('Uploading photos...');
+      const uploaderElem = globalThis.document.getElementById('gallery-uploader');
+      uploaderElem.classList.add('dropzone');
+      const dropzone = new globalThis.Dropzone(uploaderElem, options);
+      const start =    () => admin.ui.statusMsg('Uploading photos...');
       const done = () => {
          const handle = (uploads) => {
             if (!uploads.fails)
@@ -129,12 +142,13 @@ admin.ui = {
                   { message: uploads.message, listHeader: 'Invalid files:', list: uploads.fails });
             admin.ui.loadPortfolio();
             const resetDropzone = () => {
-               const uploadBoxes = uploaderElem.find('.dz-preview');
-               dna.ui.slideFadeOut(uploadBoxes, () => dropzone.removeAllFiles());
+               const uploadBoxes = uploaderElem.querySelectorAll('.dz-preview');
+               uploadBoxes.forEach(dna.ui.slideFadeOut);
+               globalThis.setTimeout(() => dropzone.removeAllFiles(), 1000);
                };
             globalThis.setTimeout(resetDropzone, 2000);
             };
-         uploaderElem.addClass('pulse');
+         uploaderElem.classList.add('pulse');
          admin.ui.statusMsg('Processing photos...');
          admin.rest.get('command', { action: 'process-uploads' }).then(handle);
          };
@@ -145,19 +159,20 @@ admin.ui = {
 
 admin.invites = {
    elem: {
-      email:      $('.admin-accounts .send-invite input[type=email]'),
-      sendButton: $('.admin-accounts .send-invite button'),
+      email:      globalThis.document.querySelector('.admin-accounts .send-invite input[type=email]'),
+      sendButton: globalThis.document.querySelector('.admin-accounts .send-invite button'),
       },
    validate(input) {
-      admin.invites.elem.sendButton.enable(libX.util.cleanupEmail(input.val()));
+      admin.invites.elem.sendButton.enable(libX.util.cleanupEmail(input.value));
       },
    send(button) {
-      button.disable();
-      const email = libX.util.cleanupEmail(admin.invites.elem.email.val());
+      button.disabled = true;
+      const email = libX.util.cleanupEmail(admin.invites.elem.email.value);
       const handle = (data) => {
          admin.ui.statusMsg(data.message);
          admin.invites.loadList();
-         admin.invites.elem.email.trigger('focus').val('');
+         admin.invites.elem.email.value = '';
+         admin.invites.elem.email.focus();
          };
       admin.rest.get('invite', { action: 'create', params: { email: email } }).then(handle);
       },
@@ -169,13 +184,13 @@ admin.invites = {
 
 admin.backups = {
    create(button) {
-      button.disable();
+      button.disabled = true;
       admin.ui.statusMsg('Creating backup...');
       const handle = (data) => {
          const seconds = data.milliseconds / 1000;
          admin.ui.statusMsg(`Backup "${data.filename}" created in ${seconds} seconds`);
          dna.clone('backup-file', data, { top: true, fade: true });
-         button.enable();
+         button.disabled = false;
          };
       admin.rest.get('backup', { action: 'create' }).then(handle);
       },

@@ -5,17 +5,22 @@
 
 // Gallery application
 const gallery = {
+   configureForm(elem) {
+      const perfectForm = elem.closest('form.send-message');
+      perfectForm.method = 'post';
+      perfectForm.action = 'frontend-server/send-message.php';
+      },
    start() {
-      $('body >footer .hide-me').remove();
-      $('form.send-message').attr({ method: 'post', action: 'frontend-server/send-message.php' });  //bots are lazy
+      globalThis.document.querySelectorAll('body >footer .hide-me').forEach(elem => elem.remove());
       const options = {
          delegate: '>a',  //child items selector, click to open popup
          type:     'image',
          image:    { titleSrc: 'data-title' },
          gallery:  { enabled: true },
          };
-      $('.gallery-images figure').magnificPopup(options);
+      const figures = globalThis.document.querySelectorAll('.gallery-images figure');
+      globalThis.$(figures).magnificPopup(options);
       },
    };
 
-$(gallery.start);
+dna.dom.onReady(gallery.start);
