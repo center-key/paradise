@@ -35,7 +35,7 @@
    <link rel=stylesheet       href=paradise.min.css>
    <link rel=stylesheet       href=~data~/custom-style.css>
    <style>
-      h1 {
+      body >header h1 {
          font-family: "<?=$settings->titleFont?>", system-ui, sans-serif;
          font-size: <?=$settings->titleSize?>;
          }
