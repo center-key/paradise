@@ -81,10 +81,11 @@ body {
          display: flex;
          justify-content: center;
          align-items: center;
+         font-size: 1.2rem;
          color: white;
          background-color: black;
          padding: 0px;
-         margin: 0px 0px 30px 0px;
+         margin: 0px 0px 50px 0px;
          >span {
             background-color: black;
             transition: background-color 400ms;
@@ -146,7 +147,7 @@ body {
       position: relative;
       display: inline-block;
       vertical-align: top;
-      margin: 0px 10px 20px 10px;
+      margin: 0px 30px 50px 30px;
       a img {
          max-width: 100%;
          height: 160px;
@@ -224,6 +225,102 @@ body {
       }
    }
 
+/* Artist Page */
+/*
+<h2>Title</h2>
+<article>
+   <header>
+      <h1>Title</h1>
+      <figure><img><figcaption></figcaption>/figure>
+      <h2>Subtitle</h2>
+   </header>
+   <section>
+      <h3>Header</h3>
+      <div><p>Text</p></div>
+      <figure><img><cite></cite></figure>
+   </section>
+   <section>
+      <div>
+         <h3>Mini-header</h3>
+         <p>Note</p>
+      </div>
+   </section>
+</article>
+*/
+section[data-hash=artist] {
+   >article {
+      max-width: 800px;
+      margin: 0px auto;
+      >header {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         >h1 {
+            display: none;
+            }
+         >figure {
+            text-align: center;
+            img {
+               max-width: 160px;
+               }
+            >figcaption i {
+               display: block;
+               font-weight: 100;
+               }
+            }
+         >h2 {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            }
+         }
+      >section {
+         display: flex;
+         flex-direction: row;
+         column-gap: 30px;
+         >h3 {
+            display: none;
+            }
+         >div {
+            flex: 2;
+            text-align: left;
+            h3 {
+               text-transform: uppercase;
+               letter-spacing: 0.1em;
+               }
+            p {
+               line-height: 1.4em;
+               font-size: 1.2rem;
+               font-weight: 100;
+               }
+            }
+         >figure {
+            flex: 1;
+            img {
+               width: 100%;
+               }
+            >cite {
+               display: block;
+               max-width: 300px;
+               font-weight: 100;
+               margin: 0px auto;
+               opacity: 0.7;
+               }
+            }
+         }
+      }
+   }
+@media (max-width: 667px) {  /* selects iPhone 6/6s/7/8/SE2/SE3 landscape and anything narrower */
+   section[data-hash=artist] >article >section {
+      display: flex;
+      flex-direction: column;
+      >figure >img {
+         max-width: 240px;
+         }
+      }
+   }
+
+/* Style Modes */
+/* Dark mode, Show image border, CAPTION IN ALL CAPS, Caption in italics, and Show description */
 body.dark-mode {
    color: whitesmoke;
    background-color: #333333;

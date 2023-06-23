@@ -21,7 +21,7 @@ const admin = {
 admin.ui = {
    statusMsg(message) {
       const elem = globalThis.document.getElementById('status-msg');
-      dna.ui.pulse(elem, { noFadeOut: true, text: message, textContent: message });
+      dna.ui.pulse(elem, { noFadeOut: true, text: message });
       },
    abort(message) {
       admin.ui.statusMsg('ERROR: ' + message);

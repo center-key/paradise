@@ -109,9 +109,9 @@
       <section>
          <h2>
             Gallery Uploader
-            <i data-icon=info-circle
-               data-href=https://github.com/center-key/paradise/wiki/faq#2-what-kind-of-images-should-i-upload>
-            </i>
+            <a href=https://github.com/center-key/paradise/wiki/faq#2-what-kind-of-images-should-i-upload>
+               <i data-icon=info-circle></i>
+            </a>
          </h2>
          <div id=gallery-uploader></div>
       </section>
@@ -121,7 +121,7 @@
          <fieldset class=settings-website>
             <legend>Website</legend>
             <label>
-               <span>Title:</span>
+               <span>Title:<b>*</b></span>
                <input value=~~title~~ data-on-smart-update=admin.ui.saveSettings
                   placeholder="Enter website header">
             </label>
@@ -146,7 +146,7 @@
                </select>
             </label>
             <label>
-               <span>Subtitle:</span>
+               <span>Subtitle:<b>*</b></span>
                <input value=~~subtitle~~ data-on-smart-update=admin.ui.saveSettings
                   placeholder="Enter website subheader">
             </label>
@@ -207,19 +207,22 @@
             </label>
             <label>
                <span>
-                  Footer text (supports <a href=https://dev.w3.org/html5/html-author/charref
-                  class=external-site>HTML entities</a>):
+                  Footer text:<b>*</b>
                </span>
                <input type=text value=~~footer~~ data-on-smart-update=admin.ui.saveSettings>
             </label>
             <label>
                <span>
                   Google Site Verification:
-                  <i data-icon=info-circle data-href=https://support.google.com/webmasters/answer/9008080></i>
+                  <a href=https://support.google.com/webmasters/answer/9008080><i data-icon=info-circle></i></a>
                </span>
                <input type=text value=~~googleVerification~~ spellcheck=false
                   data-on-smart-update=admin.ui.saveSettings placeholder="Enter 44 character code">
             </label>
+            <div>
+               <b>*</b><small>Supports HTML entities like <code>&amp;copy;</code></small>
+               <a href=https://www.toptal.com/designers/htmlarrows/symbols><i data-icon=info-circle style="margin: 0px"></i></a>
+            </div>
          </fieldset>
          <fieldset class=settings-tabs>
             <legend>Tabs</legend>
@@ -286,7 +289,7 @@
          </fieldset>
          <fieldset>
             <legend>Backups for download</legend>
-            <div class=external-site>
+            <div>
                <div id=backup-file class=dna-template>
                   <a href=~~url~~ title=~~size~~>~~filename~~</a>
                </div>
