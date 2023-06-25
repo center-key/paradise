@@ -9,14 +9,14 @@
    <meta charset=utf-8>
    <meta name=viewport                   content="width=device-width, initial-scale=1">
    <meta name=robots                     content="noindex, nofollow">
-   <meta name=description                content="Paradise PHP Photo Gallery Administrator Console">
+   <meta name=description                content="Paradise Photo Gallery Administrator Console">
    <meta name=apple-mobile-web-app-title content="Console">
    <title>Paradise &bull; Administrator Console</title>
    <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
    <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{pkg.cdnVersion.fontAwesome}}/css/all.min.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{pkg.devDependencies.-fortawesome-fontawesome-free|version}}/css/all.min.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dropzone@{{pkg.devDependencies.dropzone}}/dist/dropzone.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@{{pkg.devDependencies.dna-engine|version}}/dist/dna-engine.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@{{pkg.devDependencies.web-ignition|version}}/dist/reset.min.css>
@@ -36,7 +36,7 @@
       <button data-href=.. data-target=gallery>Gallery</button>
       <button data-href=sign-out>Sign out</button>
    </aside>
-   <h1>Paradise PHP Photo Gallery</h1>
+   <h1>Paradise Photo Gallery</h1>
    <h2>Administrator Console</h2>
 </header>
 
