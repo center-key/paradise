@@ -98,7 +98,7 @@ function sendAccountInvite($email) {
    $inviteLink = getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
    $subjectLine = "Sign up invitation";
    $messageLines = array(
-      "You have been invited by {$user} to create an account to administer a Paradise PHP Photo Gallery.",
+      "You have been invited by {$user} to create an account to administer a Paradise Photo Gallery.",
       "",
       "To sign up and start uploading images, go to:",
       $inviteLink,

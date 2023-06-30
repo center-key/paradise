@@ -281,7 +281,7 @@ function isReadOnlyExampleEmailAddress($email) {
    }
 
 function finishSendEmail($sendTo, $subjectLine, $messageLines) {
-   $subjectLine =    "Paradise PHP Photo Gallery - {$subjectLine}";
+   $subjectLine =    "Paradise Photo Gallery - {$subjectLine}";
    $messageLines[] = "";
    $messageLines[] = "- Paradise";
    $messageLines[] = "";
@@ -296,10 +296,10 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
    logEvent("send-email", $success, $sendTo, $subjectLine);
    $confirmationSubject = "Email confirmation";
    $confirmationLines = array(
-      "This is an automated message from the Paradise PHP Photo Gallery system.",
+      "This is an automated message from the Paradise Photo Gallery system.",
       "",
       "An email message was just sent on your behalf as follows:",
-      "\tSubject: Paradise PHP Photo Gallery - {$subjectLine}",
+      "\tSubject: Paradise Photo Gallery - {$subjectLine}",
       "\tTo: {$sendTo}",
       "",
       "This is an informational message only -- no action is required on your part.",

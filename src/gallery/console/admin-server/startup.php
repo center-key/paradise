@@ -54,7 +54,7 @@ function setupDb($dbFilename, $defaultDb) {
 
 function resetCustomCssForMigration($filename) {
    $oldDefaultCss = array(
-      "/* Paradise PHP Photo Gallery                               */",
+      "/* Paradise Photo Gallery                                   */",
       "/* Edit this CSS file to customize the look of the gallery. */",
       "/* Put custom images in: gallery/~data~/graphics            */",
       "",
@@ -69,7 +69,7 @@ function resetCustomCssForMigration($filename) {
 
 function setupCustomCss($dataFolder) {
    $defaultCss = array(
-      "/* Paradise PHP Photo Gallery                               */",
+      "/* Paradise Photo Gallery                                   */",
       "/* Edit this CSS file to customize the look of the gallery. */",
       "/* Put custom images in: gallery/~data~/graphics            */",
       "",

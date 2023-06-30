@@ -2,7 +2,7 @@ Video Tutorial -- Getting Started
 
 Transcript:
 
-1) Welcome to the Getting Started instructions for Paradise PHP Photo Gallery.  Paradise is an open source web application for publishing a portfolio of images.
+1) Welcome to the Getting Started instructions for Paradise Photo Gallery.  Paradise is an open source web application for publishing a portfolio of images.
 
 2) Start by going to the Paradise website at centerkey.com/paradise and clicking the blue download button to get the install file.  It's a zip of a folder named "gallery", which contains the Paradise web application files.  You can rename the folder if you like.
 

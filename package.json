@@ -1,7 +1,7 @@
 {
    "name": "paradise",
-   "version": "0.7.0",
-   "description": "Paradise PHP Photo Gallery",
+   "version": "0.7.1",
+   "description": "Paradise Photo Gallery",
    "license": "GPL-3.0",
    "type": "module",
    "main": "website/index.html",
@@ -65,9 +65,6 @@
       "pretest": "run-scripts clean build",
       "test": "html-validator website"
    },
-   "cdnVersion": {
-      "fontAwesome": "6.4"
-   },
    "devDependencies": {
       "@fortawesome/fontawesome-free": "~6.4",
       "add-dist-header": "~1.1",
@@ -77,11 +74,11 @@
       "csso-cli": "~4.0",
       "dna-engine": "~3.0",
       "dropzone": "6.0.0-beta.2",
-      "fetch-json": "~3.1",
+      "fetch-json": "~3.2",
       "jshint": "~2.13",
       "less": "~4.1",
       "magnific-popup": "~1.1",
-      "make-dir-cli": "~3.0",
+      "make-dir-cli": "~3.1",
       "replacer-util": "~1.1",
       "rev-web-assets": "~1.2",
       "rimraf": "~5.0",

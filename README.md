@@ -1,4 +1,4 @@
-# Paradise PHP Photo Gallery
+# Paradise Photo Gallery
 <img src=https://centerkey.com/paradise/graphics/paradise-logo.svg align=right width=200 alt=logo>
 
 _A simple and aesthetic image gallery to showcase your art portfolio_

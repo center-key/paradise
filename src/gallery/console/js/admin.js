@@ -146,7 +146,7 @@ admin.ui = {
                uploadBoxes.forEach(dna.ui.slideFadeOut);
                globalThis.setTimeout(() => dropzone.removeAllFiles(), 1000);
                };
-            globalThis.setTimeout(resetDropzone, 2000);
+            globalThis.setTimeout(resetDropzone, 5000);
             };
          uploaderElem.classList.add('pulse');
          admin.ui.statusMsg('Processing photos...');
