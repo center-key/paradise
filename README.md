@@ -5,7 +5,6 @@ _A simple and aesthetic image gallery to showcase your art portfolio_
 
 [![License:GPLv3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/center-key/paradise/blob/main/LICENSE.txt)
 &nbsp;
-[![Vulnerabilities](https://snyk.io/test/github/center-key/paradise/badge.svg)](https://snyk.io/test/github/center-key/paradise)
 &nbsp;
 [![Build](https://github.com/center-key/paradise/workflows/build/badge.svg)](https://github.com/center-key/paradise/actions/workflows/run-spec-on-push.yaml)
 
