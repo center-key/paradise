@@ -41,8 +41,10 @@
       "clean": [
          "rimraf build releases/paradise-v*.zip"
       ],
+      "lint": [
+         "jshint . --exclude-path .gitignore"
+      ],
       "build": [
-         "jshint . --exclude-path .gitignore",
          "lessc src/gallery/style/gallery.less       build/1-dev/gallery/paradise.css",
          "lessc src/gallery/console/style/admin.less build/1-dev/gallery/console/paradise-console.css",
          "make-dir build/2-min/gallery/console",
@@ -56,18 +58,20 @@
          "copy-file src/gallery/image/.htaccess --folder build/3-tst/gallery/image",
          "rev-web-assets build/3-tst/gallery build/4-rev/gallery",
          "copy-file LICENSE.txt --folder build/4-rev/gallery",
-         "cd build/4-rev && bestzip paradise.zip gallery/*",
+         "cd build/4-rev && bestzip paradise.zip gallery/*"
+      ],
+      "release": [
          "copy-file build/4-rev/paradise.zip releases/previous/paradise-v{{pkg.version}}.zip",
          "copy-file build/4-rev/paradise.zip releases/paradise-v{{pkg.version}}.zip"
       ]
    },
    "scripts": {
-      "pretest": "run-scripts clean build",
+      "pretest": "run-scripts clean lint build release",
       "test": "html-validator website"
    },
    "devDependencies": {
       "@fortawesome/fontawesome-free": "~6.4",
-      "add-dist-header": "~1.1",
+      "add-dist-header": "~1.2",
       "bestzip": "~2.2",
       "copy-file-util": "~1.1",
       "copy-folder-util": "~1.1",
@@ -76,11 +80,11 @@
       "dropzone": "6.0.0-beta.2",
       "fetch-json": "~3.2",
       "jshint": "~2.13",
-      "less": "~4.1",
+      "less": "~4.2",
       "magnific-popup": "~1.1",
       "make-dir-cli": "~3.1",
-      "replacer-util": "~1.1",
-      "rev-web-assets": "~1.2",
+      "replacer-util": "~1.2",
+      "rev-web-assets": "~1.3",
       "rimraf": "~5.0",
       "run-scripts-util": "~1.2",
       "uglify-js": "~3.17",
