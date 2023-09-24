@@ -77,15 +77,15 @@ admin.login = {
          submitButton: component.querySelector('form >nav button'),
          };
       globalThis.fetchJson.enableLogger();
-      const params = dna.browser.getUrlParams();
+      const params = new URLSearchParams(globalThis.location.search);
       dna.insert('gallery-title', globalThis.clientData);
       dna.insert('page-footer',   globalThis.clientData);
       admin.login.getRemmeberMe();
-      dna.dom.toggleClass(component, 'create', globalThis.clientData.userListEmpty || !!params.invite);
-      dna.dom.toggleClass(component, 'invite', !!params.invite);
-      component.querySelector('.invite-code input').value = params.invite;
-      if (params.email)
-         admin.login.elem.email.value = params.email;
+      dna.dom.toggleClass(component, 'create', globalThis.clientData.userListEmpty || params.has('invite'));
+      dna.dom.toggleClass(component, 'invite', params.has('invite'));
+      component.querySelector('.invite-code input').value = params.get('invite');
+      if (params.get('email'))
+         admin.login.elem.email.value = params.get('email');
       const errors = component.querySelectorAll('form input:invalid');
       dna.dom.find(errors, elem => dna.ui.isVisible(elem.closest('label')))?.focus();
       },

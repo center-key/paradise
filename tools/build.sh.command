@@ -43,8 +43,9 @@ setupTools() {
 
 releaseInstructions() {
    cd $projectHome
-   repository=$(grep repository package.json | awk -F'"' '{print $4}' | sed s/github://)
-   package=https://raw.githubusercontent.com/$repository/main/package.json
+   org=$(grep git+https package.json | awk -F'/' '{print $4}')
+   name=$(grep '"name":' package.json | awk -F'"' '{print $4}')
+   package=https://raw.githubusercontent.com/$org/$name/main/package.json
    version=v$(grep '"version"' package.json | awk -F'"' '{print $4}')
    pushed=v$(curl --silent $package | grep '"version":' | awk -F'"' '{print $4}')
    minorVersion=$(echo ${pushed:1} | awk -F"." '{ print $1 "." $2 }')
