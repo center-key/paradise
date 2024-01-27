@@ -18,6 +18,13 @@ if (!function_exists("str_contains")) {
       }
    }
 
+// PHP 8.0.0: str_starts_with()
+if (!function_exists('str_starts_with')) {
+   function str_starts_with($haystack, $needle) {
+      return strlen($needle) === 0 || strpos($haystack, $needle) === 0;
+      }
+   }
+
 // PHP 8.0.0: str_ends_with()
 if (!function_exists("str_ends_with")) {
    function str_ends_with($haystack, $needle) {
