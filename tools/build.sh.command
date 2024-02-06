@@ -10,8 +10,9 @@
 
 banner="Paradise ~ Build"
 projectHome=$(cd $(dirname $0)/..; pwd)
-apacheCfg=/usr/local/etc/httpd
-apacheLog=/usr/local/var/log/httpd/error_log
+pkgInstallHome=$(dirname $(dirname $(which httpd)))
+apacheCfg=$pkgInstallHome/etc/httpd
+apacheLog=$pkgInstallHome/var/log/httpd/error_log
 webDocRoot=$(grep ^DocumentRoot $apacheCfg/httpd.conf | awk -F'"' '{ print $2 }')
 cliFlagMsg="Use the '--fast' flag to skip npm update"
 cliFlag=$1
