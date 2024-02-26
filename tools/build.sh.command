@@ -16,6 +16,7 @@ apacheLog=$pkgInstallHome/var/log/httpd/error_log
 webDocRoot=$(grep ^DocumentRoot $apacheCfg/httpd.conf | awk -F'"' '{ print $2 }')
 cliFlagMsg="Use the '--fast' flag to skip npm update"
 cliFlag=$1
+consoleUrl=http://localhost/paradise-deploy/gallery/console
 
 npmUpdate() {
    npm install --no-fund
@@ -120,6 +121,7 @@ unzipRelease() {
    unzip -o $projectHome/releases/paradise-v*.zip
    chmod -v uo+rwx gallery
    accessData() {  #avoid problems if web server runs as a different user
+      curl $consoleUrl/sign-in/ | wc -m  #create ~data~ subfolders
       chmod -v uo+rwx gallery/~data~
       cd gallery/~data~
       chmod -v uo+rwx backups* portfolio secure* uploads
@@ -131,7 +133,6 @@ unzipRelease() {
 
 openConsole() {
    echo "*** Open Console"
-   consoleUrl=http://localhost/paradise-deploy/gallery/console/
    echo "Folder: $webDocRoot/paradise-deploy/gallery/~data~/"
    echo "URL:    $consoleUrl"
    sleep 2
