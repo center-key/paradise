@@ -194,7 +194,8 @@ function saveAccountsDb($db) {
    }
 
 function toUriCode($caption) {
-   return preg_replace("/\s+/", "-", trim(preg_replace("/[^a-z]/", " ", strtolower($caption))));
+   // Turns a caption, like "Mona Lisa (1503)", into a URL safe string, like "mona-lisa-1503".
+   return preg_replace("/\s+/", "-", trim(preg_replace("/[^a-z0-9]/", " ", strtolower($caption))));
    }
 
 function displayTrue($imageDb) {
