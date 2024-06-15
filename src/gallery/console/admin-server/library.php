@@ -10,7 +10,7 @@
 require "polyfills.php";
 require "font-options.php";
 
-$version =       "{{pkg.version}}";
+$version =       "{{package.version}}";
 $dbCacheStore =  null;
 $galleryFolder = realpath(__DIR__ . "/../..");
 $dataFolder =    "{$galleryFolder}/~data~";

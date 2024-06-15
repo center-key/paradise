@@ -64,8 +64,8 @@
          "cd build/4-rev && bestzip paradise.zip gallery/*"
       ],
       "release": [
-         "copy-file build/4-rev/paradise.zip releases/previous/paradise-v{{pkg.version}}.zip",
-         "copy-file build/4-rev/paradise.zip releases/paradise-v{{pkg.version}}.zip"
+         "copy-file build/4-rev/paradise.zip releases/previous/paradise-v{{package.version}}.zip",
+         "copy-file build/4-rev/paradise.zip releases/paradise-v{{package.version}}.zip"
       ]
    },
    "scripts": {
@@ -76,22 +76,22 @@
       "@fortawesome/fontawesome-free": "~6.5",
       "add-dist-header": "~1.4",
       "bestzip": "~2.2",
-      "copy-file-util": "~1.1",
+      "copy-file-util": "~1.2",
       "copy-folder-util": "~1.1",
       "csso-cli": "~4.0",
-      "dna-engine": "~3.1",
+      "dna-engine": "~3.2",
       "dropzone": "6.0.0-beta.2",
       "fetch-json": "~3.3",
       "jshint": "~2.13",
       "less": "~4.2",
-      "magnific-popup": "~1.1",
-      "make-dir-cli": "~3.1",
-      "replacer-util": "~1.2",
+      "magnific-popup": "~1.2",
+      "make-dir-cli": "~4.0",
+      "replacer-util": "~1.3",
       "rev-web-assets": "~1.3",
       "rimraf": "~5.0",
       "run-scripts-util": "~1.2",
-      "uglify-js": "~3.17",
-      "w3c-html-validator": "~1.6",
-      "web-ignition": "~2.1"
+      "uglify-js": "~3.18",
+      "w3c-html-validator": "~1.8",
+      "web-ignition": "~2.2"
    }
 }
