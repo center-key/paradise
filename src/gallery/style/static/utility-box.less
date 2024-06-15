@@ -1,0 +1,36 @@
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
+
+// Constants and utilities -- Reusable values and mixins
+
+// Layers for z-index
+@layerDialogBox:     500;  //cream of the crop
+@layerModal:         400;  //screen overlays
+@layerFixedPosition: 300;  //sticky elements
+@layerNavigation:    200;  //notifications, menus, and drop-downs
+@layerHover:         100;  //tootips and other hover popups
+@layerBackground:   -100;  //bottom of the barrel
+
+// Character entities
+@symbolAngleRight:   "\276F";  //character: ❯
+@symbolArrowDown:    "\21E9";  //character: ⇩
+@symbolArrowUp:      "\21E7";  //character: ⇧
+@symbolBallotXMark:  "\2718";  //character: ✘
+@symbolCheckmark:    "\2714";  //character: ✔
+@symbolEmDash:       "\2014";  //character: —
+@symbolTriangleDown: "\25BC";  //character: ▼
+@symbolTriangleUp:   "\25B2";  //character: ▲
+
+// Tools
+
+.Bullseye() {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   }
+
+.MobileMode(@lessRules) {  //selects iPhone 6/6s/7/8/SE2/SE3 landscape and anything narrower
+   @media (max-width: 667px) { @lessRules(); }
+   }

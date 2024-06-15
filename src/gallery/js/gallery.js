@@ -19,7 +19,8 @@ const gallery = {
          gallery:  { enabled: true },
          };
       const figures = globalThis.document.querySelectorAll('.gallery-images figure');
-      globalThis.$(figures).magnificPopup(options);
+      if (figures.length)
+         globalThis.$(figures).magnificPopup(options);
       },
    };
 

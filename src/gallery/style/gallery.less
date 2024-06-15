@@ -1,10 +1,9 @@
-/*************************************************************/
-/* Paradise ~ centerkey.com/paradise                         */
-/* GPLv3 ~ Copyright (c) Individual contributors to Paradise */
-/************++++++++++++*************************************/
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
 
-/* Gallery */
-/* Do not add customizations to this file -- edit the CSS in: gallery/~data~/custom-style.css */
+@import "static/utility-box";
 
 /* Document */
 html { font-size: 100%; }
@@ -306,7 +305,7 @@ section[data-hash=artist] {
          }
       }
    }
-@media (max-width: 667px) {  /* selects iPhone 6/6s/7/8/SE2/SE3 landscape and anything narrower */
+.MobileMode({
    section[data-hash=artist] >article >section {
       display: flex;
       flex-direction: column;
@@ -314,7 +313,7 @@ section[data-hash=artist] {
          max-width: 240px;
          }
       }
-   }
+   });
 
 /* Style Modes */
 /* Dark mode, Show image border, CAPTION IN ALL CAPS, Caption in italics, and Show description */
@@ -472,8 +471,8 @@ body:not(.caption-italic) .image-description {
    cursor: auto;
    }
 
-/* Mobile */
-@media (max-width: 667px) {  //selects iPhone 6/6s/7/8/SE2/SE3 landscape and anything narrower
+/* Responsive design */
+.MobileMode({
    body >header {
       font-size: 0.8rem;
       }
@@ -490,4 +489,4 @@ body:not(.caption-italic) .image-description {
    body .one-image {
       padding: 30px 10px;
       }
-   }
+   });

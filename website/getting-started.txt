@@ -8,7 +8,7 @@ Transcript:
 
 3) Move the "gallery" folder into the local folder that holds the rest of your website files.  Now launch your FTP client and upload the "gallery" folder to your host server.  Once the upload is complete, open your web browser and go to the Paradise Administrator Console.  Get to the Administrator Console by appending "gallery/console" to your website's URL in the location bar.
 
-4) The first time you visit the Administrator Console, you will be prompted to create a user account.  Enter your email address and password.  Then re-enter your password in the "Confirm" field, and click the "Sign in" button.
+4) The first time you visit the Administrator Console, you will be prompted to create a user account.  Enter your email address and password.  Then re-enter your password in the "Confirm" field, and click the "Sign In" button.
 
 5) At this point you can view the gallery, but of course, it will be empty.  So, go back to the Administrator Console and click the "Upload images" button.  The images you select will be processed and placed into the image portfolio.  For demonstration, let's upload some travel photos.
 

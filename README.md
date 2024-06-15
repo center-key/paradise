@@ -6,7 +6,7 @@ _A simple and aesthetic image gallery to showcase your art portfolio_
 [![License:GPLv3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/center-key/paradise/blob/main/LICENSE.txt)
 &nbsp;
 &nbsp;
-[![Build](https://github.com/center-key/paradise/workflows/build/badge.svg)](https://github.com/center-key/paradise/actions/workflows/run-spec-on-push.yaml)
+[![Build](https://github.com/center-key/paradise/actions/workflows/run-spec-on-push.yaml/badge.svg)](https://github.com/center-key/paradise/actions/workflows/run-spec-on-push.yaml)
 
 Paradise is an open source software package for publishing a curated portfolio of photos on a website in a clean, professional style.
 Use Paradise to create an online exhibit for an artist or organization.
