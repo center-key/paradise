@@ -1,4 +1,12 @@
 # Paradise ~ GPLv3
 # Redirect single image pages to one.php
 # Example: /gallery/image/021/boat --> /gallery/image/fallback/one.php
-FallbackResource ../fallback/one.php
+
+# Following works on Apache but not on LiteSpeed Web Server.
+# FallbackResource ../fallback/one.php
+
+# URL is 404 if filename is not a file (!-f) and not a folder (!-d).
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ %{REQUEST_URI}/../../fallback/one.php [last]
