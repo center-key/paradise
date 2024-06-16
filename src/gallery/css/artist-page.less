@@ -1,0 +1,96 @@
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
+
+// Artist Page
+
+@import "static/utility-box";
+
+// <h2>Title</h2>
+// <article>
+//    <header>
+//       <h1>Title</h1>
+//       <figure><img><figcaption></figcaption>/figure>
+//       <h2>Subtitle</h2>
+//    </header>
+//    <section>
+//       <h3>Header</h3>
+//       <div><p>Text</p></div>
+//       <figure><img><cite></cite></figure>
+//    </section>
+//    <section>
+//       <div>
+//          <h3>Subheader</h3>
+//          <p>Note</p>
+//       </div>
+//    </section>
+// </article>
+section[data-hash=artist] {
+   >article {
+      max-width: 800px;
+      margin: 0px auto;
+      >header {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         >h1 {
+            display: none;
+            }
+         >figure {
+            text-align: center;
+            margin-bottom: 40px;
+            img {
+               max-width: 160px;
+               }
+            }
+         >h2 {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            }
+         }
+      >section {
+         display: flex;
+         flex-direction: row;
+         column-gap: 30px;
+         >h3 {
+            display: none;
+            }
+         >div {
+            flex: 2;
+            text-align: left;
+            h3 {
+               text-transform: uppercase;
+               letter-spacing: 0.1em;
+               }
+            p {
+               line-height: 1.4em;
+               font-size: 1.2rem;
+               font-weight: 100;
+               }
+            }
+         >figure {
+            flex: 1;
+            img {
+               width: 100%;
+               }
+            >cite {
+               display: block;
+               max-width: 300px;
+               font-weight: 100;
+               margin: 0px auto;
+               opacity: 0.4;
+               }
+            }
+         }
+      }
+   }
+.MobileMode({
+   section[data-hash=artist] >article >section {
+      display: flex;
+      flex-direction: column;
+      >figure >img {
+         max-width: 240px;
+         }
+      }
+   });

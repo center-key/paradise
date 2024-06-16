@@ -1,0 +1,54 @@
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
+
+// Console Page Layout
+
+@import "../css/static/utility-box";
+
+body {
+   max-width: 1000px;
+   >header {
+      h1 {
+         font-size: 1.7rem;
+         }
+      h1+h2 {
+         font-size: 1.3rem;
+         }
+      }
+   }
+
+body {
+   button {
+      font-size: 0.9rem;
+      }
+   #status-msg {
+      font-weight: bold;
+      }
+   }
+
+i.icon-popup-anchor {
+   &+div {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 400ms;
+      white-space: nowrap;
+      font-weight: bold;
+      text-align: right;
+      color: firebrick;
+      background-color: white;
+      border: 3px solid steelblue;
+      border-radius: 5px;
+      padding: 15px 25px;
+      }
+   &:hover+div,
+   &+div:hover {
+      visibility: visible;
+      opacity: 1;
+      }
+   }
+
+// Component: Administrator Accounts
+.admin-accounts p { font-size: 0.9rem; font-style: italic; }

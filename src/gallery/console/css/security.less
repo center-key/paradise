@@ -1,0 +1,49 @@
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
+
+// Console Security
+
+@import "../css/static/utility-box";
+
+section.component-security {
+   >h2 {
+      margin-bottom: 25px;
+      }
+   >h3 {
+      text-align: center;
+      }
+   >form {
+      max-width: 25em;
+      margin: 0px auto;
+      >label.remember-me {
+         text-align: right;
+         }
+      }
+   &.create h3:first-child {
+      display: none;
+      }
+   &.invite p.for-create {
+      display: none;
+      }
+   .for-create {
+      display: none;
+      }
+   &.create .for-create {
+      display: block;
+      }
+   .error-message {
+      display: none;
+      color: firebrick;
+      }
+   .invite-code {
+      display: none;
+      }
+   &.invite .invite-code {
+      display: block;
+      }
+   >p {
+      color: firebrick;
+      }
+   }

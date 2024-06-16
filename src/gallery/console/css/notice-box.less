@@ -1,0 +1,21 @@
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
+
+// Console Notice Box
+
+@import "../css/static/utility-box";
+
+notice-box.show { max-height: 100vh; opacity: 1; }
+notice-box { max-height: 0vh; overflow: hidden; opacity: 0; transition: all 1000ms; }
+notice-box { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); max-width: 500px; background-color: black; border-radius: 10px; padding: 18px 50px 12px 30px; }
+notice-box >header { margin-bottom: 12px; }
+notice-box >header >nav { position: absolute; top: 6px; right: 10px; }
+notice-box >header >nav i[data-icon] { color: lightskyblue; }
+notice-box >header >h2 { white-space: nowrap; color: crimson; padding-right: 100px; }
+notice-box >div { color: white; }
+notice-box >div >p {}
+notice-box >div >b {}
+notice-box >div >ul {}
+notice-box >div >ul >li {}

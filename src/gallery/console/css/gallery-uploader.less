@@ -1,0 +1,86 @@
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
+
+// Console Galery Uploader (DropzoneJS)
+
+@import "../css/static/utility-box";
+
+#gallery-uploader.dropzone {
+   background: mintcream;
+   border: 2px dashed silver;
+   &.pulse {
+      .dz-preview {
+         animation: 1s infinite pulse;
+         @keyframes pulse {
+            0%   { background-color: limegreen; }
+            50%  { background-color: lime; }
+            100% { background-color: limegreen; }
+            }
+         }
+      }
+   .dz-default.dz-message {
+      font-size: 1.2rem;
+      }
+   .dz-preview {
+      display: block;
+      min-height: auto;
+      background-color: limegreen;
+      padding: 15px 0px 15px 10px;
+      margin: 0px 0px 10px 0px;
+      &:last-child {
+         margin-bottom: 0px;
+         }
+      .dz-image {
+         display: none;
+         }
+      .dz-details {
+         position: static;
+         text-align: left;
+         padding: 0px;
+         .dz-size,
+         .dz-filename {
+            display: inline-block;
+            line-height: initial;
+            margin: 0px;
+            &:hover span,
+            span {
+               background-color: transparent;
+               border: 1px solid transparent;
+               padding: 0px;
+               }
+            }
+         .dz-filename {
+            max-width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: top;
+            color: dimgray;
+            padding-left: 3px;
+            }
+         }
+      .dz-progress {
+         top: 20px;
+         .dz-upload {
+            }
+         }
+      .dz-error-message {
+         }
+      .dz-error-mark,
+      .dz-success-mark {
+         top: 0px;
+         left: 0px;
+         display: block;
+         width: 100%;
+         text-align: center;
+         margin-left: 0px;
+         margin-top: 0px;
+         animation: none;
+         svg {
+            display: inline-block;
+            width: 40px;
+            }
+         }
+      }
+   }

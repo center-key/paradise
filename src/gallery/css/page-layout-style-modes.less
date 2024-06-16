@@ -1,0 +1,100 @@
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
+
+// Page Layout -Style Modes
+
+@import "static/utility-box";
+
+// Modes:
+//    Dark mode
+//    Show image border
+//    CAPTION IN ALL CAPS
+//    Caption in italics
+//    Show description
+
+body.dark-mode {
+   color: whitesmoke;
+   background-color: #333333;
+   a {
+      color: gainsboro;
+      &:hover {
+         color: white;
+         }
+      }
+   >main {
+      >aside {
+         i.font-icon[data-href] {
+            color: white;
+            }
+         }
+      >nav.dna-menu {
+         background: dimgray;
+         >span {
+            background-color: dimgray;
+            }
+         >span.selected,
+         >span:hover {
+            background-color: gray;
+            }
+         }
+      >.dna-panels {
+         >section {
+            &.gallery-images {
+               figure {
+                  a img {
+                     &:hover {
+                        border-color: white;
+                        box-shadow: silver 0px 0px 1.5em;
+                        }
+                     }
+                  figcaption {
+                     &:hover a i.font-icon {
+                        text-shadow: 0px 0px 0.3em black;
+                        }
+                     a i.font-icon {
+                        color: white;
+                        }
+                     }
+                  }
+               }
+            >nav {
+               color: darkgray;
+               }
+            }
+         }
+      }
+   >footer {
+      background-color: dimgray;
+      }
+   }
+body.image-border {
+   .gallery-images >figure >a >img,
+   .one-image >figure >img {
+      border-width: 5px;
+      }
+   }
+body.show-description {
+   .gallery-images >figure >figcaption >p {
+      width: auto;
+      height: auto;
+      }
+   }
+body.caption-caps {
+   .gallery-images figure figcaption,
+   .one-image figure figcaption,
+   .image-caption {
+      text-transform: uppercase;
+      }
+   }
+body.caption-italic {
+   .gallery-images figure figcaption,
+   .one-image figure figcaption,
+   .image-caption {
+      font-style: italic;
+      }
+   }
+body:not(.caption-italic) .image-description {
+   font-style: italic;
+   }

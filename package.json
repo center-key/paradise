@@ -48,8 +48,8 @@
          "jshint . --exclude-path .gitignore"
       ],
       "build": [
-         "lessc src/gallery/style/gallery.less       build/1-dev/gallery/paradise.css",
-         "lessc src/gallery/console/style/admin.less build/1-dev/gallery/console/paradise-console.css",
+         "lessc src/gallery/gallery.less       build/1-dev/gallery/paradise.css",
+         "lessc src/gallery/console/admin.less build/1-dev/gallery/console/paradise-console.css",
          "make-dir build/2-min/gallery/console",
          "csso build/1-dev/gallery/paradise.css                 --output build/2-min/gallery/paradise.min.css",
          "csso build/1-dev/gallery/console/paradise-console.css --output build/2-min/gallery/console/paradise-console.min.css",
