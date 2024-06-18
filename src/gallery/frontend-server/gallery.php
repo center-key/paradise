@@ -72,6 +72,7 @@ function getImagesHtml($gallery, $settings) {
       $imageTitleHtml = str_replace("'", "&apos;",
          "<span class=image-caption>{$image->caption}</span>" .
          "<span class=image-description>{$image->description}</span>");
+      $code = empty($image->code) ? "one-image" : $image->code;
       return "
          <figure itemprop=associatedMedia itemscope itemtype=https://schema.org/ImageObject>
             <a href=~data~/portfolio/{$image->id}-large.jpg data-title='{$imageTitleHtml}' itemprop=contentUrl>
@@ -83,7 +84,7 @@ function getImagesHtml($gallery, $settings) {
             </aside>
             <figcaption>
                <span itemprop=caption>{$image->caption}</span>
-               <a href=image/{$image->id}/{$image->code} class=plain itemprop=url><i data-icon=link></i></a>
+               <a href=image/{$image->id}/{$code} class=plain itemprop=url><i data-icon=link></i></a>
                <p itemprop=description>{$image->description}</p>
             </figcaption>
          </figure>";

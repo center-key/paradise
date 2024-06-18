@@ -150,31 +150,29 @@
                <input value=~~subtitle~~ data-on-smart-update=admin.ui.saveSettings
                   placeholder="Enter website subheader">
             </label>
-            <div>
-               Style:
-               <div>
-                  <label>
-                     <input type=checkbox data-prop-checked=~~darkMode~~
-                        data-on-change=admin.ui.saveSettings><span>Dark mode</span>
-                  </label>
-                  <label>
-                     <input type=checkbox data-prop-checked=~~imageBorder~~
-                        data-on-change=admin.ui.saveSettings><span>Show image border</span>
-                  </label>
-                  <label>
-                     <input type=checkbox data-prop-checked=~~captionCaps~~
-                        data-on-change=admin.ui.saveSettings><span>Caption in all caps</span>
-                  </label>
-                  <label>
-                     <input type=checkbox data-prop-checked=~~captionItalic~~
-                        data-on-change=admin.ui.saveSettings><span>Caption in italics</span>
-                  </label>
-                  <label>
-                     <input type=checkbox data-prop-checked=~~showDescription~~
-                        data-on-change=admin.ui.saveSettings><span>Show description</span>
-                  </label>
-               </div>
-            </div>
+            <fieldset>
+               <legend>Style:</legend>
+               <label>
+                  <input type=checkbox data-prop-checked=~~darkMode~~
+                     data-on-change=admin.ui.saveSettings><span>Dark mode</span>
+               </label>
+               <label>
+                  <input type=checkbox data-prop-checked=~~imageBorder~~
+                     data-on-change=admin.ui.saveSettings><span>Show image border</span>
+               </label>
+               <label>
+                  <input type=checkbox data-prop-checked=~~captionCaps~~
+                     data-on-change=admin.ui.saveSettings><span>Caption in all caps</span>
+               </label>
+               <label>
+                  <input type=checkbox data-prop-checked=~~captionItalic~~
+                     data-on-change=admin.ui.saveSettings><span>Caption in italics</span>
+               </label>
+               <label>
+                  <input type=checkbox data-prop-checked=~~showDescription~~
+                     data-on-change=admin.ui.saveSettings><span>Show description</span>
+               </label>
+            </fieldset>
             <label>
                <span>
                   Stamp icon code:
@@ -189,18 +187,22 @@
                <input type=text value=~~stampTitle~~ data-on-smart-update=admin.ui.saveSettings
                   placeholder="Enter stamp tooltip help">
             </label>
-            <div>
-               Footer icons:
+            <fieldset>
+               <legend>Footer icons:</legend>
                <label>
-                  <input type=checkbox data-prop-checked=~~ccLicense~~ data-on-change=admin.ui.saveSettings>
+                  <input type=checkbox data-prop-checked=~~ccLicense~~
+                     data-on-change=admin.ui.saveSettings>
                   Creative Commons
-                  <a href=https://creativecommons.org/licenses/by-sa/4.0><i data-icon=info-circle></i></a>
+                  <a href=https://creativecommons.org/licenses/by-sa/4.0>
+                     <i data-icon=info-circle></i>
+                  </a>
                </label>
                <label>
-                  <input type=checkbox data-prop-checked=~~bookmarks~~ data-on-change=admin.ui.saveSettings>
+                  <input type=checkbox data-prop-checked=~~bookmarks~~
+                     data-on-change=admin.ui.saveSettings>
                   Social share
                </label>
-            </div>
+            </fieldset>
             <label>
                <span>Footer link URL:</span>
                <input type=text value=~~linkUrl~~ data-on-smart-update=admin.ui.saveSettings>
@@ -214,14 +216,19 @@
             <label>
                <span>
                   Google Site Verification:
-                  <a href=https://support.google.com/webmasters/answer/9008080><i data-icon=info-circle></i></a>
+                  <a href=https://support.google.com/webmasters/answer/9008080>
+                     <i data-icon=info-circle></i>
+                  </a>
                </span>
                <input type=text value=~~googleVerification~~ spellcheck=false
                   data-on-smart-update=admin.ui.saveSettings placeholder="Enter 44 character code">
             </label>
             <div>
-               <b>*</b><small>Supports HTML entities like <code>&amp;copy;</code></small>
-               <a href=https://www.toptal.com/designers/htmlarrows/symbols><i data-icon=info-circle style="margin: 0px"></i></a>
+               <b>*</b><small>Use HTML entities for symbols,
+               such as "&amp;copy;" for "&copy;".</small>
+               <a href=https://www.toptal.com/designers/htmlarrows/symbols>
+                  <i data-icon=info-circle></i>
+               </a>
             </div>
          </fieldset>
          <fieldset class=settings-tabs>
@@ -240,7 +247,9 @@
                </div>
             </div>
             <label>
-               <span>Email for contact (Tab #3):<i data-icon=info-circle data-href=../#contact></i></span>
+               <span>
+                  Email for contact (Tab #3):<i data-icon=info-circle data-href=../#contact></i>
+               </span>
                <input type=email value=~~contactEmail~~
                   data-on-smart-update=admin.ui.saveSettings placeholder="Address for messages">
             </label>

@@ -13,10 +13,11 @@ const gallery = {
    start() {
       globalThis.document.querySelectorAll('body >footer .hide-me').forEach(elem => elem.remove());
       const options = {
-         delegate: '>a',  //child items selector, click to open popup
-         type:     'image',
-         image:    { titleSrc: 'data-title' },
-         gallery:  { enabled: true },
+         allowHTMLInTemplate: true,
+         delegate:            '>a',  //child items selector, click to open popup
+         gallery:             { enabled: true },
+         image:               { titleSrc: 'data-title' },
+         type:                'image',
          };
       const figures = globalThis.document.querySelectorAll('.gallery-images figure');
       if (figures.length)
