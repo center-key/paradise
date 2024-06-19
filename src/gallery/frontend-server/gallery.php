@@ -77,11 +77,11 @@ function getImagesHtml($gallery, $settings) {
          <figure itemprop=associatedMedia itemscope itemtype=https://schema.org/ImageObject>
             <a href=~data~/portfolio/{$image->id}-large.jpg data-title='{$imageTitleHtml}' itemprop=contentUrl>
                <img src=~data~/portfolio/{$image->id}-small.png alt=thumbnail itemprop=thumbnail>
+               <aside>
+                  {$stampHtml}
+                  {$badgeHtml}
+               </aside>
             </a>
-            <aside>
-               {$badgeHtml}
-               {$stampHtml}
-            </aside>
             <figcaption>
                <span itemprop=caption>{$image->caption}</span>
                <a href=image/{$image->id}/{$code} class=plain itemprop=url><i data-icon=link></i></a>

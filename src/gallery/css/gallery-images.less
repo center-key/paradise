@@ -9,51 +9,57 @@
 
 .gallery-images {
    figure {
-      position: relative;
       display: inline-block;
       vertical-align: top;
       margin: 0px 50px 70px 50px;
-      a img {
-         max-width: 100%;
-         height: 160px;
-         border: 0px solid black;  //see: border-width defined in body.image-border
-         opacity: 1;
-         transition: all 800ms;
-         &:hover {
-            border-color: dimgray;
-            box-shadow: dimgray 0px 0px 1.5em;
-            }
-         }
-      >aside {
-         position: absolute;
-         top: 125px;
-         right: 15px;
-         max-width: none;
-         white-space: nowrap;
-         background: none;
-         border: none;
-         padding: 0px;
-         margin: 0px;
-         .badge {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: white;
-            background-color: red;
-            border: 3px solid gray;
-            border-radius: 10px;
-            padding: 3px 5px;
-            opacity: 0.6;
-            }
-         .stamp {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: rgba(0, 0, 0, 0.7);
-            text-shadow: 0px 0px 0.2em rgba(255, 255, 255, 0.9);
-            padding: 0px 0px 3px 3px;
-            transition: color 400ms;
-            cursor: help;
+      a {
+         position: relative;
+         >img {
+            max-width: 100%;
+            height: 160px;
+            border: 0px solid black;  //see: border-width defined in body.image-border
+            opacity: 1;
+            transition: all 800ms;
             &:hover {
-               color: black;
+               border-color: dimgray;
+               box-shadow: dimgray 0px 0px 1.5em;
+               }
+            }
+         >aside {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            max-width: none;
+            white-space: nowrap;
+            background: none;
+            border: none;
+            padding: 0px;
+            margin: 0px;
+            pointer-events: none;  //prevent interfering with image hover effect
+            i.stamp {
+               font-size: 1.2rem;
+               font-weight: bold;
+               text-align: right;
+               color: rgba(0, 0, 0, 0.7);
+               text-shadow: 0px 0px 0.2em rgba(255, 255, 255, 0.9);
+               padding: 0px 0px 3px 3px;
+               transition: color 500ms;
+               pointer-events: auto;  //enable title attribute popup
+               &:hover {
+                  color: black;
+                  }
+               }
+            span.badge {
+               font-size: 0.9rem;
+               font-weight: bold;
+               color: white;
+               background-color: red;
+               border: 3px solid gray;
+               border-radius: 10px;
+               padding: 3px 5px;
+               opacity: 0.6;
                }
             }
          }

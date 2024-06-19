@@ -79,7 +79,7 @@
                         <label>
                            <input type=checkbox data-prop-checked=~~stamp~~
                               data-on-change=admin.ui.savePortfolio>
-                           <span title="See Stamp icon in Gallery Settings">Show on image</span>
+                           <span title="See Stamp in Gallery Settings">Show on image</span>
                         </label>
                      </span>
                   </p>
@@ -175,17 +175,17 @@
             </fieldset>
             <label>
                <span>
-                  Stamp icon code:
+                  Stamp (like star or heart):
                   <a href=https://fontawesome.com/cheatsheet><i data-icon=info-circle></i></a>
                   <!-- List: [...document.querySelectorAll('article.icon dd.icon-name')].map(elem => elem.textContent) -->
                </span>
                <input type=text value=~~stampIcon~~ data-on-smart-update=admin.ui.saveSettings
-                  placeholder="Enter code, like cat or x-ray">
+                  placeholder="Enter icon name">
             </label>
             <label>
-               <span>Stamp title:</span>
+               <span>Stamp tooltip help:</span>
                <input type=text value=~~stampTitle~~ data-on-smart-update=admin.ui.saveSettings
-                  placeholder="Enter stamp tooltip help">
+                  placeholder="Enter message">
             </label>
             <fieldset>
                <legend>Footer icons:</legend>
