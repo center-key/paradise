@@ -83,8 +83,8 @@ function getImagesHtml($gallery, $settings) {
                </aside>
             </a>
             <figcaption>
-               <span itemprop=caption>{$image->caption}</span>
                <a href=image/{$image->id}/{$code} class=plain itemprop=url><i data-icon=link></i></a>
+               <span itemprop=caption>{$image->caption}</span>
                <p itemprop=description>{$image->description}</p>
             </figcaption>
          </figure>";

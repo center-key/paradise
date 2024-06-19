@@ -46,6 +46,7 @@
                text-shadow: 0px 0px 0.2em rgba(255, 255, 255, 0.9);
                padding: 0px 0px 3px 3px;
                transition: color 500ms;
+               cursor: default;
                pointer-events: auto;  //enable title attribute popup
                &:hover {
                   color: black;
@@ -70,17 +71,21 @@
          &:hover >a >i.font-icon {
             opacity: 1;
             }
-         >span {
-            font-size: 1.1rem;
-            }
-         >a >i.font-icon {
+         >a {
             position: absolute;
-            top: 3px;
+            bottom: -20px;
+            left: 0px;
             right: 0px;
-            font-size: 1.0rem;
-            color: black;
-            opacity: 0;
-            transition: all 400ms;
+            >i.font-icon {
+               font-size: 1.0rem;
+               color: black;
+               opacity: 0;
+               transition: all 500ms;
+               }
+            }
+         >span {
+            display: block;
+            font-size: 1.1rem;
             }
          >p {
             width: 0px;
