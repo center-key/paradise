@@ -31,6 +31,36 @@
    align-items: center;
    }
 
+.IconPopupAnchor {
+   // <i data-icon=times class=icon-popup-anchor></i>
+   // <div>
+   //    <p>Delete?</p>
+   //    <button>Yes!</button>
+   // </div>
+   &+div {
+      position: absolute;
+      bottom: 15px;
+      left: 85px;
+      white-space: nowrap;
+      font-weight: bold;
+      text-align: right;
+      color: firebrick;
+      background-color: white;
+      border: 3px solid steelblue;
+      border-radius: 5px;
+      padding: 15px 25px;
+      transition: all 400ms;
+      opacity: 0;
+      visibility: hidden;
+      }
+   &:hover+div,
+   &+div:hover {
+      visibility: visible;
+      opacity: 1;
+      }
+   }
+
+
 .MobileMode(@lessRules) {  //selects iPhone 6/6s/7/8/SE2/SE3 landscape and anything narrower
    @media (max-width: 667px) { @lessRules(); }
    }

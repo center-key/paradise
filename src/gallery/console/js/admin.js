@@ -120,7 +120,7 @@ admin.ui = {
       const uploadHelp =    'Or just drag photos here<br>(2 MB limit per file)';
       const acceptedTypes = ['image/jpeg', 'image/png'];
       const options = {
-         dictDefaultMessage:    '<p><button>Upload photos</button></p>' + uploadHelp,
+         dictDefaultMessage:    '<p><button>Upload Photos</button></p>' + uploadHelp,
          url:                   'upload.php',
          acceptedFiles:         acceptedTypes.join(','),
          maxFilesize:           maxFileMB,
@@ -159,11 +159,11 @@ admin.ui = {
 
 admin.invites = {
    elem: {
-      email:      globalThis.document.querySelector('.admin-accounts .send-invite input[type=email]'),
-      sendButton: globalThis.document.querySelector('.admin-accounts .send-invite button'),
+      email:      globalThis.document.querySelector('#console-admin-accounts .send-invite input[type=email]'),
+      sendButton: globalThis.document.querySelector('#console-admin-accounts .send-invite button'),
       },
    validate(input) {
-      admin.invites.elem.sendButton.enable(libX.util.cleanupEmail(input.value));
+      admin.invites.elem.sendButton.disabled = !libX.util.cleanupEmail(input.value);
       },
    send(button) {
       button.disabled = true;

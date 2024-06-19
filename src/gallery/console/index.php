@@ -34,7 +34,7 @@
 <header>
    <aside>
       <button data-href=.. data-target=gallery>Gallery</button>
-      <button data-href=sign-out>Sign out</button>
+      <button data-href=sign-out>Sign Out</button>
    </aside>
    <h1>Paradise Photo Gallery</h1>
    <h2>Administrator Console</h2>
@@ -45,7 +45,7 @@
 
       <section>
          <h2>Status</h2>
-         <div id=status-msg></div>
+         <output id=status-msg></output>
       </section>
 
       <section>
@@ -89,7 +89,7 @@
                      <i data-icon=times class=icon-popup-anchor></i>
                      <div>
                         <p>Permanently delete this image?</p>
-                        <button data-on-click=admin.ui.delete>Delete image</button>
+                        <button data-on-click=admin.ui.delete>Delete Image</button>
                      </div>
                   </div>
                </form>
@@ -256,7 +256,7 @@
          </fieldset>
       </section>
 
-      <section class=admin-accounts>
+      <section id=console-admin-accounts>
          <h2>Gallery Administrators</h2>
          <fieldset>
             <legend>Accounts</legend>
@@ -270,7 +270,8 @@
             <legend>Pending invitations</legend>
             <div>
                <div id=account-invite class=dna-template>
-                  <small data-format-date=date>~~expires~~</small>: <b>~~to~~</b>
+                  <small>Expires <span data-format-date=date>~~expires~~</span>:</small>
+                  <b>~~to~~</b>
                </div>
             </div>
             <p data-placeholder=account-invite>No outstanding invitations.</p>
@@ -283,17 +284,17 @@
                   <input type=email data-on-key-up=admin.invites.validate
                      placeholder="New user's email address">
                </label>
-               <button data-on-click=admin.invites.send disabled>Send invitation</button>
+               <button data-on-click=admin.invites.send disabled>Send Invitation</button>
             </div>
          </fieldset>
       </section>
 
-      <section class=admin-accounts>
+      <section>
          <h2>Gallery Backup</h2>
          <fieldset>
             <legend>Create backup</legend>
             <div>
-               <button data-on-click=admin.backups.create>Do backup now</button>
+               <button data-on-click=admin.backups.create>Do Backup Now</button>
             </div>
          </fieldset>
          <fieldset>

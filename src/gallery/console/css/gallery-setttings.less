@@ -7,13 +7,19 @@
 
 @import "../css/static/utility-box";
 
-.gallery-settings fieldset.settings-website input.dna-field-dark-mode+span { background-color: dimgray; color: white; padding: 0px 5px; }
-.gallery-settings fieldset.settings-website input.dna-field-image-border+span { border: 1px solid black; padding: 0px 3px; }
-.gallery-settings fieldset.settings-website input.dna-field-caption-caps+span { font-size: 0.8em; text-transform: uppercase; }
-.gallery-settings fieldset.settings-website input.dna-field-caption-italic+span { font-style: italic; }
-.gallery-settings fieldset.settings-website input.dna-field-show-description+span { font-weight: lighter; }
-.gallery-settings fieldset.settings-tabs label { display: inline; }
-.gallery-settings fieldset.settings-tabs label span { display: inline; }
-.gallery-settings fieldset.settings-tabs label input[type=text] { width: 40%; margin-bottom: 1em; }
-.gallery-settings fieldset.settings-tabs label input[type=checkbox] { margin-left: 3px; }
-.gallery-settings fieldset.settings-tabs [data-item-type=page]:first-child label:last-child { display: none; }
+.gallery-settings {
+   fieldset.settings-website {
+      input.dna-field-dark-mode+span { background-color: dimgray; color: white; padding: 0px 5px; }
+      input.dna-field-image-border+span { border: 1px solid black; padding: 0px 3px; }
+      input.dna-field-caption-caps+span { font-size: 0.8em; text-transform: uppercase; }
+      input.dna-field-caption-italic+span { font-style: italic; }
+      input.dna-field-show-description+span { font-weight: lighter; }
+      }
+   fieldset.settings-tabs {
+      label { display: inline; }
+      label span { display: inline; }
+      label input[type=text] { width: 40%; margin-bottom: 1em; }
+      label input[type=checkbox] { margin-left: 3px; }
+      [data-item-type=page]:first-child label:last-child { display: none; }
+      }
+   }
