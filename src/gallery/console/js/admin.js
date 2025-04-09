@@ -26,7 +26,7 @@ admin.ui = {
    abort(message) {
       admin.ui.statusMsg('ERROR: ' + message);
       admin.rest.post('log', { message });
-      throw Error(message);
+      throw new Error(message);
       },
    showNotice(options) {
       // <notice-box>
@@ -77,10 +77,10 @@ admin.ui = {
       },
    save(elem, type) {
       const field = dna.dom.state(elem).dnaField;
-      const value =   elem.matches('input[type=checkbox]') ? elem.checked : elem.value;
+      const value = elem.matches('input[type=checkbox]') ? elem.checked : elem.value;
       admin.ui.statusMsg('Saving ' + dna.util.toKebab(field).replace('-', ' ') + '...');
-      const params = {};
-      params[field] = value;
+      const params =   {};
+      params[field] =  value;
       const itemData = elem.closest('[data-item-id]')?.dataset;
       if (itemData?.itemId)
          params.id = itemData.itemId;

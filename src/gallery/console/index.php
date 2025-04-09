@@ -12,7 +12,7 @@
    <meta name=description                content="Paradise Photo Gallery Administrator Console">
    <meta name=apple-mobile-web-app-title content="Console">
    <title>Paradise &bull; Administrator Console</title>
-   <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
+   <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark-icon.png>
    <link rel=apple-touch-icon href=https://centerkey.com/paradise/graphics/mobile-home-screen.png>
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>

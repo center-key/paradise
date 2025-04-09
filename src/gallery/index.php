@@ -23,7 +23,7 @@
    <meta name=google-site-verification   content="<?=$settings->googleVerification?>">
    <?php } ?>
    <title><?=$settings->title?> &bull; <?=$settings->subtitle?></title>
-   <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
+   <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark-icon.png>
    <link rel=apple-touch-icon href=<?=$values->thumbnailUrl?>>
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
@@ -55,7 +55,7 @@
 </header>
 
 <main>
-   <aside><i data-icon=tachometer-alt data-href=console></i></aside>
+   <aside><i data-icon=gauge-high data-href=console></i></aside>
    <nav class=dna-menu data-menu-nav=gallery>
       <span class=<?=showHideClass($pages[0]->show)?>><?=$pages[0]->title?></span>
       <span class=<?=showHideClass($pages[1]->show)?>><?=$pages[1]->title?></span>

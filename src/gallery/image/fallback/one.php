@@ -21,7 +21,8 @@
    <meta property=og:image               content="<?=$imageInfo->urlLarge?>">
    <meta property=og:image:alt           content="<?=$imageInfo->caption?>">
    <title><?=$imageInfo->caption?> &bull; <?=$settings->title?></title>
-   <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark.png>
+   <link rel=canonical        href="../<?=empty($imageInfo->code) ? "one-image" : $imageInfo->code?>">
+   <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark-icon.png>
    <link rel=apple-touch-icon href=<?=$imageInfo->urlSmall?>>
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
@@ -52,6 +53,9 @@
 </header>
 
 <main>
+   <a href="../<?=empty($imageInfo->code) ? "one-image" : $imageInfo->code?>">
+      [<?=empty($imageInfo->code) ? "one-image" : $imageInfo->code?>]
+   </a>
    <div class=one-image>
       <figure>
          <figcaption itemprop=caption><?=$imageInfo->caption?></figcaption>
