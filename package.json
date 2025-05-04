@@ -44,6 +44,9 @@
       "clean": [
          "rimraf build releases/paradise-v*.zip"
       ],
+      "generated": [
+         "//copy-file node_modules/web-ignition/dist/utility-box.less --folder src/gallery/css/static"
+      ],
       "lint": [
          "jshint . --exclude-path .gitignore"
       ],
@@ -69,7 +72,7 @@
       ]
    },
    "scripts": {
-      "pretest": "run-scripts clean lint build release",
+      "pretest": "run-scripts clean generated lint build release",
       "test": "html-validator website"
    },
    "devDependencies": {

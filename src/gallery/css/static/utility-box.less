@@ -1,11 +1,12 @@
-///////////////////////////////////////////////////////////////
-// Paradise ~ centerkey.com/paradise                         //
-// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
-///////////////////////////////////////////////////////////////
+//! web-ignition v2.3.8 ~~ https://github.com/center-key/web-ignition ~~ MIT License
 
-// Constants and utilities -- Reusable values and mixins
+// Add utility-box to your project:
+//    1) $ npm install --save-dev web-ignition copy-file-util
+//    2) package.json scripts -->
+//       "copy-file node_modules/web-ignition/dist/utility-box.less --folder src/css/static"
+//    3) Include in CSS LESS files --> @import "static/constants";
 
-// Custom Colors
+// Dark Mode Colors
 @colorSmoke:    #444444;
 @colorGraphite: #303030;
 @colorCharcoal: #222222;
@@ -31,39 +32,46 @@
 
 // Tools
 
+.MonospaceText() {
+   font-family: menlo, consolas, monospace;
+   font-weight: 700;
+   }
+
+.TextDarkShadow() {
+   text-shadow: 0px 0px 0.8em @colorCharcoal;
+   }
+
 .Bullseye() {
    display: flex;
    justify-content: center;
    align-items: center;
    }
 
-.IconPopupAnchor {
-   // <i data-icon=times class=icon-popup-anchor></i>
-   // <div>
-   //    <p>Delete?</p>
-   //    <button>Yes!</button>
-   // </div>
-   &+div {
-      position: absolute;
-      bottom: 15px;
-      left: 85px;
-      white-space: nowrap;
-      font-weight: bold;
-      text-align: right;
-      color: firebrick;
-      background-color: white;
-      border: 3px solid steelblue;
-      border-radius: 5px;
-      padding: 15px 25px;
-      transition: all 500ms;
-      opacity: 0;
-      visibility: hidden;
+.CheckerboardBackground() {
+   // <figure class=checkerboard-background>
+   //    <img src=logo.svg alt=logo>
+   //    <figcaption>Logo</figcaption>
+   // </figure>
+   &:hover {
+      img {
+         background: black;
+         outline-width: 1px;  //extra space for a clean image crop
+         }
       }
-   &:hover+div,
-   &+div:hover {
-      visibility: visible;
-      opacity: 1;
+   img {
+      background: conic-gradient(
+         lightgray 90deg,
+         darkgray 90deg 180deg,
+         lightgray 180deg 270deg,
+         darkgray 270deg
+         );
+      background-size: 15px 15px;
+      outline: 3px solid black;
       }
+   }
+
+.DarkMode(@lessRules) {  //apply style if user has requested dark color themes
+   @media (prefers-color-scheme: dark) { @lessRules(); }
    }
 
 .MobileMode(@lessRules) {  //selects iPhone 6/6s/7/8/SE2/SE3 landscape and anything narrower
