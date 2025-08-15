@@ -4,6 +4,7 @@
 // GPLv3 ~ Copyright (c) Individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
+require "../common.php";
 require "gallery.php";
 
 // Initialize

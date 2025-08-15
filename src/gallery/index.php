@@ -1,10 +1,21 @@
-<?php require "frontend-server/gallery.php"; ?>
 <!doctype html>
+<html lang=en>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
 <!-- GPLv3 ~ Copyright (c) Individual contributors to Paradise -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<html lang=en>
+<?php require "common.php"; ?>
+<?php require "frontend-server/gallery.php"; ?>
+<?php
+   $linkUrlClass =   showHideClass($settings->linkUrl);
+   $linkUrlText =    linkText($settings->linkUrl);
+   $ccLicenseClass = showHideClass($settings->ccLicense);
+   $bookmarksClass = showHideClass($settings->bookmarks);
+   $hasGoogleCode =  !empty($settings->googleVerification);
+   $pageTitles =     array_column($settings->pages, "title");
+   $pageClasses =    array_map("showHideClass", array_column($settings->pages, "show"));
+   $imagesHtml =     getImagesHtml($gallery, $settings);
+?>
 <head>
    <meta charset=utf-8>
    <meta name=viewport                   content="width=device-width, initial-scale=1">
@@ -19,7 +30,7 @@
    <meta property=og:type                content="website">
    <meta property=og:image               content="<?=$values->cardImageUrl?>">
    <meta property=og:image:alt           content="<?=$settings->title?>">
-   <?php if (!empty($settings->googleVerification)) { ?>
+   <?php if ($hasGoogleCode) { ?>
    <meta name=google-site-verification   content="<?=$settings->googleVerification?>">
    <?php } ?>
    <title><?=$settings->title?> &bull; <?=$settings->subtitle?></title>
@@ -57,15 +68,15 @@
 <main>
    <aside><i data-icon=gauge-high data-href=console></i></aside>
    <nav class=dna-menu data-menu-nav=gallery>
-      <span class=<?=showHideClass($pages[0]->show)?>><?=$pages[0]->title?></span>
-      <span class=<?=showHideClass($pages[1]->show)?>><?=$pages[1]->title?></span>
-      <span class=<?=showHideClass($pages[2]->show)?>><?=$pages[2]->title?></span>
+      <span class=<?=$pageClasses[0]?>><?=$pageTitles[0]?></span>
+      <span class=<?=$pageClasses[1]?>><?=$pageTitles[1]?></span>
+      <span class=<?=$pageClasses[2]?>><?=$pageTitles[2]?></span>
       <span class=<?=showHideClass(false)?>>Thanks</span>
    </nav>
    <div class=dna-panels data-menu-nav=gallery>
       <section data-hash=images class=gallery-images>
          <h2 class=hide-me>Gallery Images</h2>
-         <?=getImagesHtml($gallery, $settings)?>
+         <?=$imagesHtml?>
       </section>
       <section data-hash=artist>
          <h2 class=hide-me>The Artist</h2>
@@ -101,15 +112,15 @@
 </main>
 
 <footer>
-   <div class=<?=showHideClass($settings->linkUrl)?>>
-      <a href="<?=$settings->linkUrl?>"><?=linkText($settings->linkUrl)?></a>
+   <div class=<?=$linkUrlClass?>>
+      <a href="<?=$settings->linkUrl?>"><?=$linkUrlText?></a>
    </div>
-   <div class=<?=showHideClass($settings->ccLicense)?>>
+   <div class=<?=$ccLicenseClass?>>
       <a rel=license href=https://creativecommons.org/licenses/by-sa/4.0 class=external-site>
          <i data-brand=creative-commons></i>
       </a>
    </div>
-   <div class=<?=showHideClass($settings->bookmarks)?>><div id=social-buttons></div></div>
+   <div class=<?=$bookmarksClass?>><div id=social-buttons></div></div>
    <div><?=$settings->footer?></div>
 </footer>
 

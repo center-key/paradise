@@ -8,29 +8,9 @@
 //    { title: "My Gallery", titleFont: "Geo", titleSize: "800%", subtitle: "Art Studio", darkMode: true, ... }
 // $gallery (gallery-db.json):
 //    [{ id: "001", code: "tree-house", caption: "Tree House!", description: "Cool.", ... }, ...]
+
 // $imageInfo
 //    { id : "001", code: "one-image","caption":"Rock On!","description":"The rock is here!!!","urlSmall":"http:\/\/localhost\/paradise-deploy\/gallery\/~data~\/portfolio\/002-small.png","urlLarge":"http:\/\/localhost\/paradise-deploy\/gallery\/~data~\/portfolio\/002-large.jpg"}
-
-// PHP 8.0.0: str_ends_with()
-if (!function_exists("str_ends_with")) {
-   function str_ends_with($haystack, $needle) {
-      return substr($haystack, -strlen($needle)) === $needle;
-      }
-   }
-
-function getGalleryUrl() {
-   // Example: https://example.com/travel/gallery
-   $tls =      isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
-   $protocol = $tls ? "https://" : "http://";
-   $ignore =   array("/index.php", "/image/fallback/one.php", "/frontend-server/send-message.php");
-   return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
-   }
-
-function getRootUrl() {
-   // Example: https://example.com/travel
-   $url = dirname(getGalleryUrl());
-   return str_ends_with($url, ":") ? getGalleryUrl() : $url;
-   }
 
 function getData($dbFilename) {
    // Returns an object or array of objects corresponding to the contents of the DB.
@@ -49,19 +29,6 @@ function linkText($url) {
    // Example: "https://example.com/gallery/" --> "example.com/gallery"
    $parts = explode("//", $url);
    return rtrim(end($parts), "/");
-   }
-
-function toCamelCase($kebabCase) {
-   // Example: "dark-mode" --> "darkMode"
-   $camelCase =    str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
-   $camelCase[0] = strtolower($camelCase[0]);
-   return $camelCase;
-   }
-
-function toUriCode($caption) {
-   // Turns a caption, like "Mona Lisa (1503)", into a URL safe string, like "mona-lisa-1503".
-   $code = preg_replace("/\s+/", "-", trim(preg_replace("/[^a-z0-9]/", " ", strtolower($caption))));
-   return empty($code) ? "one-image" : $code;
    }
 
 function styleClasses($settings) {
@@ -149,30 +116,7 @@ function setValues($settings, $gallery) {
       );
    }
 
-function migrateSettings($settings) {  //see: console/admin-server/startup.php:$defaultSettingsDb
-   foreach($settings as $key => $value) {
-      $newKey = toCamelCase($key);
-      if ($newKey !== $key && !isset($settings->$newKey) && isset($settings->$key)) {
-         $settings->$newKey = $value;
-         }
-      }
-   if (!isset($settings->darkMode))
-      $settings->darkMode = true;
-   if (!isset($settings->imageBorder))
-      $settings->imageBorder = true;
-   if (!isset($settings->showDescription))
-      $settings->showDescription = false;
-   if (!isset($settings->stampIcon))
-      $settings->stampIcon = "star";
-   if (!isset($settings->stampTitle))
-      $settings->stampTitle = "";
-   if (!isset($settings->linkUrl))
-      $settings->linkUrl = getRootUrl();
-   return $settings;
-   }
-
 $settings = getData(__DIR__ . "/../~data~/settings-db.json");
 $gallery =  getData(__DIR__ . "/../~data~/gallery-db.json");
-$pages =    $settings->pages;
 $values =   setValues(migrateSettings($settings), $gallery);
 ?>

@@ -85,13 +85,14 @@ function fileInfo($filename) {
 
 function processUpload($file) {
    global $uploadsFolder, $portfolioFolder;
-   $id = getNextImageId();
+   $id =       getNextImageId();
    $origFile = "{$portfolioFolder}/{$id}-original.{$file->extension}";
    rename($file->path, $origFile);
    createImages($origFile, $id);
    $dbFilename = "{$portfolioFolder}/{$id}-db.json";
    $imageDb = (object)array(
       "id" =>          $id,
+      "code" =>        "one-image",
       "sort" =>        intval($id) * 10000,
       "original" =>    $file->name,
       "uploaded" =>    gmdate("Y-m-d"),
@@ -107,11 +108,11 @@ function processUpload($file) {
 
 function processUploads() {
    global $uploadsFolder;
-   $imagePattern = "/[.](jpg|jpeg|png)$/i";
+   $imagePattern =      "/[.](jpg|jpeg|png)$/i";
    $uploadedFilenames = array_values(preg_grep($imagePattern, scandir($uploadsFolder)));
-   $uploadedFiles = array_map('fileInfo', $uploadedFilenames);
-   $validFiles =   array_filter($uploadedFiles, function($file) { return $file->valid; });
-   $invalidFiles = array_filter($uploadedFiles, function($file) { return !$file->valid; });
+   $uploadedFiles =     array_map('fileInfo', $uploadedFilenames);
+   $validFiles =        array_filter($uploadedFiles, function($file) { return $file->valid; });
+   $invalidFiles =      array_filter($uploadedFiles, function($file) { return !$file->valid; });
    foreach ($uploadedFiles as $file)
       if ($file->valid)
          processUpload($file);

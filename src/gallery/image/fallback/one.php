@@ -1,3 +1,10 @@
+<!doctype html>
+<html lang=en>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Paradise ~ centerkey.com/paradise                         -->
+<!-- GPLv3 ~ Copyright (c) Individual contributors to Paradise -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<?php require "../../common.php"; ?>
 <?php require "../../frontend-server/gallery.php"; ?>
 <?php
    $imageInfo =      getImageInfo($_SERVER["REQUEST_URI"], $gallery);
@@ -6,12 +13,6 @@
    $ccLicenseClass = showHideClass($settings->ccLicense);
    $bookmarksClass = showHideClass($settings->bookmarks);
 ?>
-<!doctype html>
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- Paradise ~ centerkey.com/paradise                         -->
-<!-- GPLv3 ~ Copyright (c) Individual contributors to Paradise -->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<html lang=en>
 <head>
    <meta charset=utf-8>
    <meta name=viewport                   content="width=device-width, initial-scale=1">
