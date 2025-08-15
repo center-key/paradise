@@ -52,10 +52,10 @@ function runCommand($action) {
    return $resource;
    }
 
-function fieldValue($value, $type) {
+function fieldValue($rawValue, $type) {
    $find =  array("<",    ">",    '"',      "'");
    $use =   array("&lt;", "&gt;", "&quot;", "&apos;");
-   $value = str_replace($find, $use, trim($value));
+   $value = str_replace($find, $use, trim($rawValue));
    if ($type === "boolean")
       $value = $value === "true";
    elseif ($type === "code")
@@ -121,6 +121,7 @@ function updatePortfolio($id) {
             $resource->{$field} = fieldValue($_GET[$field], $type);
       if (isset($_GET["move"]))
          $resource->sort = calcNewPortfolioSort($resource->sort, $_GET["move"] === "up");
+      $resource->code = toUriCode($resource->caption);
       savePortfolioImageDb($resource);
       generateGalleryDb();
       }

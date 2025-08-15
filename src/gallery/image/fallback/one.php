@@ -1,5 +1,11 @@
 <?php require "../../frontend-server/gallery.php"; ?>
-<?php $imageInfo = getImageInfo($_SERVER["REQUEST_URI"], $gallery); ?>
+<?php
+   $imageInfo =      getImageInfo($_SERVER["REQUEST_URI"], $gallery);
+   $linkUrlClass =   showHideClass($settings->linkUrl);
+   $linkUrlText =    linkText($settings->linkUrl);
+   $ccLicenseClass = showHideClass($settings->ccLicense);
+   $bookmarksClass = showHideClass($settings->bookmarks);
+?>
 <!doctype html>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
@@ -21,7 +27,7 @@
    <meta property=og:image               content="<?=$imageInfo->urlLarge?>">
    <meta property=og:image:alt           content="<?=$imageInfo->caption?>">
    <title><?=$imageInfo->caption?> &bull; <?=$settings->title?></title>
-   <link rel=canonical        href="../<?=empty($imageInfo->code) ? "one-image" : $imageInfo->code?>">
+   <link rel=canonical        href="<?=$imageInfo->canonical?>">
    <link rel=icon             href=https://centerkey.com/paradise/graphics/bookmark-icon.png>
    <link rel=apple-touch-icon href=<?=$imageInfo->urlSmall?>>
    <link rel=preconnect       href=https://fonts.googleapis.com>
@@ -53,9 +59,6 @@
 </header>
 
 <main>
-   <a href="../<?=empty($imageInfo->code) ? "one-image" : $imageInfo->code?>">
-      [<?=empty($imageInfo->code) ? "one-image" : $imageInfo->code?>]
-   </a>
    <div class=one-image>
       <figure>
          <figcaption itemprop=caption><?=$imageInfo->caption?></figcaption>
@@ -66,15 +69,15 @@
 </main>
 
 <footer>
-   <div class=<?=showHideClass($settings->linkUrl)?>>
-      <a href="<?=$settings->linkUrl?>"><?=linkText($settings->linkUrl)?></a>
+   <div class=<?=$linkUrlClass?>>
+      <a href="<?=$settings->linkUrl?>"><?=$linkUrlText?></a>
    </div>
-   <div class=<?=showHideClass($settings->ccLicense)?>>
+   <div class=<?=$ccLicenseClass?>>
       <a rel=license href=https://creativecommons.org/licenses/by-sa/4.0 class=external-site>
          <i data-brand=creative-commons></i>
       </a>
    </div>
-   <div class=<?=showHideClass($settings->bookmarks)?>><div id=social-buttons></div></div>
+   <div class=<?=$bookmarksClass?>><div id=social-buttons></div></div>
    <div><?=$settings->footer?></div>
 </footer>
 

@@ -4,6 +4,13 @@
 // GPLv3 ~ Copyright (c) Individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
+// $settings (settings-db.json):
+//    { title: "My Gallery", titleFont: "Geo", titleSize: "800%", subtitle: "Art Studio", darkMode: true, ... }
+// $gallery (gallery-db.json):
+//    [{ id: "001", code: "tree-house", caption: "Tree House!", description: "Cool.", ... }, ...]
+// $imageInfo
+//    { id : "001", code: "one-image","caption":"Rock On!","description":"The rock is here!!!","urlSmall":"http:\/\/localhost\/paradise-deploy\/gallery\/~data~\/portfolio\/002-small.png","urlLarge":"http:\/\/localhost\/paradise-deploy\/gallery\/~data~\/portfolio\/002-large.jpg"}
+
 // PHP 8.0.0: str_ends_with()
 if (!function_exists("str_ends_with")) {
    function str_ends_with($haystack, $needle) {
@@ -26,12 +33,14 @@ function getRootUrl() {
    }
 
 function getData($dbFilename) {
+   // Returns an object or array of objects corresponding to the contents of the DB.
    if (!is_file($dbFilename))
       exit("Setup incomplete");  //displayed to all users until initial admin account is created
    return json_decode(file_get_contents($dbFilename));
    }
 
 function showHideClass($show) {
+   // Returns a class name to be applied to a DOM element
    return $show ? "show-me" : "hide-me";
    }
 
@@ -43,12 +52,20 @@ function linkText($url) {
    }
 
 function toCamelCase($kebabCase) {
+   // Example: "dark-mode" --> "darkMode"
    $camelCase =    str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
    $camelCase[0] = strtolower($camelCase[0]);
    return $camelCase;
    }
 
+function toUriCode($caption) {
+   // Turns a caption, like "Mona Lisa (1503)", into a URL safe string, like "mona-lisa-1503".
+   $code = preg_replace("/\s+/", "-", trim(preg_replace("/[^a-z0-9]/", " ", strtolower($caption))));
+   return empty($code) ? "one-image" : $code;
+   }
+
 function styleClasses($settings) {
+   // Example output: "dark-mode show-description caption-caps"
    $options = array(
       "dark-mode",
       "image-border",
@@ -62,6 +79,7 @@ function styleClasses($settings) {
 
 function getImagesHtml($gallery, $settings) {
    // Returns a string of "<figure>...</figure>" tags representing the content of the gallery.
+   // TODO: $image ==> $imageInfo or $imageDb ????
    $stampIcon = $settings->stampIcon;
    $stampTooltip = empty($settings->stampTitle) ? "" :
       "title='" . str_replace("'", "&apos;", $settings->stampTitle) . "'";
@@ -72,7 +90,7 @@ function getImagesHtml($gallery, $settings) {
       $imageTitleHtml = str_replace("'", "&apos;",
          "<span class=image-caption>{$image->caption}</span>" .
          "<span class=image-description>{$image->description}</span>");
-      $code = empty($image->code) ? "one-image" : $image->code;
+      $image->code = toUriCode($image->caption);  //backwards compatibility (temporary)
       return "
          <figure itemprop=associatedMedia itemscope itemtype=https://schema.org/ImageObject>
             <a href=~data~/portfolio/{$image->id}-large.jpg data-title='{$imageTitleHtml}' itemprop=contentUrl>
@@ -83,7 +101,7 @@ function getImagesHtml($gallery, $settings) {
                </aside>
             </a>
             <figcaption>
-               <a href=image/{$image->id}/{$code} class=plain itemprop=url><i data-icon=link></i></a>
+               <a href=image/{$image->id}/{$image->code} class=plain itemprop=url><i data-icon=link></i></a>
                <span itemprop=caption>{$image->caption}</span>
                <p itemprop=description>{$image->description}</p>
             </figcaption>
@@ -98,17 +116,23 @@ function getImagesHtml($gallery, $settings) {
    }
 
 function getImageInfo($uri, $gallery) {
-   $id =           preg_match("/\/image\/([0-9]+)/", $uri, $matches) ? $matches[1] : "missing";
-   $dbFilename =   __DIR__ . "/../~data~/portfolio/{$id}-db.json";
-   $missingImage = '{ "caption": "That image does not appear to exist", "description": "" }';
-   $imageDb =      json_decode(is_file($dbFilename) ? file_get_contents($dbFilename) : $missingImage);
-   $galleryUrl =   getGalleryUrl();
-   return (object)array(
+   $id =            preg_match("/\/image\/([0-9]+)/", $uri, $matches) ? $matches[1] : "missing";
+   $dbFilename =    __DIR__ . "/../~data~/portfolio/{$id}-db.json";
+   $missingImage =  '{ "caption": "That image does not appear to exist", "description": "" }';
+   $content =       is_file($dbFilename) ? file_get_contents($dbFilename) : $missingImage;
+   $imageDb =       json_decode($content);
+   $imageDb->code = toUriCode($imageDb->caption);  //backwards compatibility (temporary)
+   $galleryUrl =    getGalleryUrl();
+   $meta = (object)array(
+      "id" =>          $id,
+      "code" =>        $imageDb->code,
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
+      "canonical" =>   "{$galleryUrl}/image/{$id}/{$imageDb->code}",
       "urlSmall" =>    "{$galleryUrl}/~data~/portfolio/{$id}-small.png",
       "urlLarge" =>    "{$galleryUrl}/~data~/portfolio/{$id}-large.jpg",
       );
+   return $meta;
    }
 
 function setValues($settings, $gallery) {
