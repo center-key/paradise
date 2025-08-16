@@ -1,10 +1,10 @@
-//! web-ignition v2.3.8 ~~ https://github.com/center-key/web-ignition ~~ MIT License
+//! web-ignition v2.4.2 ~~ https://github.com/center-key/web-ignition ~~ MIT License
 
 // Add utility-box to your project:
 //    1) $ npm install --save-dev web-ignition copy-file-util
 //    2) package.json scripts -->
-//       "copy-file node_modules/web-ignition/dist/utility-box.less --folder src/css/static"
-//    3) Include in CSS LESS files --> @import "static/constants";
+//       "copy-file node_modules/web-ignition/dist/utility-box.less --folder src/css/static --platform-eol"
+//    3) Include in CSS LESS files --> @import "static/utility-box";
 
 // Dark Mode Colors
 @colorSmoke:    #444444;
@@ -74,6 +74,6 @@
    @media (prefers-color-scheme: dark) { @lessRules(); }
    }
 
-.MobileMode(@lessRules) {  //selects iPhone 6/6s/7/8/SE2/SE3 landscape and anything narrower
+.MobileMode(@lessRules) {  //selects iPhone SE (3rd gen) landscape and anything narrower
    @media (max-width: 667px) { @lessRules(); }
    }
