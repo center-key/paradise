@@ -7,7 +7,7 @@
 // Library
 // Constants and general utilities
 
-require "polyfills.php";
+require __DIR__ . "/../../common.php";
 require "font-options.php";
 
 $version =       "{{package.version}}";
@@ -17,25 +17,13 @@ $dataFolder =    "{$galleryFolder}/~data~";
 $siteMapFile =   "{$galleryFolder}/sitemap.xml";
 date_default_timezone_set("UTC");
 
-function getGalleryUrl() {
-   // Example: https://example.com/travel/gallery
-   $tls =      isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
-   $protocol = $tls ? "https://" : "http://";
-   $ignore =   array("/console/rest/index.php");
-   return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
-   }
-
-function getRootUrl() {
-   // Example: https://example.com/travel
-   $url = dirname(getGalleryUrl());
-   return str_ends_with($url, ":") ? getGalleryUrl() : $url;
-   }
-
 function getTime() {
+   // Returns the number of milliseconds elapsed since the epoch.
    return intval(microtime(true) * 1000);
    }
 
 function daysToMsec($days) {
+   // Converts days to milliseconds.
    return $days * 24 * 60 * 60 * 1000;
    }
 
@@ -142,23 +130,6 @@ function savePortfolioImageDb($db) {
    return saveDb("{$portfolioFolder}/{$db->id}-db.json", $db);
    }
 
-function toCamelCase($kebabCase) {
-   $camelCase = str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
-   $camelCase[0] = strtolower($camelCase[0]);
-   return $camelCase;
-   }
-
-function migrateSettings($settings) {
-   foreach($settings as $key => $value) {
-      $newKey = toCamelCase($key);
-      if ($newKey !== $key && !isset($settings->$newKey) && isset($settings->$key)) {
-         $settings->$newKey = $value;
-         unset($settings->$key);
-         }
-      }
-   return $settings;
-   }
-
 function readSettingsDb() {
    global $defaultSettingsDb, $settingsDbFile;
    return (object)array_merge((array)$defaultSettingsDb, (array)migrateSettings(readDb($settingsDbFile)));
@@ -191,12 +162,6 @@ function saveAccountsDb($db) {
    global $accountsDbFile;
    logEvent("save-accounts-db", count((array)$db->users), count((array)$db->invites));
    return saveDb($accountsDbFile, $db);
-   }
-
-function toUriCode($caption) {
-   // Turns a caption, like "Mona Lisa (1503)", into a URL safe string, like "mona-lisa-1503".
-   $code = preg_replace("/\s+/", "-", trim(preg_replace("/[^a-z0-9]/", " ", strtolower($caption))));
-   return empty($code) ? "one-image" : $code;
    }
 
 function displayTrue($imageDb) {

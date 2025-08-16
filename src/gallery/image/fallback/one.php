@@ -3,8 +3,8 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
 <!-- GPLv3 ~ Copyright (c) Individual contributors to Paradise -->
+<!-- One Image Page                                            -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<?php require "../../common.php"; ?>
 <?php require "../../frontend-server/gallery.php"; ?>
 <?php
    $imageInfo =      getImageInfo($_SERVER["REQUEST_URI"], $gallery);

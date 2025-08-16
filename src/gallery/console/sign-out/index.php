@@ -1,3 +1,4 @@
+<?php $authRequired = false; require "../admin-server/security.php"; ?>
 <?php
 ///////////////////////////////////////////////////////////////
 // Paradise ~ centerkey.com/paradise                         //
@@ -5,8 +6,6 @@
 ///////////////////////////////////////////////////////////////
 
 // User logout
-$authRequired = false;
-require "../admin-server/security.php";
 logEvent("user-logout", session_id());
 session_destroy();
 header("Location: ../sign-in");

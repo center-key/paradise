@@ -4,7 +4,8 @@
 // GPLv3 ~ Copyright (c) Individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
-require "../common.php";
+// Send Message
+
 require "gallery.php";
 
 // Initialize

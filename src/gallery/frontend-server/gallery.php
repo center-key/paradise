@@ -4,13 +4,14 @@
 // GPLv3 ~ Copyright (c) Individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
+// Gallery
+//
 // $settings (settings-db.json):
 //    { title: "My Gallery", titleFont: "Geo", titleSize: "800%", subtitle: "Art Studio", darkMode: true, ... }
 // $gallery (gallery-db.json):
 //    [{ id: "001", code: "tree-house", caption: "Tree House!", description: "Cool.", ... }, ...]
 
-// $imageInfo
-//    { id : "001", code: "one-image","caption":"Rock On!","description":"The rock is here!!!","urlSmall":"http:\/\/localhost\/paradise-deploy\/gallery\/~data~\/portfolio\/002-small.png","urlLarge":"http:\/\/localhost\/paradise-deploy\/gallery\/~data~\/portfolio\/002-large.jpg"}
+require __DIR__ . "/../common.php";
 
 function getData($dbFilename) {
    // Returns an object or array of objects corresponding to the contents of the DB.

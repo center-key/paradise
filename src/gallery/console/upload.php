@@ -1,5 +1,12 @@
+<?php require "admin-server/security.php"; ?>
 <?php
-require "admin-server/security.php";
+///////////////////////////////////////////////////////////////
+// Paradise ~ centerkey.com/paradise                         //
+// GPLv3 ~ Copyright (c) Individual contributors to Paradise //
+///////////////////////////////////////////////////////////////
+
+// Image Upload Endpoint
+
 $uploadFolder = "../~data~/uploads/";
 
 function upload($uploadFolder) {
@@ -20,6 +27,7 @@ function readOnlyResponse() {
       "type" =>    "simulated",
       );
    }
+
 $result = readOnlyMode() ? readOnlyResponse() : upload($uploadFolder);
 logEvent("file-upload", $result->success, $uploadFolder, $result);
 httpJsonResponse($result);

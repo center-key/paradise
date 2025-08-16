@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////
 
 // Security
-// Redriects browser to Sign In page if user is not authenticted.
+// Redriects the browser to the "Sign In" page if the user is not authenticated.
 //
 // Put at first line of PHP file:
 //    <?php $authRequired = false; $redirectAuth = "."; require "admin-server/security.php";
@@ -95,7 +95,7 @@ function sendAccountInvite($email) {
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;
    saveAccountsDb($db);
-   $inviteLink = getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
+   $inviteLink =  getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
    $subjectLine = "Sign up invitation";
    $messageLines = array(
       "You have been invited by {$user} to create an account to administer a Paradise Photo Gallery.",

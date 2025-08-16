@@ -3,14 +3,15 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
 <!-- GPLv3 ~ Copyright (c) Individual contributors to Paradise -->
+<!-- Public Gallery Main Page                                  -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<?php require "common.php"; ?>
 <?php require "frontend-server/gallery.php"; ?>
 <?php
    $linkUrlClass =   showHideClass($settings->linkUrl);
    $linkUrlText =    linkText($settings->linkUrl);
    $ccLicenseClass = showHideClass($settings->ccLicense);
    $bookmarksClass = showHideClass($settings->bookmarks);
+   $hideClass =      showHideClass(false);
    $hasGoogleCode =  !empty($settings->googleVerification);
    $pageTitles =     array_column($settings->pages, "title");
    $pageClasses =    array_map("showHideClass", array_column($settings->pages, "show"));
@@ -71,7 +72,7 @@
       <span class=<?=$pageClasses[0]?>><?=$pageTitles[0]?></span>
       <span class=<?=$pageClasses[1]?>><?=$pageTitles[1]?></span>
       <span class=<?=$pageClasses[2]?>><?=$pageTitles[2]?></span>
-      <span class=<?=showHideClass(false)?>>Thanks</span>
+      <span class=<?=$hideClass?>>Thanks</span>
    </nav>
    <div class=dna-panels data-menu-nav=gallery>
       <section data-hash=images class=gallery-images>
