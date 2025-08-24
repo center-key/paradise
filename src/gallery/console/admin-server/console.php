@@ -41,6 +41,7 @@ function getBackupFiles() {
    }
 
 function appClientData() {
+   // Returns JSON to be inserted into a variable assignment within <script> tag on a web page.
    global $version, $googleFonts;
    $settings = readSettingsDb();
    $data = (object)array(

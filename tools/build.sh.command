@@ -110,6 +110,7 @@ setupPhpServer() {
    apachectl configtest  #to start web server: brew services restart httpd
    deployFolder=$webDocRoot/paradise-deploy
    test -w $webDocRoot && mkdir -p $deployFolder
+   find $deployFolder -name "*.min.*" -delete
    echo $webDocRoot
    echo
    }

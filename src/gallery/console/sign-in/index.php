@@ -1,10 +1,11 @@
 <?php $authRequired = false; $redirectAuth = ".."; require "../admin-server/security.php"; ?>
 <!doctype html>
+<html lang=en>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
 <!-- GPLv3 ~ Copyright (c) Individual contributors to Paradise -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<html lang=en>
+<?php $clientData = appClientData(); ?>
 <head>
    <meta charset=utf-8>
    <meta name=viewport                   content="width=device-width, initial-scale=1">
@@ -25,7 +26,7 @@
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@{{package.devDependencies.dna-engine|version}}/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@{{package.devDependencies.web-ignition|version}}/dist/lib-x.min.js></script>
    <script defer src=../paradise-console.min.js></script>
-   <script>globalThis.clientData = <?=appClientData()?>;</script>
+   <script>globalThis.clientData = <?=$clientData?>;</script>
 </head>
 <body>
 

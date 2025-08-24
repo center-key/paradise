@@ -47,6 +47,9 @@
       "generated": [
          "copy-file node_modules/web-ignition/dist/utility-box.less --folder src/gallery/css/static --platform-eol"
       ],
+      "lint": [
+         "jshint . --exclude-path .gitignore"
+      ],
       "build": [
          "lessc src/gallery/gallery.less       build/1-dev/gallery/paradise.css",
          "lessc src/gallery/console/admin.less build/1-dev/gallery/console/paradise-console.css",
@@ -59,13 +62,9 @@
          "add-dist-header build/2-min/gallery            build/3-stage/gallery",
          "add-dist-header build/2-min/gallery/console    build/3-stage/gallery/console",
          "copy-file src/gallery/image/.htaccess --folder build/3-stage/gallery/image",
-         "rev-web-assets build/3-stage/gallery build/4-rev/gallery",
+         "rev-web-assets build/3-stage/gallery build/4-rev/gallery --skip=~data~",
          "copy-file LICENSE.txt       --folder build/4-rev/gallery",
          "cd build/4-rev && bestzip paradise.zip gallery/*"
-      ],
-      "lint": [
-         "jshint . --exclude-path .gitignore",
-         "html-validator website"
       ],
       "release": [
          "copy-file build/4-rev/paradise.zip releases/previous/paradise-v{{package.version}}.zip",
@@ -73,8 +72,8 @@
       ]
    },
    "scripts": {
-      "pretest": "run-scripts clean generated build",
-      "test": "run-scripts lint",
+      "pretest": "run-scripts clean generated lint build",
+      "test": "html-validator website",
       "posttest": "run-scripts release"
    },
    "devDependencies": {
@@ -84,7 +83,7 @@
       "copy-file-util": "~1.3",
       "copy-folder-util": "~1.1",
       "csso-cli": "~4.0",
-      "dna-engine": "~3.2",
+      "dna-engine": "~3.3",
       "dropzone": "6.0.0-beta.2",
       "fetch-json": "~3.3",
       "jshint": "~2.13",
@@ -92,7 +91,7 @@
       "magnific-popup": "~1.2",
       "make-dir-cli": "~4.0",
       "replacer-util": "~1.4",
-      "rev-web-assets": "~1.4",
+      "rev-web-assets": "~1.5",
       "rimraf": "~6.0",
       "run-scripts-util": "~1.3",
       "uglify-js": "~3.19",

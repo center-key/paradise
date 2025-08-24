@@ -1,10 +1,12 @@
 <?php require "admin-server/security.php"; ?>
 <!doctype html>
+<html lang=en>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Paradise ~ centerkey.com/paradise                         -->
 <!-- GPLv3 ~ Copyright (c) Individual contributors to Paradise -->
+<!-- Title Font Sample Page                                    -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<html lang=en>
+<?php $clientData = appClientData(); ?>
 <head>
    <meta charset=utf-8>
    <meta name=viewport                   content="width=device-width, initial-scale=1">
@@ -30,7 +32,7 @@
    </style>
    <script defer src=https://ajax.googleapis.com/ajax/libs/webfont/1.6/webfont.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@{{package.devDependencies.dna-engine|version}}/dist/dna-engine.min.js></script>
-   <script>globalThis.clientData = <?=appClientData()?>;</script>
+   <script>globalThis.clientData = <?=$clientData?>;</script>
    <script data-on-load=startup>
       const startup = () => {
          WebFont.load({ google: { families: clientData.fonts } });

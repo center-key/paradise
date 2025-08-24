@@ -3,7 +3,7 @@
 // GPLv3 ~ Copyright (c) Individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
-// Gallery application
+// Gallery Application
 const gallery = {
    configureForm(elem) {
       const perfectForm = elem.closest('form.send-message');
