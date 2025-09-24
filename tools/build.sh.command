@@ -81,9 +81,11 @@ releaseInstructions() {
 analyzePhp() {
    echo "*** Analyze PHP"
    cd $projectHome
-   php -v
+   php --version
    pwd
-   find src -name "*.php" -exec php --syntax-check {} \;
+   count=$(find . -name "*.php" | wc -l)
+   echo "PHP Files: $count"
+   find src -name "*.php" -exec php --syntax-check {} \; | grep --invert-match "No syntax errors detected"
    echo
    echo "Recent releases:"
    git restore releases/previous  #don't overwrite previous releases
@@ -109,7 +111,7 @@ setupPhpServer() {
    grep php $apacheCfg/httpd.conf
    apachectl configtest  #to start web server: brew services restart httpd
    deployFolder=$webDocRoot/paradise-deploy
-   test -w $webDocRoot && mkdir -p $deployFolder
+   test -w $webDocRoot && mkdir -pv $deployFolder
    find $deployFolder -name "*.min.*" -delete
    echo $webDocRoot
    echo
