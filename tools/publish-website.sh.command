@@ -26,9 +26,8 @@ publishWebFiles() {
    publishFolder=$publishSite/paradise
    publish() {
       echo "Publishing:"
-      mkdir -pv $publishFolder/graphics
-      cp -v website/*.css website/*.html $publishFolder
-      cp -v website/graphics/*           $publishFolder/graphics
+      rm -rf $publishFolder
+      cp -Rv website/ $publishFolder
       test -x "$(which tree)" && tree $publishFolder
       }
    test -w $publishSite && publish

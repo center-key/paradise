@@ -77,7 +77,7 @@
       "posttest": "run-scripts release"
    },
    "devDependencies": {
-      "@fortawesome/fontawesome-free": "~7.0",
+      "@fortawesome/fontawesome-free": "~7.1",
       "add-dist-header": "~1.5",
       "bestzip": "~2.2",
       "copy-file-util": "~1.3",
