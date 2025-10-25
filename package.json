@@ -72,9 +72,8 @@
       ]
    },
    "scripts": {
-      "pretest": "run-scripts clean generated lint build",
-      "test": "html-validator website",
-      "posttest": "run-scripts release"
+      "pretest": "run-scripts clean generated lint build release",
+      "test": "html-validator website"
    },
    "devDependencies": {
       "@fortawesome/fontawesome-free": "~7.1",
