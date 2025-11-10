@@ -67,7 +67,8 @@ function resetCustomCssForMigration($filename) {
       logEvent("reset-custom-css-for-migration", $filename, strlen($old), unlink($filename));
    }
 
-function setupCustomCss($dataFolder) {
+function setupCustomCss() {
+   global $dataFolder;
    $defaultCss = array(
       "/* Paradise Photo Gallery                                   */",
       "/* Edit this CSS file to customize the look of the gallery. */",
@@ -79,12 +80,24 @@ function setupCustomCss($dataFolder) {
    initializeFile($filename, implode(PHP_EOL, $defaultCss));
    }
 
-function setupCustomPage($dataFolder, $pageName) {
+function setupCustomPage($pageName) {
+   global $dataFolder;
    $filename = "{$dataFolder}/page-{$pageName}.html";
    if (!file_exists($filename)) {
-      $defaultHtml = "<h2>This page is under construction.</h2>\n<hr>\nEdit: ";
-      touch($filename);
-      file_put_contents($filename, $defaultHtml . realpath($filename) . PHP_EOL);
+      $instructions = "Edit: " . realpath($filename);
+      $defaultHtml = array("<h2>This page is under construction.</h2>", "<hr>", $instructions);
+      $status = file_put_contents($filename, implode(PHP_EOL, $defaultHtml) . PHP_EOL);
+      logEvent("setup-custom-page", $filename, $status);
+      }
+   }
+
+function setupRobotTxt() {
+   // Creates a default Robots Exclusion Protocol file to prevent 404 File not found errors.
+   global $galleryFolder;
+   $filename = "{$galleryFolder}/robots.txt";
+   if (!file_exists($filename)) {
+      $status = file_put_contents($filename, "# Allow all bots" . PHP_EOL);
+      logEvent("setup-robots-txt", $filename, $status);
       }
    }
 
@@ -116,7 +129,8 @@ $galleryDbFile =   "{$dataFolder}/gallery-db.json";
 migrateFiles();
 setupDb($settingsDbFile, $defaultSettingsDb);
 setupDb($accountsDbFile, $defaultAccountsDb);
-setupCustomCss($dataFolder);
-setupCustomPage($dataFolder, $defaultSettingsDb->pages[1]->name);
+setupCustomCss();
+setupCustomPage($defaultSettingsDb->pages[1]->name);
+setupRobotTxt();
 generateGalleryDb();
 ?>
