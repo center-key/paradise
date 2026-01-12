@@ -323,8 +323,8 @@
       Logged into <b>~~server~~</b>
    </div>
    <div>
-      Paradise v<span>~~version~~</span><br>
-      PHP v<span>~~php~~</span>
+      Paradise v<span>~~appVersion~~</span><br>
+      PHP v<span>~~phpVersion~~</span>
    </div>
 </footer>
 

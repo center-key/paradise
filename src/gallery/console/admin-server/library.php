@@ -10,7 +10,7 @@
 require __DIR__ . "/../../common.php";
 require "font-options.php";
 
-$version =       "{{package.version}}";
+$appVersion =    "{{package.version}}";
 $dbCacheStore =  null;
 $galleryFolder = realpath(__DIR__ . "/../..");
 $dataFolder =    "{$galleryFolder}/~data~";
@@ -132,7 +132,8 @@ function savePortfolioImageDb($db) {
 
 function readSettingsDb() {
    global $defaultSettingsDb, $settingsDbFile;
-   return (object)array_merge((array)$defaultSettingsDb, (array)migrateSettings(readDb($settingsDbFile)));
+   $currentSettings = migrateSettings(readDb($settingsDbFile));
+   return (object)array_merge((array)$defaultSettingsDb, (array)$currentSettings);
    }
 
 function saveSettingsDb($db) {

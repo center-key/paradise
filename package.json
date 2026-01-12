@@ -45,7 +45,7 @@
          "rimraf build releases/paradise-v*.zip"
       ],
       "generated": [
-         "copy-file node_modules/web-ignition/dist/utility-box.less --folder src/gallery/css/static --platform-eol"
+         "copy-file node_modules/web-ignition/dist/utility-box.less --remove-sem-ver --folder src/gallery/css/static --platform-eol"
       ],
       "lint": [
          "jshint . --exclude-path .gitignore"
@@ -86,15 +86,15 @@
       "dropzone": "6.0.0-beta.2",
       "fetch-json": "~3.3",
       "jshint": "~2.13",
-      "less": "~4.4",
+      "less": "~4.5",
       "magnific-popup": "~1.2",
       "make-dir-cli": "~4.0",
-      "replacer-util": "~1.4",
+      "replacer-util": "~1.5",
       "rev-web-assets": "~1.5",
       "rimraf": "~6.1",
       "run-scripts-util": "~1.3",
       "uglify-js": "~3.19",
-      "w3c-html-validator": "~2.0",
+      "w3c-html-validator": "~2.1",
       "web-ignition": "~2.4"
    }
 }

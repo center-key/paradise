@@ -42,11 +42,11 @@ function getBackupFiles() {
 
 function appClientData() {
    // Returns JSON to be inserted into a variable assignment within <script> tag on a web page.
-   global $version, $googleFonts;
+   global $appVersion, $googleFonts;
    $settings = readSettingsDb();
    $data = (object)array(
-      "version" =>       $version,
-      "php" =>           phpversion(),
+      "appVersion" =>    $appVersion,
+      "phpVersion" =>    PHP_VERSION,
       "user" =>          getCurrentUser(),
       "server" =>        $_SERVER["SERVER_NAME"],
       "userListEmpty" => emptyObj(readAccountsDb()->users),

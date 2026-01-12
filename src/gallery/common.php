@@ -7,6 +7,9 @@
 // Common
 // Utilities and functions shared between the front-end and the console.
 
+$minimumPhpVersion = '7.0.0';
+$obsoletePhp =       version_compare(PHP_VERSION, $minimumPhpVersion, "<");
+
 function polyfills() {
    if (!function_exists("array_column")) {     //polyfill: array_column(), PHP 5.5.0
       function array_column($array, $key) {

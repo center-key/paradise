@@ -16,6 +16,7 @@
    $pageTitles =     array_column($settings->pages, "title");
    $pageClasses =    array_map("showHideClass", array_column($settings->pages, "show"));
    $imagesHtml =     getImagesHtml($gallery, $settings);
+   $phpStatus =      $obsoletePhp ? "obsolete" : "ok";
 ?>
 <head>
    <meta charset=utf-8>
@@ -59,7 +60,7 @@
    <script defer src=https://cdn.jsdelivr.net/npm/magnific-popup@{{package.devDependencies.magnific-popup|version}}/dist/jquery.magnific-popup.min.js></script>
    <script defer src=paradise.min.js></script>
 </head>
-<body class="<?=$values->styleClasses?>" itemscope itemtype=https://schema.org/ImageGallery>
+<body class="<?=$values->styleClasses?>" data-php="<?=$phpStatus?>" itemscope itemtype=https://schema.org/ImageGallery>
 
 <header>
    <h1 data-href=.><span itemprop=name><?=$settings->title?></span></h1>

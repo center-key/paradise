@@ -11,6 +11,8 @@ const gallery = {
       perfectForm.action = 'frontend-server/send-message.php';
       },
    start() {
+      if (globalThis.document.body.dataset.php !== 'ok')
+         console.error('ERROR: Version of PHP on the server is obsolete.');
       globalThis.document.querySelectorAll('body >footer .hide-me').forEach(elem => elem.remove());
       const options = {
          allowHTMLInTemplate: true,

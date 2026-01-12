@@ -12,9 +12,9 @@
 // $authRequired (optional): If false, redirect will not happen but $loggedIn will be set to true or false.
 // $redirectAuth (optional): If set and user is authorized, redirects to named page.
 
-$sessionTimeout =  3600000;  //one hour: 60 x 60 x 1000 = 3,600,000 milliseconds
-$authRequired =    isset($authRequired) ? $authRequired : true;
-$redirectAuth =    isset($redirectAuth) ? $redirectAuth : null;
+$sessionTimeout = 3600000;  //one hour: 60 x 60 x 1000 = 3,600,000 milliseconds
+$authRequired =   isset($authRequired) ? $authRequired : true;
+$redirectAuth =   isset($redirectAuth) ? $redirectAuth : null;
 session_start();
 require "library.php";
 require "startup.php";

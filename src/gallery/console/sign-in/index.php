@@ -95,7 +95,7 @@
       <a href=https://github.com/center-key/paradise/wiki/faq>Wiki - Help</a>
    </div>
    <div>
-      Paradise v<span>~~version~~</span><br>
+      Paradise v<span>~~appVersion~~</span><br>
       <a href=https://github.com/center-key/paradise/blob/main/LICENSE.txt>GPLv3</a>
    </div>
 </footer>
