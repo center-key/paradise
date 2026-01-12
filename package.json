@@ -15,15 +15,15 @@
    "author": "Center Key (https://centerkey.com)",
    "keywords": [
       "artwork",
+      "gallery",
       "image-gallery",
       "images",
       "javascript",
-      "php",
       "paradise",
       "photo-gallery",
       "photos",
-      "portfolio",
-      "gallery"
+      "php",
+      "portfolio"
    ],
    "jshintConfig": {
       "esversion": 11,

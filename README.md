@@ -8,7 +8,7 @@ _A simple and aesthetic image gallery to showcase your art portfolio_
 &nbsp;
 [![Build](https://github.com/center-key/paradise/actions/workflows/run-spec-on-push.yaml/badge.svg)](https://github.com/center-key/paradise/actions/workflows/run-spec-on-push.yaml)
 
-Paradise is an open source software package for publishing a curated portfolio of photos on a website in a clean, professional style.
+Paradise is an open source software package (PHP) for publishing a curated portfolio of photos on a website in a clean, professional style.
 Use Paradise to create an online exhibit for an artist or organization.
 
 **[Download install files](https://github.com/center-key/paradise/tree/main/releases)**

@@ -87,13 +87,9 @@ analyzePhp() {
    echo "PHP Files: $count"
    find src -name "*.php" -exec php --syntax-check {} \; | grep --invert-match "No syntax errors detected"
    echo
-   echo "Recent releases:"
+   echo "5 Most Recent Releases:"
    git restore releases/previous  #don't overwrite previous releases
    git ls-files releases/previous/*.zip | tail -5
-   echo
-   echo "Released version (GitHub folder: releases):"
-   releasePage=https://github.com/center-key/paradise/tree/main/releases
-   curl --silent $releasePage | grep paradise-v | awk -F'"' '{ print $6 }'
    echo
    }
 
