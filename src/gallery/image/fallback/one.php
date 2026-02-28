@@ -36,7 +36,7 @@
    <link rel=stylesheet       href="<?=$values->titleFontUrl?>">
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{package.devDependencies.-fortawesome-fontawesome-free|version}}/css/all.min.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/magnific-popup@{{package.devDependencies.magnific-popup|version}}/dist/magnific-popup.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@{{package.devDependencies.dna-engine|version}}/dist/dna-engine.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-dom@{{package.devDependencies.dna-dom|version}}/dist/dna-dom.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@{{package.devDependencies.web-ignition|version}}/dist/reset.min.css>
    <link rel=stylesheet       href=../../paradise.min.css>
    <link rel=stylesheet       href=../../~data~/custom-style.css>
@@ -47,7 +47,7 @@
          }
    </style>
    <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@{{package.devDependencies.fetch-json|version}}/dist/fetch-json.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@{{package.devDependencies.dna-engine|version}}/dist/dna-engine.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna-dom@{{package.devDependencies.dna-dom|version}}/dist/dna-dom.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@{{package.devDependencies.web-ignition|version}}/dist/lib-x.min.js></script>
    <script defer src=../../paradise.min.js></script>
 </head>

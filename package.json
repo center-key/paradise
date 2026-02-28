@@ -76,25 +76,25 @@
       "test": "html-validator website"
    },
    "devDependencies": {
-      "@fortawesome/fontawesome-free": "~7.1",
+      "@fortawesome/fontawesome-free": "~7.2",
       "add-dist-header": "~1.6",
       "bestzip": "~2.2",
       "copy-file-util": "~1.3",
       "copy-folder-util": "~1.2",
       "csso-cli": "~4.0",
-      "dna-engine": "~3.3",
+      "dna-dom": "~3.3",
       "dropzone": "6.0.0-beta.2",
       "fetch-json": "~3.3",
       "jshint": "~2.13",
       "less": "~4.5",
       "magnific-popup": "~1.2",
       "make-dir-cli": "~4.0",
-      "replacer-util": "~1.5",
+      "replacer-util": "~1.6",
       "rev-web-assets": "~1.5",
       "rimraf": "~6.1",
       "run-scripts-util": "~1.3",
       "uglify-js": "~3.19",
-      "w3c-html-validator": "~2.1",
-      "web-ignition": "~2.4"
+      "w3c-html-validator": "~2.2",
+      "web-ignition": "~2.5"
    }
 }
