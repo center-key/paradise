@@ -31,8 +31,8 @@ setupTools() {
    echo $banner
    echo $(echo $banner | sed s/./=/g)
    pwd
-   test -d .git || { echo "Project must be in a git repository."; exit; }
-   git restore dist/* &>/dev/null
+   [ -d .git ] || { echo "Project must be in a git repository."; exit; }
+   [ -d dist ] && git restore dist
    git pull --ff-only
    echo
    echo "Node.js:"
@@ -107,7 +107,7 @@ setupPhpServer() {
    grep php $apacheCfg/httpd.conf
    apachectl configtest  #to start web server: brew services restart httpd
    deployFolder=$webDocRoot/paradise-deploy
-   test -w $webDocRoot && mkdir -pv $deployFolder
+   [ -w $webDocRoot ] && mkdir -pv $deployFolder
    find $deployFolder -name "*.min.*" -delete
    echo $webDocRoot
    echo
@@ -126,7 +126,7 @@ unzipRelease() {
       chmod -v uo+rwx backups* portfolio secure* uploads
       chmod -Rv uo+rw *.json
       }
-   test -d gallery/~data~ && accessData
+   [ -d gallery/~data~ ] && accessData
    echo
    }
 
@@ -149,4 +149,4 @@ releaseInstructions
 analyzePhp
 buildZip
 setupPhpServer
-test -w $deployFolder && deployRelease
+[ -w $deployFolder ] && deployRelease

@@ -53,11 +53,11 @@
          font-size: <?=$settings->titleSize?>;
          }
    </style>
-   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@{{package.devDependencies.fetch-json|version}}/dist/fetch-json.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/dna-dom@{{package.devDependencies.dna-dom|version}}/dist/dna-dom.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@{{package.devDependencies.web-ignition|version}}/dist/lib-x.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.slim.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/magnific-popup@{{package.devDependencies.magnific-popup|version}}/dist/jquery.magnific-popup.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna-dom@{{package.devDependencies.dna-dom|version}}/dist/dna-dom.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@{{package.devDependencies.web-ignition|version}}/dist/lib-x.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@{{package.devDependencies.fetch-json|version}}/dist/fetch-json.min.js></script>
    <script defer src=paradise.min.js></script>
 </head>
 <body class="<?=$values->styleClasses?>" data-php="<?=$phpStatus?>" itemscope itemtype=https://schema.org/ImageGallery>

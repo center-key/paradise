@@ -22,9 +22,9 @@
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@{{package.devDependencies.web-ignition|version}}/dist/reset.min.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@{{package.devDependencies.web-ignition|version}}/dist/layouts/color-blocks.css>
    <link rel=stylesheet       href=../paradise-console.min.css>
-   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@{{package.devDependencies.fetch-json|version}}/dist/fetch-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-dom@{{package.devDependencies.dna-dom|version}}/dist/dna-dom.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@{{package.devDependencies.web-ignition|version}}/dist/lib-x.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@{{package.devDependencies.fetch-json|version}}/dist/fetch-json.min.js></script>
    <script defer src=../paradise-console.min.js></script>
    <script>globalThis.clientData = <?=$clientData?>;</script>
 </head>

@@ -238,8 +238,8 @@ function logAndExit($message) {
    }
 
 function httpJsonResponse($data) {
-   header("Cache-Control: no-cache");
-   header("Content-Type:  application/json");
+   header("cache-control: no-cache");
+   header("content-type:  application/json");
    echo json_encode($data);
    logEvent("http-response", $data);
    }

@@ -28,9 +28,9 @@ publishWebFiles() {
       echo "Publishing:"
       rm -rf $publishFolder
       cp -Rv website/ $publishFolder
-      test -x "$(which tree)" && tree $publishFolder
+      [ -x "$(which tree)" ] && tree $publishFolder
       }
-   test -w $publishSite && publish
+   [ -w $publishSite ] && publish
    }
 
 launchBrowser() {

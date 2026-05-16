@@ -11,6 +11,18 @@
 @colorGraphite: #303030;
 @colorCharcoal: #222222;
 @colorTar:      #161616;
+@colorWhite:    #FFFFFF;
+@colorGray0:    #EEEEEE;
+@colorGray1:    #DDDDDD;
+@colorGray2:    #BBBBBB;
+@colorGray3:    #AAAAAA;
+@colorGray4:    #888888;
+@colorGray5:    #777777;
+@colorGray6:    #555555;
+@colorGray7:    #444444;
+@colorGray8:    #222222;
+@colorGray9:    #111111;
+@colorBlack:    #000000;
 
 // Layers for z-index
 @layerDialogBox:     500;  //cream of the crop
@@ -27,6 +39,7 @@
 @symbolBallotXMark:  "\2718";  //character: ✘
 @symbolCheckmark:    "\2714";  //character: ✔
 @symbolEmDash:       "\2014";  //character: —
+@symbolSectionSign:  "\00A7";  //character: §
 @symbolTriangleDown: "\25BC";  //character: ▼
 @symbolTriangleUp:   "\25B2";  //character: ▲
 
@@ -52,26 +65,11 @@
    paint-order: stroke fill;
    }
 
-.CheckerboardBackground() {
-   // <figure class=checkerboard-background>
-   //    <img src=logo.svg alt=logo>
-   //    <figcaption>Logo</figcaption>
-   // </figure>
+.CheckerboardBox() {
+   background: var(--checkerboardBackground);
+   outline: 3px solid black;
    &:hover {
-      img {
-         background: black;
-         outline-width: 1px;  //extra space for a clean image crop
-         }
-      }
-   img {
-      background: conic-gradient(
-         lightgray 90deg,
-         darkgray 90deg 180deg,
-         lightgray 180deg 270deg,
-         darkgray 270deg
-         );
-      background-size: 15px 15px;
-      outline: 3px solid black;
+      background: black;
       }
    }
 
