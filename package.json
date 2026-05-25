@@ -51,19 +51,21 @@
          "jshint . --exclude-path .gitignore"
       ],
       "build": [
-         "lessc src/gallery/gallery.less       build/1-dev/gallery/paradise.css",
-         "lessc src/gallery/console/admin.less build/1-dev/gallery/console/paradise-console.css",
-         "make-dir                                                       build/2-min/gallery/console",
-         "csso build/1-dev/gallery/paradise.css                 --output build/2-min/gallery/paradise.min.css",
-         "csso build/1-dev/gallery/console/paradise-console.css --output build/2-min/gallery/console/paradise-console.min.css",
-         "uglifyjs src/gallery/js/*.js                          --output build/2-min/gallery/paradise.min.js",
-         "uglifyjs src/gallery/console/js/*.js                  --output build/2-min/gallery/console/paradise-console.min.js",
-         "replacer src/gallery --ext=.php                build/3-stage/gallery",
-         "add-dist-header build/2-min/gallery            build/3-stage/gallery",
-         "add-dist-header build/2-min/gallery/console    build/3-stage/gallery/console",
-         "copy-file src/gallery/image/.htaccess --folder build/3-stage/gallery/image",
-         "rev-web-assets build/3-stage/gallery build/4-rev/gallery --skip=~data~",
-         "copy-file LICENSE.txt       --folder build/4-rev/gallery",
+         "lessc src/gallery/gallery.less                                              build/1-dev/gallery/paradise.css",
+         "lessc src/gallery/console/admin.less                                        build/1-dev/gallery/console/paradise-console.css",
+         "make-dir                                                                    build/2-min/gallery/console",
+         "lightningcss build/1-dev/gallery/paradise.css                 --output-file build/2-min/gallery/paradise.min.css --minify --bundle",
+         "lightningcss build/1-dev/gallery/console/paradise-console.css --output-file build/2-min/gallery/console/paradise-console.min.css --minify --bundle",
+         "uglifyjs src/gallery/js/*.js                                       --output build/2-min/gallery/paradise.min.js",
+         "uglifyjs src/gallery/console/js/*.js                               --output build/2-min/gallery/console/paradise-console.min.js",
+         "replacer src/gallery --ext=.php                                             build/3-stage/gallery",
+         "add-dist-header build/2-min/gallery                                         build/3-stage/gallery",
+         "add-dist-header build/2-min/gallery/console                                 build/3-stage/gallery/console",
+         "copy-file src/gallery/image/.htaccess                              --folder build/3-stage/gallery/image",
+         "rev-web-assets build/3-stage/gallery                                        build/4-rev/gallery --skip=~data~",
+         "copy-file LICENSE.txt                                              --folder build/4-rev/gallery"
+      ],
+      "zip": [
          "cd build/4-rev && bestzip paradise.zip gallery/*"
       ],
       "release": [
@@ -72,21 +74,21 @@
       ]
    },
    "scripts": {
-      "pretest": "run-scripts clean generated lint build release",
+      "pretest": "run-scripts clean generated lint build zip release",
       "test": "html-validator website"
    },
    "devDependencies": {
       "@fortawesome/fontawesome-free": "~7.2",
       "add-dist-header": "~1.6",
-      "bestzip": "~2.2",
+      "bestzip": "~3.0",
       "copy-file-util": "~1.3",
       "copy-folder-util": "~1.2",
-      "csso-cli": "~4.0",
       "dna-dom": "~3.3",
       "dropzone": "6.0.0-beta.2",
-      "fetch-json": "~3.3",
+      "fetch-json": "~3.5",
       "jshint": "~2.13",
       "less": "~4.6",
+      "lightningcss-cli": "~1.32",
       "magnific-popup": "~1.2",
       "make-dir-cli": "~4.0",
       "replacer-util": "~1.6",
