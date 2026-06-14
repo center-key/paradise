@@ -51,6 +51,7 @@
          "jshint . --exclude-path .gitignore"
       ],
       "build": [
+         "make-dir                                                                    build/1-dev",
          "lessc src/gallery/gallery.less                                              build/1-dev/gallery/paradise.css",
          "lessc src/gallery/console/admin.less                                        build/1-dev/gallery/console/paradise-console.css",
          "make-dir                                                                    build/2-min/gallery/console",
