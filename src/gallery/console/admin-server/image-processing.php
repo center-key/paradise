@@ -28,7 +28,6 @@ function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight,
       imagepng($newImage, $newFile);
    else
       imagejpeg($newImage, $newFile);
-   imagedestroy($newImage);
    }
 
 function createThumbnail($origImage, $origWidth, $origHeight, $file) {
@@ -58,7 +57,6 @@ function createImages($origFile, $id) {
    $aspectRatio = $origWidth / $origHeight;
    createThumbnail($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-small.png");
    createFullImage($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-large.jpg");
-   imagedestroy($origImage);
    logEvent("create-images", $origFile, $id, $aspectRatio);
    }
 
@@ -122,7 +120,7 @@ function processUploads() {
    logEvent("process-uploads", $msg);
    return (object)array(
       "count" =>   count($validFiles),
-      "files" =>   array_column($validFiles, 'name'),
+      "files" =>   array_column($validFiles,   'name'),
       "fails" =>   array_column($invalidFiles, 'name'),
       "message" => $msg,
       );
