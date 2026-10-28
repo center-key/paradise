@@ -9,7 +9,7 @@
 #     name (extracted from paradise/src/gallery/console/admin-server/library.php)
 
 banner="Paradise ~ Build"
-projectHome=$(cd $(dirname $0)/..; pwd)
+projectHome=$(realpath $0/../..)
 pkgInstallHome=$(dirname $(dirname $(which httpd)))
 apacheCfg=$pkgInstallHome/etc/httpd
 apacheLog=$pkgInstallHome/var/log/httpd/error_log
@@ -30,6 +30,7 @@ setupTools() {
    echo
    echo $banner
    echo $(echo $banner | sed s/./=/g)
+   date
    pwd
    [ -d .git ] || { echo "Project must be in a git repository."; exit; }
    [ -d dist ] && git restore dist

@@ -7,15 +7,10 @@
 // Common
 // Utilities and functions shared between the front-end and the console.
 
-$minimumPhpVersion = '7.0.0';
+$minimumPhpVersion = '7.1.0';
 $obsoletePhp =       version_compare(PHP_VERSION, $minimumPhpVersion, "<");
 
 function polyfills() {
-   if (!function_exists("array_column")) {     //polyfill: array_column(), PHP 5.5.0
-      function array_column($array, $key) {
-         return array_map(function($item) use ($key) { return $item->{$key}; }, $array);
-         }
-      }
    if (!function_exists("str_contains")) {     //polyfill str_contains(), PHP 8.0.0
       function str_contains($haystack, $needle) {
          return strpos($haystack, $needle) !== false;
@@ -43,14 +38,16 @@ function getGalleryUrl() {
    }
 
 function getRootUrl() {
-   // Example: https://example.com/travel
+   // Example:
+   //    https://example.com/travel
    $galleryUrl = getGalleryUrl();
    $url =        dirname($galleryUrl);
    return str_ends_with($url, ":") ? $galleryUrl : $url;
    }
 
 function toCamelCase($kebabCase) {
-   // Example: "dark-mode" --> "darkMode"
+   // Example:
+   //    "dark-mode" --> "darkMode"
    $camelCase =    str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
    $camelCase[0] = strtolower($camelCase[0]);
    return $camelCase;
