@@ -118,7 +118,7 @@ admin.ui = {
       const maxFileMB =     2;
       const maxNumFiles =   20;
       const uploadHelp =    'Or just drag photos here<br>(2 MB limit per file)';
-      const acceptedTypes = ['image/jpeg', 'image/png'];
+      const acceptedTypes = ['image/png', 'image/webp', 'image/jpeg'];
       const options = {
          dictDefaultMessage:    '<p><button>Upload Photos</button></p>' + uploadHelp,
          url:                   'upload.php',

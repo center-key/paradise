@@ -28,6 +28,8 @@ function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight,
    $pathInfo = pathinfo($newFile);
    if ($pathInfo["extension"] === ".png")
       imagepng($newImage, $newFile);
+   elseif ($pathInfo["extension"] === ".webp")
+      imagewebp($newImage, $newFile);
    else
       imagejpeg($newImage, $newFile);
    $times = mb_chr(215, 'UTF-8');  //"×"
@@ -43,21 +45,23 @@ function createThumbnail($origImage, $origWidth, $origHeight, $file) {
 
 function createFullImage($origImage, $origWidth, $origHeight, $file) {
    global $fullWidthMax, $fullHeightMax;
-   $scale =     min($fullWidthMax / $origWidth, $fullHeightMax / $origHeight, 1);
+   $scale =     round(min($fullWidthMax / $origWidth, $fullHeightMax / $origHeight, 1), 4);
    $newWidth =  intval($origWidth * $scale);
    $newHeight = intval($origHeight * $scale);
    imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight, $file);
-   logEvent(__FILE__, __FUNCTION__, basename($file), $scale);
+   logEvent(__FILE__, __FUNCTION__, basename($file), "scale: {$scale}");
    }
 
 function createImages($origFile, $id) {
    global $portfolioFolder;
    list($origWidth, $origHeight, $origType) = getimagesize($origFile);
    ini_set("memory_limit", "128M");
-   if ($origType == IMAGETYPE_JPEG)
-      $origImage = imagecreatefromjpeg($origFile);
-   else
+   if ($origType == IMAGETYPE_PNG)
       $origImage = imagecreatefrompng($origFile);
+   elseif ($origType == IMAGETYPE_WEBP)
+      $origImage = imagecreatefromwebp($origFile);
+   else
+      $origImage = imagecreatefromjpeg($origFile);
    $aspectRatioMsg = "aspect: " . round($origWidth / $origHeight, 3);
    createThumbnail($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-small.png");
    createFullImage($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-large.jpg");
@@ -77,12 +81,13 @@ function fileInfo($filename) {
    $path =     "{$uploadsFolder}/{$filename}";
    $pathInfo = pathinfo($filename);
    $type =     exif_imagetype($path);
+   $valid =    in_array($type, [IMAGETYPE_PNG, IMAGETYPE_WEBP, IMAGETYPE_JPEG]);
    return (object)array(
       "name" =>      $filename,
       "path" =>      $path,
       "extension" => strtolower($pathInfo["extension"]),
       "type" =>      $type,
-      "valid" =>     $type == IMAGETYPE_JPEG || $type == IMAGETYPE_PNG,
+      "valid" =>     $valid,
       );
    }
 
@@ -111,7 +116,7 @@ function processUpload($file) {
 
 function processUploads() {
    global $uploadsFolder;
-   $imagePattern =      "/[.](jpg|jpeg|png)$/i";
+   $imagePattern =      "/[.](png|webp|jpg|jpeg)$/i";
    $uploadedFilenames = array_values(preg_grep($imagePattern, scandir($uploadsFolder)));
    $uploadedFiles =     array_map('fileInfo', $uploadedFilenames);
    $validFiles =        array_filter($uploadedFiles, function($file) { return $file->valid; });
