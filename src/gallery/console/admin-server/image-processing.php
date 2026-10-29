@@ -16,7 +16,9 @@ function getNextImageId() {
    $filter =   "{$portfolioFolder}/*-db.json";
    $dbFiles =  glob($filter);  //end() expects variable pass by reference
    $imageNum = intval(basename(end($dbFiles) ?: "0", "-db.json")) + 1;
-   return str_pad($imageNum, $numLen, "0", STR_PAD_LEFT);  //example: 17 --> "017"
+   $imageID =  str_pad($imageNum, $numLen, "0", STR_PAD_LEFT);  //example: 17 --> "017"
+   logEvent(__FILE__, __FUNCTION__, $imageID);
+   return $imageID;
    }
 
 function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight, $newFile) {
@@ -28,13 +30,15 @@ function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight,
       imagepng($newImage, $newFile);
    else
       imagejpeg($newImage, $newFile);
+   $times = mb_chr(215, 'UTF-8');  //"×"
+   logEvent(__FILE__, __FUNCTION__, basename($newFile), "{$newWidth}{$times}{$newHeight}");
    }
 
 function createThumbnail($origImage, $origWidth, $origHeight, $file) {
    global $thumbHeight;
    $newWidth = intval($thumbHeight * $origWidth / $origHeight);
    imageToFile($origImage, $origWidth, $origHeight, $newWidth, $thumbHeight, $file);
-   logEvent("create-thumbnail", $origImage, $file, $newWidth);
+   logEvent(__FILE__, __FUNCTION__, basename($file), "{$newWidth}px");
    }
 
 function createFullImage($origImage, $origWidth, $origHeight, $file) {
@@ -43,7 +47,7 @@ function createFullImage($origImage, $origWidth, $origHeight, $file) {
    $newWidth =  intval($origWidth * $scale);
    $newHeight = intval($origHeight * $scale);
    imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight, $file);
-   logEvent("create-full-image", $origImage, $file, $scale);
+   logEvent(__FILE__, __FUNCTION__, basename($file), $scale);
    }
 
 function createImages($origFile, $id) {
@@ -54,17 +58,18 @@ function createImages($origFile, $id) {
       $origImage = imagecreatefromjpeg($origFile);
    else
       $origImage = imagecreatefrompng($origFile);
-   $aspectRatio = $origWidth / $origHeight;
+   $aspectRatioMsg = "aspect: " . round($origWidth / $origHeight, 3);
    createThumbnail($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-small.png");
    createFullImage($origImage, $origWidth, $origHeight, "{$portfolioFolder}/{$id}-large.jpg");
-   logEvent("create-images", $origFile, $id, $aspectRatio);
+   $mimeType = image_type_to_mime_type($origType);
+   logEvent(__FILE__, __FUNCTION__, $id, basename($origFile), $mimeType, $aspectRatioMsg);
    }
 
 function deleteImages($id) {
    global $portfolioFolder;
    foreach (glob("{$portfolioFolder}/{$id}-*") as $filename)
       unlink($filename);
-   logEvent("delete-images", $id);
+   logEvent(__FILE__, __FUNCTION__, $id);
    }
 
 function fileInfo($filename) {
@@ -101,7 +106,7 @@ function processUpload($file) {
       "stamp" =>       false,
       );
    saveDb($dbFilename, $imageDb);
-   logEvent("process-upload", $imageDb->id, $imageDb->sort, $imageDb->original);
+   logEvent(__FILE__, __FUNCTION__, $imageDb->id, "sort: {$imageDb->sort}", $imageDb->original);
    }
 
 function processUploads() {
@@ -111,18 +116,20 @@ function processUploads() {
    $uploadedFiles =     array_map('fileInfo', $uploadedFilenames);
    $validFiles =        array_filter($uploadedFiles, function($file) { return $file->valid; });
    $invalidFiles =      array_filter($uploadedFiles, function($file) { return !$file->valid; });
+   $filesMsg =          "files: " .   count($validFiles);
+   $invalidMsg =        "invalid: " . count($invalidFiles);
    foreach ($uploadedFiles as $file)
       if ($file->valid)
          processUpload($file);
       else
-         logEvent("invalid-image-file-deleted", $file->name, $file, unlink($file->path));
-   $msg = "Images processed: " . count($validFiles) . ", Invalid: " . count($invalidFiles);
-   logEvent("process-uploads", $msg);
+         logErrorEvent(__FILE__, __FUNCTION__, "Invalid image file",
+            $file->name, $file, unlink($file->path));
+   logEvent(__FILE__, __FUNCTION__, $filesMsg, $invalidMsg);
    return (object)array(
       "count" =>   count($validFiles),
       "files" =>   array_column($validFiles,   'name'),
       "fails" =>   array_column($invalidFiles, 'name'),
-      "message" => $msg,
+      "message" => "{$filesMsg}, {$invalidMsg}",
       );
    }
 

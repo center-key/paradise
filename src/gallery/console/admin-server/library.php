@@ -24,13 +24,24 @@ function getTime() {
 
 function daysToMsec($days) {
    // Converts days to milliseconds.
+   // Example:
+   //    daysToMsec(1) --> 86400000
    return $days * 24 * 60 * 60 * 1000;
    }
 
 function toMb($bytes) {
+   // Converts size in bytes to text showing megabytes.
    // Example:
    //    toMb(3577000) --> "3.58 MB"
-   return number_format($bytes / 1000000, 2) . " MB";
+   $mb = number_format($bytes / 1000000, 2);
+   return "{$mb} MB";
+   }
+
+function toBytes($item) {
+   // Example:
+   //    toBytes("123456789 1234567") --> "17 B"
+   $bytes = is_numeric($item) ? $item : strlen($item);
+   return "{$bytes} B";
    }
 
 function fileSysFriendly($string, $max) {
@@ -50,9 +61,9 @@ function emptyObj($object) {
 
 function initializeFile($filename, $fileContents) {
    if (!is_file($filename))
-      logEvent("initialize-file", $filename, strlen($fileContents));
+      logEvent(__FILE__, __FUNCTION__, $filename, toBytes($fileContents));
    if (!is_file($filename) && !file_put_contents($filename, $fileContents))
-      logAndExit("Error initializing file, check permissions for: {$filename}");
+      logErrorExit(__FILE__, __FUNCTION__, "Initializing file failed, check permissions", $filename);
    if (!is_writable($filename))
       exit("Error reading file, check permissions for: {$filename}");
    return $filename;
@@ -60,9 +71,9 @@ function initializeFile($filename, $fileContents) {
 
 function initializeFolder($folder, $blockDirIndex) {
    if (!is_dir($folder))
-      logEvent("initialize-folder", $folder);
+      logEvent(__FILE__, __FUNCTION__, $folder);
    if (!is_dir($folder) && !mkdir($folder))
-      logAndExit("Error initializing folder, check permissions for: {$folder}");
+      logErrorExit(__FILE__, __FUNCTION__, "Initializing folder failed, check permissions", $folder);
    if ($blockDirIndex)
       initializeFile("{$folder}/index.html", "Nothing to see.");
    if (!is_writable($folder))
@@ -82,21 +93,25 @@ function readDb($dbFilename) {
    if (!isset($dbCache->{$dbFilename})) {
       $dbStr = file_get_contents($dbFilename);
       if ($dbStr === false)
-         logAndExit("Error reading database: {$dbFilename}");
+         logErrorExit(__FILE__, __FUNCTION__, "Reading database failed", $dbFilename);
       $dbCache->{$dbFilename} = json_decode($dbStr);
       }
    return $dbCache->{$dbFilename};
    }
 
-function saveDb($dbFilename, $db) {
-   $dbCache = getDbCache();
+function saveDb($dbFilename, $dbObj) {
+   // Example:
+   //    saveDb("favorite-numbers.json", [3, 7, 21]);
    if (readOnlyMode())
-      return $db;
-   $bytes = file_put_contents($dbFilename, json_encode($db));
-   logEvent("save-db", basename($dbFilename), $bytes);
-   if ($bytes === false)
-      logAndExit("Error saving database: {$dbFilename}");
-   $dbCache->{$dbFilename} = $db;
+      return $dbObj;
+   $dbCache =  getDbCache();
+   $dbJson =   json_encode($dbObj);
+   $origSize = is_file($dbFilename) ? filesize($dbFilename) : 0;
+   $newSize =  file_put_contents($dbFilename, $dbJson);
+   if ($newSize === false)
+      logErrorExit(__FILE__, __FUNCTION__, "Saving database failed", $dbFilename, toBytes($dbJson));
+   logEvent(__FILE__, __FUNCTION__, basename($dbFilename), toBytes($origSize), toBytes($newSize));
+   $dbCache->{$dbFilename} = $dbObj;
    return $dbCache->{$dbFilename};
    }
 
@@ -108,6 +123,7 @@ function readGalleryDb() {
 function saveGalleryDb($db) {
    global $galleryDbFile;
    refreshSiteMap($db);
+   logEvent(__FILE__, __FUNCTION__, basename($galleryDbFile));
    return saveDb($galleryDbFile, $db);
    }
 
@@ -126,8 +142,9 @@ function readPortfolioImageDb($id) {
 
 function savePortfolioImageDb($db) {
    global $portfolioFolder;
-   logEvent("save-portfolio-image-db", "{$portfolioFolder}/{$db->id}-db.json", $db);
-   return saveDb("{$portfolioFolder}/{$db->id}-db.json", $db);
+   $dbFilename = "{$portfolioFolder}/{$db->id}-db.json";
+   logEvent(__FILE__, __FUNCTION__, basename($dbFilename), $db);
+   return saveDb($dbFilename, $db);
    }
 
 function readSettingsDb() {
@@ -138,7 +155,7 @@ function readSettingsDb() {
 
 function saveSettingsDb($db) {
    global $settingsDbFile;
-   logEvent("save-settings-db", array_values(get_object_vars($db)));
+   logEvent(__FILE__, __FUNCTION__, basename($settingsDbFile));
    return saveDb($settingsDbFile, $db);
    }
 
@@ -161,7 +178,7 @@ function readAccountsDb() {
 
 function saveAccountsDb($db) {
    global $accountsDbFile;
-   logEvent("save-accounts-db", count((array)$db->users), count((array)$db->invites));
+   logEvent(__FILE__, __FUNCTION__, count((array)$db->users), count((array)$db->invites));
    return saveDb($accountsDbFile, $db);
    }
 
@@ -191,8 +208,9 @@ function calcNewPortfolioSort($currentSort, $up) {
    $currentLoc = array_search($currentSort, $sorts);
    $nearLoc =    min(max($currentLoc + ($up ? -1 : 1), 1), count($sorts) - 2);
    $farLoc =     min(max($currentLoc + ($up ? -2 : 2), 0), count($sorts) - 1);
-   logEvent("move-image", $currentLoc - 1, $currentSort);
-   return floor(($sorts[$nearLoc] + $sorts[$farLoc]) / 2);
+   $newSort =    floor(($sorts[$nearLoc] + $sorts[$farLoc]) / 2);
+   logEvent(__FILE__, __FUNCTION__, $currentLoc - 1, $currentSort, $newSort);
+   return $newSort;
    }
 
 function validEmailFormat($email) {
@@ -201,8 +219,9 @@ function validEmailFormat($email) {
    }
 
 function formatMsg($msg) {
-   $maxLen = 250;
-   $output = is_null($msg) ? "[null]" :
+   $maxLen = 150;
+   $output =
+      is_null($msg) ?        "[null]" :
       ($msg === true ?       "[true]" :
       ($msg === false ?      "[false]" :
       ($msg === "" ?         "[empty]" :
@@ -212,36 +231,55 @@ function formatMsg($msg) {
    return strlen($output) > $maxLen ? (substr($output, 0, $maxLen - 3) . '...') : $output;
    }
 
-function logEvent() {  //any number of parameters to log
+function rotateLogFile($logFilename, $archiveFilename) {
+   $ok = rename($logFilename, $archiveFilename);
+   if ($ok)
+      logEvent(__FILE__, __FUNCTION__, "start", basename($logFilename),
+         "archived: " . toBytes(filesize($archiveFilename)), basename($archiveFilename));
+   }
+
+function logEvent($fnPath, $fnName, ...$messages) {
+   // Example:
+   //    logEvent(__FILE__, __FUNCTION__, "email sent", $emailAddress);
    global $secureFolder;
-   $maxLogFileSize =  500000;  //500 KB
+   $maxLogFileSize =  300000;  //300 KB
    $delimiter =       " | ";
    $logFilename =     "{$secureFolder}/events.log";
    $archiveFilename = "{$secureFolder}/events-archive.log";
-   $msecs =           substr(microtime(), 2, 3);
    $user =            getCurrentUser();
-   $userStr =         $user ? $user : '[anonymous]';
-   $event =           array(date("Y-m-d H:i:s."), $msecs, $delimiter, $userStr);
-   if (is_file($logFilename) && filesize($logFilename) > $maxLogFileSize)
-      rename($logFilename, $archiveFilename);
-   foreach (func_get_args() as $msg) {
-      $event[] = $delimiter;
-      $event[] = formatMsg($msg);
-      }
-   $event[] = PHP_EOL;
-   file_put_contents($logFilename, $event, FILE_APPEND);
+   $userStr =         $user ? $user : "[anonymous]";
+   $moduleName =      basename($fnPath, ".php");
+   $fn =              toKebabCase($fnName);
+   $maxReached =      is_file($logFilename) && filesize($logFilename) > $maxLogFileSize;
+   if ($maxReached)
+      rotateLogFile($logFilename, $archiveFilename);
+   $allMessages = array_merge([$userStr, $moduleName, $fn], $messages);
+   $timestamp =   date("Y-m-d H:i:s.") . substr(microtime(), 2, 3);  //example: "2026-10-28 09:30:52.826"
+   $eventParts =  [$timestamp];
+   foreach ($allMessages as $message)
+      $eventParts[] = $delimiter . formatMsg($message);
+   $eventParts[] = PHP_EOL;
+   file_put_contents($logFilename, $eventParts, FILE_APPEND);
    }
 
-function logAndExit($message) {
-   logEvent("server-error", $message);
-   exit($message);
+function logErrorEvent($fnPath, $fnName, ...$messages) {
+   // Example:
+   //    logErrorEvent(__FILE__, __FUNCTION__, "email address not found", $emailAddress);
+   logEvent($fnPath, $fnName, "*** ERROR ***", ...$messages);
+   }
+
+function logErrorExit($fnPath, $fnName, ...$messages) {
+   logErrorEvent($fnPath, $fnName, ...$messages);
+   logEvent(__FILE__, __FUNCTION__);
+   exit("Something went wrong.");
    }
 
 function httpJsonResponse($data) {
    header("cache-control: no-cache");
    header("content-type:  application/json");
-   echo json_encode($data);
-   logEvent("http-response", $data);
+   $body = json_encode($data);
+   echo $body;
+   logEvent(__FILE__, __FUNCTION__, $data, toBytes($body));
    }
 
 function isReadOnlyExampleEmailAddress($email) {
@@ -261,7 +299,7 @@ function finishSendEmail($sendTo, $subjectLine, $messageLines) {
 
 function sendEmail($sendTo, $subjectLine, $messageLines) {
    $success = finishSendEmail($sendTo, $subjectLine, $messageLines);
-   logEvent("send-email", $success, $sendTo, $subjectLine);
+   logEvent(__FILE__, __FUNCTION__, $success, $sendTo, $subjectLine);
    $confirmationSubject = "Email confirmation";
    $confirmationLines = array(
       "This is an automated message from the Paradise Photo Gallery system.",
@@ -292,7 +330,7 @@ function refreshSiteMap($gallery) {
       $xml[] = "   <url><loc>{$base}/image/{$image->id}/{$image->code}</loc></url>";
    $xml[] = '</urlset>';
    if (!file_put_contents($siteMapFile, implode(PHP_EOL, $xml) . PHP_EOL))
-      logEvent("site-map-refresh", "*** ERROR ***", "File not saved", $siteMapFile, count($gallery));
+      logErrorEvent(__FILE__, __FUNCTION__, "File not saved", $siteMapFile, count($gallery));
    return $gallery;
    }
 

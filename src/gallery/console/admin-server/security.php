@@ -24,7 +24,7 @@ $loginMsgFile = "{$dataFolder}/login-message.html";
 $loginMsg =     "<!--\n<section>\n   <h2>Custom message</h2>\n   <p>Text goes here.</p>\n</section>\n-->\n";
 
 function redirectToPage($page) {
-   logEvent("page-redirect", $page, $_SERVER["REQUEST_URI"]);
+   logEvent(__FILE__, __FUNCTION__, $page, $_SERVER["REQUEST_URI"]);
    header("Location: ./{$page}");
    exit();
    }
@@ -58,13 +58,14 @@ function loginUser($email) {
    $accountsDb->users->{$email}->login = getTime();
    $accountsDb->users->{$email}->valid++;
    saveAccountsDb($accountsDb);
-   $type = $_SESSION["read-only-user"] ? "read-only" : "regular";
-   logEvent("user-login", session_id(), $type, $accountsDb->users->{$email}->valid);
+   $type =  $_SESSION["read-only-user"] ? "read-only" : "regular";
+   $valid = $accountsDb->users->{$email}->valid;
+   logEvent(__FILE__, __FUNCTION__, session_id(), $type, $valid);
    return true;
    }
 
 function createUser($accountsDb, $email, $password) {
-   logEvent("create-user", $email);
+   logEvent(__FILE__, __FUNCTION__, $email);
    $user = (object)array(
       "email" =>   $email,
       "created" => getTime(),
@@ -109,7 +110,7 @@ function sendAccountInvite($email) {
       );
    $invite->message = sendEmail($invite->to, $subjectLine, $messageLines) ?
       "Account invitation sent to: {$email}" : "Error emailing invitation!";
-   logEvent("send-account-invite", $code, $invite->to, $invite->expires);
+   logEvent(__FILE__, __FUNCTION__, $code, $invite->to, $invite->expires);
    return $invite;
    }
 
@@ -130,7 +131,7 @@ function useInvite($accountsDb, $code) {
    if (outstanding($invite)) {
       $invite->accepted = true;
       saveAccountsDb($accountsDb);
-      logEvent("use-invite", $code, $invite);
+      logEvent(__FILE__, __FUNCTION__, $code, $invite);
       }
    return $invite && $invite->accepted;
    }
@@ -147,7 +148,7 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCod
       createUser($accountsDb, $email, $password);
    else
       $errorCode = "bad-invite-code";
-   logEvent("validate-create-user", $email, is_null($errorCode), $errorCode, $inviteCode);
+   logEvent(__FILE__, __FUNCTION__, $email, is_null($errorCode), $errorCode, $inviteCode);
    return $errorCode;
    }
 
@@ -175,7 +176,7 @@ function restRequestSecurity($action, $httpBody) {
    else
       $errorCode = "invalid-action";
    $msg = $errorCode ? $securityMsgs->{$errorCode} : "Success";
-   logEvent("security-request", $email, $action, $errorCode, $msg);
+   logEvent(__FILE__, __FUNCTION__, $email, $action, $errorCode, $msg);
    return (object)array(
       "authenticated" => $errorCode === null,
       "email" =>         $email,

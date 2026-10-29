@@ -53,6 +53,12 @@ function toCamelCase($kebabCase) {
    return $camelCase;
    }
 
+function toKebabCase($camelCase) {
+   // Example:
+   //    "darkMode" --> "dark-mode"
+   return strtolower(preg_replace("/([A-Z]+)/", "-$1", $camelCase));
+   }
+
 function toUriCode($caption) {
    // Turns a caption, like "Mona Lisa (1503)", into a URL safe string, like "mona-lisa-1503".
    $code = preg_replace("/\s+/", "-", trim(preg_replace("/[^a-z0-9]/", " ", strtolower($caption))));

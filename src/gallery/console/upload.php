@@ -10,14 +10,14 @@
 $uploadFolder = "../~data~/uploads/";
 
 function upload($uploadFolder) {
-   foreach ($_FILES["file"]["tmp_name"] as $i => $tempFile) {
-      $filename = $_FILES["file"]["name"][$i];
+   foreach ($_FILES["file"]["tmp_name"] as $index => $tempFile) {
+      $filename = $_FILES["file"]["name"][$index];
       move_uploaded_file($tempFile, $uploadFolder . $filename);
-      logEvent("file-upload-item", $i, $filename);
+      logEvent(__FILE__, __FUNCTION__, $index, $filename);
       }
    return (object)array(
       "success" => true,
-      "images" =>  $i + 1,
+      "images" =>  $index + 1,
       );
    }
 
@@ -29,6 +29,6 @@ function readOnlyResponse() {
    }
 
 $result = readOnlyMode() ? readOnlyResponse() : upload($uploadFolder);
-logEvent("file-upload", $result->success, $uploadFolder, $result);
+logEvent(__FILE__, __FUNCTION__, $result->success, $uploadFolder, $result);
 httpJsonResponse($result);
 ?>

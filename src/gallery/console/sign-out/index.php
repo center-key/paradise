@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////
 
 // User logout
-logEvent("user-logout", session_id());
+logEvent(__FILE__, __FUNCTION__, "user-logout", session_id());
 session_destroy();
 header("Location: ../sign-in");
 ?>

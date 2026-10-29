@@ -40,9 +40,10 @@ function setupHiddenFolder($parentFolder, $name) {
    $root =       "{$parentFolder}/{$name}-";
    $pattern =    $root . "*";
    $fileSearch = glob($pattern);
+   $message =    "Unable to create folder, check permissions";
    if (count($fileSearch) === 0) {
       if (!mkdir($root . mt_rand() . mt_rand() . mt_rand()))
-         logAndExit("Unable to create {$name} folder, check permissions in: {$parentFolder}");
+         logErrorExit(__FILE__, __FUNCTION__, $message, $parentFolder, $name);
       $fileSearch = glob($pattern);
       }
    return $fileSearch[0];
@@ -64,7 +65,7 @@ function resetCustomCssForMigration($filename) {
       );
    $old = implode(PHP_EOL, $oldDefaultCss);
    if (file_get_contents($filename) == $old)
-      logEvent("reset-custom-css-for-migration", $filename, strlen($old), unlink($filename));
+      logEvent(__FILE__, __FUNCTION__, $filename, strlen($old), unlink($filename));
    }
 
 function setupCustomCss() {
@@ -87,7 +88,7 @@ function setupCustomPage($pageName) {
       $instructions = "Edit: " . realpath($filename);
       $defaultHtml = array("<h2>This page is under construction.</h2>", "<hr>", $instructions);
       $status = file_put_contents($filename, implode(PHP_EOL, $defaultHtml) . PHP_EOL);
-      logEvent("setup-custom-page", $filename, $status);
+      logEvent(__FILE__, __FUNCTION__, $filename, $status);
       }
    }
 
@@ -97,7 +98,7 @@ function setupRobotTxt() {
    $filename = "{$galleryFolder}/robots.txt";
    if (!file_exists($filename)) {
       $status = file_put_contents($filename, "# Allow all bots" . PHP_EOL);
-      logEvent("setup-robots-txt", $filename, $status);
+      logEvent(__FILE__, __FUNCTION__, $filename, $status);
       }
    }
 
@@ -112,7 +113,7 @@ function migrateFiles() {
       );
    function renameDeprecatedFile($filename) {
       if (file_exists($filename))
-         logEvent("rename-deprecated-file", $filename, rename($filename, $filename . "-DEPRECATED"));
+         logEvent(__FILE__, __FUNCTION__, $filename, rename($filename, $filename . "-DEPRECATED"));
       }
    foreach ($deprecatedList as $deprecated)
       renameDeprecatedFile("{$galleryFolder}/{$deprecated}");

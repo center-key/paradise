@@ -49,6 +49,7 @@ function runCommand($action) {
       $resource = generateGalleryDb();
    else
       $resource = restError(400);  //invalid parameters
+   logEvent(__FILE__, __FUNCTION__, $action);
    return $resource;
    }
 
@@ -138,11 +139,12 @@ function deletePortfolio($id) {
    }
 
 function restPostLog($data) {
-   // { message: "I'm afraid I can't do that, Dave." }
+   // Example $data object:
+   //    { message: "I'm afraid I can't do that, Dave." }
    if (readOnlyMode())
       $resource = restError(401);
    elseif (isset($data->message)) {
-      logEvent("client-msg", $data->message, strlen($data->message));
+      logEvent(__FILE__, __FUNCTION__, "client-msg", $data->message, strlen($data->message));
       $resource = (object)array(
          "message" =>   $data->message,
          "timestamp" => date("c"),
@@ -203,7 +205,7 @@ function restRequestBackup($action) {
       $count =    0;
       $bytes =    0;
       $zip =      new ZipArchive();
-      logEvent("backup-start", $filename);
+      logEvent(__FILE__, __FUNCTION__, "start", $filename);
       if (readOnlyMode()) {
          $url =   ".";
          $count = 10;
@@ -221,14 +223,16 @@ function restRequestBackup($action) {
          $zip->close();
          $bytes = filesize($path);
          }
-      $msecs = getTime() - $start;
-      logEvent("backup-end", $filename, "files: " . $count, "bytes: " . $bytes, "milliseconds: " . $msecs);
+      $megabytes = toMb($bytes);
+      $summary =   "files: " . $count;
+      $msecs =     getTime() - $start;
+      logEvent(__FILE__, __FUNCTION__, "done", $filename, $megabytes, $summary, "{$msecs} ms");
       return (object)array(
          "filename" =>     $filename,
          "url" =>          $url,
          "files" =>        $count,
          "bytes" =>        $bytes,
-         "size" =>         toMb($bytes),
+         "size" =>         $megabytes,
          "milliseconds" => $msecs,
          );
       }
@@ -259,9 +263,9 @@ function resource($loggedIn) {
       "invite" =>    function($action) { return restRequestInvite($action, getEmailParam()); },
       "backup" =>    function($action) { return restRequestBackup($action); },
       );
-   $httpMethod = $_SERVER["REQUEST_METHOD"];
-   $name =       isset($_GET["resource"]) ? $_GET["resource"] : null;
-   $action =     isset($_GET["action"]) ? $_GET["action"] : "get";
+   $httpMethod =     $_SERVER["REQUEST_METHOD"];
+   $name =           isset($_GET["resource"]) ? $_GET["resource"] : null;
+   $action =         isset($_GET["action"]) ?   $_GET["action"] :   "get";
    $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
    if ($httpMethod === "POST")
       $httpBody = json_decode(file_get_contents("php://input"));
@@ -278,7 +282,7 @@ function resource($loggedIn) {
       $resource = $routes[$name]($action);
    else
       $resource = restError(400);
-   logEvent("http-request", $httpMethod, $name, $action, empty($resource->error) ? "ok" : "error");
+   logEvent(__FILE__, __FUNCTION__, $httpMethod, $name, $action);
    return $resource;
    }
 
