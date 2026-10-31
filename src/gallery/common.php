@@ -34,8 +34,10 @@ function getGalleryUrl() {
    //    https://example.com/travel/gallery
    $tls =      isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
    $protocol = $tls ? "https://" : "http://";
+   $server =   $_SERVER["SERVER_NAME"];
    $ignore =   ["/index.php", "/image/fallback/one.php", "/frontend-server/send-message.php"];
-   return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
+   $uri =      str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
+   return $protocol . $server . $uri;
    }
 
 function getRootUrl() {

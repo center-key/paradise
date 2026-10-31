@@ -27,10 +27,12 @@ function getBackupFiles() {
    if (count($files) > $maxNumBackups)
       unlink(array_pop($files));
    function toObjBackup($file) {
-      $bytes = filesize($file);
+      $folder =   basename(dirname($file));
+      $filename = basename($file);
+      $bytes =    filesize($file);
       return (object)[
          "filename" => basename($file),
-         "url" =>      "../~data~/" . basename(dirname($file)) . "/" . basename($file),
+         "url" =>      "../~data~/{$folder}/$filename}",
          "bytes" =>    $bytes,
          "size" =>     toMb($bytes),
          ];

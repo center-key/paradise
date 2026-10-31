@@ -8,6 +8,8 @@
 // JSON-only zone
 
 function restError($code) {
+   // Simulate HTTP 400 status code:
+   //    http://localhost/paradise-deploy/gallery/console/rest/?resource=bogus
    $messages = (object)[
       400 => "Bad request",
       401 => "Unauthorized access",
@@ -25,7 +27,9 @@ function restError($code) {
    }
 
 function runRoute($routes, $action) {
-   return isset($routes->$action) ? $routes->$action() : restError(402);
+   logEvent(__FILE__, __FUNCTION__, $action);
+   $fn = $routes->$action ?? null;
+   return $fn ? $fn() : restError(402);
    }
 
 function test() {
@@ -213,7 +217,7 @@ function restRequestBackup($action) {
          sleep(2);
          }
       elseif ($zip->open($path, ZipArchive::CREATE) === true) {
-         $options = ["remove_path" => "../../~data~/"];   //????? (object)
+         $options = ["remove_path" => "../../~data~/"];  //https://www.php.net/manual/en/ziparchive.addglob.php
          $zip->addGlob("../../~data~/*.{css,json,html}",     GLOB_BRACE, $options);
          $zip->addGlob("../../~data~/portfolio/*.json",      GLOB_BRACE, $options);
          $zip->addGlob("../../~data~/portfolio/*-small.png", GLOB_BRACE, $options);

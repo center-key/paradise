@@ -221,14 +221,15 @@ function validEmailFormat($email) {
 function formatMsg($msg) {
    $maxLen = 150;
    $output =
-      is_null($msg) ?        "[null]" :
-      ($msg === true ?       "[true]" :
-      ($msg === false ?      "[false]" :
-      ($msg === "" ?         "[empty]" :
-      (is_object($msg) ?     json_encode($msg) :
-      (is_array($msg) ?      json_encode($msg) :
+      is_null($msg) ?    "[null]" :
+      ($msg === true ?   "[true]" :
+      ($msg === false ?  "[false]" :
+      ($msg === "" ?     "[empty]" :
+      (is_object($msg) ? json_encode($msg) :
+      (is_array($msg) ?  json_encode($msg) :
       strval($msg))))));
-   return strlen($output) > $maxLen ? (substr($output, 0, $maxLen - 3) . "...") : $output;
+   $trimmed = trim(substr($output, 0, $maxLen - 3)) . " ...";
+   return strlen($output) > $maxLen ? $trimmed : $output;
    }
 
 function rotateLogFile($logFilename, $archiveFilename) {
@@ -255,13 +256,11 @@ function logEvent($fnPath, $fnName, ...$messages) {
    $maxReached =      is_file($logFilename) && filesize($logFilename) > $maxLogFileSize;
    if ($maxReached)
       rotateLogFile($logFilename, $archiveFilename);
-   $allMessages = array_merge([$userStr, $moduleName, $fn], $messages);
    $timestamp =   date("Y-m-d H:i:s.") . substr(microtime(), 2, 3);  //example: "2026-10-28 09:30:52.826"
-   $eventParts =  [$timestamp];
-   foreach ($allMessages as $message)
-      $eventParts[] = $delimiter . formatMsg($message);
-   $eventParts[] = PHP_EOL;
-   file_put_contents($logFilename, $eventParts, FILE_APPEND);
+   $headerParts = [$timestamp, $userStr, $moduleName, $fn];
+   $eventParts =  array_merge($headerParts, array_map('formatMsg', $messages));
+   $event =       implode($delimiter, $eventParts) . PHP_EOL;
+   file_put_contents($logFilename, $event, FILE_APPEND);
    }
 
 function logErrorEvent($fnPath, $fnName, ...$messages) {
@@ -293,10 +292,11 @@ function finishSendEmail($sendTo, $subjectLine, $messageLines) {
    $messageLines[] = "";
    $messageLines[] = "- Paradise";
    $messageLines[] = "";
+   $message =        implode(PHP_EOL, $messageLines);
+   $from =           "From: " . getCurrentUser();
    if (isReadOnlyExampleEmailAddress($sendTo))
       $sendTo = getCurrentUser();
-   return readOnlyMode() ||
-      mail($sendTo, $subjectLine, implode(PHP_EOL, $messageLines), "From: " . getCurrentUser());
+   return readOnlyMode() || mail($sendTo, $subjectLine, $message, $from);
    }
 
 function sendEmail($sendTo, $subjectLine, $messageLines) {
@@ -320,7 +320,7 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
 function refreshSiteMap($gallery) {
    // Update the sitemap.xml file based on the latest gallery data.
    global $siteMapFile;
-   $xml = [
+   $xmlLines = [
       '<?xml version="1.0" encoding="UTF-8" ?>',
       '<urlset',
       '   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
@@ -329,9 +329,10 @@ function refreshSiteMap($gallery) {
       ];
    $base = getGalleryUrl();
    foreach ($gallery as $image)
-      $xml[] = "   <url><loc>{$base}/image/{$image->id}/{$image->code}</loc></url>";
-   $xml[] = "</urlset>";
-   if (!file_put_contents($siteMapFile, implode(PHP_EOL, $xml) . PHP_EOL))
+      $xmlLines[] = "   <url><loc>{$base}/image/{$image->id}/{$image->code}</loc></url>";
+   $xmlLines[] = "</urlset>";
+   $xml = implode(PHP_EOL, $xmlLines) . PHP_EOL;
+   if (!file_put_contents($siteMapFile, $xml))
       logErrorEvent(__FILE__, __FUNCTION__, "File not saved", $siteMapFile, count($gallery));
    return $gallery;
    }
