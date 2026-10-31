@@ -15,13 +15,14 @@ $from =      "From: Paradise <{$email}>";
 $thanksUri = "../#thanks";
 
 // Create message body
-$message = array(
+$message = [
    getGalleryUrl(),
    "-----------------------------",
    "Name: " .    $_POST["name"],
    "Email: " .   $_POST["email"],
    "Message: " . $_POST["message"],
-   "-----------------------------");
+   "-----------------------------"
+   ];
 $body = htmlspecialchars(implode(PHP_EOL, $message), ENT_NOQUOTES);
 
 // Send message

@@ -8,7 +8,7 @@
 // List of Google fonts
 // See https://fonts.google.com
 
-$googleFonts = array(
+$googleFonts = [
    "Allan",
    "Allerta Stencil",
    "Anonymous Pro",
@@ -79,6 +79,6 @@ $googleFonts = array(
    "Tangerine",
    "UnifrakturMaguntia",
    "Vibur",
-   );
+   ];
 
 ?>

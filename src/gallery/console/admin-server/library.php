@@ -84,7 +84,7 @@ function initializeFolder($folder, $blockDirIndex) {
 function getDbCache() {
    global $dbCacheStore;
    if ($dbCacheStore == null)
-      $dbCacheStore = (object)array();
+      $dbCacheStore = (object)[];
    return $dbCacheStore;
    }
 
@@ -187,14 +187,14 @@ function displayTrue($imageDb) {
    }
 
 function convert($imageDb) {
-   return (object)array(
+   return (object)[
       "id" =>          $imageDb->id,
       "code" =>        toUriCode($imageDb->caption),
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
       "badge" =>       isset($imageDb->badge) ? $imageDb->badge : "",
       "stamp" =>       isset($imageDb->stamp) ? $imageDb->stamp : false,
-      );
+      ];
    }
 function generateGalleryDb() {
    return saveGalleryDb(array_map("convert", array_values(
@@ -202,7 +202,7 @@ function generateGalleryDb() {
    }
 
 function calcNewPortfolioSort($currentSort, $up) {
-   $sorts = array_column(readPortfolioDb(), 'sort');
+   $sorts = array_column(readPortfolioDb(), "sort");
    array_unshift($sorts, 0);                 //allow space to move to the top
    array_push($sorts, end($sorts) + 10000);  //allow space to move to the bottom
    $currentLoc = array_search($currentSort, $sorts);
@@ -228,14 +228,16 @@ function formatMsg($msg) {
       (is_object($msg) ?     json_encode($msg) :
       (is_array($msg) ?      json_encode($msg) :
       strval($msg))))));
-   return strlen($output) > $maxLen ? (substr($output, 0, $maxLen - 3) . '...') : $output;
+   return strlen($output) > $maxLen ? (substr($output, 0, $maxLen - 3) . "...") : $output;
    }
 
 function rotateLogFile($logFilename, $archiveFilename) {
-   $ok = rename($logFilename, $archiveFilename);
+   $ok =    rename($logFilename, $archiveFilename);
+   $from =  basename($logFilename);
+   $to =    basename($archiveFilename);
+   $bytes = toBytes(filesize($archiveFilename));
    if ($ok)
-      logEvent(__FILE__, __FUNCTION__, "start", basename($logFilename),
-         "archived: " . toBytes(filesize($archiveFilename)), basename($archiveFilename));
+      logEvent(__FILE__, __FUNCTION__, "start", $from, "archived: {$bytes}", $to);
    }
 
 function logEvent($fnPath, $fnName, ...$messages) {
@@ -301,7 +303,7 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
    $success = finishSendEmail($sendTo, $subjectLine, $messageLines);
    logEvent(__FILE__, __FUNCTION__, $success, $sendTo, $subjectLine);
    $confirmationSubject = "Email confirmation";
-   $confirmationLines = array(
+   $confirmationLines = [
       "This is an automated message from the Paradise Photo Gallery system.",
       "",
       "An email message was just sent on your behalf as follows:",
@@ -309,7 +311,7 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
       "\tTo: {$sendTo}",
       "",
       "This is an informational message only -- no action is required on your part.",
-      );
+      ];
    if ($success)
       finishSendEmail(getCurrentUser(), $confirmationSubject, $confirmationLines);
    return $success;
@@ -318,17 +320,17 @@ function sendEmail($sendTo, $subjectLine, $messageLines) {
 function refreshSiteMap($gallery) {
    // Update the sitemap.xml file based on the latest gallery data.
    global $siteMapFile;
-   $xml = array(
+   $xml = [
       '<?xml version="1.0" encoding="UTF-8" ?>',
       '<urlset',
       '   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
       '   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
       '   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">',
-      );
+      ];
    $base = getGalleryUrl();
    foreach ($gallery as $image)
       $xml[] = "   <url><loc>{$base}/image/{$image->id}/{$image->code}</loc></url>";
-   $xml[] = '</urlset>';
+   $xml[] = "</urlset>";
    if (!file_put_contents($siteMapFile, implode(PHP_EOL, $xml) . PHP_EOL))
       logErrorEvent(__FILE__, __FUNCTION__, "File not saved", $siteMapFile, count($gallery));
    return $gallery;

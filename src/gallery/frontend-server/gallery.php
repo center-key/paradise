@@ -34,13 +34,13 @@ function linkText($url) {
 
 function styleClasses($settings) {
    // Example output: "dark-mode show-description caption-caps"
-   $options = array(
+   $options = [
       "dark-mode",
       "image-border",
       "show-description",
       "caption-caps",
       "caption-italic",
-      );
+      ];
    $enabled = function($property) use ($settings) { return $settings->{toCamelCase($property)}; };
    return implode(" ", array_filter($options, $enabled));
    }
@@ -91,7 +91,7 @@ function getImageInfo($uri, $gallery) {
    $imageDb =       json_decode($content);
    $imageDb->code = toUriCode($imageDb->caption);  //backwards compatibility (temporary)
    $galleryUrl =    getGalleryUrl();
-   $meta = (object)array(
+   $meta = (object)[
       "id" =>          $id,
       "code" =>        $imageDb->code,
       "caption" =>     $imageDb->caption,
@@ -99,7 +99,7 @@ function getImageInfo($uri, $gallery) {
       "canonical" =>   "{$galleryUrl}/image/{$id}/{$imageDb->code}",
       "urlSmall" =>    "{$galleryUrl}/~data~/portfolio/{$id}-small.png",
       "urlLarge" =>    "{$galleryUrl}/~data~/portfolio/{$id}-large.jpg",
-      );
+      ];
    return $meta;
    }
 
@@ -108,13 +108,13 @@ function setValues($settings, $gallery) {
    $artistPageFile = __DIR__ . "/../~data~/page-{$settings->pages[1]->name}.html";
    $galleryUrl =     getGalleryUrl();
    $id =             empty($gallery) ? "NA" : $gallery[0]->id;
-   return (object)array(
+   return (object)[
       "cardImageUrl" =>   "{$galleryUrl}/~data~/portfolio/{$id}-large.jpg",
       "thumbnailUrl" =>   "{$galleryUrl}/~data~/portfolio/{$id}-small.png",
       "titleFontUrl" =>   "https://fonts.googleapis.com/css?family={$titleFontParam}",
       "styleClasses" =>   styleClasses($settings),
       "artistPageHtml" => $settings->pages[1]->show ? file_get_contents($artistPageFile) : "",
-      );
+      ];
    }
 
 $settings = getData(__DIR__ . "/../~data~/settings-db.json");

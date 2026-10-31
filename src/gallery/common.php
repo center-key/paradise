@@ -7,7 +7,7 @@
 // Common
 // Utilities and functions shared between the front-end and the console.
 
-$minimumPhpVersion = '7.1.0';
+$minimumPhpVersion = "7.1.0";
 $obsoletePhp =       version_compare(PHP_VERSION, $minimumPhpVersion, "<");
 
 function polyfills() {
@@ -21,7 +21,7 @@ function polyfills() {
          return substr($haystack, -strlen($needle)) === $needle;
          }
       }
-   if (!function_exists('str_starts_with')) {  //polyfill: str_starts_with(), PHP 8.0.0
+   if (!function_exists("str_starts_with")) {  //polyfill: str_starts_with(), PHP 8.0.0
       function str_starts_with($haystack, $needle) {
          return strlen($needle) === 0 || strpos($haystack, $needle) === 0;
          }
@@ -30,10 +30,11 @@ function polyfills() {
 polyfills();
 
 function getGalleryUrl() {
-   // Example: https://example.com/travel/gallery
+   // Example:
+   //    https://example.com/travel/gallery
    $tls =      isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off";
    $protocol = $tls ? "https://" : "http://";
-   $ignore =   array("/index.php", "/image/fallback/one.php", "/frontend-server/send-message.php");
+   $ignore =   ["/index.php", "/image/fallback/one.php", "/frontend-server/send-message.php"];
    return $protocol . $_SERVER["SERVER_NAME"] . str_replace($ignore, "", $_SERVER["SCRIPT_NAME"]);
    }
 
@@ -48,7 +49,7 @@ function getRootUrl() {
 function toCamelCase($kebabCase) {
    // Example:
    //    "dark-mode" --> "darkMode"
-   $camelCase =    str_replace(' ', '', ucwords(str_replace('-', ' ', $kebabCase)));
+   $camelCase =    str_replace(" ", "", ucwords(str_replace("-", " ", $kebabCase)));
    $camelCase[0] = strtolower($camelCase[0]);
    return $camelCase;
    }

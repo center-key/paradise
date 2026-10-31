@@ -32,7 +32,7 @@ function imageToFile($origImage, $origWidth, $origHeight, $newWidth, $newHeight,
       imagewebp($newImage, $newFile);
    else
       imagejpeg($newImage, $newFile);
-   $times = mb_chr(215, 'UTF-8');  //"×"
+   $times = mb_chr(215, "UTF-8");  //"×"
    logEvent(__FILE__, __FUNCTION__, basename($newFile), "{$newWidth}{$times}{$newHeight}");
    }
 
@@ -82,13 +82,13 @@ function fileInfo($filename) {
    $pathInfo = pathinfo($filename);
    $type =     exif_imagetype($path);
    $valid =    in_array($type, [IMAGETYPE_PNG, IMAGETYPE_WEBP, IMAGETYPE_JPEG]);
-   return (object)array(
+   return (object)[
       "name" =>      $filename,
       "path" =>      $path,
       "extension" => strtolower($pathInfo["extension"]),
       "type" =>      $type,
       "valid" =>     $valid,
-      );
+      ];
    }
 
 function processUpload($file) {
@@ -98,7 +98,7 @@ function processUpload($file) {
    rename($file->path, $origFile);
    createImages($origFile, $id);
    $dbFilename = "{$portfolioFolder}/{$id}-db.json";
-   $imageDb = (object)array(
+   $imageDb = (object)[
       "id" =>          $id,
       "code" =>        "one-image",
       "sort" =>        intval($id) * 10000,
@@ -109,7 +109,7 @@ function processUpload($file) {
       "description" => "",
       "badge" =>       "",
       "stamp" =>       false,
-      );
+      ];
    saveDb($dbFilename, $imageDb);
    logEvent(__FILE__, __FUNCTION__, $imageDb->id, "sort: {$imageDb->sort}", $imageDb->original);
    }
@@ -118,7 +118,7 @@ function processUploads() {
    global $uploadsFolder;
    $imagePattern =      "/[.](png|webp|jpg|jpeg)$/i";
    $uploadedFilenames = array_values(preg_grep($imagePattern, scandir($uploadsFolder)));
-   $uploadedFiles =     array_map('fileInfo', $uploadedFilenames);
+   $uploadedFiles =     array_map("fileInfo", $uploadedFilenames);
    $validFiles =        array_filter($uploadedFiles, function($file) { return $file->valid; });
    $invalidFiles =      array_filter($uploadedFiles, function($file) { return !$file->valid; });
    $filesMsg =          "files: " .   count($validFiles);
@@ -130,12 +130,12 @@ function processUploads() {
          logErrorEvent(__FILE__, __FUNCTION__, "Invalid image file",
             $file->name, $file, unlink($file->path));
    logEvent(__FILE__, __FUNCTION__, $filesMsg, $invalidMsg);
-   return (object)array(
+   return (object)[
       "count" =>   count($validFiles),
-      "files" =>   array_column($validFiles,   'name'),
-      "fails" =>   array_column($invalidFiles, 'name'),
+      "files" =>   array_column($validFiles,   "name"),
+      "fails" =>   array_column($invalidFiles, "name"),
       "message" => "{$filesMsg}, {$invalidMsg}",
-      );
+      ];
    }
 
 ?>

@@ -66,13 +66,13 @@ function loginUser($email) {
 
 function createUser($accountsDb, $email, $password) {
    logEvent(__FILE__, __FUNCTION__, $email);
-   $user = (object)array(
+   $user = (object)[
       "email" =>   $email,
       "created" => getTime(),
       "enabled" => true,
       "login" =>   getTime(),
       "valid" =>   1,
-      );
+      ];
    $user->hash = calculateHash($user, $password);
    $accountsDb->users->{$email} = $user;
    saveAccountsDb($accountsDb);
@@ -84,7 +84,7 @@ function sendAccountInvite($email) {
    $expires =   getTime() + daysToMsec($daysValid);
    $code =      "Q" . mt_rand() . mt_rand();
    $user =      getCurrentUser();
-   $invite = (object)array(
+   $invite = (object)[
       "code" =>     $code,
       "from" =>     $user,
       "to" =>       $email,
@@ -92,13 +92,13 @@ function sendAccountInvite($email) {
       "sent" =>     getTime(),
       "expires" =>  $expires,
       "date" =>     date("Y-m-d", intval($expires / 1000)),
-      );
+      ];
    $db = readAccountsDb();
    $db->invites->{$code} = $invite;
    saveAccountsDb($db);
    $inviteLink =  getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
    $subjectLine = "Sign up invitation";
-   $messageLines = array(
+   $messageLines = [
       "You have been invited by {$user} to create an account to administer a Paradise Photo Gallery.",
       "",
       "To sign up and start uploading images, go to:",
@@ -107,7 +107,7 @@ function sendAccountInvite($email) {
       "The above link expires in {$daysValid} days.",
       "",
       "The gallery can be viewed at: " . getGalleryUrl(),
-      );
+      ];
    $invite->message = sendEmail($invite->to, $subjectLine, $messageLines) ?
       "Account invitation sent to: {$email}" : "Error emailing invitation!";
    logEvent(__FILE__, __FUNCTION__, $code, $invite->to, $invite->expires);
@@ -153,7 +153,7 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCod
    }
 
 function restRequestSecurity($action, $httpBody) {
-   $securityMsgs = (object)array(
+   $securityMsgs = (object)[
       "bad-invite-code" => "Invite code is missing, expired, or invalid.",
       "bad-credentials" => "The email address or password you entered is incorrect.",
       "invalid-email" =>   "Please enter a valid email address.",
@@ -161,7 +161,7 @@ function restRequestSecurity($action, $httpBody) {
       "user-exists" =>     "That email address is already in use.",
       "create-fail" =>     "Cannot create user.",
       "invalid-action" =>  "Invalid action.",
-      );
+      ];
    $email =      strtolower(trim($httpBody->email));
    $password =   $httpBody->password;
    $confirm =    $httpBody->confirm;
@@ -177,11 +177,11 @@ function restRequestSecurity($action, $httpBody) {
       $errorCode = "invalid-action";
    $msg = $errorCode ? $securityMsgs->{$errorCode} : "Success";
    logEvent(__FILE__, __FUNCTION__, $email, $action, $errorCode, $msg);
-   return (object)array(
+   return (object)[
       "authenticated" => $errorCode === null,
       "email" =>         $email,
       "message" =>       $msg,
-      );
+      ];
    }
 
 function readOnlyMode() {

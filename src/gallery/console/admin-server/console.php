@@ -9,7 +9,7 @@
 
 function getOutstandingInvites() {
    if (readOnlyMode())
-      return $resource = (object)array(array("to" => "lee@example.com", "date" => date("Y-m-d")));
+      return $resource = (object)[["to" => "lee@example.com", "date" => date("Y-m-d")]];
    return array_values(array_filter(array_values((array)readAccountsDb()->invites), "outstanding"));
    }
 
@@ -28,15 +28,15 @@ function getBackupFiles() {
       unlink(array_pop($files));
    function toObjBackup($file) {
       $bytes = filesize($file);
-      return (object)array(
+      return (object)[
          "filename" => basename($file),
          "url" =>      "../~data~/" . basename(dirname($file)) . "/" . basename($file),
          "bytes" =>    $bytes,
          "size" =>     toMb($bytes),
-         );
+         ];
       };
    if (readOnlyMode())
-      $files = array();
+      $files = [];
    return array_map("toObjBackup", $files);
    }
 
@@ -44,7 +44,7 @@ function appClientData() {
    // Returns JSON to be inserted into a variable assignment within <script> tag on a web page.
    global $appVersion, $googleFonts;
    $settings = readSettingsDb();
-   $data = (object)array(
+   $data = (object)[
       "appVersion" =>    $appVersion,
       "phpVersion" =>    PHP_VERSION,
       "user" =>          getCurrentUser(),
@@ -53,9 +53,9 @@ function appClientData() {
       "title" =>         $settings->title,
       "titleSize" =>     $settings->titleSize,
       "fonts" =>         $googleFonts,
-      "invites" =>       getCurrentUser() ? getOutstandingInvites() : array(),
-      "backupFiles" =>   getCurrentUser() ? getBackupFiles() : array(),
-      );
+      "invites" =>       getCurrentUser() ? getOutstandingInvites() : [],
+      "backupFiles" =>   getCurrentUser() ? getBackupFiles() : [],
+      ];
    return json_encode($data);
    }
 

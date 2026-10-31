@@ -7,7 +7,7 @@
 // Startup
 // Initializes the data folder
 
-$defaultSettingsDb = (object)array(  //see: frontend-server/gallery.php:migrateSettings($settings)
+$defaultSettingsDb = (object)[  //see: frontend-server/gallery.php:migrateSettings($settings)
    "title" =>              "My Gallery",
    "titleFont" =>          "Reenie Beanie",
    "titleSize" =>          "400%",
@@ -25,16 +25,16 @@ $defaultSettingsDb = (object)array(  //see: frontend-server/gallery.php:migrateS
    "footer" =>             "&copy; " . gmdate("Y") . " The Artist",
    "googleVerification" => "",
    "contactEmail" =>       "",
-   "pages" => array(
-      (object)array("name" => "gallery", "title" => "Gallery", "show" =>  true),
-      (object)array("name" => "artist",  "title" => "Artist",  "show" =>  false),
-      (object)array("name" => "contact", "title" => "Contact", "show" =>  false),
-      ),
-   );
-$defaultAccountsDb = (object)array(
-   "users" =>   (object)array(),  //key: email, fields: email, created, hash, enabled, login, valid
-   "invites" => (object)array(),  //key: inviteCode, fields: from, to, expires, accepted
-   );
+   "pages" => [
+      (object)["name" => "gallery", "title" => "Gallery", "show" =>  true],
+      (object)["name" => "artist",  "title" => "Artist",  "show" =>  false],
+      (object)["name" => "contact", "title" => "Contact", "show" =>  false],
+      ],
+   ];
+$defaultAccountsDb = (object)[
+   "users" =>   (object)[],  //keys: email, fields: email, created, hash, enabled, login, valid
+   "invites" => (object)[],  //keys: inviteCode, fields: from, to, expires, accepted
+   ];
 
 function setupHiddenFolder($parentFolder, $name) {
    $root =       "{$parentFolder}/{$name}-";
@@ -54,7 +54,7 @@ function setupDb($dbFilename, $defaultDb) {
    }
 
 function resetCustomCssForMigration($filename) {
-   $oldDefaultCss = array(
+   $oldDefaultCss = [
       "/* Paradise Photo Gallery                                   */",
       "/* Edit this CSS file to customize the look of the gallery. */",
       "/* Put custom images in: gallery/~data~/graphics            */",
@@ -62,7 +62,7 @@ function resetCustomCssForMigration($filename) {
       "body { color: whitesmoke; background-color: dimgray; }",
       "body >footer { background-color: gray; border-color: black; }",
       ".gallery-images .image img { border-color: black; }",
-      );
+      ];
    $old = implode(PHP_EOL, $oldDefaultCss);
    if (file_get_contents($filename) == $old)
       logEvent(__FILE__, __FUNCTION__, $filename, strlen($old), unlink($filename));
@@ -70,12 +70,12 @@ function resetCustomCssForMigration($filename) {
 
 function setupCustomCss() {
    global $dataFolder;
-   $defaultCss = array(
+   $defaultCss = [
       "/* Paradise Photo Gallery                                   */",
       "/* Edit this CSS file to customize the look of the gallery. */",
       "/* Put custom images in: gallery/~data~/graphics            */",
       "",
-      );
+      ];
    $filename = "{$dataFolder}/custom-style.css";
    resetCustomCssForMigration($filename);
    initializeFile($filename, implode(PHP_EOL, $defaultCss));
@@ -86,7 +86,7 @@ function setupCustomPage($pageName) {
    $filename = "{$dataFolder}/page-{$pageName}.html";
    if (!file_exists($filename)) {
       $instructions = "Edit: " . realpath($filename);
-      $defaultHtml = array("<h2>This page is under construction.</h2>", "<hr>", $instructions);
+      $defaultHtml =  ["<h2>This page is under construction.</h2>", "<hr>", $instructions];
       $status = file_put_contents($filename, implode(PHP_EOL, $defaultHtml) . PHP_EOL);
       logEvent(__FILE__, __FUNCTION__, $filename, $status);
       }
@@ -105,12 +105,12 @@ function setupRobotTxt() {
 function migrateFiles() {
    // Performs one-time upgrades to work with the latest release.
    global $galleryFolder;
-   $deprecatedList = array(
+   $deprecatedList = [
       ".htaccess",
       "sitemap.php",
       "server",
       "console/server",
-      );
+      ];
    function renameDeprecatedFile($filename) {
       if (file_exists($filename))
          logEvent(__FILE__, __FUNCTION__, $filename, rename($filename, $filename . "-DEPRECATED"));

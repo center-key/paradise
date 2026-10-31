@@ -15,17 +15,17 @@ function upload($uploadFolder) {
       move_uploaded_file($tempFile, $uploadFolder . $filename);
       logEvent(__FILE__, __FUNCTION__, $index, $filename);
       }
-   return (object)array(
+   return (object)[
       "success" => true,
       "images" =>  $index + 1,
-      );
+      ];
    }
 
 function readOnlyResponse() {
-   return (object)array(
+   return (object)[
       "success" => true,
       "type" =>    "simulated",
-      );
+      ];
    }
 
 $result = readOnlyMode() ? readOnlyResponse() : upload($uploadFolder);

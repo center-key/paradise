@@ -8,36 +8,36 @@
 // JSON-only zone
 
 function restError($code) {
-   $messages = (object)array(
+   $messages = (object)[
       400 => "Bad request",
       401 => "Unauthorized access",
       402 => "Missing in action",
       404 => "Resource not found",
       500 => "Unknown error",
       501 => "Not implemented",
-      );
+      ];
    $messagesPhp53 = (array)$messages;
-   return (object)array(
+   return (object)[
       "error" =>   true,
       "code" =>    $code,
       "message" => $messagesPhp53[$code],  //"message" => $messages->{$code},
-      );
+      ];
    }
 
 function runRoute($routes, $action) {
-   return isset($routes[$action]) ? $routes[$action]() : restError(402);
+   return isset($routes->$action) ? $routes->$action() : restError(402);
    }
 
 function test() {
    // URL: http://localhost/paradise-deploy/gallery/console/rest?resource=command&action=test
-   return (object)array(
+   return (object)[
       "test" => true,
-      "data" => array(
+      "data" => (object)[
          "method" =>    $httpMethod = $_SERVER["REQUEST_METHOD"],
          "timestamp" => date("c"),
          "read-only" => readOnlyMode(),
-         ),
-      );
+         ],
+      ];
    }
 
 function runCommand($action) {
@@ -54,8 +54,8 @@ function runCommand($action) {
    }
 
 function fieldValue($rawValue, $type) {
-   $find =  array("<",    ">",    '"',      "'");
-   $use =   array("&lt;", "&gt;", "&quot;", "&apos;");
+   $find =  ["<",    ">",    '"',      "'"];
+   $use =   ["&lt;", "&gt;", "&quot;", "&apos;"];
    $value = str_replace($find, $use, trim($rawValue));
    if ($type === "boolean")
       $value = $value === "true";
@@ -77,7 +77,7 @@ function updateItem($resource, $itemType) {
    }
 
 function updateSettings() {
-   $fields = (object)array(
+   $fields = (object)[
       "title" =>              "string",
       "titleFont" =>          "string",
       "titleSize" =>          "string",
@@ -95,7 +95,7 @@ function updateSettings() {
       "footer" =>             "string",
       "googleVerification" => "string",
       "contactEmail" =>       "string",
-      );
+      ];
    $resource = readSettingsDb();
    if (isset($_GET["item"]))
       updateItem($resource, $_GET["item"]);
@@ -107,14 +107,14 @@ function updateSettings() {
    }
 
 function updatePortfolio($id) {
-   $fields = (object)array(
+   $fields = (object)[
       "sort" =>        "integer",
       "display" =>     "boolean",
       "caption" =>     "string",
       "description" => "string",
       "badge" =>       "string",
       "stamp" =>       "boolean",
-      );
+      ];
    $resource = readPortfolioImageDb($id);
    if ($resource) {
       foreach ($fields as $field => $type)
@@ -145,10 +145,10 @@ function restPostLog($data) {
       $resource = restError(401);
    elseif (isset($data->message)) {
       logEvent(__FILE__, __FUNCTION__, "client-msg", $data->message, strlen($data->message));
-      $resource = (object)array(
+      $resource = (object)[
          "message" =>   $data->message,
          "timestamp" => date("c"),
-         );
+         ];
       }
    else
       $resource = restError(400);  //missing message field
@@ -164,14 +164,15 @@ function restRequestGallery() {
    }
 
 function restRequestPortfolio($action, $id) {
-   $routes = array(
+   $routes = (object)[
       "create" => function($id) { return restError(400); },
       "get" =>    function($id) { return restError(501); },
       "update" => function($id) { return updatePortfolio($id); },
       "delete" => function($id) { return deletePortfolio($id); },
       "list" =>   function($id) { return readPortfolioDb(); },
-      );
-   return $routes[$action]($id);
+      ];
+   $fn = $routes->$action;
+   return $fn($id);
    }
 
 function restRequestAccount($action, $email) {
@@ -179,11 +180,11 @@ function restRequestAccount($action, $email) {
    $emails = array_keys(get_object_vars($users));
    sort($emails);
    return array_map(function ($email) use ($users) {
-      return (object)array(
+      return (object)[
          "email" => $email,
          "login" => $users->{$email}->login,
          "valid" => $users->{$email}->valid,
-         );
+         ];
       }, $emails);
    }
 
@@ -212,7 +213,7 @@ function restRequestBackup($action) {
          sleep(2);
          }
       elseif ($zip->open($path, ZipArchive::CREATE) === true) {
-         $options = array("remove_path" => "../../~data~/");
+         $options = ["remove_path" => "../../~data~/"];   //????? (object)
          $zip->addGlob("../../~data~/*.{css,json,html}",     GLOB_BRACE, $options);
          $zip->addGlob("../../~data~/portfolio/*.json",      GLOB_BRACE, $options);
          $zip->addGlob("../../~data~/portfolio/*-small.png", GLOB_BRACE, $options);
@@ -227,19 +228,19 @@ function restRequestBackup($action) {
       $summary =   "files: " . $count;
       $msecs =     getTime() - $start;
       logEvent(__FILE__, __FUNCTION__, "done", $filename, $megabytes, $summary, "{$msecs} ms");
-      return (object)array(
+      return (object)[
          "filename" =>     $filename,
          "url" =>          $url,
          "files" =>        $count,
          "bytes" =>        $bytes,
          "size" =>         $megabytes,
          "milliseconds" => $msecs,
-         );
+         ];
       }
-   $routes = array(
+   $routes = (object)[
       "create" => function() { return actionCreate(); },
       "list" =>   function() { return getBackupFiles(); },
-      );
+      ];
    return runRoute($routes, $action);
    }
 
@@ -252,21 +253,23 @@ function getEmailParam() {
    }
 
 function resource($loggedIn) {
-   $postRoutes = array(
+   $postRoutes = (object)[
       "log" => function($resource) { return restPostLog($resource); },
-      );
-   $routes = array(
+      ];
+   $routes = (object)[
       "settings" =>  function($action) { return restRequestSettings($action); },
       "gallery" =>   function($action) { return restRequestGallery(); },
       "portfolio" => function($action) { return restRequestPortfolio($action, getIdParam()); },
       "account" =>   function($action) { return restRequestAccount($action, getEmailParam()); },
       "invite" =>    function($action) { return restRequestInvite($action, getEmailParam()); },
       "backup" =>    function($action) { return restRequestBackup($action); },
-      );
+      ];
    $httpMethod =     $_SERVER["REQUEST_METHOD"];
    $name =           isset($_GET["resource"]) ? $_GET["resource"] : null;
    $action =         isset($_GET["action"]) ?   $_GET["action"] :   "get";
-   $standardAction = in_array($action, array("create", "get", "update", "delete", "list"));
+   $postFn =         $postRoutes->$name ?? null;
+   $fn =             $routes->$name ?? null;
+   $standardAction = in_array($action, ["create", "get", "update", "delete", "list"]);
    if ($httpMethod === "POST")
       $httpBody = json_decode(file_get_contents("php://input"));
    $hasBody = isset($httpBody);
@@ -274,12 +277,12 @@ function resource($loggedIn) {
       $resource = restRequestSecurity($action, $httpBody);
    elseif (!$loggedIn)
       $resource = restError(401);
-   elseif ($hasBody && isset($postRoutes[$name]))
-      $resource = $postRoutes[$name]($httpBody);
+   elseif ($hasBody && $postFn)
+      $resource = $postFn($httpBody);
    elseif ($name === "command")
       $resource = runCommand($action);
-   elseif (isset($routes[$name]) && $standardAction)
-      $resource = $routes[$name]($action);
+   elseif ($fn && $standardAction)
+      $resource = $fn($action);
    else
       $resource = restError(400);
    logEvent(__FILE__, __FUNCTION__, $httpMethod, $name, $action);
