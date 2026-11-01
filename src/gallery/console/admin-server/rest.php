@@ -10,7 +10,7 @@
 function restError($code) {
    // Simulate HTTP 400 status code:
    //    http://localhost/paradise-deploy/gallery/console/rest/?resource=bogus
-   $messages = (object)[
+   $errorTable = (object)[
       400 => "Bad request",
       401 => "Unauthorized access",
       402 => "Missing in action",
@@ -18,11 +18,10 @@ function restError($code) {
       500 => "Unknown error",
       501 => "Not implemented",
       ];
-   $messagesPhp53 = (array)$messages;
    return (object)[
       "error" =>   true,
       "code" =>    $code,
-      "message" => $messagesPhp53[$code],  //"message" => $messages->{$code},
+      "message" => $errorTable->$code,
       ];
    }
 
@@ -106,7 +105,7 @@ function updateSettings() {
    else
       foreach ($fields as $field => $type)
          if (isset($_GET[$field]))
-            $resource->{$field} = fieldValue($_GET[$field], $type);
+            $resource->$field = fieldValue($_GET[$field], $type);
    return saveSettingsDb($resource);
    }
 
@@ -123,7 +122,7 @@ function updatePortfolio($id) {
    if ($resource) {
       foreach ($fields as $field => $type)
          if (isset($_GET[$field]))
-            $resource->{$field} = fieldValue($_GET[$field], $type);
+            $resource->$field = fieldValue($_GET[$field], $type);
       if (isset($_GET["move"]))
          $resource->sort = calcNewPortfolioSort($resource->sort, $_GET["move"] === "up");
       $resource->code = toUriCode($resource->caption);
@@ -180,14 +179,15 @@ function restRequestPortfolio($action, $id) {
    }
 
 function restRequestAccount($action, $email) {
-   $users =  readAccountsDb()->users;
-   $emails = array_keys(get_object_vars($users));
+   $accountsDb = readAccountsDb();
+   $users =      $accountsDb->users;
+   $emails =     array_keys((array)$users);
    sort($emails);
    return array_map(function ($email) use ($users) {
       return (object)[
          "email" => $email,
-         "login" => $users->{$email}->login,
-         "valid" => $users->{$email}->valid,
+         "login" => $users->$email->login,
+         "valid" => $users->$email->valid,
          ];
       }, $emails);
    }

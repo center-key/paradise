@@ -55,11 +55,11 @@ function loginUser($email) {
    $_SESSION["active"] =         getTime();
    $_SESSION["read-only-user"] = isReadOnlyExampleEmailAddress($email);
    $accountsDb = readAccountsDb();
-   $accountsDb->users->{$email}->login = getTime();
-   $accountsDb->users->{$email}->valid++;
+   $accountsDb->users->$email->login = getTime();
+   $accountsDb->users->$email->valid++;
    saveAccountsDb($accountsDb);
    $type =  $_SESSION["read-only-user"] ? "read-only" : "regular";
-   $valid = $accountsDb->users->{$email}->valid;
+   $valid = $accountsDb->users->$email->valid;
    logEvent(__FILE__, __FUNCTION__, session_id(), $type, $valid);
    return true;
    }
@@ -74,7 +74,7 @@ function createUser($accountsDb, $email, $password) {
       "valid" =>   1,
       ];
    $user->hash = calculateHash($user, $password);
-   $accountsDb->users->{$email} = $user;
+   $accountsDb->users->$email = $user;
    saveAccountsDb($accountsDb);
    loginUser($email);
    }
@@ -94,7 +94,7 @@ function sendAccountInvite($email) {
       "date" =>     date("Y-m-d", intval($expires / 1000)),
       ];
    $db = readAccountsDb();
-   $db->invites->{$code} = $invite;
+   $db->invites->$code = $invite;
    saveAccountsDb($db);
    $inviteLink =  getGalleryUrl() . "/console/sign-in?invite={$code}&email={$email}";
    $subjectLine = "Sign up invitation";
@@ -127,7 +127,7 @@ function restRequestInvite($action, $email) {
    }
 
 function useInvite($accountsDb, $code) {
-   $invite = isset($accountsDb->invites->{$code}) ? $accountsDb->invites->{$code} : null;
+   $invite = isset($accountsDb->invites->$code) ? $accountsDb->invites->$code : null;
    if (outstanding($invite)) {
       $invite->accepted = true;
       saveAccountsDb($accountsDb);
@@ -140,7 +140,7 @@ function validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCod
    $errorCode = null;
    if (!validEmailFormat($email))
       $errorCode = "invalid-email";
-   elseif (isset($accountsDb->users->{$email}))
+   elseif (isset($accountsDb->users->$email))
       $errorCode = "user-exists";
    elseif ($password !== $confirm)
       $errorCode = "mismatch";
@@ -167,7 +167,7 @@ function restRequestSecurity($action, $httpBody) {
    $confirm =    $httpBody->confirm;
    $inviteCode = $httpBody->invite;
    $accountsDb = readAccountsDb();
-   $user =       isset($accountsDb->users->{$email}) ? $accountsDb->users->{$email} : null;
+   $user =       isset($accountsDb->users->$email) ? $accountsDb->users->$email : null;
    $errorCode =  null;
    if ($action === "login")
       $errorCode = verifyPassword($user, $password) && loginUser($email) ? null : "bad-credentials";
@@ -175,7 +175,7 @@ function restRequestSecurity($action, $httpBody) {
       $errorCode = validateCreateUser($accountsDb, $email, $password, $confirm, $inviteCode);
    else
       $errorCode = "invalid-action";
-   $msg = $errorCode ? $securityMsgs->{$errorCode} : "Success";
+   $msg = $errorCode ? $securityMsgs->$errorCode : "Success";
    logEvent(__FILE__, __FUNCTION__, $email, $action, $errorCode, $msg);
    return (object)[
       "authenticated" => $errorCode === null,

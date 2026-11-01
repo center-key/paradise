@@ -90,13 +90,13 @@ function getDbCache() {
 
 function readDb($dbFilename) {
    $dbCache = getDbCache();
-   if (!isset($dbCache->{$dbFilename})) {
+   if (!isset($dbCache->$dbFilename)) {
       $dbStr = file_get_contents($dbFilename);
       if ($dbStr === false)
          logErrorExit(__FILE__, __FUNCTION__, "Reading database failed", $dbFilename);
-      $dbCache->{$dbFilename} = json_decode($dbStr);
+      $dbCache->$dbFilename = json_decode($dbStr);
       }
-   return $dbCache->{$dbFilename};
+   return $dbCache->$dbFilename;
    }
 
 function saveDb($dbFilename, $dbObj) {
@@ -111,8 +111,8 @@ function saveDb($dbFilename, $dbObj) {
    if ($newSize === false)
       logErrorExit(__FILE__, __FUNCTION__, "Saving database failed", $dbFilename, toBytes($dbJson));
    logEvent(__FILE__, __FUNCTION__, basename($dbFilename), toBytes($origSize), toBytes($newSize));
-   $dbCache->{$dbFilename} = $dbObj;
-   return $dbCache->{$dbFilename};
+   $dbCache->$dbFilename = $dbObj;
+   return $dbCache->$dbFilename;
    }
 
 function readGalleryDb() {

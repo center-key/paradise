@@ -33,7 +33,9 @@ function linkText($url) {
    }
 
 function styleClasses($settings) {
-   // Example output: "dark-mode show-description caption-caps"
+   // Example:
+   //    { title: "My Gallery!", darkMode: true, imageBorder: false, show-Description: true }
+   //    --> "dark-mode show-description"
    $options = [
       "dark-mode",
       "image-border",
