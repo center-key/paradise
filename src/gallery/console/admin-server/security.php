@@ -13,8 +13,8 @@
 // $redirectAuth (optional): If set and user is authorized, redirects to named page.
 
 $sessionTimeout = 3600000;  //one hour: 60 x 60 x 1000 = 3,600,000 milliseconds
-$authRequired =   isset($authRequired) ? $authRequired : true;
-$redirectAuth =   isset($redirectAuth) ? $redirectAuth : null;
+$authRequired =   $authRequired ?? true;
+$redirectAuth =   $redirectAuth ?? null;
 session_start();
 require "library.php";
 require "startup.php";
@@ -30,13 +30,13 @@ function redirectToPage($page) {
    }
 
 function getCurrentUser() {
-   return isset($_SESSION["user"]) ? $_SESSION["user"] : null;
+   return $_SESSION["user"] ?? null;
    }
 
 function userEnabled() {
-   $user =  getCurrentUser();
-   $users = readAccountsDb()->users;
-   return isset($users->$user) && $users->$user->enabled;
+   $accountsDb = readAccountsDb();
+   $user =       getCurrentUser();
+   return $accountsDb->users->$user->enabled ?? false;
    }
 
 function calculateHash($user, $password) {
@@ -127,7 +127,7 @@ function restRequestInvite($action, $email) {
    }
 
 function useInvite($accountsDb, $code) {
-   $invite = isset($accountsDb->invites->$code) ? $accountsDb->invites->$code : null;
+   $invite = $accountsDb->invites->$code ?? null;
    if (outstanding($invite)) {
       $invite->accepted = true;
       saveAccountsDb($accountsDb);
@@ -167,7 +167,7 @@ function restRequestSecurity($action, $httpBody) {
    $confirm =    $httpBody->confirm;
    $inviteCode = $httpBody->invite;
    $accountsDb = readAccountsDb();
-   $user =       isset($accountsDb->users->$email) ? $accountsDb->users->$email : null;
+   $user =       $accountsDb->users->$email ?? null;
    $errorCode =  null;
    if ($action === "login")
       $errorCode = verifyPassword($user, $password) && loginUser($email) ? null : "bad-credentials";
@@ -185,7 +185,7 @@ function restRequestSecurity($action, $httpBody) {
    }
 
 function readOnlyMode() {
-   return isset($_SESSION["read-only-user"]) ? $_SESSION["read-only-user"] : false;
+   return $_SESSION["read-only-user"] ?? false;
    }
 
 $loggedIn = getCurrentUser() && getTime() < $_SESSION["active"] + $sessionTimeout && userEnabled();

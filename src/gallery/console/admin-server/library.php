@@ -192,8 +192,8 @@ function convert($imageDb) {
       "code" =>        toUriCode($imageDb->caption),
       "caption" =>     $imageDb->caption,
       "description" => $imageDb->description,
-      "badge" =>       isset($imageDb->badge) ? $imageDb->badge : "",
-      "stamp" =>       isset($imageDb->stamp) ? $imageDb->stamp : false,
+      "badge" =>       $imageDb->badge ?? "",
+      "stamp" =>       $imageDb->stamp ?? false,
       ];
    }
 function generateGalleryDb() {

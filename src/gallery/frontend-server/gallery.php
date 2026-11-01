@@ -50,17 +50,17 @@ function styleClasses($settings) {
 function getImagesHtml($gallery, $settings) {
    // Returns a string of "<figure>...</figure>" tags representing the content of the gallery.
    // TODO: $image ==> $imageInfo or $imageDb ????
-   $stampIcon = $settings->stampIcon;
-   $stampTooltip = empty($settings->stampTitle) ? "" :
-      "title='" . str_replace("'", "&apos;", $settings->stampTitle) . "'";
+   $stampIcon =    $settings->stampIcon;
+   $titleAttr =    "title='" . str_replace("'", "&apos;", $settings->stampTitle ?? "") . "'";
+   $stampTooltip = empty($settings->stampTitle) ? "" : $titleAttr;
    function toImageHtml($image, $stampIcon, $stampTooltip) {
-      $badgeHtml = empty($image->badge) ? "" : "<span class=badge>{$image->badge}</span>";
-      $stampHtml = isset($image->stamp) && $image->stamp && !empty($stampIcon) ?
-         "<i class=stamp data-icon={$stampIcon} {$stampTooltip}></i>" : "";
-      $imageTitleHtml = str_replace("'", "&apos;",
-         "<span class=image-caption>{$image->caption}</span>" .
-         "<span class=image-description>{$image->description}</span>");
-      $image->code = toUriCode($image->caption);  //backwards compatibility (temporary)
+      $badgeHtml =      empty($image->badge) ? "" : "<span class=badge>{$image->badge}</span>";
+      $hasStamp =       isset($image->stamp) && $image->stamp && !empty($stampIcon);
+      $stampHtml =      $hasStamp ? "<i class=stamp data-icon={$stampIcon} {$stampTooltip}></i>" : "";
+      $captionHtml =    "<span class=image-caption>{$image->caption}</span>";
+      $descHtml =       "<span class=image-description>{$image->description}</span>";
+      $imageTitleHtml = str_replace("'", "&apos;", $captionHtml . $descHtml);
+      $image->code =    toUriCode($image->caption);  //backwards compatibility (temporary)
       return "
          <figure itemprop=associatedMedia itemscope itemtype=https://schema.org/ImageObject>
             <a href=~data~/portfolio/{$image->id}-large.jpg data-title='{$imageTitleHtml}' itemprop=contentUrl>

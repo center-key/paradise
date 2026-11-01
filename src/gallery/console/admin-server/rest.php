@@ -4,7 +4,7 @@
 // GPLv3 ~ Copyright (c) Individual contributors to Paradise //
 ///////////////////////////////////////////////////////////////
 
-// REST
+// REST API
 // JSON-only zone
 
 function restError($code) {
@@ -249,11 +249,11 @@ function restRequestBackup($action) {
    }
 
 function getIdParam() {
-   return isset($_GET["id"]) ? strtolower(trim($_GET["id"])) : "";
+   return strtolower(trim($_GET["id"] ?? ""));
    }
 
 function getEmailParam() {
-   return isset($_GET["email"]) ? strtolower(trim($_GET["email"])) : "";
+   return strtolower(trim($_GET["email"] ?? ""));
    }
 
 function resource($loggedIn) {
@@ -269,8 +269,8 @@ function resource($loggedIn) {
       "backup" =>    function($action) { return restRequestBackup($action); },
       ];
    $httpMethod =     $_SERVER["REQUEST_METHOD"];
-   $name =           isset($_GET["resource"]) ? $_GET["resource"] : null;
-   $action =         isset($_GET["action"]) ?   $_GET["action"] :   "get";
+   $name =           $_GET["resource"] ?? null;
+   $action =         $_GET["action"] ?? "get";
    $postFn =         $postRoutes->$name ?? null;
    $fn =             $routes->$name ?? null;
    $standardAction = in_array($action, ["create", "get", "update", "delete", "list"]);
